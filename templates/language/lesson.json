@@ -1,0 +1,137 @@
+{
+  "id": "TEMPLATE-language-lesson",
+  "title": "TEMPLATE — Replace with your lesson title",
+  "description": "A ready-to-validate language lesson template. Copy this file into your set's lessons/ folder, rename it (kebab-case, matching the id), and replace the placeholder content. See ../README.md and ../../docs/LESSON-FORMAT.md for field-by-field guidance.",
+  "target_language": "es",
+  "source_language": "en",
+  "domain": "language",
+  "estimated_minutes": 10,
+  "cards": [
+    {
+      "id": "hola",
+      "front": "hola",
+      "back": "hello",
+      "notes": "front = the TARGET language (what you learn), back = the SOURCE language (your explanation language).",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["greetings"]
+    },
+    {
+      "id": "gracias",
+      "front": "gracias",
+      "back": "thank you",
+      "notes": "Add a short note in the SOURCE language. Optional fields: notes, hint, difficulty (1-5), tags.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["greetings"]
+    },
+    {
+      "id": "por-favor",
+      "front": "por favor",
+      "back": "please",
+      "notes": "Card ids must be unique and kebab-case. Exercises reference cards by these ids in card_ids.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["greetings"]
+    },
+    {
+      "id": "adios",
+      "front": "adiós",
+      "back": "goodbye",
+      "notes": "Write target-language accents as real UTF-8 characters (á é í ó ú ñ ü), not ASCII substitutes.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["greetings"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Theory section (at least one is required)",
+      "body": "# Greetings\n\nWrite your explanation here in **Markdown**, in the SOURCE language.\n\n- Use headings, lists and tables freely.\n- Keep it short; a lesson usually has 1-3 theory steps.\n\n> Tip: introduce the words your exercises will test."
+    },
+    {
+      "id": "ex-match",
+      "type": "exercise",
+      "title": "Matching (needs >= 3 pairs)",
+      "exercise": {
+        "id": "ex-match",
+        "type": "matching",
+        "prompt": "Match each word with its meaning.",
+        "card_ids": ["hola", "gracias", "por-favor", "adios"],
+        "pairs": [
+          {"left": "hola", "right": "hello"},
+          {"left": "gracias", "right": "thank you"},
+          {"left": "por favor", "right": "please"},
+          {"left": "adiós", "right": "goodbye"}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-free",
+      "type": "exercise",
+      "title": "Free text (needs >= 2 accepts AND distractors)",
+      "exercise": {
+        "id": "ex-free",
+        "type": "free_text",
+        "prompt": "Translate: *thank you*",
+        "card_ids": ["gracias"],
+        "accept": ["gracias", "Gracias", "¡Gracias!"],
+        "hint": "Starts with 'gr'.",
+        "distractors": ["hola", "por favor", "de nada"],
+        "direction": "source_to_target"
+      }
+    },
+    {
+      "id": "ex-cloze",
+      "type": "exercise",
+      "title": "Cloze (sentence with ___ and a blanks list)",
+      "exercise": {
+        "id": "ex-cloze",
+        "type": "cloze",
+        "prompt": "Fill in the polite word.",
+        "card_ids": ["por-favor"],
+        "sentence": "Un café, ___ .",
+        "blanks": [{"accept": ["por favor"]}],
+        "cloze_mode": "type",
+        "hint": "English: 'please'."
+      }
+    },
+    {
+      "id": "ex-tiles",
+      "type": "exercise",
+      "title": "Word tiles (arrange the tiles)",
+      "exercise": {
+        "id": "ex-tiles",
+        "type": "word_tiles",
+        "prompt": "Build: *Hello, thank you.*",
+        "card_ids": ["hola", "gracias"],
+        "tiles": ["Hola", "gracias"],
+        "hint": "Two words.",
+        "direction": "source_to_target"
+      }
+    },
+    {
+      "id": "ex-pick",
+      "type": "exercise",
+      "title": "Picture choice (one is_correct, plus distractors)",
+      "exercise": {
+        "id": "ex-pick",
+        "type": "picture_choice",
+        "prompt": "Which word means 'goodbye'?",
+        "card_ids": ["adios"],
+        "images": [
+          {"src": "assets/img/adios.png", "label": "adiós", "is_correct": "true"},
+          {"src": "assets/img/hola.png", "label": "hola"},
+          {"src": "assets/img/gracias.png", "label": "gracias"},
+          {"src": "assets/img/por-favor.png", "label": "por favor"}
+        ],
+        "hint": "You say it when you leave.",
+        "distractors": ["hola", "gracias", "por favor"],
+        "direction": "target_to_source"
+      }
+    }
+  ]
+}

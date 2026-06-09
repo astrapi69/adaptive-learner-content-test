@@ -1,0 +1,33 @@
+# cards.yaml — cards + reusable distractor pools (schema v1.4 PREVIEW)
+
+# distractor_pools: named banks of plausible wrong answers that exercises can
+# draw from (a v1.4 convenience). In today's JSON format, distractors are listed
+# inline on each exercise instead.
+distractor_pools:
+  greetings:
+    - hello
+    - thank you
+    - please
+    - goodbye
+
+cards:
+  - id: card-hola
+    front: "hola"          # front = TARGET language (what you learn)
+    back: "hello"          # back  = SOURCE language (your explanation)
+    category: greeting
+    distractor_pool: greetings
+  - id: card-gracias
+    front: "gracias"
+    back: "thank you"
+    category: greeting
+    distractor_pool: greetings
+  - id: card-por-favor
+    front: "por favor"
+    back: "please"
+    category: greeting
+    distractor_pool: greetings
+  - id: card-adios
+    front: "adiós"
+    back: "goodbye"
+    category: greeting
+    distractor_pool: greetings

@@ -1,0 +1,37 @@
+# lesson.yaml — metadata + structure (schema v1.4 PREVIEW, not yet supported)
+# Domain: LANGUAGE. Copy this folder, rename, and fill in your content.
+id: my-language-lesson                 # kebab-case, unique; matches the folder name
+schema_version: 1.4
+title:
+  de: "Mein Lektionstitel"             # title per language code
+language_source: en                    # the language your explanations are written in
+domain: language
+domain_config:
+  language_target: es                  # LANGUAGE domain: the language being learned
+  level: A1                            # CEFR level for language lessons
+estimated_duration_minutes: 10
+version: 1.0.0
+license: CC-BY-SA-4.0
+author: your-handle
+tags: [greetings, beginner]
+
+prerequisites: []                      # ids of lessons that should come first
+
+learning_goals:
+  - Greet and thank in the target language
+  - Recognise the most common politeness words
+
+# structure = the order blocks appear in. Theory steps may carry an example_url
+# (a v1.4 convenience: link to a live example or source).
+structure:
+  - type: theory
+    ref: theory.md#einleitung
+    example_url: https://github.com/astrapi69/adaptive-learner-content-test
+  - type: exercise_block
+    title: "Words and meanings"
+    exercises: [matching-01, free-01]
+  - type: exercise_block
+    title: "Produce it yourself"
+    exercises: [cloze-01, tiles-01, picture-01]
+  - type: review
+    cards_count: 3

@@ -1,0 +1,145 @@
+{
+  "id": "TEMPLATE-programming-lesson",
+  "title": "TEMPLATE — Replace with your lesson title",
+  "description": "A ready-to-validate programming lesson template. Programming is a non-language domain (source_language == target_language). Code cards use the schema v1.3 fields code_snippet, code_language, expected_output and media_type: \"code\". See ../README.md and ../../docs/LESSON-FORMAT.md.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "programming",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "py-print",
+      "front": "print()",
+      "back": "Gibt Text auf der Konsole aus.",
+      "code_snippet": "print('Hallo Welt')",
+      "code_language": "python",
+      "expected_output": "Hallo Welt",
+      "notes": "Code-Karten nutzen code_snippet (der Code), code_language (z. B. python) und expected_output (erwartete Ausgabe).",
+      "hint": "Klammern und Anführungszeichen nicht vergessen.",
+      "media_type": "code",
+      "difficulty": 1,
+      "tags": ["syntax", "output"]
+    },
+    {
+      "id": "py-variable",
+      "front": "Variable",
+      "back": "Ein benannter Speicherplatz für einen Wert.",
+      "code_snippet": "name = 'Ana'\nprint(name)",
+      "code_language": "python",
+      "expected_output": "Ana",
+      "notes": "media_type: \"code\" lässt den Viewer den Code in Monospace und ohne Rechtschreibprüfung rendern.",
+      "media_type": "code",
+      "difficulty": 1,
+      "tags": ["variablen"]
+    },
+    {
+      "id": "py-summe",
+      "front": "Zahlen addieren",
+      "back": "Mit + werden Zahlen addiert.",
+      "code_snippet": "print(2 + 3)",
+      "code_language": "python",
+      "expected_output": "5",
+      "media_type": "code",
+      "difficulty": 1,
+      "tags": ["operatoren"]
+    },
+    {
+      "id": "py-typen",
+      "front": "Was ist der Unterschied zwischen 5 und '5'?",
+      "back": "5 ist eine Zahl (int), '5' ist eine Zeichenkette (str).",
+      "notes": "Nicht jede Karte braucht Code — Konzeptkarten dürfen reiner Text sein (media_type: \"text\").",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["typen"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Theorie-Abschnitt (mindestens einer ist Pflicht)",
+      "body": "# Erste Schritte\n\nErkläre das Konzept in **Markdown**. Code gehört in Code-Blöcke:\n\n```python\nprint('Hallo Welt')\n```\n\nErwartete Ausgabe:\n\n```\nHallo Welt\n```\n\n- Halte Beispiele lauffähig.\n- Nenne die erwartete Ausgabe, damit Lernende vergleichen können."
+    },
+    {
+      "id": "ex-match",
+      "type": "exercise",
+      "title": "Matching (mindestens 3 Paare)",
+      "exercise": {
+        "id": "ex-match",
+        "type": "matching",
+        "prompt": "Ordne jedem Code-Schnipsel seine Ausgabe zu.",
+        "card_ids": ["py-print", "py-variable", "py-summe"],
+        "pairs": [
+          {"left": "print('Hallo Welt')", "right": "Hallo Welt"},
+          {"left": "name = 'Ana'; print(name)", "right": "Ana"},
+          {"left": "print(2 + 3)", "right": "5"}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-free",
+      "type": "exercise",
+      "title": "Freitext (mind. 2 accepts UND distractors)",
+      "exercise": {
+        "id": "ex-free",
+        "type": "free_text",
+        "prompt": "Welche Funktion gibt Text auf der Konsole aus?",
+        "card_ids": ["py-print"],
+        "accept": ["print", "print()", "die print-Funktion"],
+        "hint": "Englisch für *drucken*.",
+        "distractors": ["input", "echo", "console.log"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-cloze",
+      "type": "exercise",
+      "title": "Cloze (Code mit ___ und blanks-Liste)",
+      "exercise": {
+        "id": "ex-cloze",
+        "type": "cloze",
+        "prompt": "Ergänze den Funktionsnamen, der 'Hallo' ausgibt.",
+        "card_ids": ["py-print"],
+        "sentence": "___('Hallo')",
+        "blanks": [{"accept": ["print"]}],
+        "cloze_mode": "type",
+        "hint": "Vier Buchstaben."
+      }
+    },
+    {
+      "id": "ex-tiles",
+      "type": "exercise",
+      "title": "Word tiles (Code-Zeile zusammensetzen)",
+      "exercise": {
+        "id": "ex-tiles",
+        "type": "word_tiles",
+        "prompt": "Setze die Code-Zeile zusammen, die 5 ausgibt.",
+        "card_ids": ["py-summe"],
+        "tiles": ["print(", "2", "+", "3", ")"],
+        "hint": "Beginnt mit *print(*.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-pick",
+      "type": "exercise",
+      "title": "Picture choice (eines is_correct, plus distractors)",
+      "exercise": {
+        "id": "ex-pick",
+        "type": "picture_choice",
+        "prompt": "Welcher Datentyp ist '5' (mit Anführungszeichen)?",
+        "card_ids": ["py-typen"],
+        "images": [
+          {"src": "assets/img/type-str.png", "label": "str (Zeichenkette)", "is_correct": "true"},
+          {"src": "assets/img/type-int.png", "label": "int (Ganzzahl)"},
+          {"src": "assets/img/type-float.png", "label": "float (Kommazahl)"},
+          {"src": "assets/img/type-bool.png", "label": "bool (Wahrheitswert)"}
+        ],
+        "hint": "Anführungszeichen machen aus einer Zahl Text.",
+        "distractors": ["int (Ganzzahl)", "float (Kommazahl)", "bool (Wahrheitswert)"],
+        "direction": "target_to_source"
+      }
+    }
+  ]
+}

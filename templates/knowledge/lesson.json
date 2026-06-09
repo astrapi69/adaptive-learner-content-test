@@ -1,0 +1,140 @@
+{
+  "id": "TEMPLATE-knowledge-lesson",
+  "title": "TEMPLATE — Replace with your lesson title",
+  "description": "A ready-to-validate knowledge (non-language) lesson template. For non-language content the material and the explanation share ONE language, so source_language == target_language is allowed and the set folder carries a topic name. This example uses domain: psychology. See ../README.md and ../../docs/LESSON-FORMAT.md.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "psychology",
+  "estimated_minutes": 10,
+  "cards": [
+    {
+      "id": "begriff-1",
+      "front": "Fachbegriff",
+      "back": "Definition des Begriffs in einem klaren Satz.",
+      "notes": "Für Wissensthemen: front = Begriff/Frage, back = Definition/Antwort — beide in derselben Sprache. Originalbegriffe (z. B. englisch) gehören in Klammern.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["beispiel"]
+    },
+    {
+      "id": "begriff-2",
+      "front": "Zweiter Begriff",
+      "back": "Seine Definition.",
+      "notes": "Optionale Felder: notes, hint, difficulty (1-5), tags. Echte Umlaute verwenden (ä ö ü ß).",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["beispiel"]
+    },
+    {
+      "id": "begriff-3",
+      "front": "Dritter Begriff",
+      "back": "Seine Definition.",
+      "notes": "Karten-ids müssen eindeutig und kebab-case sein.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["beispiel"]
+    },
+    {
+      "id": "frage-1",
+      "front": "Eine Verständnisfrage?",
+      "back": "Die passende Antwort.",
+      "notes": "Karten dürfen auch Frage/Antwort-Paare sein.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["konzept"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Theorie-Abschnitt (mindestens einer ist Pflicht)",
+      "body": "# Thema\n\nErkläre hier dein Thema in **Markdown**, in derselben Sprache wie die Karten.\n\n- Tabellen, Listen und Zitate sind erlaubt.\n- Halte es sachlich; nenne die Begriffe, die deine Übungen abfragen.\n\n> Bei sensiblen Themen: deskriptiv bleiben, kein Selbstdiagnose-Material, ggf. Hinweis auf professionelle Hilfe."
+    },
+    {
+      "id": "ex-match",
+      "type": "exercise",
+      "title": "Matching (mindestens 3 Paare)",
+      "exercise": {
+        "id": "ex-match",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff seine Definition zu.",
+        "card_ids": ["begriff-1", "begriff-2", "begriff-3"],
+        "pairs": [
+          {"left": "Fachbegriff", "right": "Definition des Begriffs in einem klaren Satz."},
+          {"left": "Zweiter Begriff", "right": "Seine Definition."},
+          {"left": "Dritter Begriff", "right": "Seine Definition."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-free",
+      "type": "exercise",
+      "title": "Freitext (mind. 2 accepts UND distractors)",
+      "exercise": {
+        "id": "ex-free",
+        "type": "free_text",
+        "prompt": "Wie lautet der Fachbegriff für …?",
+        "card_ids": ["begriff-1"],
+        "accept": ["Fachbegriff", "der Fachbegriff"],
+        "hint": "Beginnt mit *Fach*.",
+        "distractors": ["Zweiter Begriff", "Dritter Begriff"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-cloze",
+      "type": "exercise",
+      "title": "Cloze (Satz mit ___ und blanks-Liste)",
+      "exercise": {
+        "id": "ex-cloze",
+        "type": "cloze",
+        "prompt": "Ergänze den Schlüsselbegriff.",
+        "card_ids": ["begriff-2"],
+        "sentence": "Der wichtigste Begriff hier ist ___ .",
+        "blanks": [{"accept": ["Zweiter Begriff"]}],
+        "cloze_mode": "type",
+        "hint": "Steht auf Karte 2."
+      }
+    },
+    {
+      "id": "ex-tiles",
+      "type": "exercise",
+      "title": "Word tiles",
+      "exercise": {
+        "id": "ex-tiles",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["frage-1"],
+        "tiles": ["Begriff", "und", "Definition", "gehören", "zusammen"],
+        "hint": "Beginnt mit *Begriff*.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-pick",
+      "type": "exercise",
+      "title": "Picture choice (eines is_correct, plus distractors)",
+      "exercise": {
+        "id": "ex-pick",
+        "type": "picture_choice",
+        "prompt": "Welche Aussage ist korrekt?",
+        "card_ids": ["frage-1"],
+        "images": [
+          {"src": "assets/img/option-richtig.png", "label": "Die richtige Antwort.", "is_correct": "true"},
+          {"src": "assets/img/option-falsch-1.png", "label": "Eine plausible, aber falsche Antwort."},
+          {"src": "assets/img/option-falsch-2.png", "label": "Eine weitere falsche Antwort."},
+          {"src": "assets/img/option-falsch-3.png", "label": "Noch eine falsche Antwort."}
+        ],
+        "hint": "Vergleiche mit der Theorie.",
+        "distractors": [
+          "Eine plausible, aber falsche Antwort.",
+          "Eine weitere falsche Antwort.",
+          "Noch eine falsche Antwort."
+        ],
+        "direction": "target_to_source"
+      }
+    }
+  ]
+}
