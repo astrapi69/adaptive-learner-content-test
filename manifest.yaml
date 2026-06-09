@@ -12,8 +12,8 @@
 schema_version: '1.2'
 name: Adaptive Learner — Test- und Starter-Inhalte
 description: >-
-  Starter-Kit-Inhalte fuer eigene Adaptive-Learner-Lektionen.
-  Enthaelt ein lauffaehiges Beispiel-Set (Inception-Effekt) als
+  Starter-Kit-Inhalte für eigene Adaptive-Learner-Lektionen.
+  Enthält ein lauffähiges Beispiel-Set (Inception-Effekt) als
   Vorlage; forke das Repo und erstelle deine eigenen Inhalte.
 sets:
   - id: inception-example-from-de
@@ -28,9 +28,9 @@ sets:
     lesson_count: 1
     domain_label: Psychologie
     description: >-
-      Beispiel-Set: eine vollstaendige Sachthema-Lektion zur
+      Beispiel-Set: eine vollständige Sachthema-Lektion zur
       Kommunikationspsychologie (10 Karten, 3 Theorieschritte,
-      8 Uebungen) als Vorlage fuer eigene Inhalte.
+      8 Übungen) als Vorlage für eigene Inhalte.
     tags:
       - beispiel
       - psychology
