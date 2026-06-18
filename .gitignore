@@ -1,0 +1,3 @@
+# Python bytecode caches (validate_content.py / generate_search_index.py)
+__pycache__/
+*.pyc

@@ -1,0 +1,58 @@
+# Auto-generate search-index.json on every content change.
+#
+# search-index.json is never hand-maintained: this workflow regenerates
+# it from the manifests whenever sets/ or manifest.yaml change on main,
+# and self-heals the repo by committing the result back. The
+# "[skip ci]" tag on the auto-commit breaks the push -> run -> push loop.
+#
+# Analogous to the self-healing deploy workflow (#652).
+name: generate-search-index
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "sets/**"
+      - "manifest.yaml"
+      - "scripts/generate_search_index.py"
+
+permissions:
+  contents: write
+
+# Never run two regenerations against main at once.
+concurrency:
+  group: generate-search-index
+  cancel-in-progress: false
+
+jobs:
+  generate-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Full history so `git log` can date each set directory.
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Regenerate search-index.json
+        run: python scripts/generate_search_index.py
+
+      - name: Commit & push if changed
+        run: |
+          if git diff --quiet -- search-index.json; then
+            echo "search-index.json already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add search-index.json
+          git commit -m "docs: auto-update search-index.json [skip ci]"
+          git push
