@@ -1,0 +1,24 @@
+# media.yaml — begleitende Medien für das Set
+# "Ansible-Grundlagen für Quality Engineering".
+#
+# Optionaler Begleiter zum Lektionskatalog: verweist auf externe
+# Lernvideos. Kein Content-Set, wird daher nicht von
+# scripts/validate_content.py verarbeitet.
+set: ansible-qe-from-de
+media:
+  - type: video
+    provider: youtube
+    title: "Ansible for Beginners — Full Course"
+    channel: "freeCodeCamp.org"
+    url: "https://www.youtube.com/watch?v=3RiVKs8GHYQ"
+    video_id: "3RiVKs8GHYQ"
+    language: en
+    duration_minutes: 60
+    description: >-
+      Einsteigerfreundliches Komplett-Tutorial zu Ansible: Inventory,
+      Playbooks, Module, Variablen und Templates. Gute Ergänzung zu
+      den Lektionen 1, 2 und 8.
+    related_lessons:
+      - 01-ansible-grundkonzepte
+      - 02-yaml-syntax-playbook-struktur
+      - 08-handlers-jinja2-templates

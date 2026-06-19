@@ -1,0 +1,230 @@
+{
+  "id": "08-handlers-jinja2-templates",
+  "title": "Handlers und Jinja2-Templates",
+  "description": "Über einfache Tasks hinaus: Handlers, die nur bei Änderung über notify ausgelöst werden, und das template-Modul, das Konfigurationsdateien dynamisch aus Jinja2-Vorlagen erzeugt — mit Variablen, Schleifen und Bedingungen.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "technology",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "card-01",
+      "front": "Handler",
+      "back": "Spezieller Task, der nur auf Benachrichtigung (notify) hin ausgeführt wird",
+      "notes": "Typisch: einen Dienst neu starten, nachdem sich die Konfiguration geändert hat.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["handlers"]
+    },
+    {
+      "id": "card-02",
+      "front": "notify",
+      "back": "Löst einen Handler aus, aber NUR wenn der Task den Status 'changed' meldet",
+      "notes": "Bleibt der Task 'ok', wird der Handler nicht ausgelöst.",
+      "media_type": "code",
+      "code_snippet": "  notify: Nginx neu starten",
+      "code_language": "yaml",
+      "difficulty": 2,
+      "tags": ["handlers"]
+    },
+    {
+      "id": "card-03",
+      "front": "handlers (Abschnitt)",
+      "back": "Eigener Abschnitt im Play, in dem die Handler definiert werden",
+      "notes": "Der Handler-Name muss exakt dem notify-Wert entsprechen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["handlers"]
+    },
+    {
+      "id": "card-04",
+      "front": "Wann laufen Handler?",
+      "back": "Gesammelt am Ende des Plays, jeder höchstens einmal",
+      "notes": "Mehrfache notifys desselben Handlers führen zu einem einzigen Lauf.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["handlers", "ausfuehrung"]
+    },
+    {
+      "id": "card-05",
+      "front": "template",
+      "back": "Modul, das eine Jinja2-Vorlage rendert und als Datei auf den Host schreibt",
+      "notes": "Wie copy, aber mit Variablen-Ersetzung beim Schreiben.",
+      "media_type": "code",
+      "code_snippet": "- ansible.builtin.template:\n    src: nginx.conf.j2\n    dest: /etc/nginx/nginx.conf",
+      "code_language": "yaml",
+      "difficulty": 2,
+      "tags": ["templates", "jinja2"]
+    },
+    {
+      "id": "card-06",
+      "front": ".j2-Endung",
+      "back": "Übliche Dateiendung für Jinja2-Templates",
+      "notes": "z. B. nginx.conf.j2",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["templates"]
+    },
+    {
+      "id": "card-07",
+      "front": "Jinja2-Variable",
+      "back": "Wird im Template mit {{ ... }} eingesetzt",
+      "notes": "z. B. listen {{ app_port }};",
+      "media_type": "code",
+      "code_snippet": "listen {{ app_port }};",
+      "code_language": "jinja2",
+      "difficulty": 2,
+      "tags": ["templates", "jinja2"]
+    },
+    {
+      "id": "card-08",
+      "front": "Jinja2-Schleife",
+      "back": "{% for x in liste %} ... {% endfor %} wiederholt einen Block",
+      "notes": "Mit {% %} stehen Steueranweisungen (Logik), mit {{ }} Ausgaben.",
+      "media_type": "code",
+      "code_snippet": "{% for server in backends %}\n  server {{ server }};\n{% endfor %}",
+      "code_language": "jinja2",
+      "difficulty": 3,
+      "tags": ["templates", "jinja2"]
+    },
+    {
+      "id": "card-09",
+      "front": "Jinja2-Bedingung",
+      "back": "{% if bedingung %} ... {% endif %} gibt einen Block nur bedingt aus",
+      "notes": "Erlaubt unterschiedliche Konfigurationen je Umgebung.",
+      "media_type": "code",
+      "code_snippet": "{% if tls_enabled %}\n  listen 443 ssl;\n{% endif %}",
+      "code_language": "jinja2",
+      "difficulty": 3,
+      "tags": ["templates", "jinja2"]
+    },
+    {
+      "id": "card-10",
+      "front": "{{ }} vs. {% %}",
+      "back": "{{ }} gibt einen Wert aus; {% %} steuert die Logik (for, if)",
+      "notes": "Der häufigste Verwechslungsfehler in Templates.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["templates", "jinja2", "stolperstein"]
+    },
+    {
+      "id": "card-11",
+      "front": "template vs. copy",
+      "back": "copy überträgt eine Datei unverändert; template ersetzt vorher Variablen",
+      "notes": "Dynamische Konfiguration → template; statische Datei → copy.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["templates", "abgrenzung"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Handlers",
+      "body": "# Handlers\n\nManche Aktionen sollen **nur dann** laufen, wenn sich wirklich etwas geändert hat — etwa ein Dienst-Neustart nach einer Konfigurationsänderung. Genau dafür gibt es **Handlers**.\n\n```yaml\ntasks:\n  - name: Nginx-Konfiguration ausrollen\n    ansible.builtin.template:\n      src: nginx.conf.j2\n      dest: /etc/nginx/nginx.conf\n    notify: Nginx neu starten\n\nhandlers:\n  - name: Nginx neu starten\n    ansible.builtin.service:\n      name: nginx\n      state: restarted\n```\n\n**`notify`** löst den Handler nur aus, wenn der Task **`changed`** meldet. Handler laufen gesammelt **am Ende des Plays** und jeder höchstens **einmal** — auch bei mehreren notifys. Der Handler-Name muss exakt dem notify-Wert entsprechen."
+    },
+    {
+      "id": "templates",
+      "type": "theory",
+      "title": "Jinja2-Templates",
+      "body": "## Konfiguration dynamisch erzeugen\n\nDas **`template`**-Modul rendert eine **Jinja2**-Vorlage (Endung `.j2`) und schreibt das Ergebnis als Datei — wie `copy`, aber mit Variablen-Ersetzung.\n\nIn Jinja2 gibt es zwei Klammertypen:\n\n- `{{ ... }}` — **gibt einen Wert aus**: `listen {{ app_port }};`\n- `{% ... %}` — **steuert die Logik** (Schleifen, Bedingungen):\n\n```jinja2\nupstream backend {\n{% for server in backends %}\n  server {{ server }};\n{% endfor %}\n}\n{% if tls_enabled %}\nlisten 443 ssl;\n{% endif %}\n```\n\nMerke den häufigsten Fehler: **`{{ }}` für Werte, `{% %}` für Logik** — nicht vertauschen."
+    },
+    {
+      "id": "ex-cloze-notify",
+      "type": "exercise",
+      "title": "Handler auslösen",
+      "exercise": {
+        "id": "ex-cloze-notify",
+        "type": "cloze",
+        "prompt": "Ergänze das Schlüsselwort, mit dem ein Task einen Handler benachrichtigt.",
+        "card_ids": ["card-02"],
+        "sentence": "- ansible.builtin.template:\n    src: nginx.conf.j2\n    dest: /etc/nginx/nginx.conf\n  ___: Nginx neu starten",
+        "blanks": [{"accept": ["notify"]}],
+        "cloze_mode": "type",
+        "hint": "Englisch für 'benachrichtigen'."
+      }
+    },
+    {
+      "id": "ex-cloze-for",
+      "type": "exercise",
+      "title": "Jinja2-Schleife schließen",
+      "exercise": {
+        "id": "ex-cloze-for",
+        "type": "cloze",
+        "prompt": "Ergänze die Anweisung, die eine Jinja2-for-Schleife beendet.",
+        "card_ids": ["card-08"],
+        "sentence": "{% for server in backends %}\n  server {{ server }};\n{% ___ %}",
+        "blanks": [{"accept": ["endfor"]}],
+        "cloze_mode": "type",
+        "hint": "Schließt die for-Schleife (eine zusammengesetzte Anweisung)."
+      }
+    },
+    {
+      "id": "ex-match-jinja",
+      "type": "exercise",
+      "title": "Jinja2-Klammern",
+      "exercise": {
+        "id": "ex-match-jinja",
+        "type": "matching",
+        "prompt": "Ordne jedem Jinja2-Element seine Funktion zu.",
+        "card_ids": ["card-07", "card-08", "card-09", "card-10"],
+        "pairs": [
+          {"left": "{{ ... }}", "right": "gibt einen Wert aus"},
+          {"left": "{% for ... %}", "right": "wiederholt einen Block (Schleife)"},
+          {"left": "{% if ... %}", "right": "gibt einen Block nur bedingt aus"},
+          {"left": ".j2", "right": "Dateiendung eines Jinja2-Templates"}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-match-handler-template",
+      "type": "exercise",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-handler-template",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Beschreibung zu.",
+        "card_ids": ["card-01", "card-04", "card-05", "card-11"],
+        "pairs": [
+          {"left": "Handler", "right": "Task, der nur per notify ausgelöst wird"},
+          {"left": "Handler-Ausführung", "right": "gesammelt am Play-Ende, höchstens einmal"},
+          {"left": "template", "right": "rendert eine Jinja2-Vorlage und schreibt sie als Datei"},
+          {"left": "copy vs. template", "right": "unverändert übertragen vs. Variablen ersetzen"}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-free-notify-changed",
+      "type": "exercise",
+      "title": "Wann läuft der Handler?",
+      "exercise": {
+        "id": "ex-free-notify-changed",
+        "type": "free_text",
+        "prompt": "Welchen Status muss ein Task melden, damit das zugehörige notify den Handler tatsächlich auslöst?",
+        "card_ids": ["card-02", "card-04"],
+        "accept": ["changed", "den Status changed", "Status changed", "Der Task muss changed sein"],
+        "hint": "Bleibt der Task 'ok', passiert nichts — es braucht eine echte Änderung.",
+        "distractors": ["ok", "failed", "skipped"],
+        "direction": "source_to_target"
+      }
+    },
+    {
+      "id": "ex-free-template-copy",
+      "type": "exercise",
+      "title": "template oder copy?",
+      "exercise": {
+        "id": "ex-free-template-copy",
+        "type": "free_text",
+        "prompt": "Du willst eine Konfigurationsdatei ausrollen, in der Variablen wie der Port dynamisch eingesetzt werden. Welches Modul nimmst du?",
+        "card_ids": ["card-05", "card-11"],
+        "accept": ["template", "das template-Modul", "ansible.builtin.template"],
+        "hint": "copy überträgt unverändert — du brauchst Variablen-Ersetzung.",
+        "distractors": ["copy", "file", "shell"],
+        "direction": "source_to_target"
+      }
+    }
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "id": "07-inventory-gruppen-hosts-targeting",
+  "title": "Inventory-Gruppen und hosts-Targeting",
+  "description": "Komplexere Inventories: Hosts in Gruppen, verschachtelte children-Gruppen, die Spezialgruppe all sowie gezieltes Ansprechen über die hosts:-Zeile inklusive Patterns und der --limit-Option.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "technology",
+  "estimated_minutes": 11,
+  "cards": [
+    {
+      "id": "card-01",
+      "front": "Gruppe (im Inventory)",
+      "back": "Benannte Sammlung von Hosts, in INI mit [gruppenname] eingeleitet",
+      "notes": "z. B. [webserver] mit mehreren Host-Zeilen darunter.",
+      "media_type": "code",
+      "code_snippet": "[webserver]\nweb1.example.com\nweb2.example.com",
+      "code_language": "ini",
+      "difficulty": 1,
+      "tags": ["inventory", "gruppen"]
+    },
+    {
+      "id": "card-02",
+      "front": "all",
+      "back": "Spezialgruppe, die automatisch alle Hosts des Inventory enthält",
+      "notes": "hosts: all wirkt auf jeden Host.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["inventory", "gruppen"]
+    },
+    {
+      "id": "card-03",
+      "front": "children",
+      "back": "Macht Gruppen zu Untergruppen einer übergeordneten Gruppe",
+      "notes": "[produktion:children] listet andere Gruppennamen, nicht Hosts.",
+      "media_type": "code",
+      "code_snippet": "[produktion:children]\nwebserver\ndatenbank",
+      "code_language": "ini",
+      "difficulty": 3,
+      "tags": ["inventory", "verschachtelung"]
+    },
+    {
+      "id": "card-04",
+      "front": "Verschachtelte Gruppen",
+      "back": "Eine Gruppe kann andere Gruppen enthalten, deren Hosts sie miterbt",
+      "notes": "produktion erbt alle Hosts von webserver und datenbank.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["inventory", "verschachtelung"]
+    },
+    {
+      "id": "card-05",
+      "front": "hosts:-Zeile",
+      "back": "Im Play das Ziel: ein Hostname, ein Gruppenname oder ein Pattern",
+      "notes": "Bestimmt, auf welche Maschinen das Play angewendet wird.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["targeting", "playbook"]
+    },
+    {
+      "id": "card-06",
+      "front": "Pattern mit :",
+      "back": "Verknüpft mehrere Gruppen, z. B. 'webserver:datenbank' (Vereinigung)",
+      "notes": "Der Doppelpunkt bedeutet ODER (Vereinigungsmenge).",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["targeting", "pattern"]
+    },
+    {
+      "id": "card-07",
+      "front": "Ausschluss mit :!",
+      "back": "Schließt eine Gruppe aus, z. B. 'all:!datenbank' (alle außer datenbank)",
+      "notes": "Das Ausrufezeichen negiert.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["targeting", "pattern"]
+    },
+    {
+      "id": "card-08",
+      "front": "Schnittmenge mit :&",
+      "back": "Nur Hosts in beiden Gruppen, z. B. 'webserver:&produktion'",
+      "notes": "Das Und-Zeichen bildet die Schnittmenge.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["targeting", "pattern"]
+    },
+    {
+      "id": "card-09",
+      "front": "--limit (-l)",
+      "back": "Beschränkt einen Lauf zur Laufzeit auf bestimmte Hosts/Gruppen",
+      "notes": "ansible-playbook site.yml --limit web1 testet nur einen Host.",
+      "media_type": "code",
+      "code_snippet": "ansible-playbook site.yml --limit web1",
+      "code_language": "bash",
+      "difficulty": 2,
+      "tags": ["targeting", "cli"]
+    },
+    {
+      "id": "card-10",
+      "front": "group_vars",
+      "back": "Verzeichnis/Datei für Variablen, die für eine ganze Gruppe gelten",
+      "notes": "group_vars/webserver.yml setzt Werte für alle Webserver.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["inventory", "variablen"]
+    },
+    {
+      "id": "card-11",
+      "front": "ansible-inventory --graph",
+      "back": "Zeigt die Gruppen-/Host-Hierarchie als Baum an",
+      "notes": "Hilft, verschachtelte Inventories zu überprüfen.",
+      "media_type": "code",
+      "code_snippet": "ansible-inventory -i inventory.ini --graph",
+      "code_language": "bash",
+      "difficulty": 2,
+      "tags": ["inventory", "tooling"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Gruppen und children",
+      "body": "# Inventory-Gruppen\n\nEin Inventory ordnet Hosts in **Gruppen**. In der INI-Form:\n\n```ini\n[webserver]\nweb1.example.com\nweb2.example.com\n\n[datenbank]\ndb1.example.com\n\n[produktion:children]\nwebserver\ndatenbank\n```\n\nDie Gruppe `produktion` enthält über **`children`** keine Hosts direkt, sondern andere **Gruppen** — und erbt deren Hosts. So entstehen **verschachtelte Gruppen**. Zusätzlich gibt es immer die Spezialgruppe **`all`** mit allen Hosts."
+    },
+    {
+      "id": "targeting",
+      "type": "theory",
+      "title": "Gezieltes hosts-Targeting",
+      "body": "## Wen spricht das Play an?\n\nDie **`hosts:`**-Zeile im Play wählt das Ziel — ein Host, eine Gruppe oder ein **Pattern**:\n\n| Pattern | Bedeutung |\n|---|---|\n| `webserver:datenbank` | Vereinigung (ODER) |\n| `all:!datenbank` | alle **außer** datenbank |\n| `webserver:&produktion` | Schnittmenge (in **beiden**) |\n\nZur Laufzeit beschränkst du den Lauf mit **`--limit`** (kurz `-l`), z. B. `ansible-playbook site.yml --limit web1` — praktisch, um einen Fix erst auf einem Host zu testen. Die Hierarchie prüfst du mit `ansible-inventory --graph`."
+    },
+    {
+      "id": "ex-cloze-children",
+      "type": "exercise",
+      "title": "Untergruppen deklarieren",
+      "exercise": {
+        "id": "ex-cloze-children",
+        "type": "cloze",
+        "prompt": "Ergänze das Schlüsselwort, das webserver und datenbank zu Untergruppen von produktion macht.",
+        "card_ids": ["card-03"],
+        "sentence": "[produktion:___]\nwebserver\ndatenbank",
+        "blanks": [{"accept": ["children"]}],
+        "cloze_mode": "type",
+        "hint": "Englisch für 'Kinder' — die Untergruppen einer Gruppe."
+      }
+    },
+    {
+      "id": "ex-match-pattern",
+      "type": "exercise",
+      "title": "Targeting-Patterns",
+      "exercise": {
+        "id": "ex-match-pattern",
+        "type": "matching",
+        "prompt": "Ordne jedem Pattern seine Bedeutung zu.",
+        "card_ids": ["card-02", "card-06", "card-07", "card-08"],
+        "pairs": [
+          {"left": "all", "right": "alle Hosts des Inventory"},
+          {"left": "webserver:datenbank", "right": "Vereinigung beider Gruppen"},
+          {"left": "all:!datenbank", "right": "alle außer der Gruppe datenbank"},
+          {"left": "webserver:&produktion", "right": "nur Hosts in beiden Gruppen"}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "title": "Inventory-Begriffe",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Beschreibung zu.",
+        "card_ids": ["card-01", "card-04", "card-09", "card-10"],
+        "pairs": [
+          {"left": "Gruppe", "right": "benannte Sammlung von Hosts"},
+          {"left": "verschachtelte Gruppe", "right": "Gruppe, die andere Gruppen enthält"},
+          {"left": "--limit", "right": "beschränkt den Lauf zur Laufzeit auf bestimmte Hosts"},
+          {"left": "group_vars", "right": "Variablen, die für eine ganze Gruppe gelten"}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-free-limit",
+      "type": "exercise",
+      "title": "Nur einen Host testen",
+      "exercise": {
+        "id": "ex-free-limit",
+        "type": "free_text",
+        "prompt": "Welche Kommandozeilen-Option beschränkt einen Playbook-Lauf auf einen einzelnen Host, ohne das Inventory zu ändern?",
+        "card_ids": ["card-09"],
+        "accept": ["--limit", "-l", "die --limit-Option", "limit"],
+        "hint": "Englisch für 'begrenzen'; es gibt auch eine Kurzform mit einem Buchstaben.",
+        "distractors": ["--check", "--tags", "--inventory"],
+        "direction": "source_to_target"
+      }
+    },
+    {
+      "id": "ex-free-all",
+      "type": "exercise",
+      "title": "Alle Hosts ansprechen",
+      "exercise": {
+        "id": "ex-free-all",
+        "type": "free_text",
+        "prompt": "Welchen Gruppennamen schreibst du in die hosts:-Zeile, um ALLE Hosts des Inventory anzusprechen?",
+        "card_ids": ["card-02", "card-05"],
+        "accept": ["all", "die Gruppe all", "hosts: all"],
+        "hint": "Eine automatisch vorhandene Spezialgruppe.",
+        "distractors": ["everyone", "default", "ungrouped"],
+        "direction": "source_to_target"
+      }
+    }
+  ]
+}

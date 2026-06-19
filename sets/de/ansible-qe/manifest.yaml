@@ -1,0 +1,49 @@
+# Set-Manifest: Ansible-Grundlagen für Quality Engineering.
+#
+# Ein Sachthema-Set (domain: technology) auf Deutsch, abgeleitet aus
+# einem exportierten Basis-Set (4 Theorie-Lektionen, 0 Übungen) und
+# zu acht vollständigen Lektionen mit Übungen ausgebaut. Der
+# Content-Loader liest die Dateiliste aus metadata.lessons.
+schema_version: '1.3'
+name: Ansible-Grundlagen für Quality Engineering
+description: >-
+  Acht aufeinander aufbauende Lektionen zu Ansible aus Sicht des
+  Quality Engineering: Grundkonzepte, YAML/Playbook-Struktur, das
+  Ausführungsmodell (Task-Sequenzialität vs. Host-Parallelität),
+  Testing-Module (assert, uri, command, shell), Variablen/Facts/
+  Bedingungen, Testumgebungen, Inventory-Targeting sowie Handlers
+  und Jinja2-Templates.
+sets:
+  - id: ansible-qe-from-de
+    title: Ansible-Grundlagen für Quality Engineering
+    title_native: Ansible-Grundlagen für Quality Engineering
+    target_language: de
+    source_language: de
+    domain: technology
+    level: B1
+    path: sets/de/ansible-qe
+    version: '1.0.0'
+    lesson_count: 8
+    domain_label: Technologie
+    description: >-
+      Ansible für Quality Engineering: acht Lektionen mit insgesamt
+      88 Karten, Theorieschritten und Übungen (matching, cloze,
+      free_text, word_tiles) zu Playbooks, Testing-Modulen,
+      Testumgebungen und Inventory-Targeting.
+    tags:
+      - ansible
+      - devops
+      - qa
+      - automation
+metadata:
+  author: Asterios Raptis
+  license: CC-BY-SA-4.0
+  lessons:
+    - 01-ansible-grundkonzepte.json
+    - 02-yaml-syntax-playbook-struktur.json
+    - 03-ausfuehrungsmodell.json
+    - 04-testing-module.json
+    - 05-variablen-facts-bedingungen.json
+    - 06-testumgebungen-aufsetzen-bereinigen.json
+    - 07-inventory-gruppen-hosts-targeting.json
+    - 08-handlers-jinja2-templates.json

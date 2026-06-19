@@ -35,3 +35,23 @@ sets:
       - beispiel
       - psychology
       - starter
+  - id: ansible-qe-from-de
+    title: Ansible-Grundlagen für Quality Engineering
+    title_native: Ansible-Grundlagen für Quality Engineering
+    target_language: de
+    source_language: de
+    domain: technology
+    level: B1
+    path: sets/de/ansible-qe
+    version: '1.0.0'
+    lesson_count: 8
+    domain_label: Technologie
+    description: >-
+      Ansible für Quality Engineering: acht Lektionen mit Theorie und
+      Übungen (matching, cloze, free_text, word_tiles) zu Playbooks,
+      Testing-Modulen, Testumgebungen und Inventory-Targeting.
+    tags:
+      - ansible
+      - devops
+      - qa
+      - automation
