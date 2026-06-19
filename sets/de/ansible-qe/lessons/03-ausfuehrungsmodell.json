@@ -1,0 +1,215 @@
+{
+  "id": "03-ausfuehrungsmodell",
+  "title": "Ausführungsmodell: Task-Sequenzialität vs. Host-Parallelität",
+  "description": "Der Kern-Stolperstein für Einsteiger: Tasks laufen pro Host streng der Reihe nach, aber Ansible bearbeitet alle Hosts eines Tasks parallel. Mit forks, serial und der Bedeutung von 'changed' für Quality Engineering.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "technology",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "card-01",
+      "front": "Task-Sequenzialität",
+      "back": "Innerhalb eines Hosts laufen die Tasks streng in der notierten Reihenfolge",
+      "notes": "Task 2 startet auf einem Host erst, wenn Task 1 dort fertig ist.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["ausfuehrung", "kernkonzept"]
+    },
+    {
+      "id": "card-02",
+      "front": "Host-Parallelität",
+      "back": "Ein einzelner Task wird gleichzeitig auf mehreren Hosts ausgeführt",
+      "notes": "Alle Hosts arbeiten denselben Task ab, bevor Ansible zum nächsten Task geht.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["ausfuehrung", "kernkonzept"]
+    },
+    {
+      "id": "card-03",
+      "front": "Task-Synchronisationspunkt",
+      "back": "Ansible wartet, bis ein Task auf allen Hosts fertig ist, bevor der nächste startet",
+      "notes": "Deshalb 'wandert' die Ausführung Task für Task durch das Playbook.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["ausfuehrung"]
+    },
+    {
+      "id": "card-04",
+      "front": "forks",
+      "back": "Konfiguration, wie viele Hosts Ansible gleichzeitig bearbeitet (Standard 5)",
+      "notes": "Höhere Werte beschleunigen große Inventories, belasten aber den Control Node.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["ausfuehrung", "tuning"]
+    },
+    {
+      "id": "card-05",
+      "front": "serial",
+      "back": "Begrenzt, wie viele Hosts ein Play gleichzeitig durchlaufen (Batch-Größe)",
+      "notes": "Wichtig für Rolling Updates, damit nie alle Server gleichzeitig down sind.",
+      "media_type": "code",
+      "code_snippet": "- hosts: webserver\n  serial: 2",
+      "code_language": "yaml",
+      "difficulty": 3,
+      "tags": ["ausfuehrung", "rolling-update"]
+    },
+    {
+      "id": "card-06",
+      "front": "ok (Status)",
+      "back": "Der Task wurde geprüft, der Zustand war bereits korrekt — keine Änderung",
+      "notes": "Zeigt, dass Idempotenz greift.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["status", "qa"]
+    },
+    {
+      "id": "card-07",
+      "front": "changed (Status)",
+      "back": "Der Task hat den Zustand tatsächlich verändert",
+      "notes": "Beim zweiten Lauf sollten 'changed'-Tasks idealerweise auf 'ok' fallen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["status", "qa"]
+    },
+    {
+      "id": "card-08",
+      "front": "failed (Status)",
+      "back": "Der Task ist fehlgeschlagen; der Host wird aus dem weiteren Play entfernt",
+      "notes": "Standardmäßig stoppt Ansible für diesen Host die restlichen Tasks.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["status", "fehler"]
+    },
+    {
+      "id": "card-09",
+      "front": "PLAY RECAP",
+      "back": "Abschlussübersicht pro Host: ok / changed / unreachable / failed",
+      "notes": "Erste Anlaufstelle, um den Ergebniszustand eines Laufs zu beurteilen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["status", "qa"]
+    },
+    {
+      "id": "card-10",
+      "front": "Fail-Fast vs. Weiterlaufen",
+      "back": "Ein fehlgeschlagener Host stoppt nur für sich selbst; andere Hosts laufen weiter",
+      "notes": "any_errors_fatal: true bricht das ganze Play bei einem einzigen Fehler ab.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["fehler", "ausfuehrung"]
+    },
+    {
+      "id": "card-11",
+      "front": "run_once",
+      "back": "Task wird nur auf einem einzigen Host des Batches ausgeführt",
+      "notes": "Nützlich z. B. für Datenbankmigrationen, die nur einmal laufen dürfen.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["ausfuehrung"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Die zwei Achsen",
+      "body": "# Das Ausführungsmodell\n\nDer häufigste Denkfehler bei Einsteigern: Man verwechselt **Task-Sequenzialität** mit **Host-Parallelität**. Beides gilt gleichzeitig, aber auf unterschiedlichen Achsen.\n\n- **Pro Host, über die Tasks hinweg → sequenziell.** Auf *einem* Host läuft Task 1, dann Task 2, dann Task 3 — strikt der Reihe nach.\n- **Pro Task, über die Hosts hinweg → parallel.** *Ein* Task läuft gleichzeitig auf allen (bzw. bis zu `forks` vielen) Hosts.\n\nAnsible arbeitet also **Task für Task**: Es führt Task 1 auf allen Hosts aus, **wartet**, bis überall fertig (Synchronisationspunkt), und geht erst dann zu Task 2."
+    },
+    {
+      "id": "matrix",
+      "type": "theory",
+      "title": "Beispiel mit 3 Hosts, 2 Tasks",
+      "body": "## Was wann passiert\n\nInventory: `web1`, `web2`, `web3`. Play mit Task A und Task B.\n\n```\nTask A  →  web1 | web2 | web3   (parallel)\n          ─── alle fertig? ───   (warten)\nTask B  →  web1 | web2 | web3   (parallel)\n```\n\nWeb1 kommt also **nicht** zu Task B, bevor web2 und web3 mit Task A fertig sind.\n\nStellschrauben:\n\n- `forks` (Standard **5**): wie viele Hosts gleichzeitig.\n- `serial: 2`: Batch-Größe pro Play — verarbeitet die Hosts in Wellen (Rolling Update).\n- Fehler: Ein **failed** Host fällt nur für sich heraus, die übrigen laufen weiter — außer `any_errors_fatal: true`."
+    },
+    {
+      "id": "ex-free-kernfrage",
+      "type": "exercise",
+      "title": "Reihenfolge verstehen",
+      "exercise": {
+        "id": "ex-free-kernfrage",
+        "type": "free_text",
+        "prompt": "Ein Play hat 3 Hosts und 2 Tasks. Erreicht Host web1 den zweiten Task, bevor web2 und web3 den ersten Task beendet haben? Antworte mit Ja oder Nein und kurzer Begründung.",
+        "card_ids": ["card-02", "card-03"],
+        "accept": [
+          "Nein, Ansible wartet bis Task 1 auf allen Hosts fertig ist",
+          "Nein, weil es einen Synchronisationspunkt nach jedem Task gibt",
+          "Nein, erst wenn alle Hosts Task 1 beendet haben startet Task 2"
+        ],
+        "hint": "Denke an den Synchronisationspunkt nach jedem Task.",
+        "distractors": [
+          "Ja, jeder Host läuft komplett unabhängig durch alle Tasks.",
+          "Ja, web1 ist immer als Erster fertig.",
+          "Nein, weil Tasks niemals parallel laufen."
+        ],
+        "direction": "source_to_target"
+      }
+    },
+    {
+      "id": "ex-match-achsen",
+      "type": "exercise",
+      "title": "Sequenziell oder parallel?",
+      "exercise": {
+        "id": "ex-match-achsen",
+        "type": "matching",
+        "prompt": "Ordne jeder Aussage das passende Konzept zu.",
+        "card_ids": ["card-01", "card-02", "card-03", "card-04"],
+        "pairs": [
+          {"left": "Task-Sequenzialität", "right": "auf einem Host laufen die Tasks der Reihe nach"},
+          {"left": "Host-Parallelität", "right": "ein Task läuft gleichzeitig auf mehreren Hosts"},
+          {"left": "Synchronisationspunkt", "right": "warten, bis ein Task auf allen Hosts fertig ist"},
+          {"left": "forks", "right": "wie viele Hosts gleichzeitig bearbeitet werden"}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-match-status",
+      "type": "exercise",
+      "title": "Task-Status deuten",
+      "exercise": {
+        "id": "ex-match-status",
+        "type": "matching",
+        "prompt": "Ordne jedem Status seine Bedeutung zu.",
+        "card_ids": ["card-06", "card-07", "card-08", "card-09"],
+        "pairs": [
+          {"left": "ok", "right": "Zustand war schon korrekt, keine Änderung"},
+          {"left": "changed", "right": "der Zustand wurde tatsächlich verändert"},
+          {"left": "failed", "right": "Task fehlgeschlagen, Host fällt aus dem Play"},
+          {"left": "PLAY RECAP", "right": "Abschlussübersicht pro Host"}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-cloze-serial",
+      "type": "exercise",
+      "title": "Rolling Update konfigurieren",
+      "exercise": {
+        "id": "ex-cloze-serial",
+        "type": "cloze",
+        "prompt": "Ergänze den Schlüssel, der jeweils nur 2 Hosts gleichzeitig durch das Play schickt (Batch-Größe).",
+        "card_ids": ["card-05"],
+        "sentence": "- hosts: webserver\n  ___: 2",
+        "blanks": [{"accept": ["serial"]}],
+        "cloze_mode": "type",
+        "hint": "Steuert die Batch-Größe pro Play, wichtig für Rolling Updates."
+      }
+    },
+    {
+      "id": "ex-free-idempotenz-status",
+      "type": "exercise",
+      "title": "Zweiter Lauf",
+      "exercise": {
+        "id": "ex-free-idempotenz-status",
+        "type": "free_text",
+        "prompt": "Welchen Status sollte ein idempotenter Task beim ZWEITEN Lauf melden, wenn sich am Zielzustand nichts mehr ändert?",
+        "card_ids": ["card-06", "card-07"],
+        "accept": ["ok", "ok statt changed", "den Status ok"],
+        "hint": "Beim ersten Lauf war es 'changed' — beim zweiten sollte nichts mehr geändert werden.",
+        "distractors": ["changed", "failed", "unreachable"],
+        "direction": "source_to_target"
+      }
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "id": "05-variablen-facts-bedingungen",
+  "title": "Variablen, Facts und Bedingungen",
+  "description": "Dynamische Playbooks: Variablen über vars definieren, automatisch gesammelte Facts nutzen, Werte mit der Jinja2-Syntax einsetzen und Tasks über when-Bedingungen steuern — die Basis für flexible Testszenarien.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "technology",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "card-01",
+      "front": "vars",
+      "back": "Block, in dem eigene Variablen für ein Play oder einen Task definiert werden",
+      "notes": "z. B. vars: { app_port: 8080 }",
+      "media_type": "code",
+      "code_snippet": "vars:\n  app_port: 8080",
+      "code_language": "yaml",
+      "difficulty": 1,
+      "tags": ["variablen"]
+    },
+    {
+      "id": "card-02",
+      "front": "Variable einsetzen",
+      "back": "Mit doppelten geschweiften Klammern: {{ variablenname }}",
+      "notes": "Das ist Jinja2-Syntax.",
+      "media_type": "code",
+      "code_snippet": "msg: \"Port ist {{ app_port }}\"",
+      "code_language": "yaml",
+      "difficulty": 2,
+      "tags": ["variablen", "jinja2"]
+    },
+    {
+      "id": "card-03",
+      "front": "Facts",
+      "back": "Automatisch erhobene Systeminformationen über die Managed Nodes",
+      "notes": "z. B. Betriebssystem, IP-Adressen, CPU, Speicher.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["facts"]
+    },
+    {
+      "id": "card-04",
+      "front": "gather_facts",
+      "back": "Schalter, der das Sammeln von Facts zu Play-Beginn aktiviert/deaktiviert",
+      "notes": "Standard true; auf false setzen spart Zeit, wenn keine Facts gebraucht werden.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["facts"]
+    },
+    {
+      "id": "card-05",
+      "front": "ansible_facts",
+      "back": "Wörterbuch, in dem die gesammelten Facts liegen",
+      "notes": "z. B. ansible_facts['distribution'] für die Linux-Distribution.",
+      "media_type": "code",
+      "code_snippet": "{{ ansible_facts['distribution'] }}",
+      "code_language": "yaml",
+      "difficulty": 3,
+      "tags": ["facts"]
+    },
+    {
+      "id": "card-06",
+      "front": "when",
+      "back": "Bedingung, die entscheidet, ob ein Task ausgeführt wird",
+      "notes": "Der Task läuft nur, wenn der Ausdruck wahr ist.",
+      "media_type": "code",
+      "code_snippet": "when: ansible_facts['distribution'] == \"Ubuntu\"",
+      "code_language": "yaml",
+      "difficulty": 2,
+      "tags": ["bedingungen"]
+    },
+    {
+      "id": "card-07",
+      "front": "when ohne {{ }}",
+      "back": "In when-Ausdrücken stehen Variablen OHNE die geschweiften Klammern",
+      "notes": "when: app_port == 8080 — nicht when: {{ app_port }} == 8080.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["bedingungen", "stolperstein"]
+    },
+    {
+      "id": "card-08",
+      "front": "set_fact",
+      "back": "Modul, das zur Laufzeit eine neue Variable (einen 'Fact') setzt",
+      "notes": "Nützlich, um Zwischenergebnisse zu speichern.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["variablen", "facts"]
+    },
+    {
+      "id": "card-09",
+      "front": "default-Filter",
+      "back": "Liefert einen Ersatzwert, falls eine Variable nicht gesetzt ist",
+      "notes": "{{ app_port | default(80) }}",
+      "media_type": "code",
+      "code_snippet": "{{ app_port | default(80) }}",
+      "code_language": "yaml",
+      "difficulty": 3,
+      "tags": ["variablen", "jinja2"]
+    },
+    {
+      "id": "card-10",
+      "front": "Variablen-Vorrang (Precedence)",
+      "back": "Bei gleichem Namen gewinnt die Variable mit höherer Priorität (z. B. extra-vars per -e)",
+      "notes": "-e auf der Kommandozeile schlägt fast alles andere.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["variablen", "precedence"]
+    },
+    {
+      "id": "card-11",
+      "front": "when mit and/or",
+      "back": "Mehrere Bedingungen lassen sich mit and, or sowie als Liste verknüpfen",
+      "notes": "Eine YAML-Liste unter when wirkt wie ein logisches UND.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["bedingungen"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Variablen und Facts",
+      "body": "# Variablen, Facts und Bedingungen\n\nStatische Playbooks reichen selten. Mit **Variablen** machst du sie flexibel:\n\n- Eigene Variablen definierst du im **`vars`**-Block.\n- Eingesetzt werden sie mit **Jinja2**: `{{ variablenname }}`.\n\n**Facts** sind automatisch erhobene Systemdaten über die Managed Nodes — Betriebssystem, IP, CPU usw. Sie werden zu Play-Beginn gesammelt (`gather_facts: true`) und liegen unter `ansible_facts`, z. B. `{{ ansible_facts['distribution'] }}`."
+    },
+    {
+      "id": "bedingungen",
+      "type": "theory",
+      "title": "Bedingungen mit when",
+      "body": "## Tasks bedingt ausführen\n\nMit **`when`** läuft ein Task nur, wenn ein Ausdruck wahr ist:\n\n```yaml\n- name: Nur auf Ubuntu installieren\n  ansible.builtin.apt:\n    name: nginx\n    state: present\n  when: ansible_facts['distribution'] == \"Ubuntu\"\n```\n\nWichtiger Stolperstein: In `when` stehen Variablen **ohne** `{{ }}` — der Ausdruck wird ohnehin als Jinja2 ausgewertet. Mehrere Bedingungen verknüpfst du mit `and`/`or` oder als YAML-Liste (= logisches UND). Fehlende Variablen fängst du mit dem `default`-Filter ab: `{{ app_port | default(80) }}`."
+    },
+    {
+      "id": "ex-cloze-jinja",
+      "type": "exercise",
+      "title": "Variable einsetzen",
+      "exercise": {
+        "id": "ex-cloze-jinja",
+        "type": "cloze",
+        "prompt": "Ergänze die Jinja2-Klammern, sodass der Wert der Variablen app_port eingesetzt wird.",
+        "card_ids": ["card-02"],
+        "sentence": "msg: \"Der Port ist ___ app_port }}\"",
+        "blanks": [{"accept": ["{{"]}],
+        "cloze_mode": "type",
+        "hint": "Eine Variable wird von doppelten geschweiften Klammern umschlossen."
+      }
+    },
+    {
+      "id": "ex-cloze-when",
+      "type": "exercise",
+      "title": "Bedingten Task schreiben",
+      "exercise": {
+        "id": "ex-cloze-when",
+        "type": "cloze",
+        "prompt": "Ergänze das Schlüsselwort, mit dem ein Task nur unter einer Bedingung ausgeführt wird.",
+        "card_ids": ["card-06"],
+        "sentence": "- ansible.builtin.apt:\n    name: nginx\n  ___: ansible_facts['distribution'] == \"Ubuntu\"",
+        "blanks": [{"accept": ["when"]}],
+        "cloze_mode": "type",
+        "hint": "Englisch für 'wenn'."
+      }
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "title": "Begriffe rund um Variablen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Beschreibung zu.",
+        "card_ids": ["card-01", "card-03", "card-08", "card-09"],
+        "pairs": [
+          {"left": "vars", "right": "Block für eigene Variablen"},
+          {"left": "Facts", "right": "automatisch erhobene Systeminformationen"},
+          {"left": "set_fact", "right": "setzt zur Laufzeit eine neue Variable"},
+          {"left": "default-Filter", "right": "liefert einen Ersatzwert, wenn nichts gesetzt ist"}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-free-when-klammern",
+      "type": "exercise",
+      "title": "when-Stolperstein",
+      "exercise": {
+        "id": "ex-free-when-klammern",
+        "type": "free_text",
+        "prompt": "Wie steht eine Variable in einem when-Ausdruck — MIT oder OHNE die geschweiften Klammern {{ }}?",
+        "card_ids": ["card-07"],
+        "accept": ["Ohne", "Ohne die Klammern", "ohne {{ }}", "Ohne geschweifte Klammern"],
+        "hint": "when wird ohnehin als Jinja2-Ausdruck ausgewertet.",
+        "distractors": ["Mit den Klammern", "Mit {{ }}", "Mit doppelten geschweiften Klammern"],
+        "direction": "source_to_target"
+      }
+    },
+    {
+      "id": "ex-free-facts",
+      "type": "exercise",
+      "title": "Was sind Facts?",
+      "exercise": {
+        "id": "ex-free-facts",
+        "type": "free_text",
+        "prompt": "Was sind Facts in Ansible? Beschreibe es in einem Satz.",
+        "card_ids": ["card-03", "card-05"],
+        "accept": [
+          "Automatisch erhobene Systeminformationen über die Managed Nodes",
+          "Von Ansible gesammelte Daten über das Zielsystem wie OS, IP und CPU",
+          "Automatisch gesammelte Informationen über die Hosts"
+        ],
+        "hint": "Sie werden zu Play-Beginn automatisch erhoben (OS, IP, CPU, …).",
+        "distractors": [
+          "Von Hand im vars-Block definierte Variablen.",
+          "Die Liste der auszuführenden Tasks.",
+          "Die HTTP-Antworten des uri-Moduls."
+        ],
+        "direction": "source_to_target"
+      }
+    }
+  ]
+}

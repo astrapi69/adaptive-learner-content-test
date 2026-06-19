@@ -1,0 +1,210 @@
+{
+  "id": "04-testing-module",
+  "title": "Testing-Module: assert, uri, command, shell",
+  "description": "Die für Quality Engineering wichtigsten Module: assert für Zusicherungen, uri für API-/HTTP-Tests, command und shell zum Ausführen von Programmen — inklusive der Unterschiede und des register/failed_when-Musters für Prüfungen.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "technology",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "card-01",
+      "front": "assert",
+      "back": "Modul, das Bedingungen prüft und das Play bei Nichterfüllung scheitern lässt",
+      "notes": "Das Test-Modul schlechthin: macht Erwartungen explizit.",
+      "media_type": "code",
+      "code_snippet": "- ansible.builtin.assert:\n    that:\n      - result.status == 200",
+      "code_language": "yaml",
+      "difficulty": 2,
+      "tags": ["testing", "assert"]
+    },
+    {
+      "id": "card-02",
+      "front": "that (bei assert)",
+      "back": "Liste von Bedingungen, die alle wahr sein müssen",
+      "notes": "Ist eine davon falsch, schlägt der Task fehl.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["testing", "assert"]
+    },
+    {
+      "id": "card-03",
+      "front": "fail_msg / success_msg",
+      "back": "Eigene Meldung von assert bei Fehlschlag bzw. Erfolg",
+      "notes": "Macht Testberichte aussagekräftig.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["testing", "assert"]
+    },
+    {
+      "id": "card-04",
+      "front": "uri",
+      "back": "Modul für HTTP(S)-Anfragen, ideal für API- und Health-Check-Tests",
+      "notes": "Prüft Statuscode, Header und Antwortinhalt.",
+      "media_type": "code",
+      "code_snippet": "- ansible.builtin.uri:\n    url: https://api.example.com/health\n    status_code: 200",
+      "code_language": "yaml",
+      "difficulty": 2,
+      "tags": ["testing", "uri", "api"]
+    },
+    {
+      "id": "card-05",
+      "front": "status_code (bei uri)",
+      "back": "Erwarteter HTTP-Statuscode; weicht die Antwort ab, schlägt der Task fehl",
+      "notes": "z. B. status_code: 200 oder eine Liste [200, 201].",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["testing", "uri"]
+    },
+    {
+      "id": "card-06",
+      "front": "command",
+      "back": "Führt ein Programm direkt aus, OHNE Shell — sicherer, aber keine Pipes/Variablen",
+      "notes": "Kein |, >, $VAR oder * — dafür gibt es shell.",
+      "media_type": "code",
+      "code_snippet": "- ansible.builtin.command: systemctl is-active nginx",
+      "code_language": "yaml",
+      "difficulty": 2,
+      "tags": ["testing", "command"]
+    },
+    {
+      "id": "card-07",
+      "front": "shell",
+      "back": "Führt einen Befehl über die Shell aus — erlaubt Pipes, Umleitungen, Variablen",
+      "notes": "Mächtiger, aber anfälliger; nur nutzen, wenn command nicht reicht.",
+      "media_type": "code",
+      "code_snippet": "- ansible.builtin.shell: \"grep ERROR /var/log/app.log | wc -l\"",
+      "code_language": "yaml",
+      "difficulty": 2,
+      "tags": ["testing", "shell"]
+    },
+    {
+      "id": "card-08",
+      "front": "register",
+      "back": "Speichert das Ergebnis eines Tasks in einer Variablen zur späteren Auswertung",
+      "notes": "Pflichtbaustein, um Ausgaben mit assert zu prüfen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["testing", "variablen"]
+    },
+    {
+      "id": "card-09",
+      "front": "failed_when",
+      "back": "Definiert eine eigene Fehlerbedingung für einen Task",
+      "notes": "z. B. failed_when: \"'ERROR' in result.stdout\".",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["testing", "fehler"]
+    },
+    {
+      "id": "card-10",
+      "front": "changed_when",
+      "back": "Steuert, wann ein Task als 'changed' gilt — wichtig bei command/shell",
+      "notes": "command/shell melden sonst immer 'changed'; changed_when: false markiert reine Prüfungen.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["testing", "idempotenz"]
+    },
+    {
+      "id": "card-11",
+      "front": "Warum command vor shell?",
+      "back": "command ist sicherer und vorhersehbarer; shell nur bei Bedarf an Shell-Features",
+      "notes": "Best Practice für robuste, reproduzierbare Tests.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["best-practice"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Module für Quality Engineering",
+      "body": "# Testing-relevante Module\n\nFür QA-Aufgaben sind vier Module zentral:\n\n- **assert** — formuliert Erwartungen (`that`) und lässt das Play scheitern, wenn sie nicht zutreffen.\n- **uri** — schickt HTTP-Anfragen und prüft `status_code`, Header und Inhalt (API- und Health-Checks).\n- **command** — führt ein Programm **ohne Shell** aus: sicher, aber **keine** Pipes, Umleitungen oder Variablen.\n- **shell** — führt über die Shell aus und erlaubt `|`, `>`, `$VAR` — mächtiger, aber anfälliger.\n\nFaustregel: **erst `command`, `shell` nur, wenn du echte Shell-Features brauchst.**"
+    },
+    {
+      "id": "muster",
+      "type": "theory",
+      "title": "Das register/assert-Muster",
+      "body": "## Ausgabe prüfen\n\nEin typischer Prüf-Ablauf: Befehl ausführen, Ergebnis **registrieren**, dann mit **assert** bewerten.\n\n```yaml\n- name: Dienst-Status holen\n  ansible.builtin.command: systemctl is-active nginx\n  register: nginx_status\n  changed_when: false        # reine Prüfung, nie 'changed'\n  failed_when: false         # nicht hart scheitern, selbst bewerten\n\n- name: Nginx muss laufen\n  ansible.builtin.assert:\n    that:\n      - nginx_status.stdout == \"active\"\n    fail_msg: \"Nginx läuft nicht!\"\n    success_msg: \"Nginx ist aktiv.\"\n```\n\nMerke: `command`/`shell` melden ohne `changed_when: false` **immer** `changed` — für reine Tests unerwünscht."
+    },
+    {
+      "id": "ex-match-module",
+      "type": "exercise",
+      "title": "Module und ihr Zweck",
+      "exercise": {
+        "id": "ex-match-module",
+        "type": "matching",
+        "prompt": "Ordne jedem Modul seinen Zweck zu.",
+        "card_ids": ["card-01", "card-04", "card-06", "card-07"],
+        "pairs": [
+          {"left": "assert", "right": "Bedingungen prüfen und bei Verletzung scheitern"},
+          {"left": "uri", "right": "HTTP-Anfragen senden und Statuscode prüfen"},
+          {"left": "command", "right": "Programm ohne Shell ausführen"},
+          {"left": "shell", "right": "Befehl mit Pipes und Variablen über die Shell ausführen"}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-cloze-assert",
+      "type": "exercise",
+      "title": "assert-Bedingung",
+      "exercise": {
+        "id": "ex-cloze-assert",
+        "type": "cloze",
+        "prompt": "Ergänze den Schlüssel, unter dem assert die Liste der zu prüfenden Bedingungen erwartet.",
+        "card_ids": ["card-01", "card-02"],
+        "sentence": "- ansible.builtin.assert:\n    ___:\n      - result.status == 200",
+        "blanks": [{"accept": ["that"]}],
+        "cloze_mode": "type",
+        "hint": "Englisch für 'dass' — die Liste der Bedingungen, die alle wahr sein müssen."
+      }
+    },
+    {
+      "id": "ex-cloze-uri",
+      "type": "exercise",
+      "title": "uri-Health-Check",
+      "exercise": {
+        "id": "ex-cloze-uri",
+        "type": "cloze",
+        "prompt": "Ergänze den Parameter, mit dem uri den erwarteten HTTP-Code prüft.",
+        "card_ids": ["card-04", "card-05"],
+        "sentence": "- ansible.builtin.uri:\n    url: https://api.example.com/health\n    ___: 200",
+        "blanks": [{"accept": ["status_code"]}],
+        "cloze_mode": "type",
+        "hint": "Der erwartete HTTP-Statuscode der Antwort."
+      }
+    },
+    {
+      "id": "ex-free-command-shell",
+      "type": "exercise",
+      "title": "command oder shell?",
+      "exercise": {
+        "id": "ex-free-command-shell",
+        "type": "free_text",
+        "prompt": "Du willst die Ausgabe eines Befehls per Pipe an 'wc -l' weiterreichen. Welches Modul brauchst du dafür?",
+        "card_ids": ["card-06", "card-07"],
+        "accept": ["shell", "Das shell-Modul", "ansible.builtin.shell"],
+        "hint": "Pipes (|) sind ein Shell-Feature, das command nicht unterstützt.",
+        "distractors": ["command", "uri", "assert"],
+        "direction": "source_to_target"
+      }
+    },
+    {
+      "id": "ex-free-changed-when",
+      "type": "exercise",
+      "title": "command als reine Prüfung",
+      "exercise": {
+        "id": "ex-free-changed-when",
+        "type": "free_text",
+        "prompt": "Welchen Parameter setzt du auf 'false', damit ein command-Task, der nur prüft, nicht fälschlich als 'changed' gilt?",
+        "card_ids": ["card-10"],
+        "accept": ["changed_when", "changed_when: false", "den Parameter changed_when"],
+        "hint": "command/shell melden sonst immer 'changed' — dieser Parameter steuert das.",
+        "distractors": ["failed_when", "register", "status_code"],
+        "direction": "source_to_target"
+      }
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "id": "02-yaml-syntax-playbook-struktur",
+  "title": "YAML-Syntax und Playbook-Struktur",
+  "description": "Vom konzeptionellen Verständnis zum aktiven Schreiben: YAML-Grundlagen (Einrückung, Listen, Schlüssel-Wert-Paare) und der Aufbau eines Playbooks aus hosts, tasks, Modulnamen und Parametern.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "technology",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "card-01",
+      "front": "YAML",
+      "back": "Menschenlesbares Datenformat, das Ansible für Playbooks nutzt",
+      "notes": "Struktur entsteht durch Einrückung, nicht durch Klammern.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["yaml", "grundlagen"]
+    },
+    {
+      "id": "card-02",
+      "front": "Einrückung in YAML",
+      "back": "Nur Leerzeichen, keine Tabs; gleiche Ebene = gleiche Einrückung",
+      "notes": "Falsche Einrückung ist der häufigste YAML-Fehler.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["yaml", "syntax"]
+    },
+    {
+      "id": "card-03",
+      "front": "Listeneintrag in YAML",
+      "back": "Beginnt mit einem Bindestrich und einem Leerzeichen: '- '",
+      "notes": "Mehrere Plays oder Tasks bilden eine Liste.",
+      "media_type": "code",
+      "code_snippet": "- task eins\n- task zwei",
+      "code_language": "yaml",
+      "difficulty": 1,
+      "tags": ["yaml", "syntax"]
+    },
+    {
+      "id": "card-04",
+      "front": "Schlüssel-Wert-Paar (Mapping)",
+      "back": "Schlüssel, Doppelpunkt, Leerzeichen, Wert: 'name: Wert'",
+      "notes": "Das Leerzeichen nach dem Doppelpunkt ist Pflicht.",
+      "media_type": "code",
+      "code_snippet": "name: Nginx installieren",
+      "code_language": "yaml",
+      "difficulty": 1,
+      "tags": ["yaml", "syntax"]
+    },
+    {
+      "id": "card-05",
+      "front": "--- (Dokumentbeginn)",
+      "back": "Drei Bindestriche markieren optional den Start eines YAML-Dokuments",
+      "notes": "Steht ganz oben in vielen Playbooks.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["yaml", "syntax"]
+    },
+    {
+      "id": "card-06",
+      "front": "hosts (im Play)",
+      "back": "Schlüssel, der angibt, auf welche Gruppe oder Hosts das Play wirkt",
+      "notes": "z. B. hosts: webserver oder hosts: all",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["playbook", "struktur"]
+    },
+    {
+      "id": "card-07",
+      "front": "tasks (im Play)",
+      "back": "Liste der Schritte, die nacheinander abgearbeitet werden",
+      "notes": "Jeder Eintrag ist ein Task mit einem Modulaufruf.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["playbook", "struktur"]
+    },
+    {
+      "id": "card-08",
+      "front": "name (eines Tasks)",
+      "back": "Freitext-Beschreibung, die in der Ausgabe angezeigt wird",
+      "notes": "Optional, aber für lesbare Logs dringend empfohlen.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["playbook", "lesbarkeit"]
+    },
+    {
+      "id": "card-09",
+      "front": "Modulparameter",
+      "back": "Schlüssel-Wert-Paare unter dem Modulnamen, die dessen Verhalten steuern",
+      "notes": "z. B. für copy: src und dest.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["playbook", "modul"]
+    },
+    {
+      "id": "card-10",
+      "front": "become",
+      "back": "Aktiviert Rechteausweitung (z. B. sudo) für privilegierte Tasks",
+      "notes": "become: true ist nötig, um z. B. Pakete zu installieren.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["playbook", "rechte"]
+    },
+    {
+      "id": "card-11",
+      "front": "ansible-lint / --syntax-check",
+      "back": "Werkzeuge, die ein Playbook auf Syntax- und Stilfehler prüfen",
+      "notes": "ansible-playbook --syntax-check site.yml findet YAML-Fehler vor dem Lauf.",
+      "media_type": "code",
+      "code_snippet": "ansible-playbook --syntax-check site.yml",
+      "code_language": "bash",
+      "difficulty": 2,
+      "tags": ["qa", "tooling"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "YAML in drei Regeln",
+      "body": "# YAML-Syntax\n\nPlaybooks sind **YAML**. Drei Regeln tragen dich weit:\n\n1. **Einrückung mit Leerzeichen** (nie Tabs). Gleiche Ebene = gleiche Einrückung.\n2. **Listen** beginnen mit `- ` (Bindestrich + Leerzeichen).\n3. **Schlüssel-Wert-Paare** schreibt man `schluessel: wert` — das **Leerzeichen nach dem Doppelpunkt** ist Pflicht.\n\nFalsche Einrückung ist der häufigste Fehler. Prüfe vor dem Ausführen mit `ansible-playbook --syntax-check site.yml`."
+    },
+    {
+      "id": "struktur",
+      "type": "theory",
+      "title": "Aufbau eines Playbooks",
+      "body": "## Ein minimales Playbook\n\n```yaml\n---\n- name: Webserver einrichten\n  hosts: webserver\n  become: true\n  tasks:\n    - name: Nginx installieren\n      ansible.builtin.apt:\n        name: nginx\n        state: present\n```\n\nVon außen nach innen:\n\n- `---` startet das Dokument.\n- Das Play hat einen `name`, ein Ziel (`hosts`) und optional `become` für Root-Rechte.\n- `tasks` ist eine **Liste**. Jeder Task hat einen `name` und ruft ein **Modul** (hier `apt`) mit **Parametern** (`name`, `state`) auf."
+    },
+    {
+      "id": "ex-cloze-mapping",
+      "type": "exercise",
+      "title": "Schlüssel-Wert-Paar vervollständigen",
+      "exercise": {
+        "id": "ex-cloze-mapping",
+        "type": "cloze",
+        "prompt": "Ergänze das fehlende Zeichen, sodass ein gültiges YAML-Mapping entsteht.",
+        "card_ids": ["card-04"],
+        "sentence": "name___ Nginx installieren",
+        "blanks": [{"accept": [":"]}],
+        "cloze_mode": "type",
+        "hint": "Welches Zeichen trennt Schlüssel und Wert (gefolgt von einem Leerzeichen)?"
+      }
+    },
+    {
+      "id": "ex-cloze-hosts",
+      "type": "exercise",
+      "title": "Play-Ziel ergänzen",
+      "exercise": {
+        "id": "ex-cloze-hosts",
+        "type": "cloze",
+        "prompt": "Ergänze den Schlüssel, der angibt, auf welche Gruppe das Play wirkt.",
+        "card_ids": ["card-06", "card-07"],
+        "sentence": "- name: Webserver einrichten\n  ___: webserver\n  tasks:\n    - name: Nginx installieren",
+        "blanks": [{"accept": ["hosts"]}],
+        "cloze_mode": "type",
+        "hint": "Der Schlüssel benennt die Zielsysteme des Plays."
+      }
+    },
+    {
+      "id": "ex-match-struktur",
+      "type": "exercise",
+      "title": "Playbook-Elemente",
+      "exercise": {
+        "id": "ex-match-struktur",
+        "type": "matching",
+        "prompt": "Ordne jedem Element seine Bedeutung zu.",
+        "card_ids": ["card-06", "card-07", "card-08", "card-10"],
+        "pairs": [
+          {"left": "hosts", "right": "auf welche Gruppe/Hosts das Play wirkt"},
+          {"left": "tasks", "right": "Liste der nacheinander ausgeführten Schritte"},
+          {"left": "name", "right": "Beschreibung, die in der Ausgabe erscheint"},
+          {"left": "become", "right": "aktiviert Rechteausweitung (sudo)"}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-match-yaml",
+      "type": "exercise",
+      "title": "YAML-Syntax",
+      "exercise": {
+        "id": "ex-match-yaml",
+        "type": "matching",
+        "prompt": "Ordne jedem Syntax-Element seine Regel zu.",
+        "card_ids": ["card-02", "card-03", "card-04", "card-05"],
+        "pairs": [
+          {"left": "Einrückung", "right": "nur Leerzeichen, keine Tabs"},
+          {"left": "Listeneintrag", "right": "beginnt mit '- '"},
+          {"left": "Mapping", "right": "schluessel: wert mit Leerzeichen danach"},
+          {"left": "---", "right": "markiert den Dokumentbeginn"}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-free-tabs",
+      "type": "exercise",
+      "title": "Häufiger YAML-Fehler",
+      "exercise": {
+        "id": "ex-free-tabs",
+        "type": "free_text",
+        "prompt": "Womit darf in YAML NICHT eingerückt werden? Nenne das Zeichen/die Taste.",
+        "card_ids": ["card-02"],
+        "accept": ["Tabs", "Tab", "Tabulator", "mit Tabs", "Tabulatoren"],
+        "hint": "Erlaubt sind nur Leerzeichen — das Gegenstück davon ist verboten.",
+        "distractors": ["Leerzeichen", "Bindestriche", "Doppelpunkte"],
+        "direction": "source_to_target"
+      }
+    },
+    {
+      "id": "ex-tiles-task",
+      "type": "exercise",
+      "title": "Task-Zeile zusammensetzen",
+      "exercise": {
+        "id": "ex-tiles-task",
+        "type": "word_tiles",
+        "prompt": "Setze die Task-Beschriftungszeile korrekt zusammen.",
+        "card_ids": ["card-08"],
+        "tiles": ["-", "name:", "Nginx", "installieren"],
+        "hint": "Ein Listeneintrag beginnt mit '-', dann folgt der Schlüssel 'name:'.",
+        "direction": "source_to_target"
+      }
+    }
+  ]
+}

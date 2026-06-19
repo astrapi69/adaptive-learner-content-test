@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-06-18T06:55:13Z",
+  "generated": "2026-06-19T12:19:38Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -22,8 +22,29 @@
       "trust_level": 1,
       "book": null,
       "updated_at": "2026-06-09T17:32:47+02:00"
+    },
+    {
+      "id": "ansible-qe-from-de",
+      "name": "Ansible-Grundlagen für Quality Engineering",
+      "description": "Ansible für Quality Engineering: acht Lektionen mit insgesamt 88 Karten, Theorieschritten und Übungen (matching, cloze, free_text, word_tiles) zu Playbooks, Testing-Modulen, Testumgebungen und Inventory-Targeting.",
+      "source_language": "de",
+      "target_language": "de",
+      "level": "b1",
+      "domain": "technology",
+      "lesson_count": 8,
+      "card_count": 88,
+      "tags": [
+        "ansible",
+        "devops",
+        "qa",
+        "automation"
+      ],
+      "ai_validated": false,
+      "trust_level": 1,
+      "book": null,
+      "updated_at": null
     }
   ],
-  "total_lessons": 1,
-  "total_cards": 10
+  "total_lessons": 9,
+  "total_cards": 98
 }

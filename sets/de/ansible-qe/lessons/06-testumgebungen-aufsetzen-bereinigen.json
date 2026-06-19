@@ -1,0 +1,213 @@
+{
+  "id": "06-testumgebungen-aufsetzen-bereinigen",
+  "title": "Testumgebungen aufsetzen und bereinigen",
+  "description": "Praxisnahes QA-Szenario: eine Testumgebung mit Ansible reproduzierbar aufsetzen (Pakete, Dateien, Dienste), Tests ausführen und anschließend sauber bereinigen — mit Modulen wie apt, copy, file, service und dem state-Konzept.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "technology",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "card-01",
+      "front": "state",
+      "back": "Parameter, der den gewünschten Soll-Zustand einer Ressource angibt",
+      "notes": "z. B. present, absent, started, stopped.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["state", "kernkonzept"]
+    },
+    {
+      "id": "card-02",
+      "front": "state: present",
+      "back": "Stellt sicher, dass eine Ressource vorhanden ist (z. B. Paket installiert)",
+      "notes": "Idempotent: ist es schon da, passiert nichts.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["state", "setup"]
+    },
+    {
+      "id": "card-03",
+      "front": "state: absent",
+      "back": "Stellt sicher, dass eine Ressource entfernt ist (z. B. Paket/Datei gelöscht)",
+      "notes": "Der Schlüssel zum sauberen Bereinigen (Teardown).",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["state", "teardown"]
+    },
+    {
+      "id": "card-04",
+      "front": "apt / package",
+      "back": "Modul zum Installieren und Entfernen von Software-Paketen",
+      "notes": "apt für Debian/Ubuntu; package ist distributionsneutral.",
+      "media_type": "code",
+      "code_snippet": "- ansible.builtin.apt:\n    name: nginx\n    state: present",
+      "code_language": "yaml",
+      "difficulty": 2,
+      "tags": ["module", "setup"]
+    },
+    {
+      "id": "card-05",
+      "front": "copy",
+      "back": "Modul, das Dateien auf die Managed Nodes kopiert",
+      "notes": "z. B. Konfigurations- oder Testdaten ausrollen.",
+      "media_type": "code",
+      "code_snippet": "- ansible.builtin.copy:\n    src: app.conf\n    dest: /etc/app/app.conf",
+      "code_language": "yaml",
+      "difficulty": 2,
+      "tags": ["module", "setup"]
+    },
+    {
+      "id": "card-06",
+      "front": "file",
+      "back": "Modul für Dateien/Verzeichnisse: erstellen, löschen, Rechte setzen",
+      "notes": "state: directory legt einen Ordner an, state: absent löscht ihn.",
+      "media_type": "code",
+      "code_snippet": "- ansible.builtin.file:\n    path: /opt/testdata\n    state: directory",
+      "code_language": "yaml",
+      "difficulty": 2,
+      "tags": ["module", "setup"]
+    },
+    {
+      "id": "card-07",
+      "front": "service",
+      "back": "Modul zum Starten, Stoppen und Aktivieren von Diensten",
+      "notes": "state: started / stopped, enabled: true für Autostart.",
+      "media_type": "code",
+      "code_snippet": "- ansible.builtin.service:\n    name: nginx\n    state: started",
+      "code_language": "yaml",
+      "difficulty": 2,
+      "tags": ["module", "setup"]
+    },
+    {
+      "id": "card-08",
+      "front": "Setup-Phase",
+      "back": "Schritte, die die Testumgebung herstellen (installieren, kopieren, starten)",
+      "notes": "Sollte idempotent sein, damit Wiederholungen sicher sind.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["workflow", "qa"]
+    },
+    {
+      "id": "card-09",
+      "front": "Teardown-Phase",
+      "back": "Schritte, die die Testumgebung wieder bereinigen (state: absent)",
+      "notes": "Hinterlässt einen sauberen Ausgangszustand für den nächsten Lauf.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["workflow", "qa"]
+    },
+    {
+      "id": "card-10",
+      "front": "block / always",
+      "back": "Gruppiert Tasks; ein always-Abschnitt läuft auch dann, wenn Tests scheitern",
+      "notes": "Ideal, um Aufräumen garantiert auszuführen.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["workflow", "fehlerbehandlung"]
+    },
+    {
+      "id": "card-11",
+      "front": "Warum reproduzierbare Umgebungen?",
+      "back": "Gleiche Ausgangslage bei jedem Lauf macht Tests verlässlich und vergleichbar",
+      "notes": "Idempotenz + Teardown verhindern, dass Reste den nächsten Test verfälschen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["qa", "konzept"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Setup und Teardown",
+      "body": "# Testumgebungen mit Ansible\n\nFür verlässliche Tests brauchst du bei jedem Lauf **dieselbe Ausgangslage**. Mit Ansible bildest du den klassischen QA-Zyklus ab:\n\n1. **Setup** — Umgebung herstellen: Pakete installieren, Dateien kopieren, Dienste starten.\n2. **Test** — die eigentlichen Prüfungen ausführen (siehe Lektion zu Testing-Modulen).\n3. **Teardown** — alles wieder bereinigen, damit keine Reste den nächsten Lauf verfälschen.\n\nWeil Ansible **idempotent** arbeitet, ist das Setup gefahrlos wiederholbar."
+    },
+    {
+      "id": "state",
+      "type": "theory",
+      "title": "Der state-Parameter",
+      "body": "## Aufsetzen und Bereinigen über state\n\nViele Module steuern ihr Verhalten über **`state`**:\n\n| Modul | Setup (`present`/`started`) | Teardown (`absent`/`stopped`) |\n|---|---|---|\n| `apt` / `package` | Paket installieren | Paket entfernen |\n| `file` | Verzeichnis anlegen | Verzeichnis löschen |\n| `service` | Dienst starten | Dienst stoppen |\n\nSo sieht ein garantiertes Aufräumen mit `block`/`always` aus:\n\n```yaml\n- block:\n    - name: Tests ausführen\n      ansible.builtin.command: pytest\n  always:\n    - name: Testverzeichnis entfernen\n      ansible.builtin.file:\n        path: /opt/testdata\n        state: absent\n```\n\nDer `always`-Abschnitt läuft auch dann, wenn die Tests scheitern."
+    },
+    {
+      "id": "ex-match-state",
+      "type": "exercise",
+      "title": "state-Werte zuordnen",
+      "exercise": {
+        "id": "ex-match-state",
+        "type": "matching",
+        "prompt": "Ordne jedem state-Wert seine Wirkung zu.",
+        "card_ids": ["card-02", "card-03", "card-07", "card-06"],
+        "pairs": [
+          {"left": "present", "right": "Ressource vorhanden (z. B. Paket installiert)"},
+          {"left": "absent", "right": "Ressource entfernt (Bereinigung)"},
+          {"left": "started", "right": "Dienst läuft"},
+          {"left": "directory", "right": "Verzeichnis wird angelegt"}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-match-module-zweck",
+      "type": "exercise",
+      "title": "Modul für die Aufgabe",
+      "exercise": {
+        "id": "ex-match-module-zweck",
+        "type": "matching",
+        "prompt": "Ordne jeder Setup-Aufgabe das passende Modul zu.",
+        "card_ids": ["card-04", "card-05", "card-06", "card-07"],
+        "pairs": [
+          {"left": "Paket installieren", "right": "apt / package"},
+          {"left": "Datei auf den Host kopieren", "right": "copy"},
+          {"left": "Verzeichnis anlegen oder löschen", "right": "file"},
+          {"left": "Dienst starten/stoppen", "right": "service"}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-cloze-teardown",
+      "type": "exercise",
+      "title": "Bereinigen mit file",
+      "exercise": {
+        "id": "ex-cloze-teardown",
+        "type": "cloze",
+        "prompt": "Ergänze den state-Wert, der das Testverzeichnis im Teardown wieder entfernt.",
+        "card_ids": ["card-03", "card-06"],
+        "sentence": "- ansible.builtin.file:\n    path: /opt/testdata\n    state: ___",
+        "blanks": [{"accept": ["absent"]}],
+        "cloze_mode": "type",
+        "hint": "Englisch für 'abwesend' — das Gegenteil von present."
+      }
+    },
+    {
+      "id": "ex-cloze-setup",
+      "type": "exercise",
+      "title": "Paket installieren",
+      "exercise": {
+        "id": "ex-cloze-setup",
+        "type": "cloze",
+        "prompt": "Ergänze den state-Wert, der sicherstellt, dass nginx installiert ist.",
+        "card_ids": ["card-02", "card-04"],
+        "sentence": "- ansible.builtin.apt:\n    name: nginx\n    state: ___",
+        "blanks": [{"accept": ["present"]}],
+        "cloze_mode": "type",
+        "hint": "Englisch für 'vorhanden'."
+      }
+    },
+    {
+      "id": "ex-free-always",
+      "type": "exercise",
+      "title": "Garantiertes Aufräumen",
+      "exercise": {
+        "id": "ex-free-always",
+        "type": "free_text",
+        "prompt": "Mit welchem Abschnitt eines block stellst du sicher, dass das Aufräumen auch dann läuft, wenn die Tests scheitern?",
+        "card_ids": ["card-10"],
+        "accept": ["always", "der always-Abschnitt", "im always-Block", "always-Block"],
+        "hint": "Der Abschnitt läuft 'immer', unabhängig vom Erfolg der vorherigen Tasks.",
+        "distractors": ["rescue", "when", "tasks"],
+        "direction": "source_to_target"
+      }
+    }
+  ]
+}
