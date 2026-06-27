@@ -108,6 +108,7 @@
     {
       "id": "ex-match-begriffe",
       "type": "exercise",
+      "theory_ref": "intro",
       "title": "Begriffe und Definitionen",
       "exercise": {
         "id": "ex-match-begriffe",
@@ -127,6 +128,7 @@
     {
       "id": "ex-pick-inception",
       "type": "exercise",
+      "theory_ref": "intro",
       "title": "Was beschreibt der Inception-Effekt?",
       "exercise": {
         "id": "ex-pick-inception",
@@ -157,6 +159,7 @@
     {
       "id": "ex-match-mechanismen",
       "type": "exercise",
+      "theory_ref": "mechanismen",
       "title": "Mechanismen und ihre Funktion",
       "exercise": {
         "id": "ex-match-mechanismen",
@@ -175,6 +178,7 @@
     {
       "id": "ex-free-sokratik",
       "type": "exercise",
+      "theory_ref": "mechanismen",
       "title": "Welcher Mechanismus wird hier beschrieben?",
       "exercise": {
         "id": "ex-free-sokratik",
@@ -196,6 +200,7 @@
     {
       "id": "ex-tiles-fehlattribuierung",
       "type": "exercise",
+      "theory_ref": "mechanismen",
       "title": "Setze den Kernsatz zusammen",
       "exercise": {
         "id": "ex-tiles-fehlattribuierung",
@@ -203,6 +208,9 @@
         "prompt": "Setze den Kernsatz zur Fehlattribuierung zusammen.",
         "card_ids": ["card-08"],
         "tiles": ["Das", "Gehirn", "vergisst", "die", "Quelle", "aber", "erinnert", "sich", "an", "den", "Inhalt"],
+        "accept_orderings": [
+          [0, 1, 2, 3, 4, 6, 7, 5, 8, 9, 10]
+        ],
         "hint": "Beginnt mit *Das Gehirn vergisst…*.",
         "direction": "source_to_target"
       }
@@ -216,6 +224,7 @@
     {
       "id": "ex-pick-priming",
       "type": "exercise",
+      "theory_ref": "zusammenfassung",
       "title": "Welches Beispiel zeigt Priming?",
       "exercise": {
         "id": "ex-pick-priming",
@@ -240,6 +249,7 @@
     {
       "id": "ex-free-fehlattribuierung",
       "type": "exercise",
+      "theory_ref": "zusammenfassung",
       "title": "Fasse den Mechanismus in einem Satz zusammen",
       "exercise": {
         "id": "ex-free-fehlattribuierung",
@@ -263,6 +273,7 @@
     {
       "id": "ex-match-konzepte",
       "type": "exercise",
+      "theory_ref": "zusammenfassung",
       "title": "Konzepte und Erklärungen",
       "exercise": {
         "id": "ex-match-konzepte",

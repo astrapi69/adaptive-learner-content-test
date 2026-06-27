@@ -5,6 +5,11 @@
 # Beispiel: forke das Repo, ersetze diese Lektion durch deine eigene
 # (oder füge weitere hinzu) und passe das Wurzel-manifest.yaml an.
 # Der Content-Loader liest die Dateiliste aus metadata.lessons.
+#
+# Hinweis: Die kanonische Fassung dieser Lektion liegt offiziell im
+# Produktiv-Content-Repo (adaptive-learner-content) unter
+# sets/de/psych-intro/lessons/106-inception-effekt-und-beeinflussung.json.
+# Die Demo hier ist ein exakter Spiegel davon (keine divergierende Kopie).
 schema_version: '1.3'
 name: Inception-Effekt (Beispiel)
 description: >-
