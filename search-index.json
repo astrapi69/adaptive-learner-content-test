@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-06-19T12:20:42Z",
+  "generated": "2026-06-27T13:10:44Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -21,7 +21,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-06-09T17:32:47+02:00"
+      "updated_at": "2026-06-27T15:09:26+02:00"
     },
     {
       "id": "ansible-qe-from-de",
