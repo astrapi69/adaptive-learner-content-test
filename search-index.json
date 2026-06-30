@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-06-27T13:10:44Z",
+  "generated": "2026-06-30T17:28:57Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -43,8 +43,29 @@
       "trust_level": 1,
       "book": null,
       "updated_at": "2026-06-19T14:20:28+02:00"
+    },
+    {
+      "id": "react-grundlagen-from-de",
+      "name": "React-Grundlagen (Einsteiger)",
+      "description": "React-Grundlagen auf Deutsch für Einsteiger: fünf Lektionen mit insgesamt 31 Karten, Theorieschritten und überwiegend Multiple-Choice-Übungen (picture_choice mit plausiblen Distraktoren) plus wenigen Lückentext-Items (cloze) zu React als Library, Komponenten, JSX, Props, State/useState, Events und Grundprinzipien.",
+      "source_language": "de",
+      "target_language": "de",
+      "level": "a2",
+      "domain": "programming",
+      "lesson_count": 5,
+      "card_count": 31,
+      "tags": [
+        "react",
+        "javascript",
+        "frontend",
+        "grundlagen"
+      ],
+      "ai_validated": false,
+      "trust_level": 1,
+      "book": null,
+      "updated_at": null
     }
   ],
-  "total_lessons": 9,
-  "total_cards": 98
+  "total_lessons": 14,
+  "total_cards": 129
 }

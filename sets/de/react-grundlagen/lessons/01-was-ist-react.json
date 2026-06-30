@@ -1,0 +1,225 @@
+{
+  "id": "01-was-ist-react",
+  "title": "Was ist React? Library, Komponenten & deklarative UI",
+  "description": "Grundlagen-Einstieg: React als JavaScript-Library, der komponentenbasierte Aufbau, das deklarative UI-Modell und Funktionskomponenten, die JSX zurückgeben. Schwerpunkt: Multiple-Choice-Verständnisfragen.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "programming",
+  "estimated_minutes": 10,
+  "cards": [
+    {
+      "id": "card-react",
+      "front": "React",
+      "back": "Eine JavaScript-Library zum Bauen von Benutzeroberflächen aus wiederverwendbaren Komponenten.",
+      "notes": "React kümmert sich um die UI-Schicht. Routing, Datenabruf usw. ergänzt man mit weiteren Bibliotheken.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["grundlagen", "hauptbegriff"]
+    },
+    {
+      "id": "card-library",
+      "front": "Library statt Framework",
+      "back": "React ist eine Library (Bibliothek), kein vollständiges Framework – es deckt vor allem die Benutzeroberfläche ab.",
+      "notes": "Eine Library ruft man aus dem eigenen Code auf; ein Framework gibt dagegen die gesamte Struktur vor.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["grundlagen", "konzept"]
+    },
+    {
+      "id": "card-komponente",
+      "front": "Komponente",
+      "back": "Ein eigenständiger, wiederverwendbarer Baustein der Benutzeroberfläche.",
+      "notes": "Komponenten lassen sich verschachteln und kombinieren – daraus entsteht die ganze Oberfläche.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["komponenten"]
+    },
+    {
+      "id": "card-funktionskomponente",
+      "front": "Funktionskomponente",
+      "back": "Eine JavaScript-Funktion, die JSX zurückgibt und damit ein Stück Oberfläche beschreibt.",
+      "notes": "Moderne React-Komponenten sind Funktionen. Sie beginnen mit einem Großbuchstaben (z. B. Profil).",
+      "media_type": "code",
+      "code_snippet": "function Gruss() {\n  return <h1>Hallo</h1>;\n}",
+      "code_language": "jsx",
+      "difficulty": 1,
+      "tags": ["komponenten"]
+    },
+    {
+      "id": "card-deklarativ",
+      "front": "Deklarativ",
+      "back": "Du beschreibst, wie die UI bei einem bestimmten Zustand aussehen soll; React sorgt für die nötigen DOM-Änderungen.",
+      "notes": "Gegenstück: imperativ, wo man jeden DOM-Schritt selbst anweist.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["konzept"]
+    },
+    {
+      "id": "card-komponentenbasiert",
+      "front": "Komponentenbasiert",
+      "back": "Oberflächen werden aus kleinen, kombinierbaren Komponenten zusammengesetzt.",
+      "notes": "Eine Seite besteht typischerweise aus vielen verschachtelten Komponenten.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["konzept", "komponenten"]
+    },
+    {
+      "id": "card-rueckgabe",
+      "front": "Was gibt eine Funktionskomponente zurück?",
+      "back": "JSX – eine Beschreibung der anzuzeigenden Oberfläche.",
+      "notes": "Eine Komponente gibt genau ein Wurzelelement zurück (ggf. ein Fragment <>…</>).",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["komponenten", "jsx"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Was ist React?",
+      "body": "# Was ist React?\n\n**React** ist eine **JavaScript-Library** zum Bauen von Benutzeroberflächen. Es ist kein vollständiges Framework: React kümmert sich vor allem um die **UI-Schicht**, weitere Aufgaben (Routing, Datenabruf) ergänzt man mit zusätzlichen Bibliotheken.\n\nZwei Ideen prägen React:\n\n- **Komponentenbasiert:** Die Oberfläche wird aus kleinen, wiederverwendbaren **Komponenten** zusammengesetzt, die man verschachteln kann.\n- **Deklarativ:** Du beschreibst, *wie* die UI bei einem bestimmten Zustand aussehen soll. React vergleicht das mit dem aktuellen Stand und nimmt die nötigen Änderungen am DOM selbst vor – du musst das DOM nicht Schritt für Schritt manipulieren."
+    },
+    {
+      "id": "komponenten",
+      "type": "theory",
+      "title": "Funktionskomponenten",
+      "body": "## Funktionskomponenten\n\nEine **Funktionskomponente** ist einfach eine JavaScript-Funktion, die **JSX zurückgibt**:\n\n```jsx\nfunction Gruss() {\n  return <h1>Hallo</h1>;\n}\n```\n\nMerkmale:\n\n- Der Name beginnt mit einem **Großbuchstaben** (`Gruss`, `Profil`), damit React sie als Komponente erkennt.\n- Sie gibt **JSX** zurück – eine Beschreibung der Oberfläche, kein fertiges HTML.\n- Aus solchen Komponenten setzt man durch **Komposition** größere Oberflächen zusammen."
+    },
+    {
+      "id": "ex-mc-was-ist-react",
+      "type": "exercise",
+      "title": "Was ist React?",
+      "exercise": {
+        "id": "ex-mc-was-ist-react",
+        "type": "picture_choice",
+        "prompt": "Was beschreibt React am besten?",
+        "card_ids": ["card-react", "card-library"],
+        "images": [
+          {"src": "assets/img/react-library.png", "label": "Eine JavaScript-Library zum Bauen von Benutzeroberflächen", "is_correct": "true"},
+          {"src": "assets/img/react-datenbank.png", "label": "Ein Datenbanksystem zum Speichern von Daten"},
+          {"src": "assets/img/react-sprache.png", "label": "Eine eigene Programmiersprache als Ersatz für JavaScript"},
+          {"src": "assets/img/react-css.png", "label": "Ein CSS-Framework nur für das Styling von Webseiten"}
+        ],
+        "hint": "React arbeitet mit JavaScript und kümmert sich um die Oberfläche.",
+        "distractors": [
+          "Ein Datenbanksystem zum Speichern von Daten",
+          "Eine eigene Programmiersprache als Ersatz für JavaScript",
+          "Ein CSS-Framework nur für das Styling von Webseiten"
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-komponente",
+      "type": "exercise",
+      "title": "Was ist eine Komponente?",
+      "exercise": {
+        "id": "ex-mc-komponente",
+        "type": "picture_choice",
+        "prompt": "Was ist eine Komponente in React?",
+        "card_ids": ["card-komponente", "card-komponentenbasiert"],
+        "images": [
+          {"src": "assets/img/komp-baustein.png", "label": "Ein eigenständiger, wiederverwendbarer Baustein der Oberfläche", "is_correct": "true"},
+          {"src": "assets/img/komp-css.png", "label": "Eine CSS-Datei, die das Layout der gesamten Seite festlegt"},
+          {"src": "assets/img/komp-server.png", "label": "Ein Server, der HTML-Seiten ausliefert"},
+          {"src": "assets/img/komp-paket.png", "label": "Ein npm-Paket, das man zwingend installieren muss"}
+        ],
+        "hint": "Aus diesen Bausteinen setzt man die ganze Oberfläche zusammen.",
+        "distractors": [
+          "Eine CSS-Datei, die das Layout der gesamten Seite festlegt",
+          "Ein Server, der HTML-Seiten ausliefert",
+          "Ein npm-Paket, das man zwingend installieren muss"
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-rueckgabe",
+      "type": "exercise",
+      "title": "Rückgabewert einer Funktionskomponente",
+      "exercise": {
+        "id": "ex-mc-rueckgabe",
+        "type": "picture_choice",
+        "prompt": "Was gibt eine Funktionskomponente typischerweise zurück?",
+        "card_ids": ["card-funktionskomponente", "card-rueckgabe"],
+        "images": [
+          {"src": "assets/img/ret-jsx.png", "label": "JSX – eine Beschreibung der anzuzeigenden Oberfläche", "is_correct": "true"},
+          {"src": "assets/img/ret-json.png", "label": "Ein JSON-Objekt mit den Daten der Komponente"},
+          {"src": "assets/img/ret-void.png", "label": "Nichts (undefined); sie verändert nur globale Variablen"},
+          {"src": "assets/img/ret-html-string.png", "label": "Einen fertigen HTML-String, den der Browser direkt speichert"}
+        ],
+        "hint": "Es ist eine Beschreibung der UI, kein fertiges HTML.",
+        "distractors": [
+          "Ein JSON-Objekt mit den Daten der Komponente",
+          "Nichts (undefined); sie verändert nur globale Variablen",
+          "Einen fertigen HTML-String, den der Browser direkt speichert"
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-deklarativ",
+      "type": "exercise",
+      "title": "Deklaratives UI-Modell",
+      "exercise": {
+        "id": "ex-mc-deklarativ",
+        "type": "picture_choice",
+        "prompt": "Was bedeutet es, dass React „deklarativ“ arbeitet?",
+        "card_ids": ["card-deklarativ"],
+        "images": [
+          {"src": "assets/img/dekl-beschreiben.png", "label": "Du beschreibst das gewünschte Ergebnis je Zustand; React aktualisiert das DOM", "is_correct": "true"},
+          {"src": "assets/img/dekl-schritte.png", "label": "Du programmierst jeden einzelnen DOM-Schritt selbst von Hand"},
+          {"src": "assets/img/dekl-config.png", "label": "Die gesamte UI wird in einer XML-Konfigurationsdatei festgelegt"},
+          {"src": "assets/img/dekl-css.png", "label": "Das Aussehen wird ausschließlich über globale CSS-Klassen gesteuert"}
+        ],
+        "hint": "Gegenteil von „imperativ“: nicht jeden Schritt selbst anweisen.",
+        "distractors": [
+          "Du programmierst jeden einzelnen DOM-Schritt selbst von Hand",
+          "Die gesamte UI wird in einer XML-Konfigurationsdatei festgelegt",
+          "Das Aussehen wird ausschließlich über globale CSS-Klassen gesteuert"
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-code-komponente",
+      "type": "exercise",
+      "title": "Code lesen: gültige Komponente",
+      "exercise": {
+        "id": "ex-mc-code-komponente",
+        "type": "picture_choice",
+        "prompt": "Welche dieser Funktionen ist eine gültige React-Funktionskomponente?",
+        "card_ids": ["card-funktionskomponente"],
+        "images": [
+          {"src": "assets/img/komp-gueltig.png", "label": "function Profil() { return <p>Ana</p>; }", "is_correct": "true"},
+          {"src": "assets/img/komp-keinreturn.png", "label": "function Profil() { <p>Ana</p>; }"},
+          {"src": "assets/img/komp-zahl.png", "label": "function Profil() { return 42 + 'Ana'; }"},
+          {"src": "assets/img/komp-nurlog.png", "label": "function Profil() { console.log('Ana'); }"}
+        ],
+        "hint": "Eine Komponente muss ihr JSX mit return zurückgeben.",
+        "distractors": [
+          "function Profil() { <p>Ana</p>; }",
+          "function Profil() { return 42 + 'Ana'; }",
+          "function Profil() { console.log('Ana'); }"
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-cloze-library",
+      "type": "exercise",
+      "title": "Lückentext: Library",
+      "exercise": {
+        "id": "ex-cloze-library",
+        "type": "cloze",
+        "prompt": "Ergänze: React ist eine ___ (Bibliothek), kein vollständiges Framework.",
+        "card_ids": ["card-library"],
+        "sentence": "React ist eine ___ zum Bauen von Benutzeroberflächen.",
+        "blanks": [{"accept": ["Library", "library", "Bibliothek"]}],
+        "cloze_mode": "type",
+        "hint": "Englisches Wort für Bibliothek."
+      }
+    }
+  ]
+}
