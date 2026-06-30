@@ -1,0 +1,51 @@
+# Set-Manifest: React-Grundlagen (deutschsprachig).
+#
+# Ein Sachthema-Set (domain: programming) auf Deutsch für Einsteiger.
+# Schwerpunkt-Aufgabentyp ist Multiple-Choice: im Schema umgesetzt als
+# picture_choice (eine richtige Option + plausible distractors). Die
+# Antwortoptionen werden als Label-Text angezeigt; Bilddateien sind
+# optional. Ergänzt um wenige Lückentext-Items (cloze) mit eindeutiger
+# kurzer Antwort. Der Content-Loader liest die Dateiliste aus
+# metadata.lessons.
+schema_version: '1.3'
+name: React-Grundlagen (Einsteiger)
+description: >-
+  Fünf aufeinander aufbauende Einsteiger-Lektionen zu den Grundlagen von
+  React: Was ist React (Library, komponentenbasiert, deklarativ), JSX,
+  Props (read-only, unidirektionaler Fluss), State mit useState sowie
+  Event-Handling samt Grundprinzipien (Re-Render, Komposition,
+  Eltern-zu-Kind-Datenfluss). Konzeptuelles Verständnis, kein freies
+  Code-Schreiben.
+sets:
+  - id: react-grundlagen-from-de
+    title: React-Grundlagen (Einsteiger)
+    title_native: React-Grundlagen (Einsteiger)
+    target_language: de
+    source_language: de
+    domain: programming
+    level: A2
+    path: sets/de/react-grundlagen
+    version: '1.0.0'
+    lesson_count: 5
+    domain_label: Programmierung
+    description: >-
+      React-Grundlagen auf Deutsch für Einsteiger: fünf Lektionen mit
+      insgesamt 31 Karten, Theorieschritten und überwiegend
+      Multiple-Choice-Übungen (picture_choice mit plausiblen
+      Distraktoren) plus wenigen Lückentext-Items (cloze) zu React als
+      Library, Komponenten, JSX, Props, State/useState, Events und
+      Grundprinzipien.
+    tags:
+      - react
+      - javascript
+      - frontend
+      - grundlagen
+metadata:
+  author: Asterios Raptis
+  license: CC-BY-SA-4.0
+  lessons:
+    - 01-was-ist-react.json
+    - 02-jsx.json
+    - 03-props.json
+    - 04-state-usestate.json
+    - 05-events-und-grundprinzipien.json

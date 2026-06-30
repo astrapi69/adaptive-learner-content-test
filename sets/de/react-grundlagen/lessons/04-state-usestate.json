@@ -1,0 +1,214 @@
+{
+  "id": "04-state-usestate",
+  "title": "State mit useState: Re-Render statt direkter Mutation",
+  "description": "Lokaler State in Funktionskomponenten: der useState-Hook, warum man State nicht direkt mutiert, und dass eine State-Änderung über die Setter-Funktion ein Re-Render auslöst. Schwerpunkt: Multiple-Choice.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "programming",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "card-state",
+      "front": "State",
+      "back": "Veränderliche Daten, die eine Komponente selbst verwaltet und die ihre Darstellung beeinflussen.",
+      "notes": "Ändert sich der State, rendert React die Komponente neu.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["state", "hauptbegriff"]
+    },
+    {
+      "id": "card-usestate",
+      "front": "useState",
+      "back": "Der Hook, mit dem eine Funktionskomponente lokalen State erhält.",
+      "notes": "Gibt ein Paar zurück: den aktuellen Wert und eine Setter-Funktion zum Ändern.",
+      "media_type": "code",
+      "code_snippet": "const [zaehler, setZaehler] = useState(0);",
+      "code_language": "jsx",
+      "difficulty": 1,
+      "tags": ["state", "hook"]
+    },
+    {
+      "id": "card-setter",
+      "front": "Setter-Funktion",
+      "back": "Die von useState gelieferte Funktion (z. B. setZaehler), mit der man den State aktualisiert.",
+      "notes": "Nur über den Setter ändern – das teilt React mit, dass neu gerendert werden muss.",
+      "media_type": "code",
+      "code_snippet": "setZaehler(zaehler + 1);",
+      "code_language": "jsx",
+      "difficulty": 2,
+      "tags": ["state", "hook"]
+    },
+    {
+      "id": "card-keine-mutation",
+      "front": "State nicht direkt mutieren",
+      "back": "Man verändert State nicht direkt (z. B. zaehler++ oder array.push), sondern immer über die Setter-Funktion.",
+      "notes": "Direktes Mutieren löst kein Re-Render aus; React bemerkt die Änderung nicht.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["state", "konzept"]
+    },
+    {
+      "id": "card-rerender",
+      "front": "State-Änderung -> Re-Render",
+      "back": "Ruft man die Setter-Funktion auf, plant React ein erneutes Rendern der Komponente mit dem neuen Wert.",
+      "notes": "So bleibt die Anzeige immer im Einklang mit dem aktuellen State.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["state", "rendering"]
+    },
+    {
+      "id": "card-initialwert",
+      "front": "Anfangswert von useState",
+      "back": "Das Argument von useState(...) ist der Startwert des States beim ersten Rendern.",
+      "notes": "useState(0) startet bei 0, useState('') bei einem leeren String.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["state", "hook"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "State und useState",
+      "body": "# State\n\n**State** sind **veränderliche Daten, die eine Komponente selbst verwaltet** und die beeinflussen, was sie anzeigt (z. B. ein Zählerstand, ein Eingabetext).\n\nIn einer Funktionskomponente bekommt man State mit dem **`useState`-Hook**. Er gibt ein **Paar** zurück: den aktuellen Wert und eine **Setter-Funktion**:\n\n```jsx\nconst [zaehler, setZaehler] = useState(0);\n```\n\n- `useState(0)` setzt den **Anfangswert** (hier `0`).\n- `zaehler` ist der aktuelle Wert.\n- `setZaehler` ist die Funktion, mit der man ihn **ändert**."
+    },
+    {
+      "id": "rerender",
+      "type": "theory",
+      "title": "Nicht mutieren, sondern setzen",
+      "body": "## Warum nicht direkt ändern?\n\nState wird **nie direkt mutiert**. Statt `zaehler++` oder `liste.push(x)` ruft man immer die **Setter-Funktion** auf:\n\n```jsx\nsetZaehler(zaehler + 1);\n```\n\nDer Grund: Nur der Aufruf des Setters **teilt React mit, dass sich etwas geändert hat**. React plant daraufhin ein **Re-Render** – die Komponente läuft erneut und zeigt den neuen Wert an.\n\nÄndert man die Variable direkt, **bemerkt React die Änderung nicht** und die Anzeige bleibt stehen. So bleibt die Oberfläche immer im Einklang mit dem aktuellen State."
+    },
+    {
+      "id": "ex-mc-was-ist-state",
+      "type": "exercise",
+      "title": "Was ist State?",
+      "exercise": {
+        "id": "ex-mc-was-ist-state",
+        "type": "picture_choice",
+        "prompt": "Was ist State in React?",
+        "card_ids": ["card-state"],
+        "images": [
+          {"src": "assets/img/state-veraenderlich.png", "label": "Veränderliche Daten, die eine Komponente selbst verwaltet und die ihre Anzeige beeinflussen", "is_correct": "true"},
+          {"src": "assets/img/state-eltern.png", "label": "Daten, die immer von der Elternkomponente kommen und read-only sind"},
+          {"src": "assets/img/state-css.png", "label": "Die CSS-Stile, die das Aussehen einer Komponente festlegen"},
+          {"src": "assets/img/state-html.png", "label": "Der fertige HTML-Code, den der Server zurückschickt"}
+        ],
+        "hint": "Im Gegensatz zu Props gehört dieser Wert der Komponente selbst.",
+        "distractors": [
+          "Daten, die immer von der Elternkomponente kommen und read-only sind",
+          "Die CSS-Stile, die das Aussehen einer Komponente festlegen",
+          "Der fertige HTML-Code, den der Server zurückschickt"
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-usestate-zweck",
+      "type": "exercise",
+      "title": "Wofür useState?",
+      "exercise": {
+        "id": "ex-mc-usestate-zweck",
+        "type": "picture_choice",
+        "prompt": "Welcher Hook verwaltet lokalen State in einer Funktionskomponente?",
+        "card_ids": ["card-usestate"],
+        "images": [
+          {"src": "assets/img/hook-usestate.png", "label": "useState", "is_correct": "true"},
+          {"src": "assets/img/hook-useeffect.png", "label": "useEffect"},
+          {"src": "assets/img/hook-usecontext.png", "label": "useContext"},
+          {"src": "assets/img/hook-useref.png", "label": "useRef"}
+        ],
+        "hint": "Der Name verrät es: er gibt dir „State“.",
+        "distractors": ["useEffect", "useContext", "useRef"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-rueckgabe-usestate",
+      "type": "exercise",
+      "title": "Rückgabe von useState",
+      "exercise": {
+        "id": "ex-mc-rueckgabe-usestate",
+        "type": "picture_choice",
+        "prompt": "Was liefert const [wert, setWert] = useState(0); zurück?",
+        "card_ids": ["card-usestate", "card-setter", "card-initialwert"],
+        "images": [
+          {"src": "assets/img/us-paar.png", "label": "Den aktuellen Wert und eine Setter-Funktion zum Ändern", "is_correct": "true"},
+          {"src": "assets/img/us-nurwert.png", "label": "Nur den aktuellen Wert, ohne Möglichkeit ihn zu ändern"},
+          {"src": "assets/img/us-css.png", "label": "Ein CSS-Objekt für das Styling der Komponente"},
+          {"src": "assets/img/us-props.png", "label": "Die Props, die die Elternkomponente übergeben hat"}
+        ],
+        "hint": "Es ist ein Paar: Wert und eine Funktion zum Setzen.",
+        "distractors": [
+          "Nur den aktuellen Wert, ohne Möglichkeit ihn zu ändern",
+          "Ein CSS-Objekt für das Styling der Komponente",
+          "Die Props, die die Elternkomponente übergeben hat"
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-keine-mutation",
+      "type": "exercise",
+      "title": "State korrekt ändern",
+      "exercise": {
+        "id": "ex-mc-keine-mutation",
+        "type": "picture_choice",
+        "prompt": "Du hast const [zaehler, setZaehler] = useState(0);. Wie erhöhst du den Zähler korrekt um 1?",
+        "card_ids": ["card-setter", "card-keine-mutation"],
+        "images": [
+          {"src": "assets/img/inc-setter.png", "label": "setZaehler(zaehler + 1);", "is_correct": "true"},
+          {"src": "assets/img/inc-plusplus.png", "label": "zaehler++;"},
+          {"src": "assets/img/inc-zuweisung.png", "label": "zaehler = zaehler + 1;"},
+          {"src": "assets/img/inc-direkt.png", "label": "zaehler += 1;"}
+        ],
+        "hint": "State ändert man nur über die Setter-Funktion.",
+        "distractors": [
+          "zaehler++;",
+          "zaehler = zaehler + 1;",
+          "zaehler += 1;"
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-warum-setter",
+      "type": "exercise",
+      "title": "Warum die Setter-Funktion?",
+      "exercise": {
+        "id": "ex-mc-warum-setter",
+        "type": "picture_choice",
+        "prompt": "Warum darf man State nicht direkt mutieren, sondern muss die Setter-Funktion nutzen?",
+        "card_ids": ["card-keine-mutation", "card-rerender"],
+        "images": [
+          {"src": "assets/img/why-rerender.png", "label": "Nur der Setter teilt React die Änderung mit und löst ein Re-Render aus", "is_correct": "true"},
+          {"src": "assets/img/why-syntax.png", "label": "Direktes Ändern ist ein Syntaxfehler, der das Programm sofort abstürzen lässt"},
+          {"src": "assets/img/why-speicher.png", "label": "Der Setter ist nur schneller, das Ergebnis ist aber identisch"},
+          {"src": "assets/img/why-css.png", "label": "Nur über den Setter lassen sich CSS-Klassen zuweisen"}
+        ],
+        "hint": "Es geht darum, dass die Anzeige aktualisiert wird.",
+        "distractors": [
+          "Direktes Ändern ist ein Syntaxfehler, der das Programm sofort abstürzen lässt",
+          "Der Setter ist nur schneller, das Ergebnis ist aber identisch",
+          "Nur über den Setter lassen sich CSS-Klassen zuweisen"
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-cloze-usestate",
+      "type": "exercise",
+      "title": "Lückentext: State-Hook",
+      "exercise": {
+        "id": "ex-cloze-usestate",
+        "type": "cloze",
+        "prompt": "Ergänze den Hook, der einer Funktionskomponente lokalen State gibt.",
+        "card_ids": ["card-usestate"],
+        "sentence": "const [zaehler, setZaehler] = ___(0);",
+        "blanks": [{"accept": ["useState"]}],
+        "cloze_mode": "type",
+        "hint": "Beginnt mit „use“ und endet auf „State“."
+      }
+    }
+  ]
+}

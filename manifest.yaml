@@ -55,3 +55,25 @@ sets:
       - devops
       - qa
       - automation
+  - id: react-grundlagen-from-de
+    title: React-Grundlagen (Einsteiger)
+    title_native: React-Grundlagen (Einsteiger)
+    target_language: de
+    source_language: de
+    domain: programming
+    level: A2
+    path: sets/de/react-grundlagen
+    version: '1.0.0'
+    lesson_count: 5
+    domain_label: Programmierung
+    description: >-
+      React-Grundlagen auf Deutsch für Einsteiger: fünf Lektionen mit
+      überwiegend Multiple-Choice-Übungen (picture_choice mit plausiblen
+      Distraktoren) plus wenigen Lückentext-Items (cloze) zu React als
+      Library, Komponenten, JSX, Props, State/useState, Events und
+      Grundprinzipien.
+    tags:
+      - react
+      - javascript
+      - frontend
+      - grundlagen

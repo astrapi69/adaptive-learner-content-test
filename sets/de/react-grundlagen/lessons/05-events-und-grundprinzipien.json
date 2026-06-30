@@ -1,0 +1,218 @@
+{
+  "id": "05-events-und-grundprinzipien",
+  "title": "Events, Hooks & Grundprinzipien: Re-Render und Komposition",
+  "description": "Event-Handling (onClick & Co., Handler als Funktionsreferenz), das Konzept eines Hooks sowie Grundprinzipien: Was ein Re-Render auslöst, Komponenten-Komposition und der Eltern-zu-Kind-Datenfluss. Schwerpunkt: Multiple-Choice.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "programming",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "card-onclick",
+      "front": "onClick",
+      "back": "Das JSX-Attribut (in camelCase), mit dem man eine Funktion auf einen Klick reagieren lässt.",
+      "notes": "React-Event-Attribute werden in camelCase geschrieben: onClick, onChange, onSubmit.",
+      "media_type": "code",
+      "code_snippet": "<button onClick={handleKlick}>Klick</button>",
+      "code_language": "jsx",
+      "difficulty": 1,
+      "tags": ["events", "hauptbegriff"]
+    },
+    {
+      "id": "card-handler-referenz",
+      "front": "Handler als Funktionsreferenz",
+      "back": "Man übergibt die Funktion selbst (onClick={handleKlick}), nicht ihr Ergebnis (onClick={handleKlick()}).",
+      "notes": "Mit Klammern würde die Funktion sofort beim Rendern laufen statt erst beim Klick.",
+      "media_type": "code",
+      "code_snippet": "// richtig\n<button onClick={handleKlick}>OK</button>\n// falsch: ruft sofort auf\n<button onClick={handleKlick()}>OK</button>",
+      "code_language": "jsx",
+      "difficulty": 3,
+      "tags": ["events", "konzept"]
+    },
+    {
+      "id": "card-hook",
+      "front": "Hook",
+      "back": "Eine spezielle Funktion (Name beginnt mit „use“), die Funktionskomponenten Zusatzfähigkeiten wie State gibt.",
+      "notes": "Beispiele: useState, useEffect. Hooks ruft man nur auf oberster Ebene der Komponente auf.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["hooks", "konzept"]
+    },
+    {
+      "id": "card-rerender-ausloeser",
+      "front": "Was löst ein Re-Render aus?",
+      "back": "Eine Änderung des eigenen States oder neue Props von der Elternkomponente.",
+      "notes": "Rendert ein Elternteil neu, rendern in der Regel auch seine Kinder neu.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["rendering", "grundprinzip"]
+    },
+    {
+      "id": "card-komposition",
+      "front": "Komponenten-Komposition",
+      "back": "Größere Oberflächen entstehen, indem man kleinere Komponenten ineinander verschachtelt.",
+      "notes": "Statt einer riesigen Komponente kombiniert man viele kleine, wiederverwendbare.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["komposition", "grundprinzip"]
+    },
+    {
+      "id": "card-eltern-kind-fluss",
+      "front": "Eltern-zu-Kind-Datenfluss",
+      "back": "Daten reicht man über Props von Eltern an Kinder weiter; ein Kind meldet Ereignisse über Callback-Props zurück.",
+      "notes": "Der State liegt oft beim Elternteil; das Kind bekommt Werte als Props und ruft übergebene Funktionen auf.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["datenfluss", "grundprinzip"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Event-Handling",
+      "body": "# Auf Ereignisse reagieren\n\nAuf Benutzerereignisse reagiert man mit **Event-Attributen** in JSX, geschrieben in **camelCase**: `onClick`, `onChange`, `onSubmit`. Man übergibt ihnen eine **Funktion**:\n\n```jsx\nfunction Knopf() {\n  function handleKlick() {\n    alert('Geklickt!');\n  }\n  return <button onClick={handleKlick}>Klick mich</button>;\n}\n```\n\nWichtig: Man übergibt die **Funktion selbst** (`onClick={handleKlick}`), **nicht** ihren Aufruf (`onClick={handleKlick()}`). Mit Klammern würde die Funktion schon **beim Rendern** laufen statt erst **beim Klick**."
+    },
+    {
+      "id": "grundprinzipien",
+      "type": "theory",
+      "title": "Hooks & Grundprinzipien",
+      "body": "## Hooks, Re-Render und Komposition\n\n**Hook:** Eine spezielle Funktion, deren Name mit **`use`** beginnt (`useState`, `useEffect`). Hooks geben Funktionskomponenten Zusatzfähigkeiten wie State. Man ruft sie nur **auf oberster Ebene** der Komponente auf.\n\n**Was löst ein Re-Render aus?**\n\n- eine Änderung des eigenen **States** (über die Setter-Funktion), oder\n- neue **Props** von der Elternkomponente.\n\nRendert ein Elternteil neu, rendern meist auch seine Kinder neu.\n\n**Komposition & Datenfluss:** Größere Oberflächen entstehen durch **Verschachteln** kleiner Komponenten. Daten fließen über **Props von Eltern zu Kind**; ein Kind meldet Ereignisse über **Callback-Props** (übergebene Funktionen) nach oben."
+    },
+    {
+      "id": "ex-mc-onclick",
+      "type": "exercise",
+      "title": "Klick behandeln",
+      "exercise": {
+        "id": "ex-mc-onclick",
+        "type": "picture_choice",
+        "prompt": "Wie lässt man in React eine Funktion auf einen Klick reagieren?",
+        "card_ids": ["card-onclick"],
+        "images": [
+          {"src": "assets/img/ev-onclick.png", "label": "<button onClick={handleKlick}>Klick</button>", "is_correct": "true"},
+          {"src": "assets/img/ev-onclick-lower.png", "label": "<button onclick=\"handleKlick()\">Klick</button>"},
+          {"src": "assets/img/ev-addlistener.png", "label": "<button on=\"click:handleKlick\">Klick</button>"},
+          {"src": "assets/img/ev-click.png", "label": "<button click={handleKlick}>Klick</button>"}
+        ],
+        "hint": "React-Event-Attribute werden in camelCase geschrieben.",
+        "distractors": [
+          "<button onclick=\"handleKlick()\">Klick</button>",
+          "<button on=\"click:handleKlick\">Klick</button>",
+          "<button click={handleKlick}>Klick</button>"
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-handler-referenz",
+      "type": "exercise",
+      "title": "Handler richtig übergeben",
+      "exercise": {
+        "id": "ex-mc-handler-referenz",
+        "type": "picture_choice",
+        "prompt": "Was ist der Unterschied zwischen onClick={handleKlick} und onClick={handleKlick()}?",
+        "card_ids": ["card-handler-referenz"],
+        "images": [
+          {"src": "assets/img/hr-referenz.png", "label": "Ohne Klammern wird die Funktion erst beim Klick aufgerufen; mit Klammern läuft sie sofort beim Rendern", "is_correct": "true"},
+          {"src": "assets/img/hr-gleich.png", "label": "Beide sind völlig gleichwertig; die Klammern ändern nichts"},
+          {"src": "assets/img/hr-umgekehrt.png", "label": "Mit Klammern läuft sie beim Klick, ohne Klammern sofort beim Rendern"},
+          {"src": "assets/img/hr-fehler.png", "label": "onClick={handleKlick} ohne Klammern ist immer ein Syntaxfehler"}
+        ],
+        "hint": "Klammern bedeuten „jetzt aufrufen“.",
+        "distractors": [
+          "Beide sind völlig gleichwertig; die Klammern ändern nichts",
+          "Mit Klammern läuft sie beim Klick, ohne Klammern sofort beim Rendern",
+          "onClick={handleKlick} ohne Klammern ist immer ein Syntaxfehler"
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-hook",
+      "type": "exercise",
+      "title": "Was ist ein Hook?",
+      "exercise": {
+        "id": "ex-mc-hook",
+        "type": "picture_choice",
+        "prompt": "Was ist ein Hook in React?",
+        "card_ids": ["card-hook"],
+        "images": [
+          {"src": "assets/img/hk-funktion.png", "label": "Eine spezielle Funktion (Name beginnt mit „use“), die Komponenten Zusatzfähigkeiten wie State gibt", "is_correct": "true"},
+          {"src": "assets/img/hk-tag.png", "label": "Ein spezielles HTML-Tag, das React zusätzlich bereitstellt"},
+          {"src": "assets/img/hk-css.png", "label": "Eine CSS-Klasse, die Animationen an Komponenten anheftet"},
+          {"src": "assets/img/hk-config.png", "label": "Ein Eintrag in einer Konfigurationsdatei für das Build-System"}
+        ],
+        "hint": "Der Name beginnt immer mit „use“.",
+        "distractors": [
+          "Ein spezielles HTML-Tag, das React zusätzlich bereitstellt",
+          "Eine CSS-Klasse, die Animationen an Komponenten anheftet",
+          "Ein Eintrag in einer Konfigurationsdatei für das Build-System"
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-rerender-ausloeser",
+      "type": "exercise",
+      "title": "Auslöser für ein Re-Render",
+      "exercise": {
+        "id": "ex-mc-rerender-ausloeser",
+        "type": "picture_choice",
+        "prompt": "Wodurch wird ein erneutes Rendern (Re-Render) einer Komponente typischerweise ausgelöst?",
+        "card_ids": ["card-rerender-ausloeser"],
+        "images": [
+          {"src": "assets/img/rr-state-props.png", "label": "Durch eine Änderung des eigenen States oder neue Props von der Elternkomponente", "is_correct": "true"},
+          {"src": "assets/img/rr-maus.png", "label": "Nur dann, wenn man die Seite im Browser manuell neu lädt"},
+          {"src": "assets/img/rr-css.png", "label": "Sobald sich irgendeine CSS-Datei im Projekt ändert"},
+          {"src": "assets/img/rr-zeit.png", "label": "Automatisch jede Sekunde, unabhängig von Daten"}
+        ],
+        "hint": "Es hängt an State und Props zusammen.",
+        "distractors": [
+          "Nur dann, wenn man die Seite im Browser manuell neu lädt",
+          "Sobald sich irgendeine CSS-Datei im Projekt ändert",
+          "Automatisch jede Sekunde, unabhängig von Daten"
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-komposition",
+      "type": "exercise",
+      "title": "Komponenten-Komposition",
+      "exercise": {
+        "id": "ex-mc-komposition",
+        "type": "picture_choice",
+        "prompt": "Was bedeutet Komponenten-Komposition?",
+        "card_ids": ["card-komposition", "card-eltern-kind-fluss"],
+        "images": [
+          {"src": "assets/img/ko-verschachteln.png", "label": "Größere Oberflächen entstehen, indem man kleinere Komponenten ineinander verschachtelt", "is_correct": "true"},
+          {"src": "assets/img/ko-eine.png", "label": "Die gesamte App muss in einer einzigen großen Komponente stehen"},
+          {"src": "assets/img/ko-css.png", "label": "Mehrere CSS-Dateien werden zu einer zusammengefasst"},
+          {"src": "assets/img/ko-server.png", "label": "Komponenten werden auf mehrere Server verteilt"}
+        ],
+        "hint": "Kleine Bausteine ergeben zusammen die ganze Oberfläche.",
+        "distractors": [
+          "Die gesamte App muss in einer einzigen großen Komponente stehen",
+          "Mehrere CSS-Dateien werden zu einer zusammengefasst",
+          "Komponenten werden auf mehrere Server verteilt"
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-cloze-hook-praefix",
+      "type": "exercise",
+      "title": "Lückentext: Hook-Namen",
+      "exercise": {
+        "id": "ex-cloze-hook-praefix",
+        "type": "cloze",
+        "prompt": "Ergänze das Präfix, mit dem die Namen aller Hooks beginnen.",
+        "card_ids": ["card-hook"],
+        "sentence": "Die Namen aller Hooks beginnen mit dem Präfix „___“.",
+        "blanks": [{"accept": ["use"]}],
+        "cloze_mode": "type",
+        "hint": "Drei Buchstaben, wie in useState."
+      }
+    }
+  ]
+}
