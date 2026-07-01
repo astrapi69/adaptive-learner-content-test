@@ -4,10 +4,8 @@ This is the field-by-field reference for the lesson format used by this
 repository. Lessons that follow it pass `scripts/validate_content.py` and load
 in the Adaptive Learner app.
 
-- **Current format:** one **JSON file per lesson** (this is what the app loads
-  and the validator checks). Described in full below.
-- **Planned format:** a four-file YAML bundle, **schema v1.4** — see
-  [§ Schema v1.4 (preview)](#schema-v14-preview) at the end. Not yet supported.
+The lesson format is **one JSON file per lesson** — this is what the app loads
+and the validator checks. It is described in full below.
 
 New to this? Start with [GETTING-STARTED.md](GETTING-STARTED.md) and copy a
 [template](../templates/).
@@ -218,34 +216,3 @@ add a row to the README table (keeping the totals line in sync).
 
 Run `python scripts/validate_content.py` until it prints
 `All N set(s) passed validation.`
-
----
-
-## Schema v1.4 (preview)
-
-> ⚠️ **Not yet supported.** The app and the validator do **not** read this format
-> yet. It is documented here as a roadmap so authoring tools and contributors can
-> prepare.
-
-Schema v1.4 splits a lesson into four human-friendly files and adds a few
-conveniences. A worked example lives in
-[`templates/v1.4-preview/`](../templates/v1.4-preview/).
-
-```
-<lesson-folder>/
-  lesson.yaml       # metadata + structure (order of theory/exercise blocks)
-  theory.md         # prose with Markdown anchors (#einleitung, …)
-  cards.yaml        # cards + reusable distractor_pools
-  exercises.yaml    # exercises referencing cards by id
-```
-
-New in v1.4:
-
-- **`example_url`** on a theory step — link to a live example or source.
-- **`distractor_pools`** in `cards.yaml` — reusable wrong-answer banks (instead
-  of inline `distractors`).
-- **`structure`** with `exercise_block` grouping and a `review` step.
-
-Mapping to today's JSON and conversion notes are in
-[`templates/v1.4-preview/README.md`](../templates/v1.4-preview/README.md).
-Until a v1.4 loader ships, author in the single-JSON v1.3 format above.

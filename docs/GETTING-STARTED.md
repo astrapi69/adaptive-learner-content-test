@@ -115,5 +115,3 @@ Two ways to publish:
 - Read a real, complete lesson:
   [`examples/inception-effekt/lesson.json`](../examples/inception-effekt/lesson.json).
 - Skim [LESSON-FORMAT.md](LESSON-FORMAT.md) for every field and option.
-- Curious about the planned 4-file YAML authoring format? See
-  [`templates/v1.4-preview/`](../templates/v1.4-preview/).

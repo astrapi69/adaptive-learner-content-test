@@ -10,8 +10,7 @@ Anleitung: [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md)
 - `docs/` — [GETTING-STARTED.md](docs/GETTING-STARTED.md) und das
   vollständige [LESSON-FORMAT.md](docs/LESSON-FORMAT.md).
 - `templates/` — Vorlagen je Domäne (language / programming /
-  knowledge), plus eine `v1.4-preview/`-Vorschau des
-  Mehrdatei-Layouts.
+  knowledge) für das Single-JSON-Lektionsformat.
 - `examples/` — eine vollständige Beispiel-Lektion
   ([Inception-Effekt](examples/inception-effekt/)) zum Nachlesen.
 - `sets/de/inception-example/` — dasselbe als lauffähiges
