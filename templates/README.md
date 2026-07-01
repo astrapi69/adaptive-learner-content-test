@@ -2,14 +2,16 @@
 
 Copy-and-edit starting points for new lessons, one per content **domain**.
 
-| Template | Domain | Use it for | Works today? |
-|---|---|---|---|
-| [`language/lesson.json`](language/lesson.json) | `language` | Learning a language (target ≠ source), CEFR level | ✅ validates now |
-| [`knowledge/lesson.json`](knowledge/lesson.json) | non-language (e.g. `psychology`) | Subject knowledge; material and explanation share one language | ✅ validates now |
-| [`programming/lesson.json`](programming/lesson.json) | `programming` | Code lessons with `code_snippet` / `expected_output` cards | ✅ validates now |
-| [`v1.4-preview/`](v1.4-preview/) | all | The **planned** 4-file YAML authoring format | ⏳ roadmap only |
+A lesson is a **single JSON file** — that is the lesson format. Pick the
+template for your domain and copy it.
 
-## How to use a template (today's format)
+| Template | Domain | Use it for |
+|---|---|---|
+| [`language/lesson.json`](language/lesson.json) | `language` | Learning a language (target ≠ source), CEFR level |
+| [`knowledge/lesson.json`](knowledge/lesson.json) | non-language (e.g. `psychology`) | Subject knowledge; material and explanation share one language |
+| [`programming/lesson.json`](programming/lesson.json) | `programming` | Code lessons with `code_snippet` / `expected_output` cards |
+
+## How to use a template
 
 1. **Copy** the JSON template for your domain into your set's `lessons/` folder.
 2. **Rename** the file to a kebab-case slug and set the lesson `id` to match
@@ -21,8 +23,7 @@ Copy-and-edit starting points for new lessons, one per content **domain**.
    `All N set(s) passed validation.`
 
 > JSON has no comments, so the field-by-field explanations live in
-> [`../docs/LESSON-FORMAT.md`](../docs/LESSON-FORMAT.md). The YAML files under
-> `v1.4-preview/` are heavily commented and show the same structure.
+> [`../docs/LESSON-FORMAT.md`](../docs/LESSON-FORMAT.md).
 
 ## What each template already satisfies
 

@@ -18,6 +18,5 @@ It demonstrates the patterns a good knowledge lesson uses:
 
 > This file is a **copy for reference**; it is not registered as its own set, so
 > it does not change the catalogue totals. The authoritative copy is the one in
-> `sets/de/psych-intro/`. The contributor originally wrote it in the planned
-> 4-file v1.4 layout (see [`../../templates/v1.4-preview/`](../../templates/v1.4-preview/));
-> it was converted to the single-JSON v1.3 format that the app loads today.
+> `sets/de/psych-intro/`. It is written in the single-JSON lesson format that the
+> app loads — the same format every set in this repo uses.
