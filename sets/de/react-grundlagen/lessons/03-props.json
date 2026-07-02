@@ -16,7 +16,10 @@
       "code_snippet": "function Profil(props) {\n  return <p>{props.name}</p>;\n}\n// Verwendung: <Profil name=\"Ana\" />",
       "code_language": "jsx",
       "difficulty": 1,
-      "tags": ["props", "hauptbegriff"]
+      "tags": [
+        "props",
+        "hauptbegriff"
+      ]
     },
     {
       "id": "card-readonly",
@@ -25,7 +28,10 @@
       "notes": "Props gehören der Elternkomponente. Ändern lässt sich der Wert nur dort, wo er entsteht.",
       "media_type": "text",
       "difficulty": 2,
-      "tags": ["props", "konzept"]
+      "tags": [
+        "props",
+        "konzept"
+      ]
     },
     {
       "id": "card-unidirektional",
@@ -34,7 +40,10 @@
       "notes": "Auch „one-way data flow“. Das macht nachvollziehbar, woher ein Wert kommt.",
       "media_type": "text",
       "difficulty": 2,
-      "tags": ["props", "datenfluss"]
+      "tags": [
+        "props",
+        "datenfluss"
+      ]
     },
     {
       "id": "card-props-vs-state",
@@ -43,7 +52,11 @@
       "notes": "Faustregel: Bekommt die Komponente den Wert übergeben? -> Props. Verwaltet sie ihn selbst? -> State.",
       "media_type": "text",
       "difficulty": 3,
-      "tags": ["props", "state", "konzept"]
+      "tags": [
+        "props",
+        "state",
+        "konzept"
+      ]
     },
     {
       "id": "card-props-uebergeben",
@@ -54,7 +67,10 @@
       "code_snippet": "<Begruessung name=\"Ana\" alter={30} />",
       "code_language": "jsx",
       "difficulty": 2,
-      "tags": ["props", "syntax"]
+      "tags": [
+        "props",
+        "syntax"
+      ]
     },
     {
       "id": "card-children",
@@ -63,7 +79,10 @@
       "notes": "Ermöglicht Komposition: <Karte>Inhalt</Karte> reicht „Inhalt“ als children hinein.",
       "media_type": "text",
       "difficulty": 3,
-      "tags": ["props", "komposition"]
+      "tags": [
+        "props",
+        "komposition"
+      ]
     }
   ],
   "steps": [
@@ -85,22 +104,27 @@
       "title": "Was sind Props?",
       "exercise": {
         "id": "ex-mc-was-sind-props",
-        "type": "picture_choice",
+        "type": "cloze",
         "prompt": "Wofür dienen Props in React?",
-        "card_ids": ["card-props", "card-props-uebergeben"],
-        "images": [
-          {"src": "assets/img/props-eltern-kind.png", "label": "Um Daten von einer Eltern- an eine Kindkomponente zu übergeben", "is_correct": "true"},
-          {"src": "assets/img/props-style.png", "label": "Um globale CSS-Stile für die ganze App zu definieren"},
-          {"src": "assets/img/props-server.png", "label": "Um Daten von einem Server abzurufen und zu speichern"},
-          {"src": "assets/img/props-kind-eltern.png", "label": "Um Daten von einem Kind zurück an seine Elternkomponente zu schieben"}
+        "card_ids": [
+          "card-props",
+          "card-props-uebergeben"
         ],
-        "hint": "Die Richtung ist Eltern → Kind.",
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Um Daten von einer Eltern- an eine Kindkomponente zu übergeben"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
         "distractors": [
           "Um globale CSS-Stile für die ganze App zu definieren",
           "Um Daten von einem Server abzurufen und zu speichern",
           "Um Daten von einem Kind zurück an seine Elternkomponente zu schieben"
         ],
-        "direction": "target_to_source"
+        "hint": "Die Richtung ist Eltern → Kind."
       }
     },
     {
@@ -109,22 +133,26 @@
       "title": "Darf ein Kind seine Props ändern?",
       "exercise": {
         "id": "ex-mc-readonly",
-        "type": "picture_choice",
+        "type": "cloze",
         "prompt": "Was gilt für eine Komponente in Bezug auf ihre eigenen Props?",
-        "card_ids": ["card-readonly"],
-        "images": [
-          {"src": "assets/img/ro-liest.png", "label": "Sie liest ihre Props nur und darf sie nicht verändern (read-only)", "is_correct": "true"},
-          {"src": "assets/img/ro-aendert.png", "label": "Sie darf ihre Props jederzeit direkt überschreiben"},
-          {"src": "assets/img/ro-loescht.png", "label": "Sie muss ihre Props nach dem ersten Rendern löschen"},
-          {"src": "assets/img/ro-global.png", "label": "Sie verändert über Props automatisch die Props aller anderen Komponenten"}
+        "card_ids": [
+          "card-readonly"
         ],
-        "hint": "Der Wert gehört der Elternkomponente.",
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Sie liest ihre Props nur und darf sie nicht verändern (read-only)"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
         "distractors": [
           "Sie darf ihre Props jederzeit direkt überschreiben",
           "Sie muss ihre Props nach dem ersten Rendern löschen",
           "Sie verändert über Props automatisch die Props aller anderen Komponenten"
         ],
-        "direction": "target_to_source"
+        "hint": "Der Wert gehört der Elternkomponente."
       }
     },
     {
@@ -133,22 +161,26 @@
       "title": "Richtung des Datenflusses",
       "exercise": {
         "id": "ex-mc-datenfluss",
-        "type": "picture_choice",
+        "type": "cloze",
         "prompt": "In welche Richtung fließen Daten beim unidirektionalen Datenfluss?",
-        "card_ids": ["card-unidirektional"],
-        "images": [
-          {"src": "assets/img/flow-eltern-kind.png", "label": "Von der Eltern- zur Kindkomponente", "is_correct": "true"},
-          {"src": "assets/img/flow-kind-eltern.png", "label": "Von der Kind- zur Elternkomponente"},
-          {"src": "assets/img/flow-beide.png", "label": "Immer automatisch in beide Richtungen gleichzeitig"},
-          {"src": "assets/img/flow-geschwister.png", "label": "Direkt zwischen zwei Geschwisterkomponenten, ohne Eltern"}
+        "card_ids": [
+          "card-unidirektional"
         ],
-        "hint": "„One-way data flow“ – eine Einbahnstraße.",
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Von der Eltern- zur Kindkomponente"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
         "distractors": [
           "Von der Kind- zur Elternkomponente",
           "Immer automatisch in beide Richtungen gleichzeitig",
           "Direkt zwischen zwei Geschwisterkomponenten, ohne Eltern"
         ],
-        "direction": "target_to_source"
+        "hint": "„One-way data flow“ – eine Einbahnstraße."
       }
     },
     {
@@ -157,22 +189,26 @@
       "title": "Props oder State?",
       "exercise": {
         "id": "ex-mc-props-vs-state",
-        "type": "picture_choice",
+        "type": "cloze",
         "prompt": "Worin unterscheiden sich Props und State?",
-        "card_ids": ["card-props-vs-state"],
-        "images": [
-          {"src": "assets/img/pvs-richtig.png", "label": "Props kommen von außen und sind read-only; State gehört der Komponente und ist veränderbar", "is_correct": "true"},
-          {"src": "assets/img/pvs-gleich.png", "label": "Props und State sind dasselbe, nur mit unterschiedlichem Namen"},
-          {"src": "assets/img/pvs-vertauscht.png", "label": "State kommt von außen und ist read-only; Props gehören der Komponente und sind veränderbar"},
-          {"src": "assets/img/pvs-css.png", "label": "Props steuern die Logik, State steuert ausschließlich das CSS"}
+        "card_ids": [
+          "card-props-vs-state"
         ],
-        "hint": "Bekommt die Komponente den Wert übergeben oder verwaltet sie ihn selbst?",
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Props kommen von außen und sind read-only; State gehört der Komponente und ist veränderbar"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
         "distractors": [
           "Props und State sind dasselbe, nur mit unterschiedlichem Namen",
           "State kommt von außen und ist read-only; Props gehören der Komponente und sind veränderbar",
           "Props steuern die Logik, State steuert ausschließlich das CSS"
         ],
-        "direction": "target_to_source"
+        "hint": "Bekommt die Komponente den Wert übergeben oder verwaltet sie ihn selbst?"
       }
     },
     {
@@ -181,22 +217,27 @@
       "title": "Code lesen: Props auslesen",
       "exercise": {
         "id": "ex-mc-code-props",
-        "type": "picture_choice",
+        "type": "cloze",
         "prompt": "Was zeigt <Profil name=\"Ana\" /> mit  function Profil(props) { return <p>Hallo {props.name}</p>; }  an?",
-        "card_ids": ["card-props", "card-props-uebergeben"],
-        "images": [
-          {"src": "assets/img/pp-ana.png", "label": "Hallo Ana", "is_correct": "true"},
-          {"src": "assets/img/pp-name.png", "label": "Hallo props.name"},
-          {"src": "assets/img/pp-leer.png", "label": "Hallo (der Name fehlt)"},
-          {"src": "assets/img/pp-fehler.png", "label": "Einen Fehler, weil Props nicht ausgelesen werden dürfen"}
+        "card_ids": [
+          "card-props",
+          "card-props-uebergeben"
         ],
-        "hint": "props.name enthält den übergebenen Wert \"Ana\".",
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Hallo Ana"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
         "distractors": [
           "Hallo props.name",
           "Hallo (der Name fehlt)",
           "Einen Fehler, weil Props nicht ausgelesen werden dürfen"
         ],
-        "direction": "target_to_source"
+        "hint": "props.name enthält den übergebenen Wert \"Ana\"."
       }
     },
     {
@@ -207,11 +248,56 @@
         "id": "ex-cloze-readonly",
         "type": "cloze",
         "prompt": "Ergänze das englische Fachwort: Eine Komponente darf ihre Props nicht ändern – sie sind ___.",
-        "card_ids": ["card-readonly"],
+        "card_ids": [
+          "card-readonly"
+        ],
         "sentence": "Props sind im Kind ___ und dürfen nicht verändert werden.",
-        "blanks": [{"accept": ["read-only", "readonly", "read only"]}],
+        "blanks": [
+          {
+            "accept": [
+              "read-only",
+              "readonly",
+              "read only"
+            ]
+          }
+        ],
         "cloze_mode": "type",
         "hint": "Englisch für „nur lesbar“ (mit Bindestrich)."
+      }
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Kurzbeschreibung zu.",
+        "card_ids": [
+          "card-props",
+          "card-readonly",
+          "card-unidirektional",
+          "card-children"
+        ],
+        "pairs": [
+          {
+            "left": "Props",
+            "right": "Daten von Eltern an Kind"
+          },
+          {
+            "left": "read-only",
+            "right": "das Kind darf Props nicht ändern"
+          },
+          {
+            "left": "unidirektional",
+            "right": "Datenfluss Eltern → Kind"
+          },
+          {
+            "left": "props.children",
+            "right": "Inhalt zwischen Öffnungs- und Schluss-Tag"
+          }
+        ],
+        "direction": "target_to_source"
       }
     }
   ]

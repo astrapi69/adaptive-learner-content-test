@@ -14,7 +14,10 @@
       "notes": "JSX wird vor der Ausführung zu JavaScript-Aufrufen kompiliert (z. B. React.createElement).",
       "media_type": "text",
       "difficulty": 1,
-      "tags": ["jsx", "hauptbegriff"]
+      "tags": [
+        "jsx",
+        "hauptbegriff"
+      ]
     },
     {
       "id": "card-kein-html",
@@ -23,7 +26,10 @@
       "notes": "Deshalb gelten JavaScript-Regeln, z. B. className statt class.",
       "media_type": "text",
       "difficulty": 2,
-      "tags": ["jsx", "konzept"]
+      "tags": [
+        "jsx",
+        "konzept"
+      ]
     },
     {
       "id": "card-ausdruck",
@@ -34,7 +40,10 @@
       "code_snippet": "const name = 'Ana';\nconst el = <p>Hallo {name}</p>;",
       "code_language": "jsx",
       "difficulty": 2,
-      "tags": ["jsx", "ausdruck"]
+      "tags": [
+        "jsx",
+        "ausdruck"
+      ]
     },
     {
       "id": "card-classname",
@@ -43,7 +52,10 @@
       "notes": "Ähnlich: htmlFor statt for. Attribute werden in camelCase geschrieben (z. B. onClick).",
       "media_type": "text",
       "difficulty": 3,
-      "tags": ["jsx", "attribute"]
+      "tags": [
+        "jsx",
+        "attribute"
+      ]
     },
     {
       "id": "card-ein-wurzelelement",
@@ -52,7 +64,10 @@
       "notes": "Mehrere Elemente umschließt man mit einem Tag oder einem Fragment <>…</>.",
       "media_type": "text",
       "difficulty": 3,
-      "tags": ["jsx", "struktur"]
+      "tags": [
+        "jsx",
+        "struktur"
+      ]
     },
     {
       "id": "card-curly-vs-string",
@@ -61,7 +76,10 @@
       "notes": "title=\"Hallo\" ist fester Text, title={gruss} setzt den Wert der Variablen gruss ein.",
       "media_type": "text",
       "difficulty": 2,
-      "tags": ["jsx", "ausdruck"]
+      "tags": [
+        "jsx",
+        "ausdruck"
+      ]
     }
   ],
   "steps": [
@@ -83,22 +101,27 @@
       "title": "Was ist JSX?",
       "exercise": {
         "id": "ex-mc-was-ist-jsx",
-        "type": "picture_choice",
+        "type": "cloze",
         "prompt": "Was ist JSX?",
-        "card_ids": ["card-jsx", "card-kein-html"],
-        "images": [
-          {"src": "assets/img/jsx-syntax.png", "label": "Eine Syntaxerweiterung von JavaScript zum Beschreiben von UI-Struktur", "is_correct": "true"},
-          {"src": "assets/img/jsx-html.png", "label": "Eine neue Version von HTML, die React mitbringt"},
-          {"src": "assets/img/jsx-css.png", "label": "Eine Erweiterung von CSS für animierte Oberflächen"},
-          {"src": "assets/img/jsx-db.png", "label": "Ein Abfrageformat für Datenbanken, ähnlich wie SQL"}
+        "card_ids": [
+          "card-jsx",
+          "card-kein-html"
         ],
-        "hint": "Es ist eng mit JavaScript verbunden, nicht mit HTML oder CSS.",
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Eine Syntaxerweiterung von JavaScript zum Beschreiben von UI-Struktur"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
         "distractors": [
           "Eine neue Version von HTML, die React mitbringt",
           "Eine Erweiterung von CSS für animierte Oberflächen",
           "Ein Abfrageformat für Datenbanken, ähnlich wie SQL"
         ],
-        "direction": "target_to_source"
+        "hint": "Es ist eng mit JavaScript verbunden, nicht mit HTML oder CSS."
       }
     },
     {
@@ -107,22 +130,27 @@
       "title": "JSX und HTML",
       "exercise": {
         "id": "ex-mc-jsx-kein-html",
-        "type": "picture_choice",
+        "type": "cloze",
         "prompt": "Welche Aussage über JSX und HTML ist korrekt?",
-        "card_ids": ["card-kein-html", "card-classname"],
-        "images": [
-          {"src": "assets/img/jsx-istjs.png", "label": "JSX sieht HTML ähnlich, ist aber JavaScript und wird zu JavaScript kompiliert", "is_correct": "true"},
-          {"src": "assets/img/jsx-istgleich.png", "label": "JSX ist exakt dasselbe wie HTML und wird unverändert in die Seite eingefügt"},
-          {"src": "assets/img/jsx-ersetzt.png", "label": "JSX ersetzt JavaScript vollständig; man schreibt keinen JavaScript-Code mehr"},
-          {"src": "assets/img/jsx-nurkomm.png", "label": "JSX ist nur eine Kommentar-Syntax und hat keine Wirkung zur Laufzeit"}
+        "card_ids": [
+          "card-kein-html",
+          "card-classname"
         ],
-        "hint": "Denk daran, warum man className statt class schreibt.",
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "JSX sieht HTML ähnlich, ist aber JavaScript und wird zu JavaScript kompiliert"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
         "distractors": [
           "JSX ist exakt dasselbe wie HTML und wird unverändert in die Seite eingefügt",
           "JSX ersetzt JavaScript vollständig; man schreibt keinen JavaScript-Code mehr",
           "JSX ist nur eine Kommentar-Syntax und hat keine Wirkung zur Laufzeit"
         ],
-        "direction": "target_to_source"
+        "hint": "Denk daran, warum man className statt class schreibt."
       }
     },
     {
@@ -131,22 +159,27 @@
       "title": "Ausdrücke einbetten",
       "exercise": {
         "id": "ex-mc-ausdruck",
-        "type": "picture_choice",
+        "type": "cloze",
         "prompt": "Wie bettet man in JSX den Wert einer Variablen name in den Text ein?",
-        "card_ids": ["card-ausdruck", "card-curly-vs-string"],
-        "images": [
-          {"src": "assets/img/expr-curly.png", "label": "<p>Hallo {name}</p>", "is_correct": "true"},
-          {"src": "assets/img/expr-dollar.png", "label": "<p>Hallo $name</p>"},
-          {"src": "assets/img/expr-percent.png", "label": "<p>Hallo %name%</p>"},
-          {"src": "assets/img/expr-quotes.png", "label": "<p>Hallo \"name\"</p>"}
+        "card_ids": [
+          "card-ausdruck",
+          "card-curly-vs-string"
         ],
-        "hint": "JavaScript-Ausdrücke stehen in geschweiften Klammern.",
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "<p>Hallo {name}</p>"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
         "distractors": [
           "<p>Hallo $name</p>",
           "<p>Hallo %name%</p>",
           "<p>Hallo \"name\"</p>"
         ],
-        "direction": "target_to_source"
+        "hint": "JavaScript-Ausdrücke stehen in geschweiften Klammern."
       }
     },
     {
@@ -155,22 +188,26 @@
       "title": "Code lesen: Was wird angezeigt?",
       "exercise": {
         "id": "ex-mc-code-ausgabe",
-        "type": "picture_choice",
+        "type": "cloze",
         "prompt": "Was zeigt dieses JSX an?  const n = 3; const el = <p>Summe: {n + 2}</p>;",
-        "card_ids": ["card-ausdruck"],
-        "images": [
-          {"src": "assets/img/out-5.png", "label": "Summe: 5", "is_correct": "true"},
-          {"src": "assets/img/out-text.png", "label": "Summe: n + 2"},
-          {"src": "assets/img/out-32.png", "label": "Summe: 32"},
-          {"src": "assets/img/out-leer.png", "label": "Summe: (nichts, weil {} nicht erlaubt ist)"}
+        "card_ids": [
+          "card-ausdruck"
         ],
-        "hint": "{ } wertet den Ausdruck n + 2 aus.",
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Summe: 5"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
         "distractors": [
           "Summe: n + 2",
           "Summe: 32",
           "Summe: (nichts, weil {} nicht erlaubt ist)"
         ],
-        "direction": "target_to_source"
+        "hint": "{ } wertet den Ausdruck n + 2 aus."
       }
     },
     {
@@ -179,22 +216,26 @@
       "title": "Attribute in JSX",
       "exercise": {
         "id": "ex-mc-classname",
-        "type": "picture_choice",
+        "type": "cloze",
         "prompt": "Wie gibt man in JSX einem Element eine CSS-Klasse?",
-        "card_ids": ["card-classname"],
-        "images": [
-          {"src": "assets/img/cn-classname.png", "label": "<div className=\"box\">", "is_correct": "true"},
-          {"src": "assets/img/cn-class.png", "label": "<div class=\"box\">"},
-          {"src": "assets/img/cn-cssclass.png", "label": "<div cssClass=\"box\">"},
-          {"src": "assets/img/cn-styleclass.png", "label": "<div styleClass=\"box\">"}
+        "card_ids": [
+          "card-classname"
         ],
-        "hint": "class ist in JavaScript ein reserviertes Wort.",
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "<div className=\"box\">"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
         "distractors": [
           "<div class=\"box\">",
           "<div cssClass=\"box\">",
           "<div styleClass=\"box\">"
         ],
-        "direction": "target_to_source"
+        "hint": "class ist in JavaScript ein reserviertes Wort."
       }
     },
     {
@@ -205,11 +246,55 @@
         "id": "ex-cloze-curly",
         "type": "cloze",
         "prompt": "Ergänze das in JSX korrekte Attribut für eine CSS-Klasse.",
-        "card_ids": ["card-classname"],
+        "card_ids": [
+          "card-classname"
+        ],
         "sentence": "<div ___=\"box\">Inhalt</div>",
-        "blanks": [{"accept": ["className", "classname"]}],
+        "blanks": [
+          {
+            "accept": [
+              "className",
+              "classname"
+            ]
+          }
+        ],
         "cloze_mode": "type",
         "hint": "Nicht class – das ist in JavaScript reserviert."
+      }
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Kurzbeschreibung zu.",
+        "card_ids": [
+          "card-jsx",
+          "card-classname",
+          "card-ausdruck",
+          "card-ein-wurzelelement"
+        ],
+        "pairs": [
+          {
+            "left": "JSX",
+            "right": "Syntaxerweiterung von JavaScript"
+          },
+          {
+            "left": "className",
+            "right": "CSS-Klasse in JSX"
+          },
+          {
+            "left": "{ }",
+            "right": "JavaScript-Ausdruck einbetten"
+          },
+          {
+            "left": "Wurzelelement",
+            "right": "genau ein umschließendes Element"
+          }
+        ],
+        "direction": "target_to_source"
       }
     }
   ]
