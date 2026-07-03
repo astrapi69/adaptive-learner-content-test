@@ -1,0 +1,44 @@
+# Schema-mirror drift gate (EXP-039).
+#
+# The JSON-Schema artefacts under schema/ AND the shared shape-parity
+# fixture tests/fixtures/lesson-shape-parity.json are MIRRORED from the
+# app repo astrapi69/adaptive-learner (the App-authoritative source; the
+# schema is generated from its Pydantic model, the fixture is the #1205
+# parity contract — see schema/README.md). This job pulls the originals
+# from the app repo at CI time and compares them byte-for-byte against
+# the committed mirror. It goes red if the app side changed a schema or
+# the fixture and the mirror was not refreshed — so an app-side change
+# has a visible consequence here (mirror AND fixture re-pulled together)
+# instead of silently drifting apart.
+name: Schema mirror drift
+
+on:
+  pull_request:
+    paths:
+      - "schema/**"
+      - "tests/fixtures/lesson-shape-parity.json"
+      - "scripts/check_schema_drift.py"
+      - ".github/workflows/schema-drift.yml"
+  push:
+    branches: [main]
+  # Manual trigger + a daily heartbeat so app-side schema changes are
+  # surfaced even without a content-repo push.
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"
+
+# Coerce Node-runtime actions onto Node 24 as a safety net for any
+# action still defaulting to the deprecated Node 20 runtime.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Check schema mirror against the app repo
+        run: python scripts/check_schema_drift.py
