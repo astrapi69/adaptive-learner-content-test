@@ -209,7 +209,18 @@ def validate_lesson_quality(lesson: dict, source: str, label: str, errors: list[
 
     if len(exercises) < MIN_EXERCISES:
         errors.append(f"{label}: {len(exercises)} exercises (need >= {MIN_EXERCISES})")
-    if len(types) < MIN_TYPES:
+    # MIN_TYPES enforces exercise variety for normal (language-learning) sets.
+    # A DELIBERATE multiple-choice-only set — every exercise a single-answer
+    # cloze in select mode (the canonical MC, EXP-036 §4.3 / #890) — is a valid,
+    # intended artifact in this MC-focused test repo, so it is exempt from the
+    # variety rule (it would otherwise be blocked for having only the one
+    # "cloze" type). This is a content-repo quality-layer relaxation only; the
+    # App-authoritative schema shape + the schema mirror are untouched.
+    mc_only = bool(exercises) and all(
+        e.get("type") == "cloze" and e.get("cloze_mode") == "select"
+        for e in exercises
+    )
+    if len(types) < MIN_TYPES and not mc_only:
         errors.append(f"{label}: {len(types)} exercise type(s) (need >= {MIN_TYPES})")
     if len(theory) < MIN_THEORY:
         errors.append(f"{label}: no theory step")

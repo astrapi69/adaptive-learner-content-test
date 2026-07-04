@@ -77,3 +77,26 @@ sets:
       - javascript
       - frontend
       - grundlagen
+  - id: fuehrerschein-uebung-from-de
+    title: Führerscheinprüfung (Übungsfragen)
+    title_native: Führerscheinprüfung (Übungsfragen)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: A2
+    path: sets/de/fuehrerschein-uebung
+    version: '1.0.0'
+    lesson_count: 4
+    domain_label: Verkehrskunde
+    description: >-
+      Ausschließlich Multiple-Choice: eigene, frei formulierte Übungsfragen
+      im Stil einer Führerscheinprüfung (Beispiel Deutschland) über freie
+      Fakten der deutschen StVO — Vorfahrt, Geschwindigkeit/Abstand,
+      Alkohol/Fahrtüchtigkeit und Parken/Halten. Keine amtlichen Fragen oder
+      Bilder, kein Anspruch auf Prüfungsechtheit. Test-Set zum Festnageln der
+      MC-Mechanik (MC im Schema als cloze select-mode).
+    tags:
+      - knowledge
+      - verkehr
+      - multiple-choice
+      - test
