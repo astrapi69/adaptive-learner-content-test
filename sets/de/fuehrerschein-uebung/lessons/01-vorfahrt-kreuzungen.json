@@ -341,6 +341,62 @@
         ],
         "hint": "Gegenverkehr geradeaus hat Vorrang."
       }
+    },
+    {
+      "id": "ex-ms-rvl",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Grundregel „rechts vor links“",
+      "exercise": {
+        "id": "ex-ms-rvl",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Rechts vor links",
+        "card_ids": [
+          "rvl",
+          "gleichrangig"
+        ],
+        "sentence": "Welche Aussagen zur Regel „rechts vor links“ treffen zu?",
+        "accept": [
+          "Sie gilt an Kreuzungen ohne Verkehrszeichen und ohne Ampel",
+          "Sie gilt zwischen gleichrangigen Straßen",
+          "Auch ein von rechts kommender Radfahrer auf der Fahrbahn hat dann Vorfahrt"
+        ],
+        "distractors": [
+          "Das schnellere Fahrzeug darf zuerst fahren",
+          "Das größere Fahrzeug hat immer Vorrang",
+          "Sie gilt auch dann, wenn eine Ampel die Kreuzung regelt"
+        ],
+        "hint": "Denke an gleichrangige Straßen ohne Zeichen und ohne Ampel."
+      }
+    },
+    {
+      "id": "ex-ms-vorrang",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Was der Grundregel vorgeht",
+      "exercise": {
+        "id": "ex-ms-vorrang",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Rangfolge der Vorfahrtregeln",
+        "card_ids": [
+          "ampel-vorrang",
+          "vorfahrtstrasse"
+        ],
+        "sentence": "Welche Regelungen gehen der Grundregel „rechts vor links“ vor?",
+        "accept": [
+          "Die Anweisungen eines den Verkehr regelnden Polizeibeamten",
+          "Lichtzeichen (Ampel)",
+          "Verkehrszeichen wie „Vorfahrtstraße“"
+        ],
+        "distractors": [
+          "Die Größe des Fahrzeugs",
+          "Wer zuerst hupt",
+          "Wer die teurere Fahrzeugklasse fährt"
+        ],
+        "hint": "Mensch vor Ampel vor Schild vor Grundregel."
+      }
     }
   ]
 }

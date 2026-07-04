@@ -311,6 +311,61 @@
         ],
         "hint": "Damit die Sicht frei bleibt."
       }
+    },
+    {
+      "id": "ex-ms-rettungsgasse",
+      "type": "exercise",
+      "theory_ref": "step-rettungsgasse",
+      "title": "Rettungsgasse",
+      "exercise": {
+        "id": "ex-ms-rettungsgasse",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Rettungsgasse bilden",
+        "card_ids": [
+          "rettungsgasse"
+        ],
+        "sentence": "Welche Aussagen zur Rettungsgasse treffen zu?",
+        "accept": [
+          "Sie wird gebildet, sobald der Verkehr stockt oder steht",
+          "Bei mehreren Fahrstreifen je Richtung entsteht sie zwischen dem äußersten linken und dem rechts daneben liegenden Fahrstreifen",
+          "Sie hält den Weg für Einsatzfahrzeuge frei"
+        ],
+        "distractors": [
+          "Sie wird erst gebildet, wenn ein Einsatzfahrzeug zu sehen oder zu hören ist",
+          "Sie wird immer am rechten Fahrbahnrand gebildet",
+          "Sie ist nur nachts erforderlich"
+        ],
+        "hint": "Nicht warten, bis das Einsatzfahrzeug kommt."
+      }
+    },
+    {
+      "id": "ex-ms-halteverbot",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Wo Halten unzulässig ist",
+      "exercise": {
+        "id": "ex-ms-halteverbot",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Halten und Parken",
+        "card_ids": [
+          "halten-parken",
+          "kreuzung-5m"
+        ],
+        "sentence": "An welchen Stellen ist das Halten grundsätzlich unzulässig?",
+        "accept": [
+          "In scharfen Kurven",
+          "Auf Bahnübergängen",
+          "An engen oder unübersichtlichen Straßenstellen"
+        ],
+        "distractors": [
+          "Auf einem beschilderten Parkplatz",
+          "In einer als Parkbucht markierten Fläche",
+          "Am rechten Fahrbahnrand, wo das Parken erlaubt ist"
+        ],
+        "hint": "Unübersichtlich oder gefährlich? Dann kein Halten."
+      }
     }
   ]
 }
