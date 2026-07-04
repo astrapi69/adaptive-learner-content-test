@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-04T06:20:46Z",
+  "generated": "2026-07-04T15:23:23Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -21,7 +21,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-06-27T15:09:26+02:00"
+      "updated_at": "2026-07-04T06:20:46+00:00"
     },
     {
       "id": "ansible-qe-from-de",
@@ -42,7 +42,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-06-19T14:20:28+02:00"
+      "updated_at": "2026-07-04T06:20:46+00:00"
     },
     {
       "id": "react-grundlagen-from-de",
@@ -63,7 +63,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-07-02T22:58:36+02:00"
+      "updated_at": "2026-07-04T06:20:46+00:00"
     },
     {
       "id": "fuehrerschein-uebung-from-de",
@@ -84,7 +84,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-07-04T08:20:32+02:00"
+      "updated_at": "2026-07-04T06:20:46+00:00"
     }
   ],
   "total_lessons": 18,

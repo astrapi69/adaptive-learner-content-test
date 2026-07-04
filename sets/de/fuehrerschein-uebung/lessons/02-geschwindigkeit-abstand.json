@@ -340,6 +340,63 @@
         ],
         "hint": "Der Bremsweg wird länger."
       }
+    },
+    {
+      "id": "ex-ms-anhalteweg",
+      "type": "exercise",
+      "theory_ref": "step-abstand",
+      "title": "Faktoren des Anhaltewegs",
+      "exercise": {
+        "id": "ex-ms-anhalteweg",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Anhalteweg = Reaktionsweg + Bremsweg",
+        "card_ids": [
+          "anhalteweg",
+          "naesse"
+        ],
+        "sentence": "Welche Faktoren können den Anhalteweg verlängern?",
+        "accept": [
+          "Eine höhere Geschwindigkeit",
+          "Eine längere Reaktionszeit, etwa durch Müdigkeit oder Ablenkung",
+          "Eine nasse oder glatte Fahrbahn",
+          "Abgefahrene Reifen oder schlechte Bremsen"
+        ],
+        "distractors": [
+          "Die Farbe des Fahrzeugs",
+          "Die Anzahl der Türen",
+          "Ein eingeschaltetes Radio"
+        ],
+        "hint": "Alles, was das Reagieren oder Bremsen erschwert, zählt."
+      }
+    },
+    {
+      "id": "ex-ms-abstand",
+      "type": "exercise",
+      "theory_ref": "step-abstand",
+      "title": "Sicherheitsabstand",
+      "exercise": {
+        "id": "ex-ms-abstand",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Abstand halten",
+        "card_ids": [
+          "halber-tacho",
+          "anhalteweg"
+        ],
+        "sentence": "Welche Aussagen zum Sicherheitsabstand treffen zu?",
+        "accept": [
+          "Bei Nässe sollte der Abstand vergrößert werden",
+          "Ein größerer Abstand verschafft mehr Zeit zum Reagieren",
+          "Der nötige Abstand wächst mit der Geschwindigkeit"
+        ],
+        "distractors": [
+          "Bei Nässe darf der Abstand verkleinert werden",
+          "Der Abstand ist nur auf der Autobahn wichtig",
+          "Mit Tempomat ist kein Abstand nötig"
+        ],
+        "hint": "Mehr Tempo und schlechtere Bedingungen brauchen mehr Abstand."
+      }
     }
   ]
 }
