@@ -1,0 +1,326 @@
+{
+  "id": "07-formulare",
+  "title": "Formulare: controlled vs. uncontrolled",
+  "description": "Controlled und uncontrolled Inputs und gemeinsames State-Handling. Schwerpunkt Multiple-Choice.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "programming",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "controlled",
+      "front": "Controlled Input",
+      "back": "Ein Eingabefeld, dessen Wert aus dem State kommt (value) und über onChange den State aktualisiert.",
+      "notes": "Der State ist die einzige Quelle der Wahrheit.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "uncontrolled",
+      "front": "Uncontrolled Input",
+      "back": "Ein Eingabefeld, dessen Wert im DOM lebt und bei Bedarf per ref ausgelesen wird.",
+      "notes": "Oft mit defaultValue als Startwert.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "value-onchange",
+      "front": "value + onChange",
+      "back": "Das Paar, das einen Input controlled macht: value bindet an den State, onChange schreibt zurück.",
+      "notes": "Ohne onChange wäre das Feld schreibgeschützt.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "single-source",
+      "front": "Einzige Quelle der Wahrheit",
+      "back": "Bei controlled Inputs kennt der State den aktuellen Wert — genau eine Stelle, nicht das DOM zusätzlich.",
+      "notes": "Erleichtert Validierung und abhängige Felder.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "defaultvalue",
+      "front": "defaultValue",
+      "back": "Setzt bei einem uncontrolled Input nur den Startwert; danach lebt der Wert im DOM.",
+      "notes": "Nicht mit value verwechseln (das bindet dauerhaft).",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "ref-auslesen",
+      "front": "Auslesen per ref",
+      "back": "Den Wert eines uncontrolled Inputs holt man bei Bedarf über ein ref (z. B. beim Absenden).",
+      "notes": "z. B. inputRef.current.value.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Zwei Wege für Eingaben",
+      "body": "# Formulare\n\nZwei Grundmuster für Eingabefelder:\n\n- **Controlled:** Der **Wert kommt aus dem State** (`value`) und `onChange` schreibt jede Änderung zurück. Der **State ist die einzige Quelle der Wahrheit**.\n- **Uncontrolled:** Der Wert **lebt im DOM**; man liest ihn bei Bedarf per **ref** aus (oft mit `defaultValue` als Startwert).\n\nControlled ist der übliche React-Weg, weil der State jederzeit den aktuellen Wert kennt."
+    },
+    {
+      "id": "step-handling",
+      "type": "theory",
+      "title": "Gemeinsames State-Handling",
+      "body": "## State-Handling\n\nBei controlled Inputs macht das Paar **`value` + `onChange`** das Feld steuerbar:\n\n```jsx\n<input value={name} onChange={e => setName(e.target.value)} />\n```\n\nSo lassen sich mehrere Felder in einem gemeinsamen State bündeln, Eingaben validieren und abhängige Felder ableiten — alles aus **einer** Quelle der Wahrheit."
+    },
+    {
+      "id": "ex-mc-controlled",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Was ist controlled?",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Was kennzeichnet einen controlled Input?",
+        "card_ids": [
+          "controlled",
+          "value-onchange"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Sein Wert kommt aus dem State (value + onChange)"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Sein Wert lebt nur im DOM",
+          "Man liest ihn nur per ref aus",
+          "Er hat keinen onChange-Handler"
+        ],
+        "hint": "State steuert den Wert.",
+        "id": "ex-mc-controlled"
+      }
+    },
+    {
+      "id": "ex-mc-uncontrolled",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Was ist uncontrolled?",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Was kennzeichnet einen uncontrolled Input?",
+        "card_ids": [
+          "uncontrolled",
+          "ref-auslesen"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Sein Wert lebt im DOM und wird per ref ausgelesen"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Sein Wert ist an den State gebunden",
+          "Er braucht zwingend value + onChange",
+          "Er rendert bei jedem Tastendruck neu"
+        ],
+        "hint": "Wert im DOM, Zugriff per ref.",
+        "id": "ex-mc-uncontrolled"
+      }
+    },
+    {
+      "id": "ex-mc-macht",
+      "type": "exercise",
+      "theory_ref": "step-handling",
+      "title": "Was macht controlled?",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Welches Paar macht einen Input controlled?",
+        "card_ids": [
+          "value-onchange"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "value und onChange"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Nur onChange",
+          "Nur defaultValue",
+          "Ein ref allein"
+        ],
+        "hint": "Binden + zurückschreiben.",
+        "id": "ex-mc-macht"
+      }
+    },
+    {
+      "id": "ex-mc-auslesen",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Uncontrolled auslesen",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Womit liest man den Wert eines uncontrolled Inputs aus?",
+        "card_ids": [
+          "ref-auslesen"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Mit einem ref"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Mit useMemo",
+          "Mit useContext",
+          "Mit dem Dependency-Array"
+        ],
+        "hint": "z. B. inputRef.current.value.",
+        "id": "ex-mc-auslesen"
+      }
+    },
+    {
+      "id": "ex-ms-controlled",
+      "type": "exercise",
+      "theory_ref": "step-handling",
+      "title": "Merkmale controlled",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Was trifft auf einen controlled Input zu?",
+        "card_ids": [
+          "controlled",
+          "single-source",
+          "value-onchange"
+        ],
+        "sentence": "Welche Merkmale hat ein controlled Input?",
+        "accept": [
+          "value kommt aus dem State",
+          "onChange aktualisiert den State",
+          "Der State ist die einzige Quelle der Wahrheit"
+        ],
+        "cloze_mode": "multiselect",
+        "distractors": [
+          "Der Wert lebt allein im DOM",
+          "Man liest ihn nur per ref aus"
+        ],
+        "hint": "State steuert, State weiß Bescheid.",
+        "id": "ex-ms-controlled"
+      }
+    },
+    {
+      "id": "ex-ms-uncontrolled",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Merkmale uncontrolled",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Was trifft auf einen uncontrolled Input zu?",
+        "card_ids": [
+          "uncontrolled",
+          "defaultvalue",
+          "ref-auslesen"
+        ],
+        "sentence": "Welche Merkmale hat ein uncontrolled Input?",
+        "accept": [
+          "Der Wert lebt im DOM",
+          "Zugriff per ref",
+          "Oft mit defaultValue als Startwert"
+        ],
+        "cloze_mode": "multiselect",
+        "distractors": [
+          "value ist an den State gebunden",
+          "onChange ist bei jedem Tastendruck nötig"
+        ],
+        "hint": "DOM-Wert, ref, defaultValue.",
+        "id": "ex-ms-uncontrolled"
+      }
+    },
+    {
+      "id": "ex-match-form",
+      "type": "exercise",
+      "theory_ref": "step-handling",
+      "title": "Begriff und Merkmal",
+      "exercise": {
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff sein Merkmal zu.",
+        "card_ids": [
+          "controlled",
+          "uncontrolled",
+          "value-onchange"
+        ],
+        "pairs": [
+          {
+            "left": "controlled",
+            "right": "value kommt aus dem State"
+          },
+          {
+            "left": "uncontrolled",
+            "right": "Wert im DOM, per ref gelesen"
+          },
+          {
+            "left": "onChange",
+            "right": "schreibt die Eingabe in den State"
+          }
+        ],
+        "direction": "target_to_source",
+        "id": "ex-match-form"
+      }
+    },
+    {
+      "id": "ex-tip-controlled",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Der State-gesteuerte Input",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Ergänze den englischen Fachbegriff für einen vom State gesteuerten Input.",
+        "card_ids": [
+          "controlled"
+        ],
+        "sentence": "Ein Input, dessen Wert vom State gesteuert wird, heißt ___ (englisch).",
+        "blanks": [
+          {
+            "accept": [
+              "controlled"
+            ]
+          }
+        ],
+        "cloze_mode": "type",
+        "hint": "Gegenteil von „uncontrolled\".",
+        "id": "ex-tip-controlled"
+      }
+    }
+  ]
+}

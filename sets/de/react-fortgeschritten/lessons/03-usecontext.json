@@ -1,0 +1,333 @@
+{
+  "id": "03-usecontext",
+  "title": "useContext",
+  "description": "Wofür Context da ist, Provider und Consumer und wann Context statt Props (gegen Prop-Drilling). Schwerpunkt Multiple-Choice.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "programming",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "usecontext",
+      "front": "useContext",
+      "back": "Der Hook, der den Wert des nächstgelegenen Providers liest.",
+      "notes": "Ersetzt tiefes Durchreichen von Props.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "provider",
+      "front": "Provider",
+      "back": "Die Komponente, die einen Context-Wert für ihren Teilbaum bereitstellt.",
+      "notes": "z. B. <ThemeContext.Provider value={theme}>.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "prop-drilling",
+      "front": "Prop-Drilling",
+      "back": "Props durch viele Zwischenebenen reichen, nur um sie tief unten zu nutzen.",
+      "notes": "Genau das Problem, das Context löst.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "createcontext",
+      "front": "createContext",
+      "back": "Erzeugt ein Context-Objekt mit Provider und einem Standardwert.",
+      "notes": "Der Provider stellt den Wert bereit, useContext liest ihn.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "when-context",
+      "front": "Wann Context?",
+      "back": "Für Daten, die viele, tief verschachtelte Komponenten brauchen (Theme, Sprache, angemeldeter Nutzer).",
+      "notes": "Für rein lokalen State ist Context überflüssig.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "context-rerender",
+      "front": "Re-Render bei Context",
+      "back": "Ändert sich der Context-Wert, rendern alle konsumierenden Komponenten neu.",
+      "notes": "Deshalb den Wert bewusst gestalten.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "consumer",
+      "front": "Konsument",
+      "back": "Eine Komponente, die den Context-Wert per useContext liest.",
+      "notes": "Sie bekommt den Wert des nächsten Providers oberhalb.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Context gegen Prop-Drilling",
+      "body": "# useContext\n\n**Prop-Drilling** heißt: Props durch viele Zwischenebenen reichen, nur um sie tief unten zu nutzen. Das wird schnell mühsam.\n\n**Context** löst das: Ein **Provider** stellt einen Wert für seinen Teilbaum bereit, und jede Komponente darunter liest ihn direkt mit **useContext** — ohne dass die Ebenen dazwischen die Prop weiterreichen müssen."
+    },
+    {
+      "id": "step-wann",
+      "type": "theory",
+      "title": "Wann Context sinnvoll ist",
+      "body": "## Wann Context?\n\nContext eignet sich für **globale, selten wechselnde** Daten, die **viele** Komponenten brauchen: **Theme**, **Sprache**, der **angemeldete Nutzer**.\n\nNicht sinnvoll ist Context für **rein lokalen** State einer einzelnen Komponente — dort bleibt `useState` einfacher. Wichtig: Ändert sich der Context-Wert, **rendern alle Konsumenten neu**."
+    },
+    {
+      "id": "ex-mc-wogegen",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Wogegen hilft Context?",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Welches Problem löst useContext vor allem?",
+        "card_ids": [
+          "prop-drilling",
+          "usecontext"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Prop-Drilling (Props tief durchreichen)"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Zu langsames Fetching",
+          "Zu viele Seiteneffekte",
+          "Falsche Listen-Keys"
+        ],
+        "hint": "Kein Durchreichen über viele Ebenen.",
+        "id": "ex-mc-wogegen"
+      }
+    },
+    {
+      "id": "ex-mc-provider",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Wer stellt bereit?",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Was stellt den Wert für einen Context bereit?",
+        "card_ids": [
+          "provider"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Der Provider"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Der useContext-Aufruf",
+          "Die children-Prop",
+          "Ein ref"
+        ],
+        "hint": "…Context.Provider value={...}.",
+        "id": "ex-mc-provider"
+      }
+    },
+    {
+      "id": "ex-mc-liest",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Wer liest?",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Womit liest eine Komponente den Context-Wert?",
+        "card_ids": [
+          "usecontext",
+          "consumer"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Mit useContext"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Mit useState",
+          "Mit useRef",
+          "Mit einem Provider"
+        ],
+        "hint": "Der Consumer-Hook.",
+        "id": "ex-mc-liest"
+      }
+    },
+    {
+      "id": "ex-mc-rerender",
+      "type": "exercise",
+      "theory_ref": "step-wann",
+      "title": "Wert ändert sich",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Was passiert, wenn sich der Context-Wert ändert?",
+        "card_ids": [
+          "context-rerender"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Alle konsumierenden Komponenten rendern neu"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Nur der Provider rendert neu",
+          "Gar nichts rendert neu",
+          "Die App startet neu"
+        ],
+        "hint": "Konsumenten reagieren auf den neuen Wert.",
+        "id": "ex-mc-rerender"
+      }
+    },
+    {
+      "id": "ex-ms-wann",
+      "type": "exercise",
+      "theory_ref": "step-wann",
+      "title": "Wann Context nutzen?",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Wann ist Context sinnvoll?",
+        "card_ids": [
+          "when-context"
+        ],
+        "sentence": "In welchen Fällen ist Context sinnvoll?",
+        "accept": [
+          "Für globale Daten wie Theme oder Sprache",
+          "Für tief verschachtelte Konsumenten"
+        ],
+        "cloze_mode": "multiselect",
+        "distractors": [
+          "Für rein lokalen State einer Komponente",
+          "Um Re-Renders generell zu verhindern"
+        ],
+        "hint": "Global und tief geteilt.",
+        "id": "ex-ms-wann"
+      }
+    },
+    {
+      "id": "ex-ms-context",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Aussagen zu useContext",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Welche Aussagen über useContext treffen zu?",
+        "card_ids": [
+          "usecontext",
+          "prop-drilling"
+        ],
+        "sentence": "Welche Aussagen über useContext treffen zu?",
+        "accept": [
+          "Es liest den Wert des nächstgelegenen Providers",
+          "Es ersetzt tiefes Prop-Drilling"
+        ],
+        "cloze_mode": "multiselect",
+        "distractors": [
+          "Es speichert Daten dauerhaft auf der Festplatte",
+          "Es verhindert jeden Re-Render"
+        ],
+        "hint": "Provider-Wert lesen, Drilling vermeiden.",
+        "id": "ex-ms-context"
+      }
+    },
+    {
+      "id": "ex-match-context",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriff und Zweck",
+      "exercise": {
+        "type": "matching",
+        "prompt": "Ordne jeden Begriff seinem Zweck zu.",
+        "card_ids": [
+          "provider",
+          "usecontext",
+          "prop-drilling"
+        ],
+        "pairs": [
+          {
+            "left": "Provider",
+            "right": "stellt den Wert bereit"
+          },
+          {
+            "left": "useContext",
+            "right": "liest den Wert"
+          },
+          {
+            "left": "Prop-Drilling",
+            "right": "Problem, das Context löst"
+          }
+        ],
+        "direction": "target_to_source",
+        "id": "ex-match-context"
+      }
+    },
+    {
+      "id": "ex-tip-hook",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Der Lese-Hook",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Ergänze den Hook, der einen Context-Wert liest.",
+        "card_ids": [
+          "usecontext"
+        ],
+        "sentence": "Den Wert eines Context liest man mit dem Hook ___ .",
+        "blanks": [
+          {
+            "accept": [
+              "useContext"
+            ]
+          }
+        ],
+        "cloze_mode": "type",
+        "hint": "Beginnt mit „use\".",
+        "id": "ex-tip-hook"
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+# Set-Manifest: React Fortgeschritten (Teil 2) — deutschsprachig.
+#
+# Direkte Fortsetzung des Sets „React-Grundlagen (Einsteiger)": gleiche Reihe,
+# eine Niveau-Stufe höher (B1 statt A2), Sachthema (domain: programming),
+# Schwerpunkt Multiple-Choice. Single-Answer-MC ist im Schema als cloze
+# select-mode umgesetzt (eine richtige Antwort + plausible distractors);
+# „Wähle alle zutreffenden" als cloze multiselect (der #1195-Renderer ist in
+# der App gemergt). Ergänzt um matching (Begriff-zu-Zweck) und wenige
+# Lückentext-Items (cloze type) mit kurzer, eindeutiger Antwort.
+#
+# Kein picture_choice (keine Bilder). React-18-korrekt: Hooks-first, keine
+# Class-Lifecycle-Methoden als „richtige" Antwort. Code-Schnipsel dürfen im
+# Fragetext stehen (Code LESEN und Verhalten bewerten) — keine freie
+# Code-Eingabe. Der Content-Loader liest metadata.lessons für die Dateiliste.
+schema_version: '1.3'
+name: React Fortgeschritten (Teil 2)
+description: >-
+  Fortsetzung von „React-Grundlagen": acht aufbauende Lektionen (B1) mit
+  Schwerpunkt Multiple-Choice zu useEffect, Datenfetching, useContext,
+  useRef, Performance (useMemo/useCallback/React.memo), Listen und Keys,
+  Formularen (controlled vs. uncontrolled) sowie Komposition und Patterns
+  (children, lifting state up, Custom Hooks, Error Boundaries). React-18,
+  Hooks-first, konzeptuell — kein freies Code-Schreiben.
+sets:
+  - id: react-fortgeschritten-from-de
+    title: React Fortgeschritten (Teil 2)
+    title_native: React Fortgeschritten (Teil 2)
+    target_language: de
+    source_language: de
+    domain: programming
+    level: B1
+    path: sets/de/react-fortgeschritten
+    version: '1.0.0'
+    lesson_count: 8
+    domain_label: Programmierung
+    description: >-
+      Teil 2 der React-Reihe (Fortgeschritten, B1): acht Lektionen mit
+      überwiegend Multiple-Choice — Single-Answer als cloze select-mode und
+      „Wähle alle zutreffenden" als cloze multiselect — plus matching und
+      kurze Lückentext-Items. Themen: useEffect, Datenfetching, useContext,
+      useRef, Performance, Listen/Keys, Formulare, Komposition/Patterns.
+      Distraktoren aus klassischen React-Irrtümern. React-18, Hooks-first.
+    tags:
+      - react
+      - javascript
+      - frontend
+      - fortgeschritten
+      - multiple-choice
+metadata:
+  author: Asterios Raptis
+  license: CC-BY-SA-4.0
+  lessons:
+    - 01-useeffect-verstehen.json
+    - 02-datenfetching.json
+    - 03-usecontext.json
+    - 04-useref.json
+    - 05-performance.json
+    - 06-listen-keys.json
+    - 07-formulare.json
+    - 08-komposition-patterns.json

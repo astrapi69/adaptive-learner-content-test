@@ -1,0 +1,336 @@
+{
+  "id": "02-datenfetching",
+  "title": "Datenfetching-Grundmuster",
+  "description": "useEffect + fetch, die Zustände loading/error/success und Race-Conditions konzeptuell. Schwerpunkt Multiple-Choice.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "programming",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "fetch-effect",
+      "front": "Fetch im Effekt",
+      "back": "Einen Datenabruf startet man in einer Funktionskomponente üblicherweise in useEffect.",
+      "notes": "So läuft er nach dem Render und lässt sich sauber aufräumen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "loading",
+      "front": "Ladezustand",
+      "back": "Während der Abruf läuft, zeigt man einen Ladezustand (z. B. einen Spinner).",
+      "notes": "Englisch: loading.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "error",
+      "front": "Fehlerzustand",
+      "back": "Schlägt der Abruf fehl, zeigt man eine Fehlermeldung statt der Daten.",
+      "notes": "Fehler immer behandeln — Netzwerke sind unzuverlässig.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "success",
+      "front": "Erfolgszustand",
+      "back": "Bei Erfolg zeigt man die geladenen Daten an.",
+      "notes": "Die drei Zustände loading/error/success decken den Ablauf ab.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "race",
+      "front": "Race-Condition",
+      "back": "Zwei Abrufe überholen sich: eine ältere Antwort überschreibt eine neuere und zeigt veraltete Daten.",
+      "notes": "Passiert leicht, wenn sich ein Suchbegriff schnell ändert.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "abbruch",
+      "front": "Abbruch/Ignorieren",
+      "back": "Im Cleanup markiert man ein Ergebnis als veraltet (ignore-Flag) oder bricht mit AbortController ab.",
+      "notes": "So überschreibt keine alte Antwort die neue.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "kein-mutieren",
+      "front": "Kein direktes Mutieren",
+      "back": "Geladene Daten setzt man über die State-Setter-Funktion, nicht durch direktes Verändern.",
+      "notes": "Direkte Mutation löst keinen Re-Render aus.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Daten laden mit useEffect",
+      "body": "# Datenfetching-Grundmuster\n\nIn einer Funktionskomponente startet man einen Datenabruf meist in **useEffect** und modelliert drei Zustände:\n\n- **loading** — der Abruf läuft (Spinner zeigen),\n- **error** — der Abruf schlug fehl (Meldung zeigen),\n- **success** — die Daten sind da (anzeigen).\n\nSo weiß die Oberfläche immer, was zu zeigen ist."
+    },
+    {
+      "id": "step-race",
+      "type": "theory",
+      "title": "Race-Conditions vermeiden",
+      "body": "## Race-Conditions\n\nÄndert sich z. B. ein Suchbegriff schnell, laufen mehrere Abrufe gleichzeitig. Eine **ältere** Antwort kann eine **neuere überschreiben** — das ist eine **Race-Condition**, die veraltete Daten zeigt.\n\nGegenmittel im **Cleanup**: das Ergebnis als **veraltet markieren** (ein `ignore`-Flag) oder den Abruf mit **AbortController abbrechen**. So gewinnt immer die neueste Anfrage."
+    },
+    {
+      "id": "ex-mc-wo",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Wo den Abruf starten?",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Wo startet man in einer Funktionskomponente typischerweise einen Datenabruf?",
+        "card_ids": [
+          "fetch-effect"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "In useEffect"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Direkt im Render-Körper",
+          "In der Cleanup-Funktion",
+          "Gar nicht in der Komponente"
+        ],
+        "hint": "Nach dem Render, sauber aufräumbar.",
+        "id": "ex-mc-wo"
+      }
+    },
+    {
+      "id": "ex-mc-race",
+      "type": "exercise",
+      "theory_ref": "step-race",
+      "title": "Was ist eine Race-Condition?",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Was beschreibt eine Race-Condition beim Datenfetching?",
+        "card_ids": [
+          "race"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Eine ältere Antwort überschreibt eine neuere"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Der Server antwortet zu schnell",
+          "Ein Effekt läuft vor dem Render",
+          "Zwei Komponenten teilen sich einen Key"
+        ],
+        "hint": "Veraltete Daten trotz neuerer Anfrage.",
+        "id": "ex-mc-race"
+      }
+    },
+    {
+      "id": "ex-mc-abbruch",
+      "type": "exercise",
+      "theory_ref": "step-race",
+      "title": "Veraltetes vermeiden",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Wie verhindert man konzeptuell, dass eine alte Fetch-Antwort die neue überschreibt?",
+        "card_ids": [
+          "abbruch"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Im Cleanup das Ergebnis ignorieren oder den Abruf abbrechen"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Den State direkt mutieren",
+          "Den Effekt vor dem Render laufen lassen",
+          "Das Dependency-Array weglassen"
+        ],
+        "hint": "ignore-Flag oder AbortController.",
+        "id": "ex-mc-abbruch"
+      }
+    },
+    {
+      "id": "ex-mc-mutieren",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Daten setzen",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Wie übernimmt man geladene Daten in den State?",
+        "card_ids": [
+          "kein-mutieren"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Über die State-Setter-Funktion"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Durch direktes Verändern des State-Objekts",
+          "Mit einem ref",
+          "Gar nicht, useEffect setzt selbst"
+        ],
+        "hint": "Direkte Mutation löst keinen Re-Render aus.",
+        "id": "ex-mc-mutieren"
+      }
+    },
+    {
+      "id": "ex-ms-zustaende",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Zustände beim Fetching",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Welche Zustände modelliert man beim Datenfetching üblicherweise?",
+        "card_ids": [
+          "loading",
+          "error",
+          "success"
+        ],
+        "sentence": "Welche Zustände gehören zum Standardmuster des Datenfetchings?",
+        "accept": [
+          "Ladezustand (loading)",
+          "Fehlerzustand (error)",
+          "Erfolgszustand (success)"
+        ],
+        "cloze_mode": "multiselect",
+        "distractors": [
+          "Pausiert (paused)",
+          "Kompiliert (compiling)"
+        ],
+        "hint": "Drei Zustände decken den Ablauf ab.",
+        "id": "ex-ms-zustaende"
+      }
+    },
+    {
+      "id": "ex-ms-robust",
+      "type": "exercise",
+      "theory_ref": "step-race",
+      "title": "Robuster Abruf",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Was gehört zu einem robusten Fetch in useEffect?",
+        "card_ids": [
+          "loading",
+          "error",
+          "abbruch"
+        ],
+        "sentence": "Was gehört zu einem robusten Datenabruf in useEffect?",
+        "accept": [
+          "Einen Ladezustand anzeigen",
+          "Fehler behandeln",
+          "Im Cleanup abbrechen oder ignorieren"
+        ],
+        "cloze_mode": "multiselect",
+        "distractors": [
+          "Den State direkt mutieren",
+          "Den Effekt vor dem Render ausführen"
+        ],
+        "hint": "Laden, Fehler, Aufräumen.",
+        "id": "ex-ms-robust"
+      }
+    },
+    {
+      "id": "ex-match-zustand",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Zustand und Anzeige",
+      "exercise": {
+        "type": "matching",
+        "prompt": "Ordne jedem Zustand die passende Anzeige zu.",
+        "card_ids": [
+          "loading",
+          "error",
+          "success"
+        ],
+        "pairs": [
+          {
+            "left": "loading",
+            "right": "Spinner / Ladehinweis"
+          },
+          {
+            "left": "error",
+            "right": "Fehlermeldung"
+          },
+          {
+            "left": "success",
+            "right": "die geladenen Daten"
+          }
+        ],
+        "direction": "target_to_source",
+        "id": "ex-match-zustand"
+      }
+    },
+    {
+      "id": "ex-tip-hook",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Wo der Abruf lebt",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Ergänze den Hook, in dem ein Datenabruf üblicherweise gestartet wird.",
+        "card_ids": [
+          "fetch-effect"
+        ],
+        "sentence": "Ein Datenabruf startet in einer Funktionskomponente meist im ___-Hook.",
+        "blanks": [
+          {
+            "accept": [
+              "useEffect"
+            ]
+          }
+        ],
+        "cloze_mode": "type",
+        "hint": "Der Hook für Seiteneffekte.",
+        "id": "ex-tip-hook"
+      }
+    }
+  ]
+}
