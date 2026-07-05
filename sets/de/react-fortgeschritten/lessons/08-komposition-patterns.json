@@ -1,0 +1,343 @@
+{
+  "id": "08-komposition-patterns",
+  "title": "Komposition und Patterns",
+  "description": "children, lifting state up, Custom Hooks (Logik extrahieren) und Error Boundaries konzeptuell. Schwerpunkt Multiple-Choice.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "programming",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "children",
+      "front": "children-Prop",
+      "back": "Die besondere Prop, über die eine Komponente den zwischen ihren Tags verschachtelten Inhalt erhält.",
+      "notes": "Grundlage der Komposition: <Card>Inhalt</Card>.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "lifting",
+      "front": "Lifting State Up",
+      "back": "Gemeinsamen State in die nächste gemeinsame Elternkomponente verschieben, wenn mehrere Kinder ihn brauchen.",
+      "notes": "So gibt es eine einzige Quelle der Wahrheit.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "custom-hook",
+      "front": "Custom Hook",
+      "back": "Eine Funktion, die mit „use\" beginnt und wiederverwendbare Hook-Logik bündelt.",
+      "notes": "Sie darf andere Hooks aufrufen und rendert selbst keine UI.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "error-boundary",
+      "front": "Error Boundary",
+      "back": "Ein Baustein, der Render-Fehler in seinem Teilbaum abfängt und einen Fallback statt eines Absturzes zeigt.",
+      "notes": "Konzeptuell: „Auffangnetz\" für Fehler beim Rendern.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "komposition",
+      "front": "Komposition",
+      "back": "UI aus kleinen Bausteinen zusammensetzen — Inhalte per children verschachteln statt alles zu vererben.",
+      "notes": "React bevorzugt Komposition.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "use-praefix",
+      "front": "use-Präfix",
+      "back": "Custom Hooks beginnen per Konvention mit „use\", damit React die Hook-Regeln prüfen kann.",
+      "notes": "z. B. useOnlineStatus, useFormField.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "single-truth",
+      "front": "Eine Quelle der Wahrheit",
+      "back": "Geteilter State lebt an genau einer Stelle (dem gemeinsamen Elternteil), nicht doppelt in mehreren Kindern.",
+      "notes": "Verhindert widersprüchliche Zustände.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Bausteine zusammensetzen",
+      "body": "# Komposition und Patterns\n\nReact setzt Oberflächen aus **kleinen Bausteinen** zusammen. Zwei Grundwerkzeuge:\n\n- **children:** die Prop, über die eine Komponente den **verschachtelten Inhalt** erhält — `<Card>Inhalt</Card>`.\n- **Lifting State Up:** brauchen **mehrere Kinder** denselben State, verschiebt man ihn in ihr **gemeinsames Elternteil** — eine **einzige Quelle der Wahrheit**."
+    },
+    {
+      "id": "step-hooks",
+      "type": "theory",
+      "title": "Custom Hooks und Error Boundaries",
+      "body": "## Logik extrahieren, Fehler auffangen\n\nEin **Custom Hook** ist eine Funktion, die mit **„use\"** beginnt und **wiederverwendbare Logik** bündelt (er darf andere Hooks aufrufen, rendert aber selbst keine UI):\n\n```jsx\nfunction useOnlineStatus() { /* useState + useEffect ... */ }\n```\n\nEine **Error Boundary** ist konzeptuell ein **Auffangnetz**: Sie fängt **Render-Fehler** in ihrem Teilbaum ab und zeigt einen **Fallback** statt eines Absturzes."
+    },
+    {
+      "id": "ex-mc-children",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Die children-Prop",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Wozu dient die children-Prop?",
+        "card_ids": [
+          "children",
+          "komposition"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Verschachtelten Inhalt in eine Komponente hineinreichen"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Den State eines Kindes lesen",
+          "Einen Re-Render zu verhindern",
+          "Daten zu laden"
+        ],
+        "hint": "<Card>Inhalt</Card>.",
+        "id": "ex-mc-children"
+      }
+    },
+    {
+      "id": "ex-mc-lifting",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Lifting State Up",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Was bedeutet „lifting state up\"?",
+        "card_ids": [
+          "lifting",
+          "single-truth"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Gemeinsamen State ins nächste gemeinsame Elternteil verschieben"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "State in ein ref auslagern",
+          "State in jedem Kind duplizieren",
+          "State ganz vermeiden"
+        ],
+        "hint": "Eine Quelle der Wahrheit.",
+        "id": "ex-mc-lifting"
+      }
+    },
+    {
+      "id": "ex-mc-customhook",
+      "type": "exercise",
+      "theory_ref": "step-hooks",
+      "title": "Was ist ein Custom Hook?",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Was ist ein Custom Hook?",
+        "card_ids": [
+          "custom-hook",
+          "use-praefix"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Eine Funktion mit „use\"-Präfix, die Hook-Logik bündelt"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Eine Komponente, die immer UI rendert",
+          "Eine Klasse mit Lifecycle-Methoden",
+          "Ein Ersatz für den Provider"
+        ],
+        "hint": "Beginnt mit „use\".",
+        "id": "ex-mc-customhook"
+      }
+    },
+    {
+      "id": "ex-mc-boundary",
+      "type": "exercise",
+      "theory_ref": "step-hooks",
+      "title": "Wozu Error Boundaries?",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Wofür sind Error Boundaries konzeptuell da?",
+        "card_ids": [
+          "error-boundary"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Render-Fehler abfangen und einen Fallback zeigen"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Netzwerkfehler automatisch neu versuchen",
+          "Re-Renders verhindern",
+          "State global speichern"
+        ],
+        "hint": "Auffangnetz beim Rendern.",
+        "id": "ex-mc-boundary"
+      }
+    },
+    {
+      "id": "ex-ms-customhook",
+      "type": "exercise",
+      "theory_ref": "step-hooks",
+      "title": "Aussagen zu Custom Hooks",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Welche Aussagen über Custom Hooks treffen zu?",
+        "card_ids": [
+          "custom-hook",
+          "use-praefix"
+        ],
+        "sentence": "Welche Aussagen über Custom Hooks treffen zu?",
+        "accept": [
+          "Sie beginnen mit „use\"",
+          "Sie bündeln wiederverwendbare Logik",
+          "Sie dürfen andere Hooks aufrufen"
+        ],
+        "cloze_mode": "multiselect",
+        "distractors": [
+          "Sie rendern zwingend eigene UI",
+          "Sie ersetzen Komponenten vollständig"
+        ],
+        "hint": "use-Präfix, Logik, Hooks erlaubt.",
+        "id": "ex-ms-customhook"
+      }
+    },
+    {
+      "id": "ex-ms-lifting",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Wann State hochheben?",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Wann hebt man State hoch (lifting up)?",
+        "card_ids": [
+          "lifting",
+          "single-truth"
+        ],
+        "sentence": "Wann verschiebt man State ins gemeinsame Elternteil?",
+        "accept": [
+          "Wenn mehrere Komponenten denselben State brauchen",
+          "Um eine einzige Quelle der Wahrheit zu haben"
+        ],
+        "cloze_mode": "multiselect",
+        "distractors": [
+          "Immer, um Props ganz zu vermeiden",
+          "Um jeden Re-Render zu verbieten"
+        ],
+        "hint": "Geteilter Bedarf, eine Quelle.",
+        "id": "ex-ms-lifting"
+      }
+    },
+    {
+      "id": "ex-match-patterns",
+      "type": "exercise",
+      "theory_ref": "step-hooks",
+      "title": "Muster und Zweck",
+      "exercise": {
+        "type": "matching",
+        "prompt": "Ordne jedes Muster seinem Zweck zu.",
+        "card_ids": [
+          "children",
+          "lifting",
+          "custom-hook",
+          "error-boundary"
+        ],
+        "pairs": [
+          {
+            "left": "children",
+            "right": "Inhalt verschachteln (Komposition)"
+          },
+          {
+            "left": "Lifting State Up",
+            "right": "geteilten State im Elternteil halten"
+          },
+          {
+            "left": "Custom Hook",
+            "right": "Logik wiederverwendbar extrahieren"
+          },
+          {
+            "left": "Error Boundary",
+            "right": "Render-Fehler abfangen"
+          }
+        ],
+        "direction": "target_to_source",
+        "id": "ex-match-patterns"
+      }
+    },
+    {
+      "id": "ex-tip-hook",
+      "type": "exercise",
+      "theory_ref": "step-hooks",
+      "title": "Logik extrahieren",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Ergänze den Begriff: Eine Funktion mit „use\"-Präfix, die Logik kapselt, ist ein Custom ___ .",
+        "card_ids": [
+          "custom-hook",
+          "use-praefix"
+        ],
+        "sentence": "Eine Funktion mit „use\"-Präfix, die Logik kapselt, heißt Custom ___ .",
+        "blanks": [
+          {
+            "accept": [
+              "Hook",
+              "hook"
+            ]
+          }
+        ],
+        "cloze_mode": "type",
+        "hint": "Englischer Fachbegriff.",
+        "id": "ex-tip-hook"
+      }
+    }
+  ]
+}

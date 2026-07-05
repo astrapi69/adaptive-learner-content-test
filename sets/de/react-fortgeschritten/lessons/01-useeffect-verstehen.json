@@ -1,0 +1,352 @@
+{
+  "id": "01-useeffect-verstehen",
+  "title": "useEffect verstehen",
+  "description": "Fortsetzung von React-Grundlagen: der useEffect-Hook — Ausführungszeitpunkt nach dem Render, das Dependency-Array (leer, mit Deps, ohne) und die Cleanup-Funktion. Schwerpunkt Multiple-Choice.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "programming",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "useeffect",
+      "front": "useEffect",
+      "back": "Der Hook für Seiteneffekte in Funktionskomponenten (z. B. Daten laden, Timer, Abos).",
+      "notes": "Englisch: side effect. Läuft nach dem Render, nicht währenddessen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "zeitpunkt",
+      "front": "Ausführungszeitpunkt",
+      "back": "useEffect läuft NACH dem Render (nachdem der Bildschirm aktualisiert wurde) — nicht davor.",
+      "notes": "Ein häufiger Irrtum ist, useEffect laufe vor dem Render.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "dep-leer",
+      "front": "Leeres Dependency-Array []",
+      "back": "Der Effekt läuft nur einmal nach dem ersten Render (Mount).",
+      "notes": "Ideal für einmalige Initialisierung.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "dep-mit",
+      "front": "Dependency-Array mit Werten",
+      "back": "Der Effekt läuft erneut, wenn sich einer der aufgeführten Werte ändert.",
+      "notes": "z. B. [count] — läuft, wenn sich count ändert.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "dep-ohne",
+      "front": "Kein Dependency-Array",
+      "back": "Lässt man das zweite Argument weg, läuft der Effekt nach JEDEM Render.",
+      "notes": "Selten gewollt; führt leicht zu Endlosschleifen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "cleanup",
+      "front": "Cleanup-Funktion",
+      "back": "Die vom Effekt zurückgegebene Funktion räumt auf: sie läuft vor dem nächsten Effekt und beim Unmount.",
+      "notes": "z. B. Timer stoppen, Abo abmelden.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "seiteneffekt",
+      "front": "Seiteneffekt",
+      "back": "Eine Wirkung außerhalb des reinen Renderns: Netzwerk, Timer, Abos, direkter DOM-Zugriff.",
+      "notes": "Genau dafür ist useEffect gedacht.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    },
+    {
+      "id": "endlosschleife",
+      "front": "Endlosschleife",
+      "back": "Setzt ein Effekt ohne passende Deps State, der ihn erneut auslöst, entsteht eine Schleife.",
+      "notes": "Das Dependency-Array steuert, wann neu ausgeführt wird.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": [
+        "react",
+        "fortgeschritten"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Wann und warum useEffect läuft",
+      "body": "# useEffect verstehen\n\n**useEffect** ist der Hook für **Seiteneffekte** — Dinge außerhalb des reinen Renderns wie Daten laden, Timer oder Abos.\n\nKernpunkt: Ein Effekt läuft **nach dem Render** (nachdem der Bildschirm aktualisiert wurde), **nicht davor** und nicht währenddessen. So bleibt das Rendern schnell, und der Effekt sieht das fertige Ergebnis."
+    },
+    {
+      "id": "step-deps",
+      "type": "theory",
+      "title": "Das Dependency-Array",
+      "body": "## Das Dependency-Array\n\nDas zweite Argument steuert, **wann** der Effekt erneut läuft:\n\n```jsx\nuseEffect(() => { /* ... */ }, deps)\n```\n\n| deps | Verhalten |\n|---|---|\n| `[]` | nur **einmal** nach dem ersten Render |\n| `[a, b]` | erneut, wenn sich **a oder b** ändern |\n| *(weggelassen)* | nach **jedem** Render |\n\nEin fehlendes oder falsches Array ist eine häufige Ursache für Endlosschleifen."
+    },
+    {
+      "id": "step-cleanup",
+      "type": "theory",
+      "title": "Die Cleanup-Funktion",
+      "body": "## Aufräumen mit Cleanup\n\nGibt ein Effekt eine **Funktion zurück**, ist das seine **Cleanup**-Funktion:\n\n```jsx\nuseEffect(() => {\n  const id = setInterval(tick, 1000)\n  return () => clearInterval(id) // Cleanup\n}, [])\n```\n\nSie läuft **vor dem nächsten** Effekt und beim **Unmount** — ideal, um Timer zu stoppen oder Abos abzumelden."
+    },
+    {
+      "id": "ex-mc-zeitpunkt",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Wann läuft useEffect?",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Wann führt React einen useEffect aus?",
+        "card_ids": [
+          "zeitpunkt",
+          "useeffect"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Nach dem Render"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Vor dem Render",
+          "Während des Renders",
+          "Nur beim Klick"
+        ],
+        "hint": "Der Effekt sieht das fertige Render.",
+        "id": "ex-mc-zeitpunkt"
+      }
+    },
+    {
+      "id": "ex-mc-leer",
+      "type": "exercise",
+      "theory_ref": "step-deps",
+      "title": "Leeres Array",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Was bewirkt ein leeres Dependency-Array `[]`?",
+        "card_ids": [
+          "dep-leer"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Der Effekt läuft nur einmal nach dem ersten Render"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Der Effekt läuft nach jedem Render",
+          "Der Effekt läuft nie",
+          "Der Effekt läuft vor dem Render"
+        ],
+        "hint": "„Einmalig nach dem Mount.\"",
+        "id": "ex-mc-leer"
+      }
+    },
+    {
+      "id": "ex-mc-ohne",
+      "type": "exercise",
+      "theory_ref": "step-deps",
+      "title": "Kein Array",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Wie oft läuft ein useEffect, wenn man das Dependency-Array ganz weglässt?",
+        "card_ids": [
+          "dep-ohne"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Nach jedem Render"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Nur einmal",
+          "Nie",
+          "Nur beim Unmount"
+        ],
+        "hint": "Fehlt das Array, gibt es keine Begrenzung.",
+        "id": "ex-mc-ohne"
+      }
+    },
+    {
+      "id": "ex-mc-cleanup",
+      "type": "exercise",
+      "theory_ref": "step-cleanup",
+      "title": "Wozu Cleanup?",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Wozu dient die von einem Effekt zurückgegebene Funktion?",
+        "card_ids": [
+          "cleanup"
+        ],
+        "sentence": "___",
+        "blanks": [
+          {
+            "accept": [
+              "Zum Aufräumen vor dem nächsten Effekt und beim Unmount"
+            ]
+          }
+        ],
+        "cloze_mode": "select",
+        "distractors": [
+          "Um den Effekt schneller zu machen",
+          "Um State direkt zu mutieren",
+          "Um einen Re-Render zu erzwingen"
+        ],
+        "hint": "Timer stoppen, Abo abmelden.",
+        "id": "ex-mc-cleanup"
+      }
+    },
+    {
+      "id": "ex-ms-useeffect",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Aussagen über useEffect",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Welche Aussagen über useEffect treffen zu?",
+        "card_ids": [
+          "useeffect",
+          "zeitpunkt",
+          "cleanup"
+        ],
+        "sentence": "Welche Aussagen über useEffect treffen zu?",
+        "accept": [
+          "Er läuft nach dem Render",
+          "Er kann eine Cleanup-Funktion zurückgeben",
+          "Er reagiert auf Änderungen im Dependency-Array"
+        ],
+        "cloze_mode": "multiselect",
+        "distractors": [
+          "Er läuft vor dem Render",
+          "Er blockiert das Rendern der Oberfläche"
+        ],
+        "hint": "Denke an Zeitpunkt, Cleanup und Deps.",
+        "id": "ex-ms-useeffect"
+      }
+    },
+    {
+      "id": "ex-ms-deps",
+      "type": "exercise",
+      "theory_ref": "step-deps",
+      "title": "Effekt mit [count]",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Ein Effekt hat `[count]` als Dependency-Array. Wann läuft er?",
+        "card_ids": [
+          "dep-mit"
+        ],
+        "sentence": "Wann läuft `useEffect(() => {...}, [count])`?",
+        "accept": [
+          "Nach dem ersten Render",
+          "Immer wenn sich count ändert"
+        ],
+        "cloze_mode": "multiselect",
+        "distractors": [
+          "Bei jedem Tastendruck unabhängig von count",
+          "Nie"
+        ],
+        "hint": "Nur der Wert count steuert die Wiederholung.",
+        "id": "ex-ms-deps"
+      }
+    },
+    {
+      "id": "ex-match-deps",
+      "type": "exercise",
+      "theory_ref": "step-deps",
+      "title": "Dependency-Array und Verhalten",
+      "exercise": {
+        "type": "matching",
+        "prompt": "Ordne jedem Dependency-Array sein Verhalten zu.",
+        "card_ids": [
+          "dep-leer",
+          "dep-mit",
+          "dep-ohne"
+        ],
+        "pairs": [
+          {
+            "left": "[]",
+            "right": "einmal nach dem ersten Render"
+          },
+          {
+            "left": "[x]",
+            "right": "erneut, wenn sich x ändert"
+          },
+          {
+            "left": "kein Array",
+            "right": "nach jedem Render"
+          }
+        ],
+        "direction": "target_to_source",
+        "id": "ex-match-deps"
+      }
+    },
+    {
+      "id": "ex-tip-name",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Der Hook für Seiteneffekte",
+      "exercise": {
+        "type": "cloze",
+        "prompt": "Ergänze den Namen des Hooks für Seiteneffekte.",
+        "card_ids": [
+          "useeffect"
+        ],
+        "sentence": "Der Hook für Seiteneffekte heißt ___ .",
+        "blanks": [
+          {
+            "accept": [
+              "useEffect"
+            ]
+          }
+        ],
+        "cloze_mode": "type",
+        "hint": "Beginnt mit „use\".",
+        "id": "ex-tip-name"
+      }
+    }
+  ]
+}

@@ -100,3 +100,27 @@ sets:
       - verkehr
       - multiple-choice
       - test
+  - id: react-fortgeschritten-from-de
+    title: React Fortgeschritten (Teil 2)
+    title_native: React Fortgeschritten (Teil 2)
+    target_language: de
+    source_language: de
+    domain: programming
+    level: B1
+    path: sets/de/react-fortgeschritten
+    version: '1.0.0'
+    lesson_count: 8
+    domain_label: Programmierung
+    description: >-
+      Fortsetzung von „React-Grundlagen" (Teil 2, Fortgeschritten, B1): acht
+      Lektionen mit Schwerpunkt Multiple-Choice — Single-Answer als cloze
+      select-mode und „Wähle alle zutreffenden" als cloze multiselect — plus
+      matching und kurze Lückentext-Items. Themen: useEffect, Datenfetching,
+      useContext, useRef, Performance, Listen/Keys, Formulare, Komposition
+      und Patterns. React-18, Hooks-first, konzeptuell.
+    tags:
+      - react
+      - javascript
+      - frontend
+      - fortgeschritten
+      - multiple-choice
