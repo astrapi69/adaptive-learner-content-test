@@ -56,6 +56,35 @@ QUALITY_RULES_PATH = SCHEMA_DIR / "quality-rules.json"
 
 ISO_639_1 = re.compile(r"^[a-z]{2}$")
 
+# Answer-length statements in exercise/blank hints (adaptive-learner-content#100).
+# The app shows the answer's length automatically (the system hint), so an
+# authored hint stating a letter/character count ("Vier Buchstaben.") is
+# redundant at best and contradicts the system hint when it is wrong. Card
+# hints are NOT covered: a character count there can be legitimate teaching
+# content (e.g. explaining that ``s[0:3]`` yields 3 characters). Compounds
+# like "Leerzeichen" do not match (no word boundary inside the compound),
+# so indentation advice passes.
+_HINT_COUNT_WORDS = (
+    r"\d+|ein(?:e[nmrs]?)?|zwei|drei|vier|f(?:ü|ue)nf|sechs|sieben|acht|neun"
+    r"|zehn|elf|zw(?:ö|oe)lf"
+)
+HINT_LENGTH_PATTERN = re.compile(
+    rf"\b(?:{_HINT_COUNT_WORDS})[-\s]+(?:buchstaben?|zeichen|letters?|characters?)\b"
+    r"|\w*buchstabig",
+    re.IGNORECASE,
+)
+
+
+def hint_states_answer_length(hint: object) -> bool:
+    """True when an authored hint states the answer's letter/character count.
+
+    Matches a digit or German number word followed by "Buchstabe(n)"/"Zeichen"
+    (plus the English "letter(s)"/"character(s)" forms and "-buchstabig"
+    adjectives). Applied to exercise-level and blank-level hints only — see
+    the note on ``HINT_LENGTH_PATTERN``.
+    """
+    return isinstance(hint, str) and bool(HINT_LENGTH_PATTERN.search(hint))
+
 # Scripts we can distinguish from Latin (mirror the TS validator).
 SCRIPT_RANGES = {
     "el": re.compile(r"[Ͱ-Ͽἀ-῿]"),
@@ -238,6 +267,18 @@ def validate_lesson_quality(lesson: dict, source: str, label: str, errors: list[
 
     for ex in exercises:
         eid = ex.get("id", "?")
+        if hint_states_answer_length(ex.get("hint")):
+            errors.append(
+                f"{label}: exercise '{eid}' hint states a letter/character count "
+                "(redundant to the app's automatic length hint) - use a content hint"
+            )
+        for blank_index, blank in enumerate(ex.get("blanks") or []):
+            if isinstance(blank, dict) and hint_states_answer_length(blank.get("hint")):
+                errors.append(
+                    f"{label}: exercise '{eid}' blanks[{blank_index}] hint states a "
+                    "letter/character count (redundant to the app's automatic "
+                    "length hint) - use a content hint"
+                )
         if ex.get("type") == "free_text":
             if len(ex.get("accept") or []) < MIN_FREE_TEXT_ACCEPTS:
                 errors.append(f"{label}: free_text '{eid}' needs >= {MIN_FREE_TEXT_ACCEPTS} accepts")
