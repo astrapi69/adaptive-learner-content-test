@@ -171,7 +171,7 @@
         "sentence": "ansible-playbook ___ inventory.ini site.yml",
         "blanks": [{"accept": ["-i", "--inventory"]}],
         "cloze_mode": "type",
-        "hint": "Der Schalter wählt die Inventory-Datei aus (kurz: ein Buchstabe mit Bindestrich)."
+        "hint": "Der Schalter wählt die Inventory-Datei aus; Lang- und Kurzform werden akzeptiert."
       }
     },
     {
