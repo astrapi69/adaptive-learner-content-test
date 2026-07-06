@@ -1,28 +1,27 @@
-# Schema-mirror drift gate (EXP-039).
+# Schema-mirror drift gate — pinned to the learn-content-engine release.
 #
-# The JSON-Schema artefacts under schema/ AND the shared shape-parity
-# fixture tests/fixtures/lesson-shape-parity.json are MIRRORED from the
-# app repo astrapi69/adaptive-learner (the App-authoritative source; the
-# schema is generated from its Pydantic model, the fixture is the #1205
-# parity contract — see schema/README.md). This job pulls the originals
-# from the app repo at CI time and compares them byte-for-byte against
-# the committed mirror. It goes red if the app side changed a schema or
-# the fixture and the mirror was not refreshed — so an app-side change
-# has a visible consequence here (mirror AND fixture re-pulled together)
-# instead of silently drifting apart.
+# schema/lesson.schema.json is a MIRROR of the learn-content-engine npm
+# package (source-of-truth chain: adaptive-learner Pydantic -> engine ->
+# this mirror; see schema/README.md). This job downloads the npm tarball
+# of the PINNED engine version (schema/engine-version.txt) and compares
+# it byte-for-byte against the committed mirror. It goes red if the
+# mirror was hand-edited or a pin bump forgot the refresh — never
+# against a floating branch: published npm versions are immutable, so
+# the gate is deterministic. Bumping the pin is a deliberate PR that
+# edits schema/engine-version.txt and refreshes the mirror together.
 name: Schema mirror drift
 
 on:
   pull_request:
     paths:
       - "schema/**"
-      - "tests/fixtures/lesson-shape-parity.json"
       - "scripts/check_schema_drift.py"
+      - "tests/test_check_schema_drift.py"
       - ".github/workflows/schema-drift.yml"
   push:
     branches: [main]
-  # Manual trigger + a daily heartbeat so app-side schema changes are
-  # surfaced even without a content-repo push.
+  # Manual trigger + a daily heartbeat so an accidental registry-side
+  # anomaly or a broken mirror refresh is surfaced without a push.
   workflow_dispatch:
   schedule:
     - cron: "0 6 * * *"
@@ -40,5 +39,9 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - name: Check schema mirror against the app repo
+      - name: Install test dependencies
+        run: pip install "pytest>=8,<9"
+      - name: Drift-gate unit tests (pin mechanics, offline)
+        run: python -m pytest tests/test_check_schema_drift.py -q
+      - name: Check schema mirror against the pinned engine release
         run: python scripts/check_schema_drift.py

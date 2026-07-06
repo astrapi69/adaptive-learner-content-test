@@ -1,90 +1,128 @@
 #!/usr/bin/env python3
-"""Schema-mirror drift gate (EXP-039).
+"""Schema-mirror drift gate — pinned to the learn-content-engine release.
 
-The JSON-Schema artefacts under ``schema/`` AND the shared shape-parity
-fixture under ``tests/fixtures/`` are MIRRORED from the app repository
-``astrapi69/adaptive-learner`` — the app is the single source of truth (the
-schema is generated from its Pydantic model; the fixture is the #1205 parity
-contract). This repo keeps a byte-for-byte copy plus this gate so that an
-app-side schema or fixture change has a visible consequence here (CI goes red
-until the mirror is refreshed) instead of silently drifting apart. Refreshing
-after an app schema change therefore pulls the mirror AND the fixture together,
-so the cross-language parity (#699 / #1208) cannot silently rot.
+The JSON Schema under ``schema/lesson.schema.json`` is a MIRROR of the
+`learn-content-engine <https://github.com/astrapi69/learn-content-engine>`_
+package (source-of-truth chain: **adaptive-learner Pydantic -> engine ->
+this mirror**). The engine vendors the app-generated schema via its
+documented schema-sync procedure and ships it in every npm release; this
+repo keeps a byte-for-byte copy plus this gate so an engine schema bump
+has a visible consequence here (CI goes red until the mirror + pin are
+refreshed) instead of silently drifting apart.
 
-Mechanism: pull the canonical artefacts from the app repo at CI time and
-compare them byte-for-byte with the committed mirror.
+The comparison target is the **npm tarball of the pinned engine version**
+(``schema/engine-version.txt``), i.e. exactly the artifact consumers
+install — chosen over a git-tag checkout because published npm versions
+are immutable (a git tag can be force-moved), need no git/auth/API on the
+runner, and are a single HTTPS GET. Bumping the pin is a deliberate PR
+that edits ``schema/engine-version.txt`` and refreshes the mirror —
+never a floating branch.
+
+The mirror itself stays VENDORED so ``validate_content.py`` and the
+shape-parity test keep working fully offline; only this gate needs the
+network (CI), and even it can be pointed at a local tarball.
 
 Usage::
 
     python scripts/check_schema_drift.py            # CI gate: exit 1 on drift
     python scripts/check_schema_drift.py --update    # refresh the local mirror
 
-Configurable via env (defaults target the app repo's default branch):
+Configurable via env:
 
-    APP_REPO   owner/name of the app repo   (default: astrapi69/adaptive-learner)
-    APP_REF    git ref to compare against    (default: master)
+    ENGINE_VERSION   overrides the pin from schema/engine-version.txt
+    ENGINE_TARBALL   path or URL of a tarball to compare against
+                     (used by the offline tests; bypasses the registry)
 
-Stdlib only (urllib) so the content repo needs no extra install for the gate.
+Stdlib only (urllib + tarfile) so the gate needs no extra install.
 """
 from __future__ import annotations
 
 import argparse
+import io
 import os
 import sys
+import tarfile
 import urllib.request
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SCHEMA_DIR = REPO_ROOT / "schema"
+PIN_FILE = REPO_ROOT / "schema" / "engine-version.txt"
 
-APP_REPO = os.environ.get("APP_REPO", "astrapi69/adaptive-learner")
-APP_REF = os.environ.get("APP_REF", "master")
-RAW_BASE = "https://raw.githubusercontent.com"
+REGISTRY_BASE = "https://registry.npmjs.org/learn-content-engine/-"
 
-# Local mirror path (relative to the repo root) -> path of the original inside
-# the app repo. The schema artefacts live under ``schema/`` on both sides; the
-# shared shape-parity fixture lives next to its app-side test, so the mapping is
-# kept explicit per file rather than assuming a shared directory.
+# Local mirror path (relative to the repo root) -> member path inside the
+# engine npm tarball. Only the engine-shipped artifacts are drift-checked;
+# ``schema/quality-rules.json`` and the shape-parity fixture are owned by
+# this repo (see schema/README.md) and are deliberately NOT listed here.
 MIRRORED = {
-    "schema/lesson.schema.json": "schema/lesson.schema.json",
-    "schema/quality-rules.json": "schema/quality-rules.json",
-    "tests/fixtures/lesson-shape-parity.json": (
-        "frontend/src/lib/content/__fixtures__/lesson-shape-parity.json"
-    ),
+    "schema/lesson.schema.json": "package/schema/lesson.schema.json",
 }
 
 
-def fetch(app_path: str) -> bytes:
-    url = f"{RAW_BASE}/{APP_REPO}/{APP_REF}/{app_path}"
-    req = urllib.request.Request(url, headers={"User-Agent": "schema-drift-check"})
-    with urllib.request.urlopen(req, timeout=30) as resp:  # noqa: S310 (trusted host)
-        if resp.status != 200:
-            raise RuntimeError(f"GET {url} -> HTTP {resp.status}")
-        return resp.read()
+def read_pin(pin_file: Path = PIN_FILE) -> str:
+    """Return the pinned engine version from the version file."""
+    return pin_file.read_text(encoding="utf-8").strip()
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--update",
-        action="store_true",
-        help="overwrite the local mirror with the app originals (refresh)",
-    )
-    args = parser.parse_args()
+def tarball_url(version: str) -> str:
+    """Registry URL of the engine tarball for ``version`` (immutable)."""
+    return f"{REGISTRY_BASE}/learn-content-engine-{version}.tgz"
 
-    print(f"Comparing schema mirror against {APP_REPO}@{APP_REF}\n")
+
+def load_tarball(source: str) -> bytes:
+    """Fetch the tarball bytes from a URL or a local path."""
+    if source.startswith(("http://", "https://")):
+        req = urllib.request.Request(
+            source, headers={"User-Agent": "schema-drift-check"}
+        )
+        with urllib.request.urlopen(req, timeout=60) as resp:  # noqa: S310
+            if resp.status != 200:
+                raise RuntimeError(f"GET {source} -> HTTP {resp.status}")
+            return resp.read()
+    return Path(source).read_bytes()
+
+
+def extract_member(tar_bytes: bytes, member: str) -> bytes:
+    """Return one file's bytes out of the (gzipped) tarball."""
+    with tarfile.open(fileobj=io.BytesIO(tar_bytes), mode="r:gz") as tar:
+        fileobj = tar.extractfile(member)
+        if fileobj is None:
+            raise RuntimeError(f"{member}: not found in engine tarball")
+        return fileobj.read()
+
+
+def run_check(
+    tarball_source: str | None = None,
+    repo_root: Path = REPO_ROOT,
+    update: bool = False,
+) -> int:
+    """Compare (or, with ``update=True``, refresh) the mirror.
+
+    Returns 0 on parity / successful update, 1 on drift, 2 on
+    fetch/extract errors.
+    """
+    if tarball_source is None:
+        version = os.environ.get("ENGINE_VERSION") or read_pin()
+        tarball_source = os.environ.get("ENGINE_TARBALL") or tarball_url(version)
+        print(f"Comparing schema mirror against learn-content-engine {version}")
+    print(f"Tarball: {tarball_source}\n")
+
+    try:
+        tar_bytes = load_tarball(tarball_source)
+    except Exception as exc:  # network / 404 / bad path
+        print(f"ERROR: could not fetch engine tarball: {exc}", file=sys.stderr)
+        return 2
+
     drift: list[str] = []
-    errors: list[str] = []
-
-    for local_name, app_path in MIRRORED.items():
-        local_file = REPO_ROOT / local_name
+    for local_name, member in MIRRORED.items():
+        local_file = repo_root / local_name
         try:
-            canonical = fetch(app_path)
-        except Exception as exc:  # network / 404 / etc.
-            errors.append(f"{local_name}: could not fetch {app_path}: {exc}")
-            continue
+            canonical = extract_member(tar_bytes, member)
+        except Exception as exc:
+            print(f"ERROR: {exc}", file=sys.stderr)
+            return 2
 
-        if args.update:
+        if update:
             local_file.parent.mkdir(parents=True, exist_ok=True)
             local_file.write_bytes(canonical)
             print(f"UPDATED  {local_name}  ({len(canonical)} bytes)")
@@ -98,34 +136,47 @@ def main() -> int:
             print(f"OK       {local_name}")
         else:
             drift.append(
-                f"{local_name}: differs from {APP_REPO}@{APP_REF}:{app_path} "
-                f"(mirror {len(current)} bytes vs origin {len(canonical)} bytes)"
+                f"{local_name}: differs from the engine tarball's {member} "
+                f"(mirror {len(current)} bytes vs engine {len(canonical)} bytes)"
             )
 
-    if errors:
-        print("\nERROR: could not reach the app repo:", file=sys.stderr)
-        for e in errors:
-            print(f"  - {e}", file=sys.stderr)
-        return 2
-
-    if args.update:
-        print("\nMirror refreshed. Review and commit schema/ and tests/fixtures/.")
+    if update:
+        print(
+            "\nMirror refreshed from the engine tarball. Review and commit "
+            "schema/ (and bump schema/engine-version.txt in the same PR if "
+            "you pinned a new engine version)."
+        )
         return 0
 
     if drift:
-        print("\nSCHEMA DRIFT detected — the mirror is out of date:", file=sys.stderr)
+        print(
+            "\nSCHEMA DRIFT detected — mirror != pinned engine release:",
+            file=sys.stderr,
+        )
         for d in drift:
             print(f"  - {d}", file=sys.stderr)
         print(
-            "\nThe app is the source of truth. Refresh the mirror with:\n"
+            "\nThe engine release is the mirror source. Refresh with:\n"
             "    python scripts/check_schema_drift.py --update\n"
-            "then commit schema/ and tests/fixtures/.",
+            "then commit schema/. To move to a NEW engine version, edit\n"
+            "schema/engine-version.txt in the same (deliberate) PR.",
             file=sys.stderr,
         )
         return 1
 
-    print("\nSchema mirror is in sync with the app.")
+    print("\nSchema mirror is in sync with the pinned engine release.")
     return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--update",
+        action="store_true",
+        help="overwrite the local mirror with the pinned engine artifacts",
+    )
+    args = parser.parse_args()
+    return run_check(update=args.update)
 
 
 if __name__ == "__main__":

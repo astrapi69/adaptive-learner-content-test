@@ -1,57 +1,70 @@
 # Schema (mirror — do not edit here)
 
-These files are **mirrored from the app repository
-[`astrapi69/adaptive-learner`](https://github.com/astrapi69/adaptive-learner)**
-and are the App-authoritative definition of the lesson format (EXP-039).
+`lesson.schema.json` is a **mirror of the
+[`learn-content-engine`](https://github.com/astrapi69/learn-content-engine)
+npm package, pinned to the version in [`engine-version.txt`](engine-version.txt)**
+(source of truth chain: **adaptive-learner Pydantic → engine → this mirror**).
 
-> ⚠️ **Do not hand-edit these files in this repo.** They are byte-for-byte
-> copies of the app's generated artefacts. The single source of truth is the
-> Pydantic model in `adaptive_learner_content_loader.schema` in the app repo,
-> from which `make sync-schema` (`scripts/generate_lesson_schema.py`)
-> regenerates them. Edit the model there and re-run the generator — then update
-> this mirror.
+> ⚠️ **Do not hand-edit `lesson.schema.json` in this repo.** It is a
+> byte-for-byte copy of the schema the pinned engine release ships. The single
+> source of truth is the Pydantic model in
+> `adaptive_learner_content_loader.schema` in the
+> [adaptive-learner](https://github.com/astrapi69/adaptive-learner) app; the
+> engine vendors the generated schema via its documented
+> [schema-sync procedure](https://github.com/astrapi69/learn-content-engine#schema-sync-from-adaptive-learner)
+> and publishes it with every release — this repo mirrors **the engine
+> release**, never the app directly.
 
-## What is mirrored
+## Files in this directory
 
-| File | Origin (app repo, `master`) | Consumed here by |
-|------|-----------------------------|------------------|
-| `lesson.schema.json` | `schema/lesson.schema.json` | `scripts/validate_content.py` (structural validation via `jsonschema`) |
-| `quality-rules.json` | `schema/quality-rules.json` | `scripts/validate_content.py` (quality minimums) |
-| `../tests/fixtures/lesson-shape-parity.json` | `frontend/src/lib/content/__fixtures__/lesson-shape-parity.json` | `tests/test_shape_parity.py` (cross-language shape parity, #1208 / #699) |
+| File | Owner / origin | Consumed here by |
+|------|----------------|------------------|
+| `lesson.schema.json` | Mirror of `learn-content-engine@<pin>` `schema/lesson.schema.json` (npm tarball) | `scripts/validate_content.py` (structural validation via `jsonschema`); the `Engine validate` workflow runs the engine's bundled copy of the same bytes |
+| `engine-version.txt` | **This repo** — the pinned engine version | `scripts/check_schema_drift.py` (drift gate) and the `Engine validate` workflow (`npm install learn-content-engine@$(cat schema/engine-version.txt)`) |
+| `quality-rules.json` | **This repo** — quality minimums for the content quality gate (originally derived from the app's generator, EXP-039; owned here since the engine decoupling) | `scripts/validate_content.py` (quality minimums) |
+| `../tests/fixtures/lesson-shape-parity.json` | **This repo** — shape-parity fixture (adopted from the app's #1205 parity contract at the engine decoupling) | `tests/test_shape_parity.py` |
 
-The third file is the **shared shape-parity fixture**: the same valid/invalid
-lessons the app-side `ajv` test pins `validateLessonShape` against. Because both
-repos run these inputs against the same `lesson.schema.json`, an identical
-accept/reject verdict on each side *is* the #699 parity proof. It is mirrored
-and drift-gated alongside the schema so an app-side schema change forces the
-mirror **and** the fixture to be re-pulled together (`--update` does both) —
-the parity contract cannot silently rot.
+The mirror stays **vendored** (committed) so `validate_content.py` and the
+shape-parity test validate fully **offline** — no network, no npm, no app
+install. Only the drift gate itself (CI) touches the network, and it can be
+pointed at a local tarball (`ENGINE_TARBALL`).
 
 `lesson.schema.json` is a self-contained JSON Schema (Draft 2020-12) — its
 `$id`, `$schema` and `x-schema-version` make it usable for IDE autocomplete
 (reference it from a lesson `.json` via `"$schema"`) and for `jsonschema`/`ajv`
-validation. `quality-rules.json` carries the shared quality minimums
+validation. `quality-rules.json` carries this repo's quality minimums
 (`minExercisesPerLesson`, `minExerciseTypes`, `minFreeTextAccepts`,
-`minMatchingPairs`, `minTheorySteps`) that both the app and this repo read, so
-the numbers never drift apart.
+`minMatchingPairs`, `minTheorySteps`).
 
-## Drift gate
+## Drift gate (pinned, deterministic)
 
 `scripts/check_schema_drift.py` (run in CI by
-`.github/workflows/schema-drift.yml`) downloads the originals from the app repo
-at CI time and compares them byte-for-byte against this mirror. If the app side
-changes a schema, this check goes **red** until the mirror is refreshed — a
-schema change in the app gets a visible consequence here instead of silent
-drift.
+`.github/workflows/schema-drift.yml`) downloads the **npm tarball of the
+pinned engine version** and compares its bundled `schema/lesson.schema.json`
+byte-for-byte against this mirror. The npm tarball was chosen over a git-tag
+checkout because published npm versions are **immutable** (a git tag can be
+force-moved), the tarball is exactly the artifact consumers install, and the
+check is a single unauthenticated HTTPS GET.
 
-To refresh the mirror after an app-side schema change:
+Because the comparison target is pinned, the gate only goes red if the mirror
+was hand-edited or a pin bump forgot the refresh — an engine release does
+**not** break this repo. Adopting a new engine version is a **deliberate PR**:
 
 ```bash
-python scripts/check_schema_drift.py --update   # pulls the latest app artefacts
-git add schema/ && git commit -m "schema: refresh mirror from adaptive-learner"
+# 1. bump the pin
+echo "0.4.0" > schema/engine-version.txt
+# 2. refresh the mirror from that release
+python scripts/check_schema_drift.py --update
+# 3. commit both together
+git add schema/ && git commit -m "schema: adopt learn-content-engine 0.4.0 mirror"
 ```
 
-This is the same cross-repo philosophy the app already uses in the other
-direction: the app repo holds this repo's CI contract under
-`docs/ci/adaptive-learner-content/`. App is the source; the partner repo keeps a
-marked copy plus a drift gate.
+## Engine conformance gate
+
+`.github/workflows/engine-validate.yml` additionally runs the **engine's own
+`validateLesson()`** (structural ajv layer **and** the semantic cross-field
+rules: cloze markers == blanks, `card_ids` referential integrity, multiselect
+disjointness, picture-choice exactly-one-correct) over every lesson in the
+repo, at the same pinned version. `scripts/validate_with_engine.mjs
+--self-test` first proves the gate rejects each bad-lesson class, then the
+full run must report zero errors.

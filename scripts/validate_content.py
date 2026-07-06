@@ -2,11 +2,14 @@
 """Content validator for adaptive-learner-content (EXP-039).
 
 This is the SECOND of Adaptive Learner's two validation layers (the app
-runs the same checks client-side before a community share). After EXP-039
-the **structural** definition of a lesson is App-authoritative: the JSON
-Schema under ``schema/lesson.schema.json`` is MIRRORED from the app repo
-(generated from its Pydantic model — see ``schema/README.md``) and this
-validator FOLLOWS it instead of re-implementing the field rules.
+runs the same checks client-side before a community share). The
+**structural** definition of a lesson comes from the vendored JSON Schema
+under ``schema/lesson.schema.json`` — a MIRROR of the pinned
+``learn-content-engine`` release (source of truth chain: adaptive-learner
+Pydantic -> engine -> this mirror; see ``schema/README.md``) — and this
+validator FOLLOWS it instead of re-implementing the field rules. It is
+deliberately Python-only (``jsonschema``, no node/ajv, no app install)
+and validates fully OFFLINE against the vendored mirror.
 
 What comes from the mirror (do not duplicate here):
   * **Structure / fields:** validated with the ``jsonschema`` library
@@ -15,7 +18,7 @@ What comes from the mirror (do not duplicate here):
   * **Quality minimums:** read from ``schema/quality-rules.json`` so a
     change to that file changes the behaviour (no hardcoded numbers).
 
-What stays here (content-repo specifics the App schema does NOT cover):
+What stays here (content-repo specifics the schema does NOT cover):
   * Language-pair rules (language domain): valid ISO 639-1 ``target`` +
     ``source``, and ``target != source`` for ``domain: language``.
   * Source-language directory structure: a set's ``path`` is
@@ -168,7 +171,7 @@ def validate_structure(content_set: dict, errors: list[str]) -> None:
 
 
 def validate_lesson_schema(lesson: dict, label: str, errors: list[str]) -> None:
-    """Structural validation against the App-authoritative JSON Schema."""
+    """Structural validation against the mirrored engine JSON Schema."""
     for err in sorted(LESSON_VALIDATOR.iter_errors(lesson), key=str):
         loc = "/".join(str(p) for p in err.absolute_path) or "<root>"
         errors.append(f"{label}: schema: {loc}: {err.message}")
@@ -189,7 +192,7 @@ def lesson_shape_errors(lesson) -> list[str]:
 
 
 def lesson_shape_ok(lesson) -> bool:
-    """True when ``lesson`` matches the App-authoritative lesson SHAPE.
+    """True when ``lesson`` matches the canonical lesson SHAPE.
 
     Parity twin of the app's ``validateLessonShape(lesson).ok``. Only the
     structural schema (fields, types, closed enums, length/range bounds,
@@ -215,7 +218,7 @@ def validate_lesson_quality(lesson: dict, source: str, label: str, errors: list[
     # ("select all that apply", #1195) mode — is a valid, intended artifact in
     # this MC-focused test repo, so it is exempt from the variety rule (it
     # would otherwise be blocked for having only the one "cloze" type). This is
-    # a content-repo quality-layer relaxation only; the App-authoritative
+    # a content-repo quality-layer relaxation only; the canonical
     # schema shape + the schema mirror are untouched.
     mc_only = bool(exercises) and all(
         e.get("type") == "cloze" and e.get("cloze_mode") in ("select", "multiselect")

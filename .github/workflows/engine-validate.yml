@@ -1,0 +1,39 @@
+# Engine conformance gate.
+#
+# Runs learn-content-engine's validateLesson() — the ajv structural
+# layer AND the semantic cross-field rules (cloze markers == blanks,
+# card_ids referential integrity, multiselect disjointness,
+# picture-choice exactly-one-correct, ...) — over EVERY lesson in this
+# repo. Gate: zero errors.
+#
+# Why in addition to validate-content.yml: the structural gate
+# (jsonschema against the mirrored schema) cannot see cross-field
+# semantics; a real conformance run found two semantic bugs in the
+# official content repo that the structural CI had passed. This job is
+# the same validator third-party consumers run, at the same pinned
+# version the schema mirror is checked against
+# (schema/engine-version.txt).
+name: Engine validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  engine-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - name: Install the pinned engine
+        run: npm install --no-save --no-package-lock "learn-content-engine@$(cat schema/engine-version.txt)"
+      - name: Self-test (the gate must bite before it may pass)
+        run: node scripts/validate_with_engine.mjs --self-test
+      - name: Engine-validate all lessons
+        run: node scripts/validate_with_engine.mjs
