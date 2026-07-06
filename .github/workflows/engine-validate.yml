@@ -34,5 +34,7 @@ jobs:
         # yaml is installed explicitly (the runner parses the manifests
         # itself); the version range matches the engine's own dependency.
         run: npm install --no-save "learn-content-engine@$(cat schema/engine-version.txt)" "yaml@^2.9.0"
+      - name: Self-test (the gate must bite before it may pass)
+        run: node scripts/validate_with_engine.mjs --self-test
       - name: Validate all lessons and manifests with the engine
         run: node scripts/validate_with_engine.mjs .

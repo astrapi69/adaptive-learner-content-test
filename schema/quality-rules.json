@@ -1,6 +1,6 @@
 {
   "$schema-version": "1.5",
-  "_comment": "GENERATED from scripts/generate_lesson_schema.py (EXP-039). Do not edit. Shared quality minimums for the content quality gate (app + content repo).",
+  "_comment": "Quality minimums for this content repo's quality gate. Owned HERE since the engine decoupling (originally derived from the adaptive-learner generator, EXP-039); the structural schema is mirrored from learn-content-engine instead \u2014 see schema/README.md. $schema-version tracks the mirrored lesson.schema.json x-schema-version.",
   "rules": {
     "minExerciseTypes": 2,
     "minExercisesPerLesson": 5,
