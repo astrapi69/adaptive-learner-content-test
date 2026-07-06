@@ -189,7 +189,7 @@
         "prompt": "Welche Kommandozeilen-Option beschränkt einen Playbook-Lauf auf einen einzelnen Host, ohne das Inventory zu ändern?",
         "card_ids": ["card-09"],
         "accept": ["--limit", "-l", "die --limit-Option", "limit"],
-        "hint": "Englisch für 'begrenzen'; es gibt auch eine Kurzform mit einem Buchstaben.",
+        "hint": "Englisch für 'begrenzen'; Lang- und Kurzform des Flags werden akzeptiert.",
         "distractors": ["--check", "--tags", "--inventory"],
         "direction": "source_to_target"
       }

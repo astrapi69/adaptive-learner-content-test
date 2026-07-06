@@ -104,7 +104,7 @@
         "sentence": "___('Hallo')",
         "blanks": [{"accept": ["print"]}],
         "cloze_mode": "type",
-        "hint": "Vier Buchstaben."
+        "hint": "Englisch für 'drucken'."
       }
     },
     {
