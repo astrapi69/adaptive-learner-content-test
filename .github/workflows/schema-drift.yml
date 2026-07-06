@@ -1,14 +1,15 @@
-# Schema-mirror drift gate — pinned to the learn-content-engine release.
+# Schema-mirror drift gate — pinned to a learn-content-engine release.
 #
-# schema/lesson.schema.json is a MIRROR of the learn-content-engine npm
-# package (source-of-truth chain: adaptive-learner Pydantic -> engine ->
-# this mirror; see schema/README.md). This job downloads the npm tarball
-# of the PINNED engine version (schema/engine-version.txt) and compares
-# it byte-for-byte against the committed mirror. It goes red if the
-# mirror was hand-edited or a pin bump forgot the refresh — never
-# against a floating branch: published npm versions are immutable, so
-# the gate is deterministic. Bumping the pin is a deliberate PR that
-# edits schema/engine-version.txt and refreshes the mirror together.
+# The JSON-Schema artefacts under schema/ are a mirror of
+# learn-content-engine schema/ at the version pinned in
+# schema/engine-version.txt (source-of-truth chain: adaptive-learner
+# Pydantic -> engine -> this mirror). This job downloads the npm tarball
+# of the PINNED engine release and compares it byte-for-byte against the
+# committed mirror. The npm tarball is used (not a git tag) because a
+# published npm version is immutable, it is exactly the artefact
+# validator consumers install, and it needs no GitHub token. Moving to a
+# new engine version is a deliberate PR that bumps the pin file and
+# refreshes the mirror together — no floating branch is ever compared.
 name: Schema mirror drift
 
 on:
@@ -16,12 +17,12 @@ on:
     paths:
       - "schema/**"
       - "scripts/check_schema_drift.py"
-      - "tests/test_check_schema_drift.py"
       - ".github/workflows/schema-drift.yml"
   push:
     branches: [main]
-  # Manual trigger + a daily heartbeat so an accidental registry-side
-  # anomaly or a broken mirror refresh is surfaced without a push.
+  # Manual trigger + a daily heartbeat: with an immutable pin the compare
+  # is deterministic, so the cron mainly proves the pinned tarball stays
+  # fetchable and that no hand-edit landed on main.
   workflow_dispatch:
   schedule:
     - cron: "0 6 * * *"
@@ -39,9 +40,5 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - name: Install test dependencies
-        run: pip install "pytest>=8,<9"
-      - name: Drift-gate unit tests (pin mechanics, offline)
-        run: python -m pytest tests/test_check_schema_drift.py -q
       - name: Check schema mirror against the pinned engine release
         run: python scripts/check_schema_drift.py

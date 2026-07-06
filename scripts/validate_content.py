@@ -3,13 +3,12 @@
 
 This is the SECOND of Adaptive Learner's two validation layers (the app
 runs the same checks client-side before a community share). The
-**structural** definition of a lesson comes from the vendored JSON Schema
-under ``schema/lesson.schema.json`` — a MIRROR of the pinned
-``learn-content-engine`` release (source of truth chain: adaptive-learner
-Pydantic -> engine -> this mirror; see ``schema/README.md``) — and this
-validator FOLLOWS it instead of re-implementing the field rules. It is
-deliberately Python-only (``jsonschema``, no node/ajv, no app install)
-and validates fully OFFLINE against the vendored mirror.
+**structural** definition of a lesson is canonical: the JSON Schema under
+``schema/lesson.schema.json`` is MIRRORED from the pinned
+learn-content-engine release (source-of-truth chain: adaptive-learner
+Pydantic → engine → this mirror — see ``schema/README.md``) and this
+validator FOLLOWS it instead of re-implementing the field rules. It reads
+only the vendored mirror, so validation works fully offline.
 
 What comes from the mirror (do not duplicate here):
   * **Structure / fields:** validated with the ``jsonschema`` library
@@ -18,7 +17,7 @@ What comes from the mirror (do not duplicate here):
   * **Quality minimums:** read from ``schema/quality-rules.json`` so a
     change to that file changes the behaviour (no hardcoded numbers).
 
-What stays here (content-repo specifics the schema does NOT cover):
+What stays here (content-repo specifics the canonical schema does NOT cover):
   * Language-pair rules (language domain): valid ISO 639-1 ``target`` +
     ``source``, and ``target != source`` for ``domain: language``.
   * Source-language directory structure: a set's ``path`` is
@@ -171,7 +170,7 @@ def validate_structure(content_set: dict, errors: list[str]) -> None:
 
 
 def validate_lesson_schema(lesson: dict, label: str, errors: list[str]) -> None:
-    """Structural validation against the mirrored engine JSON Schema."""
+    """Structural validation against the canonical (engine-mirrored) JSON Schema."""
     for err in sorted(LESSON_VALIDATOR.iter_errors(lesson), key=str):
         loc = "/".join(str(p) for p in err.absolute_path) or "<root>"
         errors.append(f"{label}: schema: {loc}: {err.message}")
