@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 """Cross-language shape-parity gate (#1208 / Refs #1205 / #1193, #699).
 
-EXP-039 made the lesson SHAPE App-authoritative: ``schema/lesson.schema.json``
-is mirrored from the app repo and validated here with ``jsonschema`` exactly as
-the app validates it with ``ajv`` (``validateLessonShape``). The remaining half
-of the #699 contract is *parity* — App and Content must accept/reject every
+The lesson SHAPE is canonical: ``schema/lesson.schema.json`` is mirrored from
+the pinned learn-content-engine release (source-of-truth chain: adaptive-learner
+Pydantic → engine → this mirror) and validated here with ``jsonschema`` exactly
+as ajv-based consumers (the app, the engine) validate it. The remaining half of
+the #699 contract is *parity* — every consumer must accept/reject the same
 input identically.
 
-This test pins the content-repo validator against the SAME shared fixture the
-app-side test pins its ajv validator against
-(``frontend/src/lib/content/__fixtures__/lesson-shape-parity.json`` over there,
-mirrored byte-for-byte to ``tests/fixtures/lesson-shape-parity.json`` here and
-kept in sync by the schema-drift gate). Each fixture case carries the expected
-SHAPE verdict; we assert ``lesson_shape_ok`` returns it. Because both repos run
-the same inputs against the same schema, an identical verdict here *is* the
-parity proof — a divergence means the mirror drifted or a validator detail
-differs, and is a real bug.
+This test pins the content-repo validator against the locally-owned fixture
+snapshot ``tests/fixtures/lesson-shape-parity.json`` (carried over from the
+app at schema v1.5; the cross-repo parity guarantee is closed by the app's
+app-vs-engine parity test plus this repo's engine-pinned drift gate). Each
+fixture case carries the expected SHAPE verdict; we assert ``lesson_shape_ok``
+returns it. A divergence means the mirror drifted or a validator detail
+differs, and is a real bug. When a pin bump changes the schema, refresh the
+fixture cases in the same PR.
 
 Runs under pytest (parametrized) or standalone (``python tests/test_shape_parity.py``).
 """
@@ -54,8 +54,8 @@ try:
         "case", CASES, ids=[c["name"] for c in CASES]
     )
     def test_shape_parity_case(case: dict) -> None:
-        """Each shared-fixture input gets the expected SHAPE verdict — the same
-        verdict the app-side ajv validator asserts for the identical input."""
+        """Each fixture input gets the expected SHAPE verdict — the same
+        verdict ajv-based consumers assert for the identical input."""
         got = vc.lesson_shape_ok(case["lesson"])
         expected = case["expectValid"]
         assert got == expected, (

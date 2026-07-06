@@ -1,57 +1,76 @@
 # Schema (mirror — do not edit here)
 
-These files are **mirrored from the app repository
-[`astrapi69/adaptive-learner`](https://github.com/astrapi69/adaptive-learner)**
-and are the App-authoritative definition of the lesson format (EXP-039).
+**Mirror of learn-content-engine v0.3.1 `schema/`** (source of truth chain:
+adaptive-learner Pydantic → engine → this mirror). The pinned engine version
+lives in [`engine-version.txt`](engine-version.txt); the mirror and the pin
+move together in one deliberate PR.
 
 > ⚠️ **Do not hand-edit these files in this repo.** They are byte-for-byte
-> copies of the app's generated artefacts. The single source of truth is the
-> Pydantic model in `adaptive_learner_content_loader.schema` in the app repo,
-> from which `make sync-schema` (`scripts/generate_lesson_schema.py`)
-> regenerates them. Edit the model there and re-run the generator — then update
-> this mirror.
+> copies of the schemas bundled by the pinned
+> [`learn-content-engine`](https://github.com/astrapi69/learn-content-engine)
+> npm release. The single source of truth is the Pydantic model in the
+> adaptive-learner app, from which the schemas are generated; the engine
+> vendors them via its documented schema-sync procedure, and this repo
+> mirrors the engine. Content authors and third-party validators never need
+> the app.
 
 ## What is mirrored
 
-| File | Origin (app repo, `master`) | Consumed here by |
+| File | Origin (engine npm tarball) | Consumed here by |
 |------|-----------------------------|------------------|
-| `lesson.schema.json` | `schema/lesson.schema.json` | `scripts/validate_content.py` (structural validation via `jsonschema`) |
-| `quality-rules.json` | `schema/quality-rules.json` | `scripts/validate_content.py` (quality minimums) |
-| `../tests/fixtures/lesson-shape-parity.json` | `frontend/src/lib/content/__fixtures__/lesson-shape-parity.json` | `tests/test_shape_parity.py` (cross-language shape parity, #1208 / #699) |
-
-The third file is the **shared shape-parity fixture**: the same valid/invalid
-lessons the app-side `ajv` test pins `validateLessonShape` against. Because both
-repos run these inputs against the same `lesson.schema.json`, an identical
-accept/reject verdict on each side *is* the #699 parity proof. It is mirrored
-and drift-gated alongside the schema so an app-side schema change forces the
-mirror **and** the fixture to be re-pulled together (`--update` does both) —
-the parity contract cannot silently rot.
+| `lesson.schema.json` | `package/schema/lesson.schema.json` | `scripts/validate_content.py` (structural validation via `jsonschema`), `tests/test_shape_parity.py` |
+| `content-manifest.schema.json` | `package/schema/content-manifest.schema.json` | vendored for IDE autocomplete / third-party manifest validation; CI validates manifests with the engine itself (`engine-validate.yml`) |
+| `engine-version.txt` | — (the pin itself) | `scripts/check_schema_drift.py`, `.github/workflows/engine-validate.yml` |
 
 `lesson.schema.json` is a self-contained JSON Schema (Draft 2020-12) — its
 `$id`, `$schema` and `x-schema-version` make it usable for IDE autocomplete
 (reference it from a lesson `.json` via `"$schema"`) and for `jsonschema`/`ajv`
-validation. `quality-rules.json` carries the shared quality minimums
-(`minExercisesPerLesson`, `minExerciseTypes`, `minFreeTextAccepts`,
-`minMatchingPairs`, `minTheorySteps`) that both the app and this repo read, so
-the numbers never drift apart.
+validation.
+
+## Locally owned (NOT part of the engine mirror)
+
+* `quality-rules.json` — the shared quality minimums
+  (`minExercisesPerLesson`, `minExerciseTypes`, `minFreeTextAccepts`,
+  `minMatchingPairs`, `minTheorySteps`) read by `validate_content.py`.
+  Carried over from the app-generated artefact at schema v1.5; the engine
+  does not (yet) bundle it, so it is maintained here until it does (see
+  [adaptive-learner-content#98](https://github.com/astrapi69/adaptive-learner-content/issues/98)).
+* `../tests/fixtures/lesson-shape-parity.json` — the shape-parity fixture
+  snapshot (see `tests/test_shape_parity.py`). The cross-repo parity
+  guarantee is closed by the app's own app-vs-engine parity test plus this
+  repo's engine-pinned drift gate, so the fixture no longer needs to be
+  synced from the app.
 
 ## Drift gate
 
 `scripts/check_schema_drift.py` (run in CI by
-`.github/workflows/schema-drift.yml`) downloads the originals from the app repo
-at CI time and compares them byte-for-byte against this mirror. If the app side
-changes a schema, this check goes **red** until the mirror is refreshed — a
-schema change in the app gets a visible consequence here instead of silent
-drift.
+`.github/workflows/schema-drift.yml`) downloads the **npm tarball of the
+pinned engine release** at CI time and compares it byte-for-byte against
+this mirror. The npm tarball — not a git tag — is the comparison source
+because a published npm version is immutable (the registry refuses
+re-publishing a version, git tags can be moved or deleted), it is exactly
+the artefact validator consumers install via
+`npm ci learn-content-engine@<pin>`, and it needs a single anonymous HTTPS
+GET — no GitHub token, still Python-stdlib-only.
 
-To refresh the mirror after an app-side schema change:
+The mirror stays **vendored** so validation works offline: only the drift
+CHECK itself needs network.
+
+To move to a new engine version (deliberate PR):
 
 ```bash
-python scripts/check_schema_drift.py --update   # pulls the latest app artefacts
-git add schema/ && git commit -m "schema: refresh mirror from adaptive-learner"
+echo "0.4.0" > schema/engine-version.txt          # bump the pin
+python scripts/check_schema_drift.py --update      # refresh the mirror
+git add schema/ && git commit -m "schema: bump engine pin to 0.4.0"
 ```
 
-This is the same cross-repo philosophy the app already uses in the other
-direction: the app repo holds this repo's CI contract under
-`docs/ci/adaptive-learner-content/`. App is the source; the partner repo keeps a
-marked copy plus a drift gate.
+An `--update` without a pin bump simply re-asserts the current pin (useful
+after an accidental hand-edit).
+
+## Engine conformance gate
+
+`.github/workflows/engine-validate.yml` additionally runs the engine's own
+`validateLesson()` / `validateManifest()` (at the pinned version) over the
+whole repo content — the semantic rules (cloze blanks == markers,
+referential integrity, multiselect disjointness, picture exactly-one-correct)
+that a JSON Schema cannot express. Gate: zero errors.

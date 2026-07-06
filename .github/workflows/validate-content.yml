@@ -1,14 +1,15 @@
 # Content validation (Phase 60 / v1.44.0, D-108; EXP-039).
 #
 # Runs the validator on every pull request (and on pushes to main)
-# so no broken or low-quality lesson set can land. After EXP-039 the
-# structural fields are validated against the App-authoritative
-# JSON Schema mirrored under schema/ (via the jsonschema library),
-# the quality minimums are read from schema/quality-rules.json, and
-# the content-repo specifics (language pair, directory structure,
-# non-Latin scripts) stay in the validator. This is the second of
-# the two validation layers — the Adaptive Learner app runs the same
-# checks client-side before a community share.
+# so no broken or low-quality lesson set can land. The structural
+# fields are validated against the canonical JSON Schema vendored
+# under schema/ (a mirror of the pinned learn-content-engine
+# release; source-of-truth chain: adaptive-learner Pydantic ->
+# engine -> this mirror), the quality minimums are read from
+# schema/quality-rules.json, and the content-repo specifics
+# (language pair, directory structure, non-Latin scripts) stay in
+# the validator. Everything here reads only committed files — the
+# validation itself works fully offline.
 name: Validate content
 
 on:
@@ -33,5 +34,5 @@ jobs:
         run: pip install "pyyaml>=6,<7" "jsonschema>=4,<5" "pytest>=8,<9"
       - name: Validate content tree
         run: python scripts/validate_content.py
-      - name: Shape-parity gate (App/Content identical verdicts, #1208)
-        run: python -m pytest tests/test_shape_parity.py -q
+      - name: Repo test suite (shape parity #1208, drift-gate units)
+        run: python -m pytest tests -q
