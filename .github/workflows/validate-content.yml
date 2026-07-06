@@ -1,9 +1,9 @@
 # Content validation (Phase 60 / v1.44.0, D-108; EXP-039).
 #
 # Runs the validator on every pull request (and on pushes to main)
-# so no broken or low-quality lesson set can land. After EXP-039 the
-# structural fields are validated against the App-authoritative
-# JSON Schema mirrored under schema/ (via the jsonschema library),
+# so no broken or low-quality lesson set can land. The structural
+# fields are validated against the JSON Schema mirrored under schema/
+# from the pinned learn-content-engine release (jsonschema library),
 # the quality minimums are read from schema/quality-rules.json, and
 # the content-repo specifics (language pair, directory structure,
 # non-Latin scripts) stay in the validator. This is the second of

@@ -1,3 +1,6 @@
 # Python bytecode caches (validate_content.py / generate_search_index.py)
 __pycache__/
 *.pyc
+
+# Node modules of the pinned engine (Engine validate gate; never committed)
+node_modules/
