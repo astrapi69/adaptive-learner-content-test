@@ -4,3 +4,11 @@ __pycache__/
 
 # Node modules of the pinned engine (Engine validate gate; never committed)
 node_modules/
+
+# BYOK API keys: never commit a key file
+.env
+.env.*
+
+# generate_exercises.py staging: unreviewed AI drafts stay local
+# (the folder's README.md is kept, the generated JSON is not)
+/generated/**/*.json
