@@ -63,6 +63,7 @@ MIRRORED = {
     "schema/content-manifest.schema.json": (
         "package/schema/content-manifest.schema.json"
     ),
+    "schema/quality-rules.json": "package/schema/quality-rules.json",
 }
 
 
