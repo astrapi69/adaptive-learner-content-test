@@ -1,6 +1,6 @@
 # Schema (mirror — do not edit here)
 
-**Mirror of learn-content-engine v0.3.1 `schema/`** (source of truth chain:
+**Mirror of learn-content-engine v0.4.0 `schema/`** (source of truth chain:
 adaptive-learner Pydantic → engine → this mirror). The pinned engine version
 lives in [`engine-version.txt`](engine-version.txt); the mirror and the pin
 move together in one deliberate PR.
@@ -20,6 +20,7 @@ move together in one deliberate PR.
 |------|-----------------------------|------------------|
 | `lesson.schema.json` | `package/schema/lesson.schema.json` | `scripts/validate_content.py` (structural validation via `jsonschema`), `tests/test_shape_parity.py` |
 | `content-manifest.schema.json` | `package/schema/content-manifest.schema.json` | vendored for IDE autocomplete / third-party manifest validation; CI validates manifests with the engine itself (`engine-validate.yml`) |
+| `quality-rules.json` | `package/schema/quality-rules.json` (engine ≥ 0.4.0 — locally owned before that) | `scripts/validate_content.py` (quality minimums: `minExercisesPerLesson`, `minExerciseTypes`, `minFreeTextAccepts`, `minMatchingPairs`, `minTheorySteps`) |
 | `engine-version.txt` | — (the pin itself) | `scripts/check_schema_drift.py`, `.github/workflows/engine-validate.yml` |
 
 `lesson.schema.json` is a self-contained JSON Schema (Draft 2020-12) — its
@@ -29,12 +30,6 @@ validation.
 
 ## Locally owned (NOT part of the engine mirror)
 
-* `quality-rules.json` — the shared quality minimums
-  (`minExercisesPerLesson`, `minExerciseTypes`, `minFreeTextAccepts`,
-  `minMatchingPairs`, `minTheorySteps`) read by `validate_content.py`.
-  Carried over from the app-generated artefact at schema v1.5; the engine
-  does not (yet) bundle it, so it is maintained here until it does (see
-  [adaptive-learner-content#98](https://github.com/astrapi69/adaptive-learner-content/issues/98)).
 * `../tests/fixtures/lesson-shape-parity.json` — the shape-parity fixture
   snapshot (see `tests/test_shape_parity.py`). The cross-repo parity
   guarantee is closed by the app's own app-vs-engine parity test plus this

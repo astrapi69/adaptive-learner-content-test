@@ -42,21 +42,29 @@ def make_tarball(files: dict[str, bytes]) -> bytes:
 
 SCHEMA_BYTES = json.dumps({"$id": "lesson", "x-schema-version": "9.9"}).encode()
 MANIFEST_BYTES = json.dumps({"$id": "content-manifest"}).encode()
+QUALITY_BYTES = json.dumps({"rules": {"minExercisesPerLesson": 5}}).encode()
 
 
 def engine_tarball(**overrides: bytes) -> bytes:
     files = {
         "package/schema/lesson.schema.json": SCHEMA_BYTES,
         "package/schema/content-manifest.schema.json": MANIFEST_BYTES,
+        "package/schema/quality-rules.json": QUALITY_BYTES,
     }
     files.update(overrides)
     return make_tarball(files)
 
 
-def write_mirror(root: Path, lesson: bytes = SCHEMA_BYTES, manifest: bytes = MANIFEST_BYTES) -> None:
+def write_mirror(
+    root: Path,
+    lesson: bytes = SCHEMA_BYTES,
+    manifest: bytes = MANIFEST_BYTES,
+    quality: bytes = QUALITY_BYTES,
+) -> None:
     (root / "schema").mkdir(parents=True, exist_ok=True)
     (root / "schema" / "lesson.schema.json").write_bytes(lesson)
     (root / "schema" / "content-manifest.schema.json").write_bytes(manifest)
+    (root / "schema" / "quality-rules.json").write_bytes(quality)
 
 
 def test_pin_is_read_from_engine_version_file() -> None:
@@ -104,14 +112,24 @@ def test_red_on_missing_mirror_file(tmp_path: Path) -> None:
     assert rc == 1
 
 
+def test_red_on_tampered_quality_rules(tmp_path: Path) -> None:
+    """quality-rules.json is engine-mirrored (0.4.0+): tampering trips the gate."""
+    write_mirror(tmp_path, quality=QUALITY_BYTES + b"\n// tampered")
+    rc = drift.compare(tmp_path, engine_tarball(), update=False)
+    assert rc == 1
+
+
 def test_update_refreshes_mirror_from_tarball(tmp_path: Path) -> None:
-    write_mirror(tmp_path, lesson=b"stale", manifest=b"stale")
+    write_mirror(tmp_path, lesson=b"stale", manifest=b"stale", quality=b"stale")
     rc = drift.compare(tmp_path, engine_tarball(), update=True)
     assert rc == 0
     assert (tmp_path / "schema" / "lesson.schema.json").read_bytes() == SCHEMA_BYTES
     assert (
         tmp_path / "schema" / "content-manifest.schema.json"
     ).read_bytes() == MANIFEST_BYTES
+    assert (
+        tmp_path / "schema" / "quality-rules.json"
+    ).read_bytes() == QUALITY_BYTES
     # after the refresh the gate is green
     assert drift.compare(tmp_path, engine_tarball(), update=False) == 0
 
