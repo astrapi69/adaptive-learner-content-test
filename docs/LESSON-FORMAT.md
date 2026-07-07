@@ -1,11 +1,20 @@
-# Lesson format — schema reference
+# Lesson format — local summary
 
-This is the field-by-field reference for the lesson format used by this
-repository. Lessons that follow it pass `scripts/validate_content.py` and load
-in the Adaptive Learner app.
+> **The canonical, test-validated format reference is the engine's**
+> **[`docs/lesson-format.md`](https://github.com/astrapi69/learn-content-engine/blob/main/docs/lesson-format.md)**
+> (every JSON example there is validated by the engine's test suite, so it
+> cannot rot). This page is a convenience summary for people forking this
+> starter kit; on any conflict the engine reference wins, and this page must
+> not diverge from it. The bundled, pinned schema lives in
+> [`../schema/`](../schema/) (version in
+> [`../schema/engine-version.txt`](../schema/engine-version.txt)).
+
+This is a field-by-field summary of the lesson format used by this repository.
+Lessons that follow it pass `scripts/validate_content.py` and load in the
+Adaptive Learner app.
 
 The lesson format is **one JSON file per lesson** — this is what the app loads
-and the validator checks. It is described in full below.
+and the validator checks. It is summarised below.
 
 New to this? Start with [GETTING-STARTED.md](GETTING-STARTED.md) and copy a
 [template](../templates/).

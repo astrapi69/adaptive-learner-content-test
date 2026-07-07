@@ -1,9 +1,10 @@
 # Schema (mirror — do not edit here)
 
-**Mirror of learn-content-engine v0.4.0 `schema/`** (source of truth chain:
-adaptive-learner Pydantic → engine → this mirror). The pinned engine version
-lives in [`engine-version.txt`](engine-version.txt); the mirror and the pin
-move together in one deliberate PR.
+**Mirror of the `learn-content-engine` `schema/`**, pinned to the version in
+[`engine-version.txt`](engine-version.txt) (source of truth chain:
+adaptive-learner Pydantic → engine → this mirror). The mirror and the pin move
+together in one deliberate PR, so the pinned version lives in exactly one place
+(`engine-version.txt`) and is not restated as a hardcoded number in this prose.
 
 > ⚠️ **Do not hand-edit these files in this repo.** They are byte-for-byte
 > copies of the schemas bundled by the pinned
