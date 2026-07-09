@@ -1,0 +1,200 @@
+{
+  "id": "04-tricks-beschaeftigung",
+  "title": "Tricks und Beschäftigung",
+  "description": "Aufbaukurs Teil 2: Wie du deinen Hund geistig auslastest — mit Tricks wie „Pfote“ und „Dreh dich“, Nasenarbeit und den Methoden Formen und Einfangen.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 11,
+  "cards": [
+    {
+      "id": "auslastung",
+      "front": "Auslastung",
+      "back": "Körperliche und vor allem geistige Beschäftigung, damit der Hund zufrieden ist.",
+      "notes": "Ein unterforderter Hund sucht sich oft selbst Beschäftigung — meist unerwünschte.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["beschaeftigung"]
+    },
+    {
+      "id": "nasenarbeit",
+      "front": "Nasenarbeit",
+      "back": "Suchspiele, bei denen der Hund mit der Nase Futter oder Gegenstände findet.",
+      "notes": "Schnüffeln lastet stark aus und beruhigt. Ideal auch für Regentage und Ruhephasen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["beschaeftigung"]
+    },
+    {
+      "id": "trick-pfote",
+      "front": "Pfote geben",
+      "back": "Der Hund legt auf Signal eine Pfote in deine Hand.",
+      "notes": "Ein einfacher Einstiegstrick, meist über Einfangen der Pfotenbewegung aufgebaut.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["tricks"]
+    },
+    {
+      "id": "trick-drehen",
+      "front": "Dreh dich",
+      "back": "Der Hund dreht sich auf Signal einmal im Kreis.",
+      "notes": "Gut über Locken aufzubauen: das Leckerli im Kreis um den Hund führen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["tricks"]
+    },
+    {
+      "id": "formen",
+      "front": "Formen (Shaping)",
+      "back": "Ein Verhalten in kleinen Schritten aufbauen und jeden Teilschritt belohnen.",
+      "notes": "Der Hund probiert aktiv aus; du belohnst jede Annäherung an das Ziel.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "einfangen",
+      "front": "Einfangen (Capturing)",
+      "back": "Ein spontan gezeigtes Verhalten im richtigen Moment markieren und benennen.",
+      "notes": "Beispiel: Der Hund gähnt von allein — du markierst und gibst dem Gähnen später ein Signal.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "koepfchen",
+      "front": "Kopfarbeit ist anstrengend",
+      "back": "Geistige Beschäftigung ermüdet einen Hund oft stärker als reine Bewegung.",
+      "notes": "Deshalb müssen Hunde nicht endlos rennen — Denkaufgaben lasten wunderbar aus.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["beschaeftigung"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Kopf statt nur Kilometer",
+      "body": "# Tricks und Beschäftigung\n\nEin zufriedener Hund braucht **Auslastung** — und zwar nicht nur Bewegung. **Kopfarbeit** ermüdet oft stärker als reines Rennen. Ein unterforderter Hund sucht sich sonst selbst Beschäftigung, meist die unerwünschte Sorte.\n\nZwei einfache Bausteine:\n\n- **Tricks** wie **„Pfote“** und **„Dreh dich“** — Spaß und Training zugleich.\n- **Nasenarbeit** — Suchspiele, bei denen der Hund Futter erschnüffelt. Schnüffeln lastet stark aus und beruhigt."
+    },
+    {
+      "id": "step-methoden",
+      "type": "theory",
+      "title": "Zwei Wege, Tricks aufzubauen",
+      "body": "## Formen und Einfangen\n\nNeue Tricks bringst du oft mit einer dieser Methoden bei:\n\n- **Formen (Shaping)**: Du baust das Verhalten in **kleinen Schritten** auf und belohnst jede Annäherung ans Ziel. Der Hund probiert aktiv aus.\n- **Einfangen (Capturing)**: Zeigt der Hund ein Verhalten **von allein** (z. B. Pfote heben), markierst du genau dann und gibst ihm später ein Signal.\n\nBeide bauen auf **Markersignal** und **Belohnung** aus Teil 1 auf — nur eben für Tricks statt Grundkommandos."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "step-methoden",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["auslastung", "nasenarbeit", "formen", "einfangen"],
+        "pairs": [
+          {"left": "Auslastung", "right": "Körperliche und geistige Beschäftigung."},
+          {"left": "Nasenarbeit", "right": "Suchspiele mit der Nase."},
+          {"left": "Formen (Shaping)", "right": "Verhalten in kleinen Schritten aufbauen."},
+          {"left": "Einfangen (Capturing)", "right": "Spontanes Verhalten markieren und benennen."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-methode",
+      "type": "exercise",
+      "theory_ref": "step-methoden",
+      "title": "Welche Methode ist das?",
+      "exercise": {
+        "id": "ex-mc-methode",
+        "type": "cloze",
+        "prompt": "Dein Hund gähnt von allein; du markierst genau in diesem Moment und benennst es später. Welche Methode ist das?",
+        "card_ids": ["einfangen", "formen"],
+        "sentence": "___",
+        "blanks": [{"accept": ["Einfangen (Capturing)"]}],
+        "cloze_mode": "select",
+        "distractors": [
+          "Formen (Shaping)",
+          "Locken (Luring)",
+          "Generalisieren"
+        ],
+        "hint": "Du fängst ein spontan gezeigtes Verhalten ein."
+      }
+    },
+    {
+      "id": "ex-cloze-nase",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Beschäftigung für die Nase",
+      "exercise": {
+        "id": "ex-cloze-nase",
+        "type": "cloze",
+        "prompt": "Ergänze den Fachbegriff.",
+        "card_ids": ["nasenarbeit"],
+        "sentence": "Suchspiele, bei denen der Hund Futter erschnüffelt, nennt man ___ .",
+        "blanks": [{"accept": ["Nasenarbeit", "nasenarbeit"]}],
+        "cloze_mode": "type",
+        "hint": "Arbeit mit der Nase."
+      }
+    },
+    {
+      "id": "ex-free-formen",
+      "type": "exercise",
+      "theory_ref": "step-methoden",
+      "title": "Schritt für Schritt formen",
+      "exercise": {
+        "id": "ex-free-formen",
+        "type": "free_text",
+        "prompt": "Wie heißt die Methode, ein Verhalten in kleinen Schritten aufzubauen und jede Annäherung zu belohnen?",
+        "card_ids": ["formen"],
+        "accept": ["Formen", "Shaping", "formen", "shaping"],
+        "hint": "Der englische Begriff lautet Shaping.",
+        "distractors": ["Einfangen", "Locken", "Generalisieren"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-regel",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Merksatz zur Auslastung",
+      "exercise": {
+        "id": "ex-tiles-regel",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["koepfchen", "auslastung"],
+        "tiles": ["Kopfarbeit", "ermüdet", "oft", "mehr", "als", "reines", "Rennen"],
+        "hint": "Es geht um geistige gegenüber rein körperlicher Auslastung.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-auslastung",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Gute Auslastung",
+      "exercise": {
+        "id": "ex-ms-auslastung",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Sinnvolle Beschäftigung",
+        "card_ids": ["nasenarbeit", "trick-pfote", "koepfchen"],
+        "sentence": "Womit lastest du deinen Hund sinnvoll geistig aus?",
+        "accept": [
+          "Nasenarbeit und Suchspiele",
+          "Tricks wie „Pfote“ und „Dreh dich“ üben",
+          "Kleine Denkaufgaben, die den Kopf fordern"
+        ],
+        "distractors": [
+          "Stundenlanges Ballwerfen bis zur Erschöpfung",
+          "Den Hund den ganzen Tag sich selbst überlassen",
+          "Immer nur dieselbe Runde ohne jede Aufgabe"
+        ],
+        "hint": "Denke an Nase, Tricks und Kopfarbeit."
+      }
+    }
+  ]
+}

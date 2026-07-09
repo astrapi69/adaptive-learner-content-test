@@ -146,3 +146,27 @@ sets:
       - hundetraining
       - hunde
       - anfaenger
+  - id: hundetraining-aufbau-from-de
+    title: Hundetraining Aufbaukurs (Teil 2)
+    title_native: Hundetraining Aufbaukurs (Teil 2)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: A2
+    path: sets/de/hundetraining-aufbau
+    version: '1.0.0'
+    lesson_count: 4
+    domain_label: Hundetraining
+    description: >-
+      Fortsetzung von „Hundetraining für Anfänger“ (Teil 2, Aufbaukurs, A2):
+      vier Lektionen zu Impulskontrolle (Bleib und Aus, die drei D), entspanntem
+      Alleinbleiben, Begegnungen und Sozialisierung sowie Tricks und geistiger
+      Beschäftigung (Formen, Einfangen, Nasenarbeit). Gewaltfrei mit positiver
+      Verstärkung, gemischte Übungstypen (matching, cloze, free_text,
+      word_tiles, multiselect).
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - aufbau
+      - fortgeschritten

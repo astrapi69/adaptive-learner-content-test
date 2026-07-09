@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-09T16:37:43Z",
+  "generated": "2026-07-09T19:07:19Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -127,9 +127,31 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
+      "updated_at": "2026-07-09T16:38:03+00:00"
+    },
+    {
+      "id": "hundetraining-aufbau-from-de",
+      "name": "Hundetraining Aufbaukurs (Teil 2)",
+      "description": "Aufbaukurs (Teil 2) für Hunde, die die Anfänger-Grundlagen kennen: vier Lektionen zu Impulskontrolle (Bleib und Aus, die drei D Dauer/Distanz/ Ablenkung), entspanntem Alleinbleiben, Begegnungen und Sozialisierung sowie Tricks und geistiger Beschäftigung (Formen, Einfangen, Nasenarbeit). Gewaltfrei mit positiver Verstärkung, gemischte Übungstypen.",
+      "source_language": "de",
+      "target_language": "de",
+      "level": "a2",
+      "domain": "knowledge",
+      "lesson_count": 4,
+      "card_count": 29,
+      "tags": [
+        "knowledge",
+        "hundetraining",
+        "hunde",
+        "aufbau",
+        "fortgeschritten"
+      ],
+      "ai_validated": false,
+      "trust_level": 1,
+      "book": null,
       "updated_at": null
     }
   ],
-  "total_lessons": 29,
-  "total_cards": 238
+  "total_lessons": 33,
+  "total_cards": 267
 }
