@@ -26,3 +26,33 @@ domains:
         language: "de"
         description: "Das Standardwerk für Psychologie-Einsteiger."
         tags: ["psychologie", "lehrbuch", "grundlagen"]
+  dog-training:
+    # Weiterführende Literatur zur Hundetraining-Reihe (Welpenkurs → Anfänger →
+    # Aufbaukurs → Souverän im Alltag). Alle Titel folgen dem Ansatz des
+    # gewaltfreien Trainings mit positiver Verstärkung. Bewusst ohne ISBN/ASIN
+    # (nicht erfunden); die URL ist ein Amazon-Suchlink über Autor und Titel.
+    books:
+      - title: "Positiv bestärken – sanft erziehen"
+        author: "Karen Pryor"
+        url: "https://www.amazon.de/s?k=Karen+Pryor+Positiv+best%C3%A4rken+sanft+erziehen"
+        language: "de"
+        description: "Der Klassiker zum Prinzip der positiven Verstärkung – passt zu Teil 1 (Grundlagen der Hundeerziehung)."
+        tags: ["hundetraining", "positive-verstaerkung", "grundlagen"]
+      - title: "Calming Signals – Die Beschwichtigungssignale der Hunde"
+        author: "Turid Rugaas"
+        url: "https://www.amazon.de/s?k=Turid+Rugaas+Calming+Signals+Beschwichtigungssignale"
+        language: "de"
+        description: "Wie Hunde über Körpersprache beschwichtigen – passt zu Teil 2 (Begegnungen und Sozialisierung)."
+        tags: ["hundetraining", "koerpersprache", "sozialisierung"]
+      - title: "Antijagdtraining"
+        author: "Clarissa von Reinhardt"
+        url: "https://www.amazon.de/s?k=Clarissa+von+Reinhardt+Antijagdtraining"
+        language: "de"
+        description: "Ausführlich zum kontrollierten Umgang mit dem Jagdtrieb – passt zu Teil 3 (Antijagdtraining)."
+        tags: ["hundetraining", "antijagd", "fortgeschritten"]
+      - title: "Das andere Ende der Leine"
+        author: "Patricia B. McConnell"
+        url: "https://www.amazon.de/s?k=Patricia+McConnell+Das+andere+Ende+der+Leine"
+        language: "de"
+        description: "Über die Kommunikation zwischen Mensch und Hund – gute Grundlage für die gesamte Reihe."
+        tags: ["hundetraining", "kommunikation", "beziehung"]

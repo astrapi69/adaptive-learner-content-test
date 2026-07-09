@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-09T19:18:46Z",
+  "generated": "2026-07-09T20:38:43Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -128,7 +128,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": null
+      "updated_at": "2026-07-09T19:19:01+00:00"
     },
     {
       "id": "hundetraining-anfaenger-from-de",
