@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-06T16:59:15Z",
+  "generated": "2026-07-09T16:37:43Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -42,7 +42,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-07-06T12:56:33Z"
+      "updated_at": "2026-07-06T12:56:33+00:00"
     },
     {
       "id": "react-grundlagen-from-de",
@@ -63,7 +63,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-07-06T12:56:33Z"
+      "updated_at": "2026-07-06T12:56:33+00:00"
     },
     {
       "id": "fuehrerschein-uebung-from-de",
@@ -106,9 +106,30 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-07-06T12:56:33Z"
+      "updated_at": "2026-07-06T12:56:33+00:00"
+    },
+    {
+      "id": "hundetraining-anfaenger-from-de",
+      "name": "Hundetraining für Anfänger",
+      "description": "Drei Anfänger-Lektionen zu gewaltfreiem Hundetraining mit positiver Verstärkung: Grundlagen (Timing, Markersignal, Belohnung, Konsequenz), erste Grundkommandos (Sitz und Platz über Locken und Ausschleichen) sowie Rückruf und Leinenführigkeit. Gemischte Übungstypen.",
+      "source_language": "de",
+      "target_language": "de",
+      "level": "a1",
+      "domain": "knowledge",
+      "lesson_count": 3,
+      "card_count": 22,
+      "tags": [
+        "knowledge",
+        "hundetraining",
+        "hunde",
+        "anfaenger"
+      ],
+      "ai_validated": false,
+      "trust_level": 1,
+      "book": null,
+      "updated_at": null
     }
   ],
-  "total_lessons": 26,
-  "total_cards": 216
+  "total_lessons": 29,
+  "total_cards": 238
 }

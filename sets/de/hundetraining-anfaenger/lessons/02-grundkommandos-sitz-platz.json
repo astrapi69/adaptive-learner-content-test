@@ -1,0 +1,200 @@
+{
+  "id": "02-grundkommandos-sitz-platz",
+  "title": "Erste Grundkommandos: Sitz und Platz",
+  "description": "Wie du deinem Hund Schritt für Schritt „Sitz“ und „Platz“ beibringst — mit Locken, Markersignal, festem Signalwort und dem schrittweisen Ausschleichen des Leckerlis.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 10,
+  "cards": [
+    {
+      "id": "sitz",
+      "front": "Sitz",
+      "back": "Der Hund setzt sich hin und bleibt auf dem Hinterteil, bis er aufgelöst wird.",
+      "notes": "Meist das erste Kommando, weil es sich leicht über Locken aufbauen lässt.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["kommandos"]
+    },
+    {
+      "id": "platz",
+      "front": "Platz",
+      "back": "Der Hund legt sich flach hin, Bauch und Ellbogen am Boden.",
+      "notes": "Baut oft auf „Sitz“ auf: aus dem Sitz das Leckerli langsam zum Boden führen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["kommandos"]
+    },
+    {
+      "id": "locken",
+      "front": "Locken (Luring)",
+      "back": "Mit einem Leckerli in der Hand führst du den Hund in die gewünschte Position.",
+      "notes": "Die Hand wird zur Führung. Wichtig: das Locken früh wieder ausschleichen, sonst hängt der Hund am Leckerli.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "signalwort",
+      "front": "Signalwort",
+      "back": "Das Wort für ein Verhalten, z. B. „Sitz“ — erst benennen, wenn der Hund es zuverlässig zeigt.",
+      "notes": "Ein häufiger Anfängerfehler: das Wort zu früh und zu oft sagen, bevor der Hund die Bewegung kennt.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "ausschleichen",
+      "front": "Leckerli ausschleichen",
+      "back": "Nach und nach ohne Leckerli in der Hand üben und nur noch danach belohnen.",
+      "notes": "So wird das Signal unabhängig vom sichtbaren Futter. Belohnt wird weiter, aber erst nach dem Verhalten.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "aufloesen",
+      "front": "Auflösesignal",
+      "back": "Ein Wort wie „Lauf“ oder „Okay“, das dem Hund sagt: Die Übung ist vorbei.",
+      "notes": "Ohne Auflösesignal weiß der Hund nicht, wann er die Position verlassen darf.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "generalisieren",
+      "front": "Generalisieren",
+      "back": "Das Kommando an vielen Orten und in vielen Situationen üben.",
+      "notes": "Ein Hund, der „Sitz“ nur in der Küche kann, kann es noch nicht wirklich. Übe auch im Park, im Flur, draußen.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "„Sitz“ in kleinen Schritten",
+      "body": "# Erste Grundkommandos\n\nGrundkommandos baust du in **kleinen Schritten** auf. Am Beispiel **„Sitz“**:\n\n1. **Locken**: Halte ein Leckerli knapp über die Nase und führe es langsam nach hinten über den Kopf. Der Hund setzt sich fast von allein.\n2. **Markieren**: Sobald der Po den Boden berührt, markierst du („Fein“ oder Klick).\n3. **Belohnen**: Gib das Leckerli.\n4. **Signalwort**: Erst wenn das zuverlässig klappt, sagst du **kurz vorher** „Sitz“.\n\nDas **Leckerli in der Hand** schleichst du früh aus — sonst gehorcht der Hund nur, wenn er Futter sieht."
+    },
+    {
+      "id": "step-platz",
+      "type": "theory",
+      "title": "Von „Sitz“ zu „Platz“",
+      "body": "## „Platz“ aufbauen\n\n**„Platz“** baust du am einfachsten aus dem **Sitz** auf:\n\n- Führe das Leckerli aus der Sitzposition **langsam zum Boden** und leicht nach vorn.\n- Sobald der Hund sich hinlegt, **markieren und belohnen**.\n- Das **Signalwort** „Platz“ kommt auch hier erst, wenn die Bewegung sicher sitzt.\n\nAm Ende jeder Übung steht ein **Auflösesignal** wie „Okay“. Und: übe an vielen Orten — das nennt man **Generalisieren**."
+    },
+    {
+      "id": "ex-match-kommandos",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-kommandos",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["locken", "signalwort", "ausschleichen", "aufloesen"],
+        "pairs": [
+          {"left": "Locken", "right": "Den Hund mit Leckerli in die Position führen."},
+          {"left": "Signalwort", "right": "Das Wort für ein Verhalten, z. B. „Sitz“."},
+          {"left": "Leckerli ausschleichen", "right": "Nach und nach ohne sichtbares Futter üben."},
+          {"left": "Auflösesignal", "right": "Sagt dem Hund: Die Übung ist vorbei."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-reihenfolge",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Wann kommt das Signalwort?",
+      "exercise": {
+        "id": "ex-mc-reihenfolge",
+        "type": "cloze",
+        "prompt": "Wann solltest du das Signalwort „Sitz“ einführen?",
+        "card_ids": ["signalwort"],
+        "sentence": "___",
+        "blanks": [{"accept": ["Erst wenn der Hund die Bewegung zuverlässig zeigt"]}],
+        "cloze_mode": "select",
+        "distractors": [
+          "Ganz am Anfang, immer wieder wiederholt",
+          "Nie, das Wort ist unwichtig",
+          "Erst nach mehreren Wochen Pause"
+        ],
+        "hint": "Erst die Bewegung, dann das Wort."
+      }
+    },
+    {
+      "id": "ex-cloze-platz",
+      "type": "exercise",
+      "theory_ref": "step-platz",
+      "title": "„Platz“ aufbauen",
+      "exercise": {
+        "id": "ex-cloze-platz",
+        "type": "cloze",
+        "prompt": "Ergänze den Satz.",
+        "card_ids": ["platz", "locken"],
+        "sentence": "Für „Platz“ führst du das Leckerli aus dem Sitz langsam zum ___ .",
+        "blanks": [{"accept": ["Boden", "boden"]}],
+        "cloze_mode": "type",
+        "hint": "Dorthin, wo sich der Hund hinlegen soll."
+      }
+    },
+    {
+      "id": "ex-free-ausschleichen",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Weg vom sichtbaren Futter",
+      "exercise": {
+        "id": "ex-free-ausschleichen",
+        "type": "free_text",
+        "prompt": "Wie nennt man es, wenn man nach und nach ohne Leckerli in der Hand übt?",
+        "card_ids": ["ausschleichen"],
+        "accept": ["Ausschleichen", "ausschleichen", "das Ausschleichen"],
+        "hint": "Das Leckerli wird langsam „aus dem Bild“ genommen.",
+        "distractors": ["Locken", "Generalisieren", "Markieren"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-sitz",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Der Ablauf als Merksatz",
+      "exercise": {
+        "id": "ex-tiles-sitz",
+        "type": "word_tiles",
+        "prompt": "Setze den Ablauf in die richtige Reihenfolge.",
+        "card_ids": ["locken", "markersignal"],
+        "tiles": ["Locken", "dann", "markieren", "dann", "belohnen"],
+        "hint": "Zuerst führst du den Hund, ganz zuletzt gibt es das Leckerli.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-fehler",
+      "type": "exercise",
+      "theory_ref": "step-platz",
+      "title": "Gutes Vorgehen erkennen",
+      "exercise": {
+        "id": "ex-ms-fehler",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Sicheres Grundkommando",
+        "card_ids": ["ausschleichen", "aufloesen", "generalisieren"],
+        "sentence": "Was gehört zu einem sauber aufgebauten Grundkommando?",
+        "accept": [
+          "Das Leckerli in der Hand früh ausschleichen",
+          "Die Übung mit einem Auflösesignal beenden",
+          "An verschiedenen Orten üben (generalisieren)"
+        ],
+        "distractors": [
+          "Nur belohnen, wenn der Hund Futter sieht",
+          "Das Signalwort ganz am Anfang ständig wiederholen",
+          "Immer nur an genau einem Ort üben"
+        ],
+        "hint": "Denke an Ausschleichen, Auflösen und Generalisieren."
+      }
+    }
+  ]
+}

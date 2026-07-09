@@ -124,3 +124,25 @@ sets:
       - frontend
       - fortgeschritten
       - multiple-choice
+  - id: hundetraining-anfaenger-from-de
+    title: Hundetraining für Anfänger
+    title_native: Hundetraining für Anfänger
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: A1
+    path: sets/de/hundetraining-anfaenger
+    version: '1.0.0'
+    lesson_count: 3
+    domain_label: Hundetraining
+    description: >-
+      Einstieg ins gewaltfreie Hundetraining mit positiver Verstärkung: drei
+      Anfänger-Lektionen zu den Grundlagen (Timing, Markersignal, Belohnung,
+      Konsequenz), zu ersten Grundkommandos (Sitz und Platz) sowie zu Rückruf
+      und Leinenführigkeit. Gemischte Übungstypen (matching, cloze, free_text,
+      word_tiles, multiselect).
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - anfaenger
