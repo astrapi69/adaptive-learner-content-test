@@ -170,3 +170,27 @@ sets:
       - hunde
       - aufbau
       - fortgeschritten
+  - id: hundetraining-alltag-from-de
+    title: Hundetraining Souverän im Alltag (Teil 3)
+    title_native: Hundetraining Souverän im Alltag (Teil 3)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: B1
+    path: sets/de/hundetraining-alltag
+    version: '1.0.0'
+    lesson_count: 4
+    domain_label: Hundetraining
+    description: >-
+      Teil 3 der Reihe (B1), aufbauend auf Anfänger- und Aufbaukurs: vier
+      Lektionen zur Alltagssouveränität — Antijagdtraining, Maulkorbtraining,
+      kooperatives Medical Training (Tierarzt und Handling) sowie ein
+      bombenfester Notrückruf unter Ablenkung (Pfeife, Jackpot, Rückrufparty).
+      Gewaltfrei mit positiver Verstärkung, gemischte Übungstypen (matching,
+      cloze, free_text, word_tiles, multiselect).
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - alltag
+      - fortgeschritten

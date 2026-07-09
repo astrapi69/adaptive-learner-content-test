@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-09T19:07:19Z",
+  "generated": "2026-07-09T19:13:16Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -149,9 +149,31 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
+      "updated_at": "2026-07-09T19:07:30+00:00"
+    },
+    {
+      "id": "hundetraining-alltag-from-de",
+      "name": "Hundetraining Souverän im Alltag (Teil 3)",
+      "description": "Teil 3 (B1) der Reihe, aufbauend auf Anfänger- und Aufbaukurs: vier Lektionen zur Alltagssouveränität — Antijagdtraining (Verhaltenskette, Abbruchsignal, Umorientierung, Management), Maulkorbtraining (Passform, schrittweise Gewöhnung), kooperatives Medical Training (Cooperative Care, Start-/Abbruchsignal, Stationstraining, Handling) und Notrückruf unter Ablenkung (Pfeife, Jackpot, Rückrufparty). Gewaltfrei, gemischte Übungstypen (matching, cloze, free_text, word_tiles, multiselect).",
+      "source_language": "de",
+      "target_language": "de",
+      "level": "b1",
+      "domain": "knowledge",
+      "lesson_count": 4,
+      "card_count": 27,
+      "tags": [
+        "knowledge",
+        "hundetraining",
+        "hunde",
+        "alltag",
+        "fortgeschritten"
+      ],
+      "ai_validated": false,
+      "trust_level": 1,
+      "book": null,
       "updated_at": null
     }
   ],
-  "total_lessons": 33,
-  "total_cards": 267
+  "total_lessons": 37,
+  "total_cards": 294
 }

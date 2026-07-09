@@ -1,0 +1,200 @@
+{
+  "id": "03-medical-training-tierarzt",
+  "title": "Kooperatives Medical Training",
+  "description": "Teil 3 (B1): Wie dein Hund Tierarzt, Pflege und Handling entspannt mitmacht — mit kooperativer Pflege, Startsignal, jederzeit möglichem Abbruch und Stationstraining.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 13,
+  "cards": [
+    {
+      "id": "kooperative-pflege",
+      "front": "Kooperative Pflege",
+      "back": "Pflege und Untersuchung mit Beteiligung des Hundes — er darf mitbestimmen statt festgehalten zu werden.",
+      "notes": "Englisch „Cooperative Care“. Weniger Stress, weniger Zwang, sicherere Behandlung.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["medical"]
+    },
+    {
+      "id": "medical-training",
+      "front": "Medical Training",
+      "back": "Das gezielte Üben von Tierarzt- und Pflegesituationen: Ohren, Pfoten, Zähne, Spritze.",
+      "notes": "In Ruhe vorbereitet, lange bevor der Ernstfall eintritt.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["medical"]
+    },
+    {
+      "id": "startsignal",
+      "front": "Startsignal des Hundes",
+      "back": "Eine Position (z. B. Kinn ablegen), mit der der Hund signalisiert: „Ich bin bereit, mach weiter.“",
+      "notes": "Der Hund gibt aktiv das Startsignal. Das gibt ihm Kontrolle und senkt den Stress.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["medical"]
+    },
+    {
+      "id": "abbruch",
+      "front": "Abbruch durch den Hund",
+      "back": "Nimmt der Hund die Position weg, hörst du sofort auf — er darf „nein“ sagen.",
+      "notes": "Das Gegenstück zum Startsignal. Der Hund lernt: Ich kann die Lage jederzeit beenden — und entspannt gerade deshalb.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["medical"]
+    },
+    {
+      "id": "station-target",
+      "front": "Stationstraining",
+      "back": "Ein fester Punkt — Matte oder Kinntarget — an dem der Hund freiwillig verharrt.",
+      "notes": "Die Station wird zum sicheren Ausgangspunkt, von dem aus untersucht wird.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["medical"]
+    },
+    {
+      "id": "handling",
+      "front": "Handling",
+      "back": "Das Anfassen von Pfoten, Ohren, Maul und Körper üben und Schritt für Schritt belohnen.",
+      "notes": "Ein Hund, der Berührung kennt und gutheißt, lässt sich beim Tierarzt viel leichter untersuchen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["medical"]
+    },
+    {
+      "id": "kleinschrittig",
+      "front": "Kleinschrittig aufbauen",
+      "back": "Jeden Handgriff in winzige Schritte zerlegen und unter der Stressschwelle bleiben.",
+      "notes": "Erst die Pfote berühren, dann heben, dann halten — jeder Schritt einzeln und belohnt.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Der Hund darf mitreden",
+      "body": "# Kooperatives Medical Training\n\nBeim Tierarzt wird ein Hund oft **festgehalten** — das macht Stress und im schlimmsten Fall Angst vor der Praxis. Die **kooperative Pflege** (englisch *Cooperative Care*) dreht das um: Der Hund **beteiligt sich** an Untersuchung und Pflege.\n\nDas Herzstück ist ein Paar aus zwei Signalen:\n\n- **Startsignal des Hundes** — eine Position wie *Kinn ablegen*, mit der er sagt: „Ich bin bereit.“\n- **Abbruch durch den Hund** — nimmt er die Position weg, hörst du **sofort** auf.\n\n> Paradox, aber wahr: Weil der Hund die Lage jederzeit **beenden** darf, bleibt er viel eher ruhig — er muss nicht flüchten, er kann einfach pausieren."
+    },
+    {
+      "id": "step-aufbau",
+      "type": "theory",
+      "title": "Handling und Stationen",
+      "body": "## Bausteine des Trainings\n\nAufbauend auf Start- und Abbruchsignal:\n\n- **Stationstraining** — eine Matte oder ein **Kinntarget** als sicherer Punkt, an dem der Hund freiwillig bleibt.\n- **Handling** — Pfoten, Ohren, Maul und Körper anfassen üben, jeden Schritt belohnen.\n- **Kleinschrittig aufbauen** — jeden Handgriff in winzige Schritte zerlegen und **unter der Stressschwelle** bleiben (wie beim Alleinbleiben in Teil 2).\n\nSo wird aus „Der Tierarzt muss ihn festhalten“ ein „Der Hund macht ruhig mit“."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["kooperative-pflege", "startsignal", "abbruch", "station-target"],
+        "pairs": [
+          {"left": "Kooperative Pflege", "right": "Der Hund beteiligt sich, statt festgehalten zu werden."},
+          {"left": "Startsignal des Hundes", "right": "Position, mit der er „Ich bin bereit“ sagt."},
+          {"left": "Abbruch durch den Hund", "right": "Nimmt er die Position weg, hörst du auf."},
+          {"left": "Stationstraining", "right": "Fester Punkt, an dem der Hund freiwillig verharrt."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-abbruch",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Der Hund sagt „nein“",
+      "exercise": {
+        "id": "ex-mc-abbruch",
+        "type": "cloze",
+        "prompt": "Dein Hund nimmt beim Üben das Kinn vom Target weg. Was tust du?",
+        "card_ids": ["abbruch", "startsignal"],
+        "sentence": "___",
+        "blanks": [{"accept": ["Sofort aufhören und ihm eine Pause geben"]}],
+        "cloze_mode": "select",
+        "distractors": [
+          "Ihn festhalten und trotzdem weitermachen",
+          "Das Signal ignorieren und schneller arbeiten",
+          "Ihn für den Abbruch schimpfen"
+        ],
+        "hint": "Der Abbruch ist Teil des Deals — der Hund darf „nein“ sagen."
+      }
+    },
+    {
+      "id": "ex-cloze-startsignal",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Bereit-Signal",
+      "exercise": {
+        "id": "ex-cloze-startsignal",
+        "type": "cloze",
+        "prompt": "Ergänze den Satz.",
+        "card_ids": ["startsignal"],
+        "sentence": "Ein typisches Startsignal ist, dass der Hund sein ___ auf deiner Hand oder einem Target ablegt.",
+        "blanks": [{"accept": ["Kinn", "kinn"]}],
+        "cloze_mode": "type",
+        "hint": "Der vorderste, untere Teil des Kopfes."
+      }
+    },
+    {
+      "id": "ex-free-cooperative",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Der englische Fachbegriff",
+      "exercise": {
+        "id": "ex-free-cooperative",
+        "type": "free_text",
+        "prompt": "Wie heißt die kooperative Pflege auf Englisch?",
+        "card_ids": ["kooperative-pflege"],
+        "accept": ["Cooperative Care", "cooperative care", "Cooperative-Care"],
+        "hint": "Zwei englische Wörter: kooperativ und Pflege.",
+        "distractors": ["Medical Alert", "Free Shaping", "Loose Leash"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-regel",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Merksatz zur Kontrolle",
+      "exercise": {
+        "id": "ex-tiles-regel",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["abbruch", "kooperative-pflege"],
+        "tiles": ["Wer", "abbrechen", "darf", "bleibt", "eher", "ruhig"],
+        "hint": "Warum der mögliche Abbruch den Hund entspannt.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-bausteine",
+      "type": "exercise",
+      "theory_ref": "step-aufbau",
+      "title": "Bausteine des Medical Trainings",
+      "exercise": {
+        "id": "ex-ms-bausteine",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Gutes Medical Training",
+        "card_ids": ["station-target", "handling", "kleinschrittig"],
+        "sentence": "Was gehört zu einem guten kooperativen Medical Training?",
+        "accept": [
+          "Ein Stationstraining mit Matte oder Kinntarget",
+          "Handling von Pfoten, Ohren und Maul üben und belohnen",
+          "Jeden Handgriff kleinschrittig und unter der Stressschwelle aufbauen"
+        ],
+        "distractors": [
+          "Den Hund zur Untersuchung fest fixieren",
+          "Alle Handgriffe auf einmal durchziehen",
+          "Abbruchsignale des Hundes übergehen"
+        ],
+        "hint": "Denke an Station, Handling und kleine Schritte."
+      }
+    }
+  ]
+}

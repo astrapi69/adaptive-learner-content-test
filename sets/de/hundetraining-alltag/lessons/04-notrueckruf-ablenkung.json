@@ -1,0 +1,200 @@
+{
+  "id": "04-notrueckruf-ablenkung",
+  "title": "Notrückruf unter Ablenkung",
+  "description": "Teil 3 (B1): Wie du aus dem Rückruf aus Teil 1 ein bombenfestes Notsignal machst — mit Pfeife, Jackpot, Rückrufparty und schrittweisem Training unter starker Ablenkung.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "notrueckruf",
+      "front": "Notrückruf",
+      "back": "Ein eigenes Super-Signal nur für den Notfall, das der Hund IMMER befolgt und das sich IMMER riesig lohnt.",
+      "notes": "Getrennt vom Alltagsrückruf trainiert und selten benutzt, damit es nie an Wert verliert.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["rueckruf"]
+    },
+    {
+      "id": "pfeife",
+      "front": "Pfeifsignal",
+      "back": "Ein konditioniertes Pfeifsignal — immer gleich, weit hörbar und unabhängig von deiner Stimmung.",
+      "notes": "Eine Pfeife klingt jeden Tag gleich, auch wenn du aufgeregt bist — anders als die Stimme.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["rueckruf"]
+    },
+    {
+      "id": "jackpot",
+      "front": "Jackpot",
+      "back": "Eine besonders große Belohnung für herausragendes Verhalten.",
+      "notes": "Beim Notrückruf gibt es das Beste vom Besten — nicht ein einzelnes Trockenleckerli.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["belohnung"]
+    },
+    {
+      "id": "rueckrufparty",
+      "front": "Rückrufparty",
+      "back": "Überschwängliches Loben und Belohnen, sobald der Hund bei dir ankommt.",
+      "notes": "Zurückkommen soll das Beste des Tages sein. Freu dich ehrlich und groß.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["rueckruf"]
+    },
+    {
+      "id": "nie-verbrennen",
+      "front": "Signal nicht verbrennen",
+      "back": "Den Notrückruf nie für Unangenehmes nutzen und selten einsetzen, damit er stark bleibt.",
+      "notes": "Wer das Signal zum Leineanlegen am Ende des Spaziergangs nutzt, entwertet es.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["rueckruf"]
+    },
+    {
+      "id": "generalisieren-reiz",
+      "front": "Unter Ablenkung festigen",
+      "back": "Den Rückruf mit langsam wachsender Ablenkung üben — von ruhig bis reizvoll.",
+      "notes": "Anschluss an Teil 1: erst zu Hause, dann im Garten, dann im Park mit Hunden und Wild.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "distanz-management",
+      "front": "Mit Schleppleine absichern",
+      "back": "Bis der Rückruf unter Reiz sicher sitzt, sichert eine Schleppleine gegen Fehlversuche.",
+      "notes": "Jeder ignorierte Rückruf schwächt das Signal. Die Leine sorgt dafür, dass er immer gelingt.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Vom Rückruf zum Notsignal",
+      "body": "# Notrückruf unter Ablenkung\n\nIn Teil 1 hast du den **Rückruf** aufgebaut: Kommen lohnt sich immer. Der **Notrückruf** ist die B1-Steigerung — ein **eigenes Super-Signal** nur für den Ernstfall.\n\nDrei Eigenschaften machen ihn stark:\n\n- **Eigenes Signal**, getrennt vom Alltagsrückruf — oft eine **Pfeife**, weil sie jeden Tag gleich klingt und weit trägt.\n- **Immer Jackpot** — die größte, beste Belohnung, jedes Mal.\n- **Selten benutzt** und **nie verbrannt** — nicht fürs Leineanlegen am Ende, nicht für Unangenehmes.\n\n> Ein Notrückruf, den du zehnmal am Tag rufst oder mit dem der Spaß endet, verliert genau dann seine Kraft, wenn du ihn brauchst."
+    },
+    {
+      "id": "step-aufbau",
+      "type": "theory",
+      "title": "Aufbauen und absichern",
+      "body": "## So festigst du ihn\n\n1. **Konditionieren**: Pfeifton → sofort **Jackpot**, viele Wiederholungen, ganz ohne Ablenkung.\n2. **Rückrufparty**: Kommt der Hund, feierst du ehrlich und groß.\n3. **Unter Ablenkung festigen**: die Ablenkung **langsam** steigern — Garten, Park, andere Hunde, Wild.\n4. **Mit Schleppleine absichern**, bis es unter Reiz sicher sitzt — so **gelingt** jeder Rückruf und keiner schwächt das Signal.\n\nSteigere immer nur so weit, dass dein Hund noch zuverlässig kommt. Klappt eine Stufe nicht: einen Schritt zurück."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["notrueckruf", "pfeife", "jackpot", "rueckrufparty"],
+        "pairs": [
+          {"left": "Notrückruf", "right": "Super-Signal nur für den Notfall."},
+          {"left": "Pfeifsignal", "right": "Klingt immer gleich und trägt weit."},
+          {"left": "Jackpot", "right": "Besonders große Belohnung."},
+          {"left": "Rückrufparty", "right": "Großes Feiern, wenn der Hund ankommt."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-verbrennen",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Das Signal schützen",
+      "exercise": {
+        "id": "ex-mc-verbrennen",
+        "type": "cloze",
+        "prompt": "Wodurch verliert ein Notrückruf am schnellsten seine Kraft?",
+        "card_ids": ["nie-verbrennen", "notrueckruf"],
+        "sentence": "___",
+        "blanks": [{"accept": ["Wenn man ihn oft nutzt oder damit den Spaß beendet"]}],
+        "cloze_mode": "select",
+        "distractors": [
+          "Wenn man ihn immer mit einem Jackpot belohnt",
+          "Wenn man ihn nur im Notfall einsetzt",
+          "Wenn man ihn mit einer Pfeife gibt"
+        ],
+        "hint": "Denke daran, was das Signal entwertet."
+      }
+    },
+    {
+      "id": "ex-cloze-jackpot",
+      "type": "exercise",
+      "theory_ref": "step-aufbau",
+      "title": "Die beste Belohnung",
+      "exercise": {
+        "id": "ex-cloze-jackpot",
+        "type": "cloze",
+        "prompt": "Ergänze den Fachbegriff.",
+        "card_ids": ["jackpot"],
+        "sentence": "Eine besonders große Belohnung für herausragendes Verhalten nennt man ___ .",
+        "blanks": [{"accept": ["Jackpot", "jackpot", "einen Jackpot"]}],
+        "cloze_mode": "type",
+        "hint": "Wie der Hauptgewinn am Spielautomaten."
+      }
+    },
+    {
+      "id": "ex-free-pfeife",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Warum ein Ton statt der Stimme?",
+      "exercise": {
+        "id": "ex-free-pfeife",
+        "type": "free_text",
+        "prompt": "Welches Hilfsmittel klingt jeden Tag gleich und trägt weit — ideal für den Notrückruf?",
+        "card_ids": ["pfeife"],
+        "accept": ["Pfeife", "die Pfeife", "eine Pfeife", "Hundepfeife"],
+        "hint": "Man bläst hinein, um einen gleichbleibenden Ton zu erzeugen.",
+        "distractors": ["Stimme", "Klicker", "Leckerli"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-regel",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Merksatz zum Notrückruf",
+      "exercise": {
+        "id": "ex-tiles-regel",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["nie-verbrennen", "jackpot"],
+        "tiles": ["Selten", "rufen", "immer", "riesig", "belohnen"],
+        "hint": "Die zwei Regeln, die den Notrückruf stark halten.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-aufbau",
+      "type": "exercise",
+      "theory_ref": "step-aufbau",
+      "title": "Den Notrückruf richtig aufbauen",
+      "exercise": {
+        "id": "ex-ms-aufbau",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Sicherer Notrückruf",
+        "card_ids": ["generalisieren-reiz", "distanz-management", "jackpot"],
+        "sentence": "Was gehört zu einem sicher aufgebauten Notrückruf?",
+        "accept": [
+          "Die Ablenkung langsam steigern, von ruhig bis reizvoll",
+          "Mit der Schleppleine absichern, bis es unter Reiz sitzt",
+          "Jedes Kommen mit einem Jackpot belohnen"
+        ],
+        "distractors": [
+          "Sofort im größten Trubel und ohne Absicherung starten",
+          "Das Signal mehrmals täglich für Kleinigkeiten nutzen",
+          "Bei Fehlversuchen den Hund schimpfen"
+        ],
+        "hint": "Denke an Ablenkung steigern, Schleppleine und Jackpot."
+      }
+    }
+  ]
+}
