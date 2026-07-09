@@ -1,0 +1,52 @@
+# Set-Manifest: Hundetraining Welpenkurs (Teil 0) — deutschsprachig.
+#
+# Sachthema-Set (domain: knowledge): Material und Erklärung sind beide auf
+# Deutsch (source_language == target_language); der Set-Ordner trägt einen
+# Themennamen. Der Content-Loader liest metadata.lessons für die Dateiliste.
+#
+# Einstiegsteil der Reihe (VOR „Für Anfänger“): die allerersten Wochen mit
+# einem Welpen, gedacht wie aus Sicht eines frischgebackenen Hundebesitzers.
+# Vier Lektionen: Stubenreinheit, Beißhemmung und Zähnchen, erste Nächte/Ruhe/
+# Schlaf sowie Name, Bindung und erste Sozialisierung. Übungstypen gemischt:
+# matching, cloze (Freitext-Lücke und Single-Choice als select), free_text,
+# word_tiles und multiselect.
+schema_version: '1.3'
+name: Hundetraining Welpenkurs (Teil 0)
+description: >-
+  Der Einstiegsteil der Reihe für die allerersten Wochen mit einem Welpen:
+  Stubenreinheit, Beißhemmung und Zähnchen, erste Nächte mit Ruhe und Schlaf
+  sowie Name, Bindung und erste Sozialisierung. Gewaltfrei mit positiver
+  Verstärkung, gemischte Übungstypen. Führt zum Anfängerkurs (Teil 1) hin.
+sets:
+  - id: welpen-grundkurs-from-de
+    title: Hundetraining Welpenkurs (Teil 0)
+    title_native: Hundetraining Welpenkurs (Teil 0)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: A1
+    path: sets/de/welpen-grundkurs
+    version: '1.0.0'
+    lesson_count: 4
+    domain_label: Hundetraining
+    description: >-
+      Einstiegsteil (Teil 0) für die ersten Wochen mit einem Welpen, aus Sicht
+      eines neuen Hundebesitzers: Stubenreinheit (Timing, Loben draußen, kein
+      Schimpfen), Beißhemmung und Zähnchen (Spielabbruch, Alternativen), erste
+      Nächte mit Ruhe und Schlaf (Schlafbedarf, Überdrehen, Nähe) sowie Name,
+      Bindung und erste Sozialisierung (Namensaufbau, Blickkontakt, Prägephase,
+      frühes Handling). Gewaltfrei, gemischte Übungstypen.
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - welpe
+      - einstieg
+metadata:
+  author: Asterios Raptis
+  license: CC-BY-SA-4.0
+  lessons:
+    - 01-stubenreinheit.json
+    - 02-beisshemmung.json
+    - 03-erste-naechte-ruhe.json
+    - 04-name-bindung-sozialisierung.json

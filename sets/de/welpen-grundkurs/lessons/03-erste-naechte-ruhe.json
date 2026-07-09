@@ -1,0 +1,191 @@
+{
+  "id": "03-erste-naechte-ruhe",
+  "title": "Erste Nächte, Ruhe und Schlaf",
+  "description": "Welpenkurs (Teil 0): Warum Welpen enorm viel Schlaf brauchen, wie du die ersten Nächte gestaltest und Ruhe aktiv förderst — und wie du das Alleinsein sanft anbahnst.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 11,
+  "cards": [
+    {
+      "id": "schlafbedarf",
+      "front": "Schlafbedarf",
+      "back": "Welpen brauchen sehr viel Schlaf — oft rund 18 bis 20 Stunden am Tag.",
+      "notes": "Im Schlaf verarbeiten sie Eindrücke und wachsen. Zu wenig Ruhe schadet dem Lernen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "ueberdrehen",
+      "front": "Überdrehen",
+      "back": "Zu wenig Ruhe macht den Welpen wild, zappelig und zwickig — wie ein übermüdetes Kind.",
+      "notes": "Viele „ungezogene“ Welpen sind schlicht übermüdet. Dann hilft Ruhe, nicht mehr Action.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "schlafplatz",
+      "front": "Sicherer Schlafplatz",
+      "back": "Ein fester, ruhiger Platz, an dem der Welpe ungestört schlafen kann.",
+      "notes": "Ein Rückzugsort, an dem er nicht bedrängt wird — Kinder sollen ihn dort in Ruhe lassen.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "erste-naechte-naehe",
+      "front": "Nähe in den ersten Nächten",
+      "back": "Anfangs schläft der Welpe am besten nah bei dir, z. B. im Körbchen neben dem Bett.",
+      "notes": "Er kommt gerade von Mutter und Wurf. Nähe senkt den Stress und das nächtliche Jammern.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "ruhephasen-foerdern",
+      "front": "Ruhe aktiv fördern",
+      "back": "Ruhe gehört ins Programm: bewusst Pausen anbieten, nicht nur Beschäftigung.",
+      "notes": "Ein Welpe kann noch nicht gut selbst herunterfahren — du hilfst ihm dabei.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "alleinsein-basis",
+      "front": "Alleinsein anbahnen",
+      "back": "Ganz sanft üben, dass der Welpe auch mal kurz und entspannt allein bleibt.",
+      "notes": "Die Basis für das spätere Alleinbleiben (Aufbaukurs, Teil 2) — in winzigen Schritten.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Schlaf ist kein Luxus",
+      "body": "# Erste Nächte, Ruhe und Schlaf\n\nWelpen brauchen **enorm viel Schlaf** — oft **18 bis 20 Stunden** am Tag. Im Schlaf verarbeiten sie Eindrücke, wachsen und lernen. Fehlt die Ruhe, **überdrehen** sie: Sie werden wild, zappelig und zwickig, ganz wie ein übermüdetes Kind.\n\nDas ist eine der wichtigsten Erkenntnisse für neue Welpenbesitzer:\n\n> Viele „ungezogene“ Welpen sind einfach **übermüdet**. Dann hilft **Ruhe**, nicht noch mehr Beschäftigung.\n\nEin **sicherer Schlafplatz**, an dem er ungestört ist, gehört deshalb zum Wichtigsten im neuen Zuhause."
+    },
+    {
+      "id": "step-naechte",
+      "type": "theory",
+      "title": "Die ersten Nächte und das Alleinsein",
+      "body": "## Ankommen und Runterfahren\n\nDer Welpe kommt gerade von Mutter und Geschwistern. In den **ersten Nächten** schläft er am ruhigsten **nah bei dir** — etwa im Körbchen neben dem Bett. Das senkt Stress und nächtliches Jammern.\n\nZwei Dinge helfen im Alltag:\n\n- **Ruhe aktiv fördern**: Biete bewusst Pausen an; ein Welpe kann noch nicht gut allein herunterfahren.\n- **Alleinsein sanft anbahnen**: Übe in **winzigen** Schritten, dass er auch mal kurz entspannt allein bleibt — die Basis fürs spätere Alleinbleiben (Teil 2)."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["schlafbedarf", "ueberdrehen", "schlafplatz", "erste-naechte-naehe"],
+        "pairs": [
+          {"left": "Schlafbedarf", "right": "Welpen schlafen oft 18 bis 20 Stunden am Tag."},
+          {"left": "Überdrehen", "right": "Zu wenig Ruhe macht wild und zwickig."},
+          {"left": "Sicherer Schlafplatz", "right": "Fester Ort für ungestörten Schlaf."},
+          {"left": "Nähe in den ersten Nächten", "right": "Anfangs am besten nah beim Menschen schlafen."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-wild",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Der Welpe dreht auf",
+      "exercise": {
+        "id": "ex-mc-wild",
+        "type": "cloze",
+        "prompt": "Dein Welpe wird am Abend immer wilder und zwickt viel. Was steckt oft dahinter?",
+        "card_ids": ["ueberdrehen", "schlafbedarf"],
+        "sentence": "___",
+        "blanks": [{"accept": ["Er ist übermüdet und braucht Ruhe, keine Beschäftigung"]}],
+        "cloze_mode": "select",
+        "distractors": [
+          "Er ist unterfordert und braucht mehr wildes Spiel",
+          "Er ist dominant und will sich durchsetzen",
+          "Er hat zu viel geschlafen"
+        ],
+        "hint": "Denke an das übermüdete Kind."
+      }
+    },
+    {
+      "id": "ex-cloze-schlaf",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Wie viel Schlaf?",
+      "exercise": {
+        "id": "ex-cloze-schlaf",
+        "type": "cloze",
+        "prompt": "Ergänze den Satz.",
+        "card_ids": ["schlafbedarf"],
+        "sentence": "Ein Welpe braucht sehr viel ___ — oft 18 bis 20 Stunden am Tag.",
+        "blanks": [{"accept": ["Schlaf", "schlaf", "Ruhe"]}],
+        "cloze_mode": "type",
+        "hint": "Das, was ihm bei Übermüdung fehlt."
+      }
+    },
+    {
+      "id": "ex-free-schlafplatz",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Wo er zur Ruhe kommt",
+      "exercise": {
+        "id": "ex-free-schlafplatz",
+        "type": "free_text",
+        "prompt": "Wie nennt man den festen, ruhigen Ort, an dem der Welpe ungestört schlafen darf?",
+        "card_ids": ["schlafplatz"],
+        "accept": ["Schlafplatz", "der Schlafplatz", "Ruheplatz", "sicherer Schlafplatz"],
+        "hint": "Ein Platz zum Schlafen und zur Ruhe.",
+        "distractors": ["Spielplatz", "Fressplatz", "Trainingsplatz"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-regel",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Merksatz zur Ruhe",
+      "exercise": {
+        "id": "ex-tiles-regel",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["ueberdrehen", "ruhephasen-foerdern"],
+        "tiles": ["Bei", "einem", "wilden", "Welpen", "hilft", "oft", "Ruhe"],
+        "hint": "Nicht mehr Action, sondern das Gegenteil.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-naechte",
+      "type": "exercise",
+      "theory_ref": "step-naechte",
+      "title": "Gute erste Wochen",
+      "exercise": {
+        "id": "ex-ms-naechte",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Ruhe und erste Nächte",
+        "card_ids": ["erste-naechte-naehe", "ruhephasen-foerdern", "alleinsein-basis"],
+        "sentence": "Was tut deinem Welpen in den ersten Wochen gut?",
+        "accept": [
+          "In den ersten Nächten nah bei dir schlafen lassen",
+          "Ruhe aktiv anbieten und Pausen einplanen",
+          "Das Alleinsein in winzigen Schritten sanft anbahnen"
+        ],
+        "distractors": [
+          "Ihn in der ersten Nacht sofort allein in einem fernen Raum lassen",
+          "Ihn den ganzen Tag durchgehend bespaßen",
+          "Ihn bei Wildheit noch länger toben lassen"
+        ],
+        "hint": "Denke an Nähe, aktive Ruhe und sanftes Alleinsein."
+      }
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "id": "01-stubenreinheit",
+  "title": "Stubenreinheit",
+  "description": "Welpenkurs (Teil 0): Wie dein Welpe lernt, sich draußen zu lösen — mit gutem Timing, Loben am richtigen Ort, einem Lösewort und ganz ohne Schimpfen bei Missgeschicken.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 10,
+  "cards": [
+    {
+      "id": "stubenreinheit",
+      "front": "Stubenreinheit",
+      "back": "Der Welpe lernt, sich draußen zu lösen statt in der Wohnung.",
+      "notes": "Braucht vor allem Geduld und gutes Timing — ein junger Welpe kann noch nicht lange einhalten.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "rausbringen-timing",
+      "front": "Rausbringen mit Timing",
+      "back": "Nach dem Schlafen, Fressen, Trinken und Spielen sofort nach draußen.",
+      "notes": "Das sind die typischen Momente, in denen ein Welpe muss. Lieber einmal zu oft raus als zu selten.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "loben-draussen",
+      "front": "Draußen loben",
+      "back": "Direkt beim Lösen im Freien ruhig loben und belohnen.",
+      "notes": "Das Lob kommt, während er sich löst oder unmittelbar danach — nicht erst zu Hause.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "loesewort",
+      "front": "Lösewort",
+      "back": "Ein festes Signalwort (z. B. „Mach schnell“), das mit dem Lösen verknüpft wird.",
+      "notes": "Praktisch bei Regen oder auf Reisen: Auf Signal löst sich der Hund gezielt.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "kein-schimpfen",
+      "front": "Nicht schimpfen",
+      "back": "Missgeschicke in der Wohnung wortlos wegwischen, nie bestrafen.",
+      "notes": "Strafe macht den Welpen nur heimlich — er lernt, sich zu verstecken, nicht sauberer zu werden.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "anzeichen-lesen",
+      "front": "Anzeichen erkennen",
+      "back": "Schnüffeln, Kreiseln oder plötzliche Unruhe — dann sofort nach draußen.",
+      "notes": "Wer die Anzeichen früh liest, kommt dem Missgeschick zuvor.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "nachts-rausbringen",
+      "front": "Nachts rausbringen",
+      "back": "Junge Welpen halten nachts noch nicht durch und müssen einmal raus.",
+      "notes": "Mit den Wochen wird die Blase größer und die Pausen länger.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["welpe"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Sauber wird man mit Timing",
+      "body": "# Stubenreinheit\n\nStubenreinheit ist keine Frage von Strenge, sondern von **Timing** und **Geduld**. Ein kleiner Welpe kann seine Blase noch nicht lange kontrollieren — deine Aufgabe ist, ihn im **richtigen Moment** nach draußen zu bringen.\n\nBring ihn sofort raus:\n\n- nach dem **Schlafen**\n- nach dem **Fressen** und **Trinken**\n- nach dem **Spielen**\n- und immer, wenn du **Anzeichen** siehst: Schnüffeln, Kreiseln, Unruhe.\n\nLöst er sich draußen, wird **direkt dort** ruhig gelobt. So verknüpft er: „Draußen lösen lohnt sich.“"
+    },
+    {
+      "id": "step-fehler",
+      "type": "theory",
+      "title": "Missgeschicke richtig behandeln",
+      "body": "## Wenn doch mal etwas danebengeht\n\nMissgeschicke gehören dazu. Entscheidend ist, wie du reagierst:\n\n- **Nicht schimpfen**, nicht mit der Nase hinein — das wischst du nur **wortlos** weg.\n- Strafe bringt dem Welpen nur bei, sich **heimlich** zu lösen, nicht, sauberer zu werden.\n- Nachts musst du ihn anfangs noch **einmal rausbringen** — die Blase wächst erst mit den Wochen.\n\nOptional hilft ein **Lösewort** wie „Mach schnell“: sag es leise, während er sich löst. Mit der Zeit löst er sich auf dieses Signal hin — praktisch bei Regen oder unterwegs."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["rausbringen-timing", "loben-draussen", "loesewort", "anzeichen-lesen"],
+        "pairs": [
+          {"left": "Rausbringen mit Timing", "right": "Nach Schlafen, Fressen und Spielen sofort raus."},
+          {"left": "Draußen loben", "right": "Beim Lösen im Freien ruhig belohnen."},
+          {"left": "Lösewort", "right": "Signalwort, das mit dem Lösen verknüpft wird."},
+          {"left": "Anzeichen erkennen", "right": "Schnüffeln und Kreiseln als Vorboten lesen."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-missgeschick",
+      "type": "exercise",
+      "theory_ref": "step-fehler",
+      "title": "Ein Missgeschick passiert",
+      "exercise": {
+        "id": "ex-mc-missgeschick",
+        "type": "cloze",
+        "prompt": "Du findest eine Pfütze in der Wohnung, das Missgeschick ist schon passiert. Was tust du?",
+        "card_ids": ["kein-schimpfen"],
+        "sentence": "___",
+        "blanks": [{"accept": ["Wortlos wegwischen und beim nächsten Mal früher rausbringen"]}],
+        "cloze_mode": "select",
+        "distractors": [
+          "Den Welpen schimpfen und zur Pfütze bringen",
+          "Ihm die Nase hineindrücken",
+          "Ihn für eine Weile allein einsperren"
+        ],
+        "hint": "Strafe für Vergangenes versteht der Welpe nicht."
+      }
+    },
+    {
+      "id": "ex-cloze-timing",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Der beste Zeitpunkt",
+      "exercise": {
+        "id": "ex-cloze-timing",
+        "type": "cloze",
+        "prompt": "Ergänze den Satz.",
+        "card_ids": ["rausbringen-timing"],
+        "sentence": "Bring den Welpen vor allem nach dem ___ , nach dem Fressen und nach dem Spielen sofort raus.",
+        "blanks": [{"accept": ["Schlafen", "schlafen", "Aufwachen"]}],
+        "cloze_mode": "type",
+        "hint": "Gleich nach dem Aufwachen muss er meist."
+      }
+    },
+    {
+      "id": "ex-free-loben",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Wo wird gelobt?",
+      "exercise": {
+        "id": "ex-free-loben",
+        "type": "free_text",
+        "prompt": "Wo lobst du den Welpen, wenn er sich gelöst hat?",
+        "card_ids": ["loben-draussen"],
+        "accept": ["Draußen", "draußen", "im Freien", "direkt draußen"],
+        "hint": "Am selben Ort, an dem er sich gerade gelöst hat.",
+        "distractors": ["Zu Hause", "Gar nicht", "Erst am Abend"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-regel",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Merksatz zur Stubenreinheit",
+      "exercise": {
+        "id": "ex-tiles-regel",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["rausbringen-timing", "loben-draussen"],
+        "tiles": ["Oft", "rausbringen", "und", "draußen", "loben"],
+        "hint": "Die zwei wichtigsten Handlungen beim Sauberwerden.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-plan",
+      "type": "exercise",
+      "theory_ref": "step-fehler",
+      "title": "Was Stubenreinheit fördert",
+      "exercise": {
+        "id": "ex-ms-plan",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Schneller stubenrein",
+        "card_ids": ["rausbringen-timing", "loben-draussen", "kein-schimpfen"],
+        "sentence": "Was hilft deinem Welpen, schnell stubenrein zu werden?",
+        "accept": [
+          "Ihn nach Schlafen, Fressen und Spielen sofort rausbringen",
+          "Das Lösen draußen direkt loben",
+          "Missgeschicke drinnen ohne Schimpfen wegwischen"
+        ],
+        "distractors": [
+          "Ihn für Pfützen bestrafen",
+          "Nur zweimal am Tag rausgehen",
+          "Erst zu Hause loben, lange nach dem Lösen"
+        ],
+        "hint": "Denke an Timing, Loben draußen und kein Schimpfen."
+      }
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "id": "04-name-bindung-sozialisierung",
+  "title": "Name, Bindung und erste Sozialisierung",
+  "description": "Welpenkurs (Teil 0): Wie dein Welpe auf seinen Namen hört, Blickkontakt und Vertrauen aufbaut und in der sensiblen Prägezeit positive Eindrücke sammelt — inklusive frühem Handling.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "namenskonditionierung",
+      "front": "Namen aufbauen",
+      "back": "Der Name wird mit etwas Gutem verknüpft: Name sagen, dann sofort belohnen, wenn der Welpe sich zuwendet.",
+      "notes": "Der Name ist kein Kommando, sondern ein „Schau mich an“ — nie zum Schimpfen benutzen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "blickkontakt",
+      "front": "Blickkontakt",
+      "back": "Freiwilliges Anschauen wird belohnt — die Basis für Aufmerksamkeit und Zusammenarbeit.",
+      "notes": "Ein Welpe, der von sich aus Blickkontakt sucht, lässt sich später viel leichter führen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "praegephase",
+      "front": "Prägephase",
+      "back": "Die sensible Zeit im Welpenalter (etwa 3. bis 14. Woche) für positive Eindrücke.",
+      "notes": "Hier Erlebtes wirkt lange nach. Neues jetzt positiv und ohne Überforderung anbieten.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["entwicklung"]
+    },
+    {
+      "id": "positive-eindruecke",
+      "front": "Positive Eindrücke",
+      "back": "Neues in kleinen Dosen und mit guter Erfahrung zeigen, statt den Welpen zu überfluten.",
+      "notes": "Qualität vor Quantität: ein ruhiges, gutes Erlebnis ist mehr wert als zehn stressige.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "handling-von-anfang",
+      "front": "Frühes Handling",
+      "back": "Pfoten, Ohren und Maul früh sanft anfassen und belohnen.",
+      "notes": "Legt den Grundstein für das spätere kooperative Medical Training (Teil 3).",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "bindung",
+      "front": "Bindung",
+      "back": "Vertrauen entsteht durch verlässliche, freundliche Führung und schöne gemeinsame Erlebnisse.",
+      "notes": "Eine gute Bindung ist die Grundlage für alles weitere Training.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["welpe"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Der Name und der Blick",
+      "body": "# Name, Bindung und erste Sozialisierung\n\nZwei kleine Übungen legen das Fundament für alles Spätere:\n\n- **Namen aufbauen**: Der Name wird mit etwas **Gutem** verknüpft. Sag den Namen, und sobald der Welpe sich zu dir dreht, wird er belohnt. Der Name ist ein freundliches „Schau mich an“ — **nie** ein Schimpfwort.\n- **Blickkontakt**: Belohne freiwilliges Anschauen. Ein Welpe, der von sich aus deinen Blick sucht, lässt sich später leicht führen.\n\nBeides zusammen baut **Bindung** auf — Vertrauen durch verlässliche, freundliche Führung."
+    },
+    {
+      "id": "step-sozial",
+      "type": "theory",
+      "title": "Die Prägephase nutzen",
+      "body": "## Positive Eindrücke sammeln\n\nDie **Prägephase** (etwa **3.–14. Woche**) ist eine sensible Zeit: Was der Welpe jetzt positiv erlebt, wirkt lange nach. Deshalb:\n\n- **Positive Eindrücke** in kleinen Dosen anbieten — verschiedene Menschen, Untergründe, Geräusche, ruhige Hundekontakte.\n- **Überforderung vermeiden**: Qualität vor Quantität. Ein ruhiges gutes Erlebnis schlägt zehn stressige.\n- **Frühes Handling**: Pfoten, Ohren und Maul sanft anfassen und belohnen — der Grundstein fürs spätere **Medical Training** (Teil 3).\n\nSo wächst ein Welpe zu einem gelassenen Hund heran."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["namenskonditionierung", "blickkontakt", "praegephase", "handling-von-anfang"],
+        "pairs": [
+          {"left": "Namen aufbauen", "right": "Name sagen, dann bei Zuwendung belohnen."},
+          {"left": "Blickkontakt", "right": "Freiwilliges Anschauen belohnen."},
+          {"left": "Prägephase", "right": "Sensible Zeit für positive Eindrücke."},
+          {"left": "Frühes Handling", "right": "Pfoten, Ohren und Maul sanft anfassen."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-name",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Der Name als Signal",
+      "exercise": {
+        "id": "ex-mc-name",
+        "type": "cloze",
+        "prompt": "Wofür solltest du den Namen deines Welpen NIE verwenden?",
+        "card_ids": ["namenskonditionierung"],
+        "sentence": "___",
+        "blanks": [{"accept": ["Zum Schimpfen oder für etwas Unangenehmes"]}],
+        "cloze_mode": "select",
+        "distractors": [
+          "Um seine Aufmerksamkeit freundlich zu gewinnen",
+          "Um ihn danach zu belohnen",
+          "Um mit ihm Kontakt aufzunehmen"
+        ],
+        "hint": "Der Name soll immer etwas Gutes bedeuten."
+      }
+    },
+    {
+      "id": "ex-cloze-praege",
+      "type": "exercise",
+      "theory_ref": "step-sozial",
+      "title": "Die sensible Zeit",
+      "exercise": {
+        "id": "ex-cloze-praege",
+        "type": "cloze",
+        "prompt": "Ergänze den Fachbegriff.",
+        "card_ids": ["praegephase"],
+        "sentence": "Die sensible Zeit im Welpenalter für positive Eindrücke heißt ___ .",
+        "blanks": [{"accept": ["Prägephase", "prägephase", "Prägungsphase"]}],
+        "cloze_mode": "type",
+        "hint": "In dieser Phase wird der Welpe fürs Leben geprägt."
+      }
+    },
+    {
+      "id": "ex-free-blick",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Basis der Aufmerksamkeit",
+      "exercise": {
+        "id": "ex-free-blick",
+        "type": "free_text",
+        "prompt": "Welches freiwillige Verhalten belohnst du als Basis für Aufmerksamkeit?",
+        "card_ids": ["blickkontakt"],
+        "accept": ["Blickkontakt", "der Blickkontakt", "Anschauen", "Blick"],
+        "hint": "Der Welpe sucht mit den Augen deinen Blick.",
+        "distractors": ["Bellen", "Ziehen", "Anspringen"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-regel",
+      "type": "exercise",
+      "theory_ref": "step-sozial",
+      "title": "Merksatz zur Sozialisierung",
+      "exercise": {
+        "id": "ex-tiles-regel",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["positive-eindruecke", "praegephase"],
+        "tiles": ["Lieber", "wenige", "gute", "als", "viele", "stressige", "Erlebnisse"],
+        "hint": "Qualität vor Quantität in der Prägephase.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-fundament",
+      "type": "exercise",
+      "theory_ref": "step-sozial",
+      "title": "Ein gutes Fundament",
+      "exercise": {
+        "id": "ex-ms-fundament",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Fundament für einen gelassenen Hund",
+        "card_ids": ["positive-eindruecke", "handling-von-anfang", "bindung"],
+        "sentence": "Was legt in der Welpenzeit ein gutes Fundament?",
+        "accept": [
+          "Positive Eindrücke in kleinen, guten Dosen sammeln",
+          "Pfoten, Ohren und Maul früh sanft anfassen",
+          "Vertrauen durch verlässliche, freundliche Führung aufbauen"
+        ],
+        "distractors": [
+          "Den Welpen mit möglichst vielen Reizen auf einmal überfluten",
+          "Den Namen häufig zum Schimpfen nutzen",
+          "Berührungen am Körper ganz vermeiden"
+        ],
+        "hint": "Denke an positive Eindrücke, Handling und Bindung."
+      }
+    }
+  ]
+}

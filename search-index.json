@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-09T19:13:16Z",
+  "generated": "2026-07-09T19:18:46Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -109,6 +109,28 @@
       "updated_at": "2026-07-06T12:56:33+00:00"
     },
     {
+      "id": "welpen-grundkurs-from-de",
+      "name": "Hundetraining Welpenkurs (Teil 0)",
+      "description": "Einstiegsteil (Teil 0) für die ersten Wochen mit einem Welpen, aus Sicht eines neuen Hundebesitzers: Stubenreinheit (Timing, Loben draußen, kein Schimpfen), Beißhemmung und Zähnchen (Spielabbruch, Alternativen), erste Nächte mit Ruhe und Schlaf (Schlafbedarf, Überdrehen, Nähe) sowie Name, Bindung und erste Sozialisierung (Namensaufbau, Blickkontakt, Prägephase, frühes Handling). Gewaltfrei, gemischte Übungstypen.",
+      "source_language": "de",
+      "target_language": "de",
+      "level": "a1",
+      "domain": "knowledge",
+      "lesson_count": 4,
+      "card_count": 25,
+      "tags": [
+        "knowledge",
+        "hundetraining",
+        "hunde",
+        "welpe",
+        "einstieg"
+      ],
+      "ai_validated": false,
+      "trust_level": 1,
+      "book": null,
+      "updated_at": null
+    },
+    {
       "id": "hundetraining-anfaenger-from-de",
       "name": "Hundetraining für Anfänger",
       "description": "Drei Anfänger-Lektionen zu gewaltfreiem Hundetraining mit positiver Verstärkung: Grundlagen (Timing, Markersignal, Belohnung, Konsequenz), erste Grundkommandos (Sitz und Platz über Locken und Ausschleichen) sowie Rückruf und Leinenführigkeit. Gemischte Übungstypen.",
@@ -171,9 +193,9 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": null
+      "updated_at": "2026-07-09T19:13:26+00:00"
     }
   ],
-  "total_lessons": 37,
-  "total_cards": 294
+  "total_lessons": 41,
+  "total_cards": 319
 }

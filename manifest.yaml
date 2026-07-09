@@ -124,6 +124,30 @@ sets:
       - frontend
       - fortgeschritten
       - multiple-choice
+  - id: welpen-grundkurs-from-de
+    title: Hundetraining Welpenkurs (Teil 0)
+    title_native: Hundetraining Welpenkurs (Teil 0)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: A1
+    path: sets/de/welpen-grundkurs
+    version: '1.0.0'
+    lesson_count: 4
+    domain_label: Hundetraining
+    description: >-
+      Einstiegsteil (Teil 0) der Reihe für die ersten Wochen mit einem Welpen,
+      aus Sicht eines neuen Hundebesitzers: Stubenreinheit, Beißhemmung und
+      Zähnchen, erste Nächte mit Ruhe und Schlaf sowie Name, Bindung und erste
+      Sozialisierung. Gewaltfrei mit positiver Verstärkung, gemischte
+      Übungstypen (matching, cloze, free_text, word_tiles, multiselect). Führt
+      zum Anfängerkurs (Teil 1) hin.
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - welpe
+      - einstieg
   - id: hundetraining-anfaenger-from-de
     title: Hundetraining für Anfänger
     title_native: Hundetraining für Anfänger

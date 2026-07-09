@@ -1,0 +1,191 @@
+{
+  "id": "02-beisshemmung",
+  "title": "Beißhemmung und Zähnchen",
+  "description": "Welpenkurs (Teil 0): Warum Welpen mit dem Maul spielen und wie dein Welpe lernt, seine Beißkraft zu kontrollieren — mit Spielabbruch, Alternativen und klaren Regeln für die Hände.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 10,
+  "cards": [
+    {
+      "id": "welpenbeissen",
+      "front": "Welpenbeißen",
+      "back": "Welpen erkunden die Welt und spielen mit dem Maul — das ist normales Verhalten.",
+      "notes": "Kein Zeichen von Aggression. Der Welpe muss erst lernen, wie fest er darf.",
+      "media_type": "text",
+      "difficulty": 1,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "beisshemmung",
+      "front": "Beißhemmung",
+      "back": "Der Welpe lernt, seine Beißkraft zu kontrollieren und nicht fest zuzubeißen.",
+      "notes": "Eine der wichtigsten Lektionen der Welpenzeit — normalerweise über Rückmeldung beim Spielen gelernt.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "spielabbruch",
+      "front": "Spielabbruch",
+      "back": "Wird es zu fest, endet das Spiel sofort für einen kurzen Moment.",
+      "notes": "So lernt der Welpe: Zu festes Beißen beendet den Spaß. Keine Aufregung, einfach kurze Pause.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "alternative-anbieten",
+      "front": "Alternative anbieten",
+      "back": "Statt Hand oder Hose bekommt der Welpe ein Kauspielzeug oder einen Kauartikel.",
+      "notes": "Der Kaudrang bleibt, bekommt aber ein erlaubtes Ziel.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "keine-haende",
+      "front": "Hände sind kein Spielzeug",
+      "back": "Nicht mit den Fingern reizen oder raufen; Hände bringen immer nur Gutes.",
+      "notes": "Wer mit den Händen wild spielt, bringt dem Welpen bei, genau nach ihnen zu schnappen.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "zahnwechsel",
+      "front": "Zahnwechsel",
+      "back": "Beim Zahnen kaut der Welpe besonders viel und braucht erlaubte Kauobjekte.",
+      "notes": "Etwa ab dem vierten Monat. Kühle Kauartikel können den Kaudrang lindern.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["welpe"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Warum Welpen beißen",
+      "body": "# Beißhemmung und Zähnchen\n\nWelpen **spielen mit dem Maul** und erkunden so ihre Welt — das ist völlig **normal** und kein Zeichen von Aggression. Der kleine Hund muss aber erst lernen, **wie fest** er zubeißen darf. Genau das ist die **Beißhemmung**.\n\nUnter Wurfgeschwistern lernt er das durch Rückmeldung: Beißt einer zu fest, quietscht der andere und das Spiel stockt. Genau dieses Prinzip nutzt du auch zu Hause.\n\n> Wichtig beim **Zahnwechsel** (ab etwa dem vierten Monat): Der Welpe kaut noch mehr und braucht **erlaubte Kauobjekte**."
+    },
+    {
+      "id": "step-methode",
+      "type": "theory",
+      "title": "So lernt er Maßhalten",
+      "body": "## Der Umgang mit dem Zwicken\n\nDrei einfache Regeln:\n\n1. **Spielabbruch**: Wird es zu fest, endet das Spiel **sofort** für einen kurzen Moment. Keine Aufregung — einfach kurz die Aufmerksamkeit entziehen.\n2. **Alternative anbieten**: Lenk den Kaudrang auf ein **Kauspielzeug** statt auf Hand oder Hose.\n3. **Hände sind kein Spielzeug**: Nicht mit den Fingern reizen oder raufen. Hände bringen immer nur Gutes.\n\nSo lernt der Welpe: Sanft spielen hält den Spaß am Laufen, zu fest beenden ihn."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "step-methode",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["beisshemmung", "spielabbruch", "alternative-anbieten", "zahnwechsel"],
+        "pairs": [
+          {"left": "Beißhemmung", "right": "Der Welpe kontrolliert seine Beißkraft."},
+          {"left": "Spielabbruch", "right": "Zu festes Beißen beendet das Spiel kurz."},
+          {"left": "Alternative anbieten", "right": "Kauspielzeug statt Hand oder Hose."},
+          {"left": "Zahnwechsel", "right": "Phase mit besonders viel Kaudrang."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-zwicken",
+      "type": "exercise",
+      "theory_ref": "step-methode",
+      "title": "Der Welpe zwickt zu fest",
+      "exercise": {
+        "id": "ex-mc-zwicken",
+        "type": "cloze",
+        "prompt": "Dein Welpe beißt beim Spielen plötzlich zu fest in die Hand. Was ist die beste Reaktion?",
+        "card_ids": ["spielabbruch", "alternative-anbieten"],
+        "sentence": "___",
+        "blanks": [{"accept": ["Das Spiel kurz beenden und danach ein Kauspielzeug anbieten"]}],
+        "cloze_mode": "select",
+        "distractors": [
+          "Den Welpen fest am Fang zudrücken",
+          "Wilder weiterspielen, damit er sich austobt",
+          "Ihn anschreien und wegstoßen"
+        ],
+        "hint": "Zu fest beißen soll den Spaß beenden, nicht steigern."
+      }
+    },
+    {
+      "id": "ex-cloze-hemmung",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Die Beißkraft lernen",
+      "exercise": {
+        "id": "ex-cloze-hemmung",
+        "type": "cloze",
+        "prompt": "Ergänze den Fachbegriff.",
+        "card_ids": ["beisshemmung"],
+        "sentence": "Wenn der Welpe lernt, seine Beißkraft zu kontrollieren, nennt man das ___ .",
+        "blanks": [{"accept": ["Beißhemmung", "beißhemmung", "Beisshemmung"]}],
+        "cloze_mode": "type",
+        "hint": "Das Beißen wird gehemmt, also gebremst."
+      }
+    },
+    {
+      "id": "ex-free-alternative",
+      "type": "exercise",
+      "theory_ref": "step-methode",
+      "title": "Statt der Hand",
+      "exercise": {
+        "id": "ex-free-alternative",
+        "type": "free_text",
+        "prompt": "Was bietest du dem Welpen zum Kauen an, statt ihn in die Hand beißen zu lassen?",
+        "card_ids": ["alternative-anbieten"],
+        "accept": ["Kauspielzeug", "ein Kauspielzeug", "Kauartikel", "Spielzeug"],
+        "hint": "Etwas, das er kauen darf, statt der Finger.",
+        "distractors": ["Die andere Hand", "Den Ärmel", "Nichts"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-regel",
+      "type": "exercise",
+      "theory_ref": "step-methode",
+      "title": "Merksatz zu den Händen",
+      "exercise": {
+        "id": "ex-tiles-regel",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["keine-haende"],
+        "tiles": ["Hände", "sind", "kein", "Spielzeug"],
+        "hint": "Nicht mit den Fingern reizen oder raufen.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-umgang",
+      "type": "exercise",
+      "theory_ref": "step-methode",
+      "title": "Guter Umgang mit dem Beißen",
+      "exercise": {
+        "id": "ex-ms-umgang",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Beißhemmung fördern",
+        "card_ids": ["spielabbruch", "alternative-anbieten", "keine-haende"],
+        "sentence": "Was hilft deinem Welpen, eine gute Beißhemmung zu lernen?",
+        "accept": [
+          "Bei zu festem Beißen das Spiel kurz abbrechen",
+          "Den Kaudrang auf ein Kauspielzeug lenken",
+          "Hände nie zum Reizen oder Raufen benutzen"
+        ],
+        "distractors": [
+          "Mit den Fingern wild vor dem Fang wedeln",
+          "Zu festes Beißen mit Schmerz bestrafen",
+          "Immer noch wilder weiterspielen"
+        ],
+        "hint": "Denke an Spielabbruch, Alternative und die Hand-Regel."
+      }
+    }
+  ]
+}
