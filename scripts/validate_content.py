@@ -5,8 +5,8 @@ This is the SECOND of Adaptive Learner's two validation layers (the app
 runs the same checks client-side before a community share). The
 **structural** definition of a lesson is canonical: the JSON Schema under
 ``schema/lesson.schema.json`` is MIRRORED from the pinned
-learn-content-engine release (source-of-truth chain: adaptive-learner
-Pydantic → engine → this mirror — see ``schema/README.md``) and this
+learn-content-engine release (source-of-truth chain: engine
+(canonical) → this mirror — see ``schema/README.md``) and this
 validator FOLLOWS it instead of re-implementing the field rules. It reads
 only the vendored mirror, so validation works fully offline.
 
