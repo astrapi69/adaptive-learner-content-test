@@ -182,7 +182,7 @@
         "type": "cloze",
         "cloze_mode": "multiselect",
         "prompt": "Gutes Alleinbleib-Training",
-        "card_ids": ["kleinschrittig", "ruheplatz", "kauartikel"],
+        "card_ids": ["kleinschrittig", "ruheplatz", "kauartikel", "alleinbleiben"],
         "sentence": "Was hilft deinem Hund, entspannt allein zu bleiben?",
         "accept": [
           "Die Alleinzeit kleinschrittig steigern",

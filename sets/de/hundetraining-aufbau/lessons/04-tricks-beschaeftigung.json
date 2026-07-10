@@ -181,7 +181,7 @@
         "type": "cloze",
         "cloze_mode": "multiselect",
         "prompt": "Sinnvolle Beschäftigung",
-        "card_ids": ["nasenarbeit", "trick-pfote", "koepfchen"],
+        "card_ids": ["nasenarbeit", "trick-pfote", "koepfchen", "trick-drehen"],
         "sentence": "Womit lastest du deinen Hund sinnvoll geistig aus?",
         "accept": [
           "Nasenarbeit und Suchspiele",

@@ -137,7 +137,7 @@
         "id": "ex-mc-anspringen",
         "type": "cloze",
         "prompt": "Dein Hund springt zur Begrüßung an dir hoch. Was ist der beste erste Schritt?",
-        "card_ids": ["ignorieren"],
+        "card_ids": ["ignorieren", "koerpersprache"],
         "sentence": "___",
         "blanks": [{"accept": ["Ihn ignorieren und ruhiges Verhalten belohnen"]}],
         "cloze_mode": "select",
@@ -191,7 +191,7 @@
         "type": "cloze",
         "cloze_mode": "multiselect",
         "prompt": "Erfolgreiches Training",
-        "card_ids": ["positive-verstaerkung", "timing", "konsequenz", "kurze-einheiten"],
+        "card_ids": ["positive-verstaerkung", "timing", "konsequenz", "kurze-einheiten", "belohnung"],
         "sentence": "Welche Punkte machen das Training mit deinem Hund erfolgreich?",
         "accept": [
           "Erwünschtes Verhalten sofort belohnen",

@@ -181,7 +181,7 @@
         "type": "cloze",
         "cloze_mode": "multiselect",
         "prompt": "Gutes Medical Training",
-        "card_ids": ["station-target", "handling", "kleinschrittig"],
+        "card_ids": ["station-target", "handling", "kleinschrittig", "medical-training"],
         "sentence": "Was gehört zu einem guten kooperativen Medical Training?",
         "accept": [
           "Ein Stationstraining mit Matte oder Kinntarget",

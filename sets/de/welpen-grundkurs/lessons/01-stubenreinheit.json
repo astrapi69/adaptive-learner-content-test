@@ -181,7 +181,7 @@
         "type": "cloze",
         "cloze_mode": "multiselect",
         "prompt": "Schneller stubenrein",
-        "card_ids": ["rausbringen-timing", "loben-draussen", "kein-schimpfen"],
+        "card_ids": ["rausbringen-timing", "loben-draussen", "kein-schimpfen", "stubenreinheit", "nachts-rausbringen"],
         "sentence": "Was hilft deinem Welpen, schnell stubenrein zu werden?",
         "accept": [
           "Ihn nach Schlafen, Fressen und Spielen sofort rausbringen",
