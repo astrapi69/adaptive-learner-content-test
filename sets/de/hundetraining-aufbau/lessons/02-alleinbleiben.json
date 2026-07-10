@@ -167,6 +167,7 @@
         "prompt": "Setze den Merksatz zusammen.",
         "card_ids": ["stressschwelle", "kleinschrittig"],
         "tiles": ["Lieber", "kurz", "und", "entspannt", "als", "lang", "und", "gestresst"],
+        "accept_orderings": [[0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 6, 3, 4, 5, 2, 7]],
         "hint": "Es geht um die Länge und die Stimmung beim Üben.",
         "direction": "target_to_source"
       }

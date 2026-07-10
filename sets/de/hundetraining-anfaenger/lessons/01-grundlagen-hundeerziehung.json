@@ -176,6 +176,7 @@
         "prompt": "Setze den Merksatz richtig zusammen.",
         "card_ids": ["kurze-einheiten"],
         "tiles": ["Lieber", "kurz", "und", "oft", "als", "lang", "und", "selten"],
+        "accept_orderings": [[0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 6, 3, 4, 5, 2, 7]],
         "hint": "Es geht um die Länge der Trainingseinheiten.",
         "direction": "target_to_source"
       }

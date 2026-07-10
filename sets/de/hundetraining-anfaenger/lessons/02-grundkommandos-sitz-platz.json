@@ -167,6 +167,7 @@
         "prompt": "Setze den Ablauf in die richtige Reihenfolge.",
         "card_ids": ["locken", "sitz"],
         "tiles": ["Locken", "dann", "markieren", "dann", "belohnen"],
+        "accept_orderings": [[0, 1, 2, 3, 4], [0, 3, 2, 1, 4]],
         "hint": "Zuerst führst du den Hund, ganz zuletzt gibt es das Leckerli.",
         "direction": "target_to_source"
       }
