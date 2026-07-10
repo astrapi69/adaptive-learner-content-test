@@ -3,7 +3,10 @@
 # Zweck (Test-Repo): der fokussierte Ende-zu-Ende-Test der Multiple-Choice-
 # Mechanik. Das Set besteht AUSSCHLIESSLICH aus MC-Aufgaben — im Schema
 # umgesetzt als cloze select-mode (eine richtige Antwort + plausible
-# distractors); es gibt bewusst keinen anderen Aufgabentyp.
+# distractors) sowie, seit Engine 0.8.1 (Schema v1.6), als nativer
+# multiple_choice-Typ (options mit correct-Flag, optional multiple: true).
+# Lektion 05 ist die Referenz-Lektion für den nativen Typ; einen anderen
+# Aufgabentyp als MC gibt es bewusst nicht.
 #
 # Urheberrecht: Der amtliche Fragenkatalog (TÜV/DEKRA) und dessen Bildtafeln
 # sind geschützt. Dieses Set übernimmt KEINE amtlichen Prüfungsfragen (weder
@@ -20,10 +23,11 @@ schema_version: '1.3'
 name: Führerscheinprüfung (Übungsfragen)
 description: >-
   Eigene, frei formulierte Übungsfragen im Stil einer Führerscheinprüfung
-  (Beispiel Deutschland) — ausschließlich Multiple-Choice. Vier Lektionen zu
+  (Beispiel Deutschland) — ausschließlich Multiple-Choice. Fünf Lektionen zu
   Vorfahrt und Kreuzungen, Geschwindigkeit und Abstand, Alkohol/Drogen und
-  Fahrtüchtigkeit sowie Parken/Halten. Kein amtlicher Fragenkatalog, keine
-  amtlichen Bilder, kein Anspruch auf Prüfungsechtheit.
+  Fahrtüchtigkeit, Parken/Halten sowie Rettungsgasse und Einsatzfahrzeugen.
+  Kein amtlicher Fragenkatalog, keine amtlichen Bilder, kein Anspruch auf
+  Prüfungsechtheit.
 sets:
   - id: fuehrerschein-uebung-from-de
     title: Führerscheinprüfung (Übungsfragen)
@@ -34,16 +38,17 @@ sets:
     level: A2
     path: sets/de/fuehrerschein-uebung
     version: '1.0.0'
-    lesson_count: 4
+    lesson_count: 5
     domain_label: Verkehrskunde
     description: >-
-      Vier Lektionen mit ausschließlich Multiple-Choice-Übungen (im Schema
-      als cloze select-mode) rund um freie Fakten der deutschen StVO:
-      Vorfahrt und Kreuzungen, Geschwindigkeit und Abstand, Alkohol/Drogen
-      und Fahrtüchtigkeit sowie Parken, Halten und besondere Situationen.
-      Eigene Formulierungen — keine amtlichen Prüfungsfragen, keine Bilder,
-      kein Anspruch auf Prüfungsechtheit. Test-Set zum Festnageln der
-      MC-Mechanik.
+      Fünf Lektionen mit ausschließlich Multiple-Choice-Übungen (im Schema
+      als cloze select-mode und als nativer multiple_choice-Typ) rund um
+      freie Fakten der deutschen StVO: Vorfahrt und Kreuzungen,
+      Geschwindigkeit und Abstand, Alkohol/Drogen und Fahrtüchtigkeit,
+      Parken/Halten sowie Rettungsgasse und Einsatzfahrzeuge (Referenz für
+      den nativen Typ, Schema v1.6). Eigene Formulierungen — keine
+      amtlichen Prüfungsfragen, keine Bilder, kein Anspruch auf
+      Prüfungsechtheit. Test-Set zum Festnageln der MC-Mechanik.
     tags:
       - knowledge
       - verkehr
@@ -57,3 +62,4 @@ metadata:
     - 02-geschwindigkeit-abstand.json
     - 03-alkohol-fahrtuechtigkeit.json
     - 04-parken-halten-situationen.json
+    - 05-rettungsgasse-einsatzfahrzeuge.json

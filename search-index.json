@@ -1,6 +1,6 @@
 {
-  "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-10T06:20:52Z",
+  "repo": "git@github.com:astrapi69/adaptive-learner-content-test",
+  "generated": "2026-07-10T12:34:23Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -68,13 +68,13 @@
     {
       "id": "fuehrerschein-uebung-from-de",
       "name": "Führerscheinprüfung (Übungsfragen)",
-      "description": "Vier Lektionen mit ausschließlich Multiple-Choice-Übungen (im Schema als cloze select-mode) rund um freie Fakten der deutschen StVO: Vorfahrt und Kreuzungen, Geschwindigkeit und Abstand, Alkohol/Drogen und Fahrtüchtigkeit sowie Parken, Halten und besondere Situationen. Eigene Formulierungen — keine amtlichen Prüfungsfragen, keine Bilder, kein Anspruch auf Prüfungsechtheit. Test-Set zum Festnageln der MC-Mechanik.",
+      "description": "Fünf Lektionen mit ausschließlich Multiple-Choice-Übungen (im Schema als cloze select-mode und als nativer multiple_choice-Typ) rund um freie Fakten der deutschen StVO: Vorfahrt und Kreuzungen, Geschwindigkeit und Abstand, Alkohol/Drogen und Fahrtüchtigkeit, Parken/Halten sowie Rettungsgasse und Einsatzfahrzeuge (Referenz für den nativen Typ, Schema v1.6). Eigene Formulierungen — keine amtlichen Prüfungsfragen, keine Bilder, kein Anspruch auf Prüfungsechtheit. Test-Set zum Festnageln der MC-Mechanik.",
       "source_language": "de",
       "target_language": "de",
       "level": "a2",
       "domain": "knowledge",
-      "lesson_count": 4,
-      "card_count": 32,
+      "lesson_count": 5,
+      "card_count": 37,
       "tags": [
         "knowledge",
         "verkehr",
@@ -196,6 +196,6 @@
       "updated_at": "2026-07-10T08:20:36+02:00"
     }
   ],
-  "total_lessons": 41,
-  "total_cards": 319
+  "total_lessons": 42,
+  "total_cards": 324
 }
