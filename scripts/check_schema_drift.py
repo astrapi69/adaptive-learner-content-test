@@ -3,10 +3,9 @@
 
 The JSON-Schema artefacts under ``schema/`` are a **mirror of
 learn-content-engine ``schema/``** at the version pinned in
-``schema/engine-version.txt`` (source-of-truth chain: adaptive-learner
-Pydantic → learn-content-engine → this mirror). The engine vendors the
-app-generated schemas per its documented schema-sync procedure; this repo
-mirrors the engine, so content authors and third-party validators never
+``schema/engine-version.txt`` (source-of-truth chain: learn-content-engine
+(canonical) → this mirror). The engine is the canonical schema source; this
+repo mirrors it, so content authors and third-party validators never
 need the app.
 
 The mirror stays VENDORED so everything except this drift CHECK works

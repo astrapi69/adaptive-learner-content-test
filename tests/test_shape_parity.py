@@ -2,8 +2,8 @@
 """Cross-language shape-parity gate (#1208 / Refs #1205 / #1193, #699).
 
 The lesson SHAPE is canonical: ``schema/lesson.schema.json`` is mirrored from
-the pinned learn-content-engine release (source-of-truth chain: adaptive-learner
-Pydantic → engine → this mirror) and validated here with ``jsonschema`` exactly
+the pinned learn-content-engine release (source-of-truth chain: engine
+(canonical) → this mirror) and validated here with ``jsonschema`` exactly
 as ajv-based consumers (the app, the engine) validate it. The remaining half of
 the #699 contract is *parity* — every consumer must accept/reject the same
 input identically.
