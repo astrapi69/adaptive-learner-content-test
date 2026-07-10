@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-10T06:12:04Z",
+  "generated": "2026-07-10T06:40:14Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -149,7 +149,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-07-10T06:12:04+00:00"
+      "updated_at": "2026-07-10T06:40:14+00:00"
     },
     {
       "id": "hundetraining-aufbau-from-de",
@@ -171,7 +171,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-07-09T19:07:30+00:00"
+      "updated_at": "2026-07-10T06:40:14+00:00"
     },
     {
       "id": "hundetraining-alltag-from-de",
