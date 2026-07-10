@@ -1,0 +1,46 @@
+# Set-Manifest: Hundetraining für Anfänger — deutschsprachig.
+#
+# Sachthema-Set (domain: knowledge): Material und Erklärung sind beide auf
+# Deutsch (source_language == target_language); der Set-Ordner trägt einen
+# Themennamen. Der Content-Loader liest metadata.lessons für die Dateiliste.
+#
+# Inhalt: drei Anfänger-Lektionen zu gewaltfreiem Hundetraining mit positiver
+# Verstärkung — Grundlagen, erste Grundkommandos (Sitz/Platz) sowie Rückruf
+# und Leinenführigkeit. Übungstypen gemischt: matching, cloze (Freitext-Lücke
+# und Single-Choice als select), free_text, word_tiles und multiselect.
+schema_version: '1.3'
+name: Hundetraining für Anfänger
+description: >-
+  Einstieg ins gewaltfreie Hundetraining mit positiver Verstärkung. Drei
+  Anfänger-Lektionen: Grundlagen der Hundeerziehung, erste Grundkommandos
+  (Sitz und Platz) sowie Rückruf und Leinenführigkeit. Gemischte Übungstypen
+  (matching, cloze, free_text, word_tiles, multiselect).
+sets:
+  - id: hundetraining-anfaenger-from-de
+    title: Hundetraining für Anfänger
+    title_native: Hundetraining für Anfänger
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: A1
+    path: sets/de/hundetraining-anfaenger
+    version: '1.0.0'
+    lesson_count: 3
+    domain_label: Hundetraining
+    description: >-
+      Drei Anfänger-Lektionen zu gewaltfreiem Hundetraining mit positiver
+      Verstärkung: Grundlagen (Timing, Markersignal, Belohnung, Konsequenz),
+      erste Grundkommandos (Sitz und Platz über Locken und Ausschleichen)
+      sowie Rückruf und Leinenführigkeit. Gemischte Übungstypen.
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - anfaenger
+metadata:
+  author: Asterios Raptis
+  license: CC-BY-SA-4.0
+  lessons:
+    - 01-grundlagen-hundeerziehung.json
+    - 02-grundkommandos-sitz-platz.json
+    - 03-rueckruf-leinenfuehrigkeit.json

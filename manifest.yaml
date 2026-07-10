@@ -124,3 +124,97 @@ sets:
       - frontend
       - fortgeschritten
       - multiple-choice
+  - id: welpen-grundkurs-from-de
+    title: Hundetraining Welpenkurs (Teil 0)
+    title_native: Hundetraining Welpenkurs (Teil 0)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: A1
+    path: sets/de/welpen-grundkurs
+    version: '1.0.0'
+    lesson_count: 4
+    domain_label: Hundetraining
+    description: >-
+      Einstiegsteil (Teil 0) der Reihe für die ersten Wochen mit einem Welpen,
+      aus Sicht eines neuen Hundebesitzers: Stubenreinheit, Beißhemmung und
+      Zähnchen, erste Nächte mit Ruhe und Schlaf sowie Name, Bindung und erste
+      Sozialisierung. Gewaltfrei mit positiver Verstärkung, gemischte
+      Übungstypen (matching, cloze, free_text, word_tiles, multiselect). Führt
+      zum Anfängerkurs (Teil 1) hin.
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - welpe
+      - einstieg
+  - id: hundetraining-anfaenger-from-de
+    title: Hundetraining für Anfänger
+    title_native: Hundetraining für Anfänger
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: A1
+    path: sets/de/hundetraining-anfaenger
+    version: '1.0.0'
+    lesson_count: 3
+    domain_label: Hundetraining
+    description: >-
+      Einstieg ins gewaltfreie Hundetraining mit positiver Verstärkung: drei
+      Anfänger-Lektionen zu den Grundlagen (Timing, Markersignal, Belohnung,
+      Konsequenz), zu ersten Grundkommandos (Sitz und Platz) sowie zu Rückruf
+      und Leinenführigkeit. Gemischte Übungstypen (matching, cloze, free_text,
+      word_tiles, multiselect).
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - anfaenger
+  - id: hundetraining-aufbau-from-de
+    title: Hundetraining Aufbaukurs (Teil 2)
+    title_native: Hundetraining Aufbaukurs (Teil 2)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: A2
+    path: sets/de/hundetraining-aufbau
+    version: '1.0.0'
+    lesson_count: 4
+    domain_label: Hundetraining
+    description: >-
+      Fortsetzung von „Hundetraining für Anfänger“ (Teil 2, Aufbaukurs, A2):
+      vier Lektionen zu Impulskontrolle (Bleib und Aus, die drei D), entspanntem
+      Alleinbleiben, Begegnungen und Sozialisierung sowie Tricks und geistiger
+      Beschäftigung (Formen, Einfangen, Nasenarbeit). Gewaltfrei mit positiver
+      Verstärkung, gemischte Übungstypen (matching, cloze, free_text,
+      word_tiles, multiselect).
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - aufbau
+      - fortgeschritten
+  - id: hundetraining-alltag-from-de
+    title: Hundetraining Souverän im Alltag (Teil 3)
+    title_native: Hundetraining Souverän im Alltag (Teil 3)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: B1
+    path: sets/de/hundetraining-alltag
+    version: '1.0.0'
+    lesson_count: 4
+    domain_label: Hundetraining
+    description: >-
+      Teil 3 der Reihe (B1), aufbauend auf Anfänger- und Aufbaukurs: vier
+      Lektionen zur Alltagssouveränität — Antijagdtraining, Maulkorbtraining,
+      kooperatives Medical Training (Tierarzt und Handling) sowie ein
+      bombenfester Notrückruf unter Ablenkung (Pfeife, Jackpot, Rückrufparty).
+      Gewaltfrei mit positiver Verstärkung, gemischte Übungstypen (matching,
+      cloze, free_text, word_tiles, multiselect).
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - alltag
+      - fortgeschritten

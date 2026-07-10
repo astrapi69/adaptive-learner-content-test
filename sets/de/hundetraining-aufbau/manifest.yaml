@@ -1,0 +1,52 @@
+# Set-Manifest: Hundetraining Aufbaukurs (Teil 2) — deutschsprachig.
+#
+# Sachthema-Set (domain: knowledge): Material und Erklärung sind beide auf
+# Deutsch (source_language == target_language); der Set-Ordner trägt einen
+# Themennamen. Der Content-Loader liest metadata.lessons für die Dateiliste.
+#
+# Fortsetzung von „Hundetraining für Anfänger“ (Teil 1). Vier Aufbau-Lektionen
+# für Hunde, die die Grundlagen und ersten Kommandos schon kennen:
+# Impulskontrolle (Bleib/Aus), entspanntes Alleinbleiben, Begegnungen und
+# Sozialisierung sowie Tricks und geistige Beschäftigung. Übungstypen gemischt:
+# matching, cloze (Freitext-Lücke und Single-Choice als select), free_text,
+# word_tiles und multiselect.
+schema_version: '1.3'
+name: Hundetraining Aufbaukurs (Teil 2)
+description: >-
+  Fortsetzung von „Hundetraining für Anfänger“: vier Aufbau-Lektionen für
+  Hund und Halter, die die Grundlagen schon beherrschen. Themen: Impulskontrolle
+  (Bleib und Aus, die drei D), entspanntes Alleinbleiben, Begegnungen und
+  Sozialisierung sowie Tricks und geistige Beschäftigung. Gewaltfrei, mit
+  positiver Verstärkung. Gemischte Übungstypen.
+sets:
+  - id: hundetraining-aufbau-from-de
+    title: Hundetraining Aufbaukurs (Teil 2)
+    title_native: Hundetraining Aufbaukurs (Teil 2)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: A2
+    path: sets/de/hundetraining-aufbau
+    version: '1.0.0'
+    lesson_count: 4
+    domain_label: Hundetraining
+    description: >-
+      Aufbaukurs (Teil 2) für Hunde, die die Anfänger-Grundlagen kennen: vier
+      Lektionen zu Impulskontrolle (Bleib und Aus, die drei D Dauer/Distanz/
+      Ablenkung), entspanntem Alleinbleiben, Begegnungen und Sozialisierung
+      sowie Tricks und geistiger Beschäftigung (Formen, Einfangen, Nasenarbeit).
+      Gewaltfrei mit positiver Verstärkung, gemischte Übungstypen.
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - aufbau
+      - fortgeschritten
+metadata:
+  author: Asterios Raptis
+  license: CC-BY-SA-4.0
+  lessons:
+    - 01-impulskontrolle-bleib-aus.json
+    - 02-alleinbleiben.json
+    - 03-begegnungen-sozialisierung.json
+    - 04-tricks-beschaeftigung.json

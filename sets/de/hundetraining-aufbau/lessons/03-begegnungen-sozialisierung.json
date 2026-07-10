@@ -1,0 +1,200 @@
+{
+  "id": "03-begegnungen-sozialisierung",
+  "title": "Begegnungen und Sozialisierung",
+  "description": "Aufbaukurs Teil 2: Wie dein Hund anderen Hunden, Menschen und Reizen entspannt begegnet — mit positiven Verknüpfungen, genug Distanz und dem Lesen von Beschwichtigungssignalen.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "sozialisierung",
+      "front": "Sozialisierung",
+      "back": "Positive Erfahrungen mit Menschen, Tieren und Umweltreizen, damit der Hund gelassen wird.",
+      "notes": "Besonders wichtig in jungen Wochen, aber auch später weiter zu pflegen.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["alltag"]
+    },
+    {
+      "id": "sozialisierungsphase",
+      "front": "Sozialisierungsphase",
+      "back": "Die sensible Zeit im Welpenalter (etwa 3. bis 14. Woche) für neue Eindrücke.",
+      "notes": "In dieser Phase geprägte Erfahrungen wirken lange nach. Neues hier positiv und ohne Überforderung anbieten.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["entwicklung"]
+    },
+    {
+      "id": "bogen-laufen",
+      "front": "Im Bogen vorbeigehen",
+      "back": "An einem anderen Hund in einem Bogen vorbeigehen statt frontal aufeinander zu.",
+      "notes": "Frontales Zulaufen ist für Hunde oft bedrohlich. Ein Bogen ist höfliche Hundesprache.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["begegnung"]
+    },
+    {
+      "id": "beschwichtigung",
+      "front": "Beschwichtigungssignale",
+      "back": "Beruhigende Signale wie Gähnen, Schnüffeln, Blick abwenden oder langsames Gehen.",
+      "notes": "Der Hund signalisiert damit „alles friedlich“. Wer sie liest, erkennt früh Unbehagen.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["koerpersprache"]
+    },
+    {
+      "id": "distanz-wahren",
+      "front": "Genug Distanz wahren",
+      "back": "So viel Abstand halten, dass der Hund bei einem Reiz noch ansprechbar und entspannt bleibt.",
+      "notes": "Distanz ist das einfachste Mittel, um unter der Reizschwelle zu bleiben.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["begegnung"]
+    },
+    {
+      "id": "positive-verknuepfung",
+      "front": "Positive Verknüpfung",
+      "back": "Einen neuen Reiz (Fahrrad, Kind, anderer Hund) mit etwas Gutem wie Leckerli verbinden.",
+      "notes": "So wird aus „unbekannt und beängstigend“ mit der Zeit „bekannt und angenehm“.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "ueberforderung",
+      "front": "Überforderung vermeiden",
+      "back": "Nicht zu viele neue Reize auf einmal; lieber wenige, gut verkraftbare Erlebnisse.",
+      "notes": "Qualität vor Quantität. Ein überforderter Hund lernt Angst statt Gelassenheit.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Gelassen durch die Welt",
+      "body": "# Sozialisierung\n\n**Sozialisierung** heißt: Dein Hund macht **positive Erfahrungen** mit Menschen, Tieren und Umweltreizen und wird dadurch gelassen. Besonders prägend ist die **Sozialisierungsphase** im Welpenalter (etwa 3.–14. Woche) — aber auch danach übst du weiter.\n\nDie zwei Werkzeuge:\n\n- **Positive Verknüpfung** — verbinde einen neuen Reiz (Fahrrad, Kind, Hund) mit etwas Gutem, z. B. einem Leckerli.\n- **Überforderung vermeiden** — lieber wenige, gut verkraftbare Eindrücke als ein Reizgewitter.\n\n> Qualität vor Quantität: Ein überfordertes Tier lernt Angst, kein entspanntes Verhalten."
+    },
+    {
+      "id": "step-begegnung",
+      "type": "theory",
+      "title": "Höfliche Hundebegegnungen",
+      "body": "## Wenn ein anderer Hund kommt\n\nHunde begrüßen sich **nicht** frontal. Für entspannte Begegnungen hilft:\n\n- **Im Bogen vorbeigehen** statt geradewegs aufeinander zu.\n- **Genug Distanz wahren**, damit dein Hund ansprechbar bleibt.\n- **Beschwichtigungssignale lesen**: Gähnen, Schnüffeln, Kopf abwenden, langsames Gehen — sie zeigen „alles friedlich“ oder erstes Unbehagen.\n\nSo bleiben Begegnungen unter der Reizschwelle und enden gut."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["sozialisierung", "bogen-laufen", "beschwichtigung", "positive-verknuepfung"],
+        "pairs": [
+          {"left": "Sozialisierung", "right": "Positive Erfahrungen mit Menschen, Tieren und Umwelt."},
+          {"left": "Im Bogen vorbeigehen", "right": "Nicht frontal, sondern im Bogen am Hund vorbei."},
+          {"left": "Beschwichtigungssignale", "right": "Gähnen, Schnüffeln, Blick abwenden."},
+          {"left": "Positive Verknüpfung", "right": "Neuen Reiz mit etwas Gutem verbinden."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-bogen",
+      "type": "exercise",
+      "theory_ref": "step-begegnung",
+      "title": "Ein Hund kommt entgegen",
+      "exercise": {
+        "id": "ex-mc-bogen",
+        "type": "cloze",
+        "prompt": "Euch kommt an der Leine ein anderer Hund entgegen. Wie gehst du am besten vorbei?",
+        "card_ids": ["bogen-laufen", "distanz-wahren"],
+        "sentence": "___",
+        "blanks": [{"accept": ["In einem Bogen und mit genug Abstand vorbeigehen"]}],
+        "cloze_mode": "select",
+        "distractors": [
+          "Frontal und schnell aufeinander zulaufen",
+          "Die Hunde direkt Nase an Nase führen",
+          "An kurzer, straffer Leine stehen bleiben"
+        ],
+        "hint": "Frontal ist für Hunde unhöflich."
+      }
+    },
+    {
+      "id": "ex-cloze-phase",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Die sensible Zeit",
+      "exercise": {
+        "id": "ex-cloze-phase",
+        "type": "cloze",
+        "prompt": "Ergänze den Fachbegriff.",
+        "card_ids": ["sozialisierungsphase"],
+        "sentence": "Die besonders prägende Zeit für neue Eindrücke im Welpenalter heißt ___ .",
+        "blanks": [{"accept": ["Sozialisierungsphase", "sozialisierungsphase"]}],
+        "cloze_mode": "type",
+        "hint": "Sie gehört zur Sozialisierung und ist eine Phase."
+      }
+    },
+    {
+      "id": "ex-free-beschwichtigung",
+      "type": "exercise",
+      "theory_ref": "step-begegnung",
+      "title": "Beruhigende Signale",
+      "exercise": {
+        "id": "ex-free-beschwichtigung",
+        "type": "free_text",
+        "prompt": "Wie nennt man beruhigende Signale wie Gähnen oder Blick abwenden?",
+        "card_ids": ["beschwichtigung"],
+        "accept": ["Beschwichtigungssignale", "Beschwichtigungssignal", "beschwichtigungssignale"],
+        "hint": "Sie beschwichtigen, also beruhigen die Lage.",
+        "distractors": ["Drohsignale", "Kommandos", "Markersignale"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-regel",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Merksatz zur Sozialisierung",
+      "exercise": {
+        "id": "ex-tiles-regel",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["ueberforderung"],
+        "tiles": ["Wenige", "gute", "Erlebnisse", "statt", "vieler", "stressiger"],
+        "hint": "Qualität vor Quantität.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-begegnung",
+      "type": "exercise",
+      "theory_ref": "step-begegnung",
+      "title": "Gute Begegnungen gestalten",
+      "exercise": {
+        "id": "ex-ms-begegnung",
+        "type": "cloze",
+        "cloze_mode": "multiselect",
+        "prompt": "Entspannte Begegnungen",
+        "card_ids": ["bogen-laufen", "distanz-wahren", "positive-verknuepfung"],
+        "sentence": "Was hilft bei entspannten Begegnungen mit anderen Hunden und Reizen?",
+        "accept": [
+          "Im Bogen statt frontal vorbeigehen",
+          "Genug Distanz wahren, damit der Hund ansprechbar bleibt",
+          "Den Reiz mit etwas Gutem positiv verknüpfen"
+        ],
+        "distractors": [
+          "Möglichst viele Reize auf einmal anbieten",
+          "Den Hund zum direkten Nasenkontakt zwingen",
+          "Bei Unsicherheit an straffer Leine festhalten"
+        ],
+        "hint": "Denke an Bogen, Distanz und positive Verknüpfung."
+      }
+    }
+  ]
+}

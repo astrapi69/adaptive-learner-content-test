@@ -1,0 +1,53 @@
+# Set-Manifest: Hundetraining Souverän im Alltag (Teil 3) — deutschsprachig.
+#
+# Sachthema-Set (domain: knowledge): Material und Erklärung sind beide auf
+# Deutsch (source_language == target_language); der Set-Ordner trägt einen
+# Themennamen. Der Content-Loader liest metadata.lessons für die Dateiliste.
+#
+# Dritter und anspruchsvollster Teil der Reihe (nach „Für Anfänger“ und
+# „Aufbaukurs“). Vier B1-Lektionen zur Alltagssouveränität: Antijagdtraining,
+# Maulkorbtraining, kooperatives Medical Training (Tierarzt/Handling) und ein
+# bombenfester Notrückruf unter Ablenkung. Übungstypen gemischt: matching,
+# cloze (Freitext-Lücke und Single-Choice als select), free_text, word_tiles
+# und multiselect.
+schema_version: '1.3'
+name: Hundetraining Souverän im Alltag (Teil 3)
+description: >-
+  Dritter Teil der Reihe (B1): vier anspruchsvolle Lektionen zur
+  Alltagssouveränität. Antijagdtraining, Maulkorbtraining, kooperatives Medical
+  Training (Tierarzt und Handling) sowie ein bombenfester Notrückruf unter
+  starker Ablenkung. Gewaltfrei mit positiver Verstärkung, gemischte Übungstypen.
+sets:
+  - id: hundetraining-alltag-from-de
+    title: Hundetraining Souverän im Alltag (Teil 3)
+    title_native: Hundetraining Souverän im Alltag (Teil 3)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: B1
+    path: sets/de/hundetraining-alltag
+    version: '1.0.0'
+    lesson_count: 4
+    domain_label: Hundetraining
+    description: >-
+      Teil 3 (B1) der Reihe, aufbauend auf Anfänger- und Aufbaukurs: vier
+      Lektionen zur Alltagssouveränität — Antijagdtraining (Verhaltenskette,
+      Abbruchsignal, Umorientierung, Management), Maulkorbtraining (Passform,
+      schrittweise Gewöhnung), kooperatives Medical Training (Cooperative Care,
+      Start-/Abbruchsignal, Stationstraining, Handling) und Notrückruf unter
+      Ablenkung (Pfeife, Jackpot, Rückrufparty). Gewaltfrei, gemischte
+      Übungstypen (matching, cloze, free_text, word_tiles, multiselect).
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - alltag
+      - fortgeschritten
+metadata:
+  author: Asterios Raptis
+  license: CC-BY-SA-4.0
+  lessons:
+    - 01-antijagdtraining.json
+    - 02-maulkorbtraining.json
+    - 03-medical-training-tierarzt.json
+    - 04-notrueckruf-ablenkung.json
