@@ -165,7 +165,7 @@
         "id": "ex-tiles-sitz",
         "type": "word_tiles",
         "prompt": "Setze den Ablauf in die richtige Reihenfolge.",
-        "card_ids": ["locken", "markersignal"],
+        "card_ids": ["locken", "sitz"],
         "tiles": ["Locken", "dann", "markieren", "dann", "belohnen"],
         "hint": "Zuerst führst du den Hund, ganz zuletzt gibt es das Leckerli.",
         "direction": "target_to_source"
