@@ -48,8 +48,8 @@ Open `sets/en/my-set/lessons/01-greetings.json` and change:
 - **`title`**, **`description`**, **`target_language`** / **`source_language`**.
 - **`cards`** → your words/terms. Keep ids unique and kebab-case.
 - **`steps`** → at least one **theory** step and **five** exercises across at
-  least two of the five types (matching, free_text, cloze, word_tiles,
-  picture_choice).
+  least two of the six types (matching, free_text, cloze, word_tiles,
+  picture_choice, multiple_choice).
 
 Keep these or the validator will complain:
 
@@ -62,7 +62,7 @@ Keep these or the validator will complain:
 Create `sets/en/my-set/manifest.yaml`:
 
 ```yaml
-schema_version: '1.3'
+schema_version: '1.6'
 name: My Set
 sets:
   - id: my-set-from-en

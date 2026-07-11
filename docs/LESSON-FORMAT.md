@@ -119,19 +119,33 @@ theory step is required per lesson.
 }
 ```
 
-The inner `exercise` object's `type` picks one of the five exercise types below.
+The inner `exercise` object's `type` picks one of the six exercise types below.
 Most carry `card_ids` (the cards they draw on) and a `direction`.
 
 **`direction`** (productive vs receptive):
 - `source_to_target` — learner produces the target language (harder).
 - `target_to_source` — learner recognises/translates into the source (easier).
 
-## The five exercise types
+## The six exercise types
 
 ### matching
 ```jsonc
 { "type": "matching", "prompt": "…", "card_ids": [ … ],
   "pairs": [ {"left": "hola", "right": "hello"}, … ],   // >= 3 pairs
+  "direction": "target_to_source" }
+```
+
+**`from_cards`** (schema v1.5): set `"from_cards": true` and **omit** `pairs`
+to avoid repeating definitions that already live in the cards. The engine
+derives the pairs from the referenced `card_ids` (left = card `front`,
+right = card `back`). Requires non-empty `card_ids` and forbids an explicit
+`pairs` list; the >= 3 minimum then applies to the derived pairs, i.e. the
+`card_ids`.
+
+```jsonc
+{ "type": "matching", "prompt": "…",
+  "card_ids": ["hola", "gracias", "adios"],   // >= 3, pairs are derived from these cards
+  "from_cards": true,
   "direction": "target_to_source" }
 ```
 
@@ -177,9 +191,37 @@ Most carry `card_ids` (the cards they draw on) and a `direction`.
 optional in practice (the label text is what's shown); use `assets/img/<name>.png`
 paths as elsewhere in the repo.
 
+### multiple_choice
+```jsonc
+{ "type": "multiple_choice", "prompt": "Which number is prime?",
+  "options": [
+    {"text": "7", "correct": true},          // exactly one correct (single mode)
+    {"text": "8"},
+    {"text": "9"}
+  ],
+  "card_ids": [ … ],
+  "hint": "…" }
+```
+
+First-class text multiple choice (schema v1.6). `options` is a list of
+`{text, correct?}`; at least two options, option texts must be unique (the
+text IS the option). `multiple` picks the mode:
+
+- **`multiple: false`** (default): single choice, exactly **one** option
+  carries `"correct": true` and the learner picks one.
+- **`multiple: true`**: "select all that apply", at least **one** option is
+  correct; graded by exact-set match, no partial credit (the same contract
+  as `cloze` `multiselect`).
+
+Correctness is a per-option flag, so there are no separate accept/distractor
+lists. `multiple_choice` **coexists** with the legacy `cloze`
+`select`/`multiselect` vehicle; existing cloze-based multiple choice stays
+valid.
+
 ## Validation rules (the quality gate)
 
-`scripts/validate_content.py` enforces, per lesson:
+`scripts/validate_content.py` (plus the engine gate in CI for the rules
+marked *engine*) enforces, per lesson:
 
 | Rule | Minimum |
 |---|---|
@@ -187,8 +229,10 @@ paths as elsewhere in the repo.
 | distinct exercise types | ≥ 2 |
 | theory steps | ≥ 1 |
 | `free_text` accepts | ≥ 2 **and** `distractors` present |
-| `matching` pairs | ≥ 3 |
+| `matching` pairs | ≥ 3 (explicit or derived via `from_cards`) |
 | `picture_choice` | `distractors` present |
+| `multiple_choice` options | ≥ 2, no duplicate option texts (*engine*) |
+| `multiple_choice` correct count | exactly 1 (single) / ≥ 1 (`multiple: true`) (*engine*) |
 | cards | no empty `front`/`back` |
 
 …and, per set: a valid ISO 639-1 language pair, the correct `path` for the
@@ -199,7 +243,7 @@ domain, and every lesson listed in the set manifest's `metadata.lessons`.
 `sets/<…>/manifest.yaml`:
 
 ```yaml
-schema_version: '1.3'
+schema_version: '1.6'
 name: My Set
 sets:
   - id: my-set-from-en
