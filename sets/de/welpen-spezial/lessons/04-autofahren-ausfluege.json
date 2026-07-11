@@ -1,0 +1,196 @@
+{
+  "id": "04-autofahren-ausfluege",
+  "title": "Autofahren und erste Ausflüge",
+  "description": "Welpen-Spezial: Wie dein Welpe entspannt Auto fährt und die Welt kennenlernt — mit kurzen positiven Fahrten, sicherem Transport und ruhigen, dosierten Ausflügen.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 11,
+  "cards": [
+    {
+      "id": "autofahren-gewoehnen",
+      "front": "Autofahren angewöhnen",
+      "back": "Mit ganz kurzen, positiven Fahrten beginnen und die Dauer langsam steigern.",
+      "notes": "Am Anfang reicht ein paar Meter, dann ums Haus, dann zu einem schönen Ziel.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["alltag"]
+    },
+    {
+      "id": "sicherung",
+      "front": "Sicher transportieren",
+      "back": "Der Welpe fährt gesichert mit — in einer Transportbox oder mit Sicherheitsgurt.",
+      "notes": "Schützt bei einer Bremsung und gibt dem Welpen einen festen, ruhigen Platz.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["alltag"]
+    },
+    {
+      "id": "reiseuebelkeit",
+      "front": "Reiseübelkeit",
+      "back": "Manchen Welpen wird beim Fahren übel; kurze Fahrten und nicht direkt nach dem Fressen helfen.",
+      "notes": "Legt sich oft mit der Zeit. Bei starker Übelkeit hilft eine Tierärztin.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["alltag"]
+    },
+    {
+      "id": "positive-ersterfahrung",
+      "front": "Gute erste Erfahrung",
+      "back": "Das erste Autofahren oder ein neuer Ort soll mit etwas Schönem enden.",
+      "notes": "Fährt der Welpe anfangs nur zum Tierarzt, wird das Auto schnell negativ besetzt.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "neue-orte",
+      "front": "Neue Orte ruhig zeigen",
+      "back": "Verschiedene Umgebungen wie Stadt, Wald oder Café gelassen kennenlernen lassen.",
+      "notes": "Beobachten aus sicherer Entfernung reicht oft — nicht jeder Reiz muss berührt werden.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["alltag"]
+    },
+    {
+      "id": "dosieren",
+      "front": "Ausflüge dosieren",
+      "back": "Kurze Ausflüge mit Pausen; der Welpe darf sich jederzeit zurückziehen.",
+      "notes": "Ein junger Hund ist schnell überreizt. Weniger, aber gut, schlägt viel auf einmal.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "treppen-untergruende",
+      "front": "Treppen und Untergründe",
+      "back": "Unbekannte Böden und Treppen ruhig und freiwillig erkunden lassen.",
+      "notes": "Bei sehr jungen oder großen Welpen viele Treppen meiden — die Gelenke wachsen noch.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["alltag"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Das Auto wird zum normalen Ort",
+      "body": "# Autofahren und erste Ausflüge\n\nAuto fahren muss ein Welpe **lernen** — am besten, bevor die erste lange Fahrt ansteht.\n\n- **Sicher transportieren**: in einer **Transportbox** oder mit **Sicherheitsgurt**. Das schützt und gibt einen ruhigen Platz.\n- **Autofahren angewöhnen**: mit **ganz kurzen** Fahrten beginnen, dann langsam steigern.\n- **Gute erste Erfahrung**: Die Fahrt endet mit etwas Schönem. Wer nur zum Tierarzt fährt, dessen Hund verknüpft das Auto schnell negativ.\n\n> Manchen Welpen wird anfangs übel (**Reiseübelkeit**) — kurze Fahrten und nicht direkt nach dem Fressen helfen; meist legt es sich mit der Zeit."
+    },
+    {
+      "id": "step-ausfluege",
+      "type": "theory",
+      "title": "Die Welt in kleinen Portionen",
+      "body": "## Ausflüge richtig dosieren\n\nNeue Orte sind spannend, aber ein Welpe ist schnell **überreizt**. Deshalb:\n\n- **Neue Orte ruhig zeigen**: Stadt, Wald, Café — oft reicht **Beobachten aus der Distanz**.\n- **Ausflüge dosieren**: kurz, mit Pausen, mit Rückzugsmöglichkeit.\n- **Treppen und Untergründe** freiwillig erkunden lassen — bei sehr jungen oder großen Welpen viele Treppen aber noch meiden, die Gelenke wachsen.\n\nWeniger, aber gut, ist mehr wert als ein Reiz­gewitter."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["autofahren-gewoehnen", "sicherung", "reiseuebelkeit", "neue-orte"],
+        "pairs": [
+          {"left": "Autofahren angewöhnen", "right": "Mit kurzen Fahrten beginnen, langsam steigern."},
+          {"left": "Sicher transportieren", "right": "In Box oder mit Sicherheitsgurt fahren."},
+          {"left": "Reiseübelkeit", "right": "Kurze Fahrten und nicht direkt nach dem Fressen."},
+          {"left": "Neue Orte ruhig zeigen", "right": "Umgebungen gelassen kennenlernen lassen."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-erste-fahrt",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Die erste Fahrt planen",
+      "exercise": {
+        "id": "ex-mc-erste-fahrt",
+        "type": "multiple_choice",
+        "prompt": "Wie legst du die allererste Autofahrt am besten an?",
+        "card_ids": ["autofahren-gewoehnen", "positive-ersterfahrung"],
+        "multiple": false,
+        "options": [
+          {"text": "Ganz kurz und mit etwas Schönem am Ziel", "correct": true},
+          {"text": "Gleich eine lange Fahrt zum Tierarzt", "correct": false},
+          {"text": "Ungesichert auf dem Schoß des Beifahrers", "correct": false},
+          {"text": "Direkt nach einer großen Mahlzeit", "correct": false}
+        ],
+        "hint": "Kurz, gesichert, positiv."
+      }
+    },
+    {
+      "id": "ex-cloze-sicherung",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Sicher unterwegs",
+      "exercise": {
+        "id": "ex-cloze-sicherung",
+        "type": "cloze",
+        "prompt": "Ergänze den Satz.",
+        "card_ids": ["sicherung"],
+        "sentence": "Im Auto fährt der Welpe gesichert — in einer Transportbox oder mit einem ___ .",
+        "blanks": [{"accept": ["Sicherheitsgurt", "sicherheitsgurt", "Gurt", "Anschnallgurt"]}],
+        "cloze_mode": "type",
+        "hint": "Auch Menschen schnallen sich damit an."
+      }
+    },
+    {
+      "id": "ex-free-ersterfahrung",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Warum nicht nur zum Tierarzt?",
+      "exercise": {
+        "id": "ex-free-ersterfahrung",
+        "type": "free_text",
+        "prompt": "Womit sollte eine frühe Autofahrt für den Welpen enden?",
+        "card_ids": ["positive-ersterfahrung"],
+        "accept": ["mit etwas Schönem", "etwas Positivem", "einem schönen Ziel", "etwas Gutem"],
+        "hint": "Das Auto soll positiv besetzt werden.",
+        "distractors": ["mit dem Tierarzt", "mit einer Strafe", "mit dem Alleinbleiben"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-dosieren",
+      "type": "exercise",
+      "theory_ref": "step-ausfluege",
+      "title": "Merksatz zu Ausflügen",
+      "exercise": {
+        "id": "ex-tiles-dosieren",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["dosieren", "neue-orte"],
+        "tiles": ["Kurze", "Ausflüge", "mit", "Pausen", "statt", "Reizgewitter"],
+        "hint": "Weniger, aber gut.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-ausflug",
+      "type": "exercise",
+      "theory_ref": "step-ausfluege",
+      "title": "Gute erste Ausflüge",
+      "exercise": {
+        "id": "ex-ms-ausflug",
+        "type": "multiple_choice",
+        "prompt": "Was macht erste Ausflüge für den Welpen gut?",
+        "card_ids": ["dosieren", "treppen-untergruende", "positive-ersterfahrung"],
+        "multiple": true,
+        "options": [
+          {"text": "Kurze Ausflüge mit Pausen und Rückzugsmöglichkeit", "correct": true},
+          {"text": "Neue Untergründe freiwillig erkunden lassen", "correct": true},
+          {"text": "Dafür sorgen, dass die Erfahrung positiv endet", "correct": true},
+          {"text": "Den Welpen stundenlang durch die Innenstadt tragen", "correct": false},
+          {"text": "Ihn viele Treppen steigen lassen, obwohl er sehr jung ist", "correct": false},
+          {"text": "Ihn zu jedem Reiz hinzwingen", "correct": false}
+        ],
+        "hint": "Kurz, freiwillig, positiv."
+      }
+    }
+  ]
+}

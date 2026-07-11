@@ -150,6 +150,29 @@ sets:
       - hunde
       - welpe
       - einstieg
+  - id: welpen-spezial-from-de
+    title: Hundetraining Welpen-Spezial
+    title_native: Hundetraining Welpen-Spezial
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: A1
+    path: sets/de/welpen-spezial
+    version: '1.0.0'
+    lesson_count: 4
+    domain_label: Hundetraining
+    description: >-
+      Vertiefung zum Welpenkurs (Teil 0): vier Lektionen zu Geräuschen und
+      Umweltreizen (Habituation), zum Angewöhnen von Halsband, Geschirr und
+      Leine, zu Angstphasen sowie zu Autofahren und ersten Ausflügen. Native
+      multiple_choice (Schema v1.6) plus matching, cloze, free_text und
+      word_tiles.
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - welpe
+      - spezial
   - id: hundetraining-anfaenger-from-de
     title: Hundetraining für Anfänger
     title_native: Hundetraining für Anfänger

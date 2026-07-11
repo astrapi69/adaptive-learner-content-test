@@ -1,0 +1,196 @@
+{
+  "id": "03-angstphasen",
+  "title": "Angstphasen ruhig begleiten",
+  "description": "Welpen-Spezial: Warum Welpen und Junghunde vorübergehend ängstlicher werden, wie du souverän Sicherheit gibst, nicht überforderst und Angstauslöser positiv gegenkonditionierst.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "angstphase",
+      "front": "Angstphase",
+      "back": "Eine Entwicklungsphase, in der der Welpe oder Junghund plötzlich vorsichtiger und schreckhafter reagiert.",
+      "notes": "Ganz normal und vorübergehend. Auch schon bekannte Dinge können kurz wieder gruselig wirken.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["entwicklung"]
+    },
+    {
+      "id": "souveraen-bleiben",
+      "front": "Souverän bleiben",
+      "back": "Selbst ruhig und gelassen auftreten, damit sich deine Sicherheit auf den Hund überträgt.",
+      "notes": "Der Hund orientiert sich an dir. Bleibst du entspannt, wirkt der Auslöser weniger bedrohlich.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "sicherheit-geben",
+      "front": "Ruhig Sicherheit geben",
+      "back": "Nähe und eine ruhige Stimme sind erlaubt und gut — das verstärkt keine Angst.",
+      "notes": "Der alte Mythos „Trösten verstärkt Angst“ stimmt so nicht. Nur hektisches Bemitleiden hilft nicht.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "nicht-zwingen",
+      "front": "Nicht in die Angst zwingen",
+      "back": "Den Hund nie zum Angstauslöser hinzerren; er darf Abstand nehmen.",
+      "notes": "Zwang verschlimmert Angst. Freiwillige Annäherung im eigenen Tempo ist der Weg.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "distanz",
+      "front": "Distanz wahren",
+      "back": "Genug Abstand zum Auslöser halten, damit der Hund unter seiner Angstschwelle bleibt.",
+      "notes": "Aus sicherer Entfernung kann er beobachten, ohne in Panik zu geraten.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "gegenkonditionierung",
+      "front": "Positive Gegenkonditionierung",
+      "back": "Den Angstauslöser aus der Distanz mit etwas Gutem wie Leckerli verknüpfen.",
+      "notes": "Mit der Zeit wird aus „Achtung, gefährlich“ ein „Oh, das bringt Futter“.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "geduld",
+      "front": "Geduld haben",
+      "back": "Angstphasen gehen vorbei; in dieser Zeit keine großen Sprünge und keine Überforderung.",
+      "notes": "Weniger ist mehr: lieber kurz und gut als lang und stressig.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Wenn plötzlich alles gruselig ist",
+      "body": "# Angstphasen ruhig begleiten\n\nWelpen und Junghunde durchlaufen **Angstphasen**: Zeiten, in denen sie plötzlich vorsichtiger und schreckhafter sind — manchmal sogar vor Dingen, die sie schon kannten. Das ist **normal und vorübergehend**.\n\nWie du gut durch so eine Phase kommst:\n\n- **Souverän bleiben**: Deine Ruhe überträgt sich.\n- **Ruhig Sicherheit geben**: Nähe und eine ruhige Stimme sind **erlaubt** — das verstärkt keine Angst. (Der alte Satz „Trösten verstärkt Angst“ stimmt so nicht.)\n- **Nicht in die Angst zwingen**: Der Hund darf Abstand nehmen.\n\n> Was NICHT hilft: den Hund zum Auslöser zerren oder selbst hektisch werden."
+    },
+    {
+      "id": "step-gegenkond",
+      "type": "theory",
+      "title": "Aus Angst wird Vorfreude",
+      "body": "## Distanz und positive Gegenkonditionierung\n\nHat der Hund vor etwas Angst, arbeitest du mit **Distanz** und **positiver Gegenkonditionierung**:\n\n1. Genug **Abstand**, damit der Hund unter seiner Angstschwelle bleibt.\n2. Taucht der Auslöser auf, gibt es aus der Distanz etwas **Gutes** (Leckerli).\n3. Mit der Zeit den Abstand ganz langsam verringern — nur so weit, wie der Hund entspannt bleibt.\n\nSo wird aus „Achtung, gefährlich“ ein „Oh, das bringt Futter“. Dazu gehört **Geduld**: keine großen Sprünge, lieber kurz und gut."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["angstphase", "souveraen-bleiben", "distanz", "gegenkonditionierung"],
+        "pairs": [
+          {"left": "Angstphase", "right": "Phase, in der der Hund plötzlich schreckhafter ist."},
+          {"left": "Souverän bleiben", "right": "Selbst ruhig auftreten, Sicherheit übertragen."},
+          {"left": "Distanz wahren", "right": "Genug Abstand, unter der Angstschwelle bleiben."},
+          {"left": "Positive Gegenkonditionierung", "right": "Auslöser aus Distanz mit Gutem verknüpfen."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-trost",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Darf man trösten?",
+      "exercise": {
+        "id": "ex-mc-trost",
+        "type": "multiple_choice",
+        "prompt": "Dein Welpe erschrickt und sucht deine Nähe. Was ist richtig?",
+        "card_ids": ["sicherheit-geben", "souveraen-bleiben"],
+        "multiple": false,
+        "options": [
+          {"text": "Ruhig Sicherheit geben — Nähe und ruhige Stimme sind okay", "correct": true},
+          {"text": "Ihn wegschicken, damit die Angst nicht verstärkt wird", "correct": false},
+          {"text": "Selbst aufgeregt mitleiden und hochheben", "correct": false},
+          {"text": "Ihn zum Auslöser hinschieben, damit er sieht: harmlos", "correct": false}
+        ],
+        "hint": "Ruhige Sicherheit verstärkt keine Angst; Hektik und Zwang schaden."
+      }
+    },
+    {
+      "id": "ex-cloze-distanz",
+      "type": "exercise",
+      "theory_ref": "step-gegenkond",
+      "title": "Unter der Schwelle bleiben",
+      "exercise": {
+        "id": "ex-cloze-distanz",
+        "type": "cloze",
+        "prompt": "Ergänze den Satz.",
+        "card_ids": ["distanz"],
+        "sentence": "Halte genug ___ zum Auslöser, damit der Hund unter seiner Angstschwelle bleibt.",
+        "blanks": [{"accept": ["Abstand", "abstand", "Distanz", "distanz"]}],
+        "cloze_mode": "type",
+        "hint": "Das Gegenteil von nah dran."
+      }
+    },
+    {
+      "id": "ex-free-gegenkond",
+      "type": "exercise",
+      "theory_ref": "step-gegenkond",
+      "title": "Der Fachbegriff",
+      "exercise": {
+        "id": "ex-free-gegenkond",
+        "type": "free_text",
+        "prompt": "Wie nennt man es, einen Angstauslöser aus Distanz mit etwas Gutem zu verknüpfen?",
+        "card_ids": ["gegenkonditionierung"],
+        "accept": ["Gegenkonditionierung", "positive Gegenkonditionierung", "gegenkonditionierung"],
+        "hint": "Man konditioniert die Reaktion in die Gegenrichtung.",
+        "distractors": ["Habituation", "Bestrafung", "Generalisierung"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-geduld",
+      "type": "exercise",
+      "theory_ref": "step-gegenkond",
+      "title": "Merksatz zur Haltung",
+      "exercise": {
+        "id": "ex-tiles-geduld",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["geduld", "nicht-zwingen"],
+        "tiles": ["Sicherheit", "geben", "statt", "in", "Angst", "zwingen"],
+        "hint": "Nähe erlauben, nie zum Auslöser zerren.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-phase",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Gut durch die Angstphase",
+      "exercise": {
+        "id": "ex-ms-phase",
+        "type": "multiple_choice",
+        "prompt": "Was hilft deinem Hund durch eine Angstphase?",
+        "card_ids": ["souveraen-bleiben", "nicht-zwingen", "geduld"],
+        "multiple": true,
+        "options": [
+          {"text": "Selbst ruhig und souverän bleiben", "correct": true},
+          {"text": "Ihm Abstand erlauben, statt ihn zu zwingen", "correct": true},
+          {"text": "Geduldig sein und keine großen Sprünge machen", "correct": true},
+          {"text": "Ihn zwingen, dem Auslöser nah zu kommen", "correct": false},
+          {"text": "Bei jedem Schreck selbst in Hektik verfallen", "correct": false},
+          {"text": "So viele Auslöser wie möglich auf einmal zeigen", "correct": false}
+        ],
+        "hint": "Ruhe, Freiwilligkeit, Geduld."
+      }
+    }
+  ]
+}
