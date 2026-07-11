@@ -1,0 +1,196 @@
+{
+  "id": "04-unsicherheit-selbstvertrauen",
+  "title": "Unsicherheit und Selbstvertrauen aufbauen",
+  "description": "Teil 4 (B2): Wie du einem unsicheren Hund zu mehr Selbstvertrauen verhilfst — mit Vorhersehbarkeit, Wahlmöglichkeit, Erfolgserlebnissen, Konfidenz-Spielen und positiver Gegenkonditionierung.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "unsicherheit",
+      "front": "Unsicherheit",
+      "back": "Der Hund reagiert zögerlich oder ängstlich auf Neues und traut sich wenig zu.",
+      "notes": "Selbstvertrauen ist trainierbar: durch viele kleine, gute Erfahrungen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["verhalten"]
+    },
+    {
+      "id": "vorhersehbarkeit",
+      "front": "Vorhersehbarkeit",
+      "back": "Klare Routinen und verlässliche Signale geben dem unsicheren Hund Halt.",
+      "notes": "Wer weiß, was kommt, hat weniger Angst. Berechenbarkeit ist Sicherheit.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "wahlmoeglichkeit",
+      "front": "Wahlmöglichkeit lassen",
+      "back": "Den Hund selbst entscheiden lassen, ob er sich annähert — Zwang untergräbt Vertrauen.",
+      "notes": "Die Erfahrung „Ich darf gehen“ macht mutiger als jedes Hinschieben.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "erfolgserlebnisse",
+      "front": "Erfolgserlebnisse schaffen",
+      "back": "Kleine, lösbare Aufgaben anbieten, die gelingen und belohnt werden.",
+      "notes": "Jedes gelöste „Rätsel“ sagt dem Hund: Ich kann etwas bewirken.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "konfidenz-spiele",
+      "front": "Konfidenz-Spiele",
+      "back": "Suchspiele, Targets und einfache Tricks, die Mut und Eigeninitiative fördern.",
+      "notes": "Zum Beispiel über Gegenstände steigen oder eine Box erkunden — freiwillig und belohnt.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "kein-zwang",
+      "front": "Kein Zwang",
+      "back": "Den Hund nie in beängstigende Situationen drängen; Fortschritt in seinem Tempo.",
+      "notes": "Zwang erzeugt kurzfristig Gehorsam, aber langfristig mehr Angst.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "gegenkonditionierung",
+      "front": "Positive Gegenkonditionierung",
+      "back": "Beängstigende Reize aus sicherer Distanz mit etwas Gutem verknüpfen.",
+      "notes": "Anschluss ans Welpen-Spezial: aus „gefährlich“ wird nach und nach „bringt Futter“.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Mut kann man üben",
+      "body": "# Unsicherheit und Selbstvertrauen\n\nEin **unsicherer** Hund reagiert zögerlich oder ängstlich auf Neues und traut sich wenig zu. Die gute Nachricht: **Selbstvertrauen ist trainierbar** — durch viele kleine, gute Erfahrungen.\n\nZwei Fundamente:\n\n- **Vorhersehbarkeit**: klare Routinen und verlässliche Signale geben Halt. Wer weiß, was kommt, hat weniger Angst.\n- **Wahlmöglichkeit lassen**: Der Hund entscheidet **selbst**, ob er sich annähert. Die Erfahrung „Ich darf gehen“ macht mutiger als jedes Hinschieben.\n\n> Deshalb gilt durchgehend: **kein Zwang**. Fortschritt immer im Tempo des Hundes."
+    },
+    {
+      "id": "step-aufbau",
+      "type": "theory",
+      "title": "Erfolge und Spiele",
+      "body": "## Selbstvertrauen wächst mit dem Gelingen\n\nMut baust du über **Erfolge** auf:\n\n- **Erfolgserlebnisse schaffen**: kleine, lösbare Aufgaben, die gelingen und belohnt werden. Jedes gelöste Rätsel sagt: „Ich kann etwas bewirken.“\n- **Konfidenz-Spiele**: Suchspiele, Targets, einfache Tricks — über einen Gegenstand steigen, eine Box erkunden, freiwillig und belohnt.\n- **Positive Gegenkonditionierung**: beängstigende Reize aus **sicherer Distanz** mit etwas Gutem verknüpfen (wie im Welpen-Spezial).\n\nSo wird aus einem zögerlichen Hund Schritt für Schritt ein gelassener."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["vorhersehbarkeit", "wahlmoeglichkeit", "erfolgserlebnisse", "konfidenz-spiele"],
+        "pairs": [
+          {"left": "Vorhersehbarkeit", "right": "Klare Routinen und verlässliche Signale."},
+          {"left": "Wahlmöglichkeit lassen", "right": "Den Hund selbst entscheiden lassen."},
+          {"left": "Erfolgserlebnisse schaffen", "right": "Kleine, lösbare Aufgaben, die gelingen."},
+          {"left": "Konfidenz-Spiele", "right": "Suchspiele und Tricks, die Mut fördern."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-annaehern",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Der Hund zögert",
+      "exercise": {
+        "id": "ex-mc-annaehern",
+        "type": "multiple_choice",
+        "prompt": "Dein unsicherer Hund traut sich nicht an etwas Neues heran. Was ist richtig?",
+        "card_ids": ["wahlmoeglichkeit", "kein-zwang", "unsicherheit"],
+        "multiple": false,
+        "options": [
+          {"text": "Ihn selbst entscheiden lassen und im eigenen Tempo annähern", "correct": true},
+          {"text": "Ihn an der Leine hinziehen", "correct": false},
+          {"text": "Ihn hochheben und direkt hinsetzen", "correct": false},
+          {"text": "Warten, bis er von selbst mutig wird, ohne je zu helfen", "correct": false}
+        ],
+        "hint": "Wahl statt Zwang macht mutig."
+      }
+    },
+    {
+      "id": "ex-cloze-vorhersehbar",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Was Halt gibt",
+      "exercise": {
+        "id": "ex-cloze-vorhersehbar",
+        "type": "cloze",
+        "prompt": "Ergänze den Fachbegriff.",
+        "card_ids": ["vorhersehbarkeit"],
+        "sentence": "Klare Routinen und verlässliche Signale schaffen ___ und damit Sicherheit.",
+        "blanks": [{"accept": ["Vorhersehbarkeit", "vorhersehbarkeit", "Berechenbarkeit"]}],
+        "cloze_mode": "type",
+        "hint": "Der Hund kann vorhersehen, was kommt."
+      }
+    },
+    {
+      "id": "ex-free-spiele",
+      "type": "exercise",
+      "theory_ref": "step-aufbau",
+      "title": "Mut spielerisch aufbauen",
+      "exercise": {
+        "id": "ex-free-spiele",
+        "type": "free_text",
+        "prompt": "Wie nennt man Spiele wie Suchen, Targets und kleine Tricks, die Mut fördern?",
+        "card_ids": ["konfidenz-spiele"],
+        "accept": ["Konfidenz-Spiele", "Konfidenzspiele", "konfidenz-spiele", "Vertrauensspiele"],
+        "hint": "Konfidenz ist ein anderes Wort für Selbstvertrauen.",
+        "distractors": ["Zerrspiele", "Wettrennen", "Strafübungen"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-regel",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Merksatz zum Vertrauen",
+      "exercise": {
+        "id": "ex-tiles-regel",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["wahlmoeglichkeit", "kein-zwang"],
+        "tiles": ["Wahl", "lassen", "macht", "mutiger", "als", "Zwang"],
+        "hint": "Selbst entscheiden dürfen baut Vertrauen.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-aufbau",
+      "type": "exercise",
+      "theory_ref": "step-aufbau",
+      "title": "Selbstvertrauen fördern",
+      "exercise": {
+        "id": "ex-ms-aufbau",
+        "type": "multiple_choice",
+        "prompt": "Womit baust du bei einem unsicheren Hund Selbstvertrauen auf?",
+        "card_ids": ["erfolgserlebnisse", "konfidenz-spiele", "gegenkonditionierung"],
+        "multiple": true,
+        "options": [
+          {"text": "Kleine, lösbare Aufgaben, die gelingen und belohnt werden", "correct": true},
+          {"text": "Konfidenz-Spiele wie Suchen, Targets und Tricks", "correct": true},
+          {"text": "Beängstigende Reize aus Distanz positiv verknüpfen", "correct": true},
+          {"text": "Ihn mit vielen schweren Aufgaben überfordern", "correct": false},
+          {"text": "Ihn in beängstigende Situationen zwingen", "correct": false},
+          {"text": "Unsicherheit ignorieren und einfach abwarten", "correct": false}
+        ],
+        "hint": "Erfolge, Spiele, positive Verknüpfung."
+      }
+    }
+  ]
+}

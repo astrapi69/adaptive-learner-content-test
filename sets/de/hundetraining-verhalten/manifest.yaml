@@ -1,0 +1,56 @@
+# Set-Manifest: Hundetraining Verhalten verstehen (Teil 4) — deutschsprachig.
+#
+# Sachthema-Set (domain: knowledge): Material und Erklärung sind beide auf
+# Deutsch (source_language == target_language); der Set-Ordner trägt einen
+# Themennamen. Der Content-Loader liest metadata.lessons für die Dateiliste.
+#
+# Vierter, anspruchsvollster Teil der Reihe (nach Teil 0-3): fortgeschrittene
+# Verhaltensthemen und Problemverhalten — Leinenreaktivität, Ressourcen-
+# verteidigung, Frust/Übererregung sowie Unsicherheit und Selbstvertrauen.
+# Gewaltfrei, mit klaren Hinweisen auf professionelle Hilfe bei ernsten Fällen.
+# Native multiple_choice (Schema v1.6) plus matching, cloze, free_text und
+# word_tiles.
+schema_version: '1.3'
+name: Hundetraining Verhalten verstehen (Teil 4)
+description: >-
+  Vierter Teil der Reihe (B2): fortgeschrittene Verhaltensthemen. Leinen-
+  reaktivität (Pöbeln an der Leine), Ressourcenverteidigung, Frust und
+  Übererregung sowie Unsicherheit und Selbstvertrauen aufbauen. Gewaltfrei mit
+  positiver Verstärkung und deutlichen Hinweisen auf professionelle Hilfe bei
+  ernsten Fällen. Native multiple_choice plus matching, cloze, free_text und
+  word_tiles.
+sets:
+  - id: hundetraining-verhalten-from-de
+    title: Hundetraining Verhalten verstehen (Teil 4)
+    title_native: Hundetraining Verhalten verstehen (Teil 4)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: B2
+    path: sets/de/hundetraining-verhalten
+    version: '1.0.0'
+    lesson_count: 4
+    domain_label: Hundetraining
+    description: >-
+      Teil 4 der Reihe (B2), aufbauend auf Teil 0-3: fortgeschrittene
+      Verhaltensthemen. Leinenreaktivität (Ursachen Frust/Angst, Schwellen-
+      distanz, Engage-Disengage, „Look at That“), Ressourcenverteidigung
+      (Knurren nicht bestrafen, Tauschen, Vorbeugen, Management, Hilfe holen),
+      Frust und Übererregung (Frusttoleranz, Trigger-Stacking, Runterfahren,
+      Ansprechbarkeit) sowie Unsicherheit und Selbstvertrauen (Vorhersehbar-
+      keit, Wahlmöglichkeit, Erfolgserlebnisse, Konfidenz-Spiele). Native
+      multiple_choice plus matching, cloze, free_text und word_tiles.
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - verhalten
+      - fortgeschritten
+metadata:
+  author: Asterios Raptis
+  license: CC-BY-SA-4.0
+  lessons:
+    - 01-leinenreaktivitaet.json
+    - 02-ressourcenverteidigung.json
+    - 03-frust-uebererregung.json
+    - 04-unsicherheit-selbstvertrauen.json
