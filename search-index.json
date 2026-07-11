@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-10T12:37:03Z",
+  "generated": "2026-07-11T10:28:12Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -128,7 +128,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-07-10T08:20:36+02:00"
+      "updated_at": "2026-07-11T12:28:02+02:00"
     },
     {
       "id": "hundetraining-anfaenger-from-de",
@@ -149,7 +149,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-07-10T08:20:36+02:00"
+      "updated_at": "2026-07-11T12:28:02+02:00"
     },
     {
       "id": "hundetraining-aufbau-from-de",
@@ -171,7 +171,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-07-10T08:20:36+02:00"
+      "updated_at": "2026-07-11T12:28:02+02:00"
     },
     {
       "id": "hundetraining-alltag-from-de",
@@ -193,7 +193,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-07-10T08:20:36+02:00"
+      "updated_at": "2026-07-11T12:28:02+02:00"
     }
   ],
   "total_lessons": 42,
