@@ -70,7 +70,7 @@ def test_known_set_exports_with_count_and_manifest_order(tmp_path: Path) -> None
     assert exported_ids == source_ids
 
 
-def test_metadata_header_fields(tmp_path: Path) -> None:
+def test_metadata_header_fields_in_spec_order(tmp_path: Path) -> None:
     out_path = run_export(tmp_path)
     export_payload = yaml.safe_load(out_path.read_text(encoding="utf-8"))
 
@@ -78,10 +78,19 @@ def test_metadata_header_fields(tmp_path: Path) -> None:
         encoding="utf-8"
     ).strip()
     assert export_payload["engine_version"] == pinned_version
-    assert export_payload["set_id"] == "fuehrerschein-uebung-from-de"
     # ISO-8601 UTC, e.g. 2026-07-11T12:34:56Z
     assert export_payload["generated_at"].endswith("Z")
     assert "T" in export_payload["generated_at"]
+    # Exact top-level field order of the export spec.
+    assert list(export_payload.keys()) == [
+        "review_instructions",
+        "set",
+        "language",
+        "engine_version",
+        "generated_at",
+        "lesson_count",
+        "lessons",
+    ]
 
 
 def test_umlauts_survive_as_real_utf8(tmp_path: Path) -> None:
@@ -134,7 +143,7 @@ def test_manifest_id_resolves_like_path_basename(tmp_path: Path) -> None:
     )
     assert exit_code == 0
     export_payload = yaml.safe_load(out_path.read_text(encoding="utf-8"))
-    assert export_payload["set_id"] == "fuehrerschein-uebung-from-de"
+    assert export_payload["set"] == "fuehrerschein-uebung-from-de"
     assert export_payload["lessons"] == load_source_lessons()
 
 
@@ -151,3 +160,57 @@ def test_default_out_path_lands_under_exports_dir() -> None:
         assert export_payload["set"] == KNOWN_SLUG
     finally:
         created_export.unlink()
+
+
+REVIEW_TEMPLATE_PATH = REPO_ROOT / "docs" / "ai-review-prompt-template.md"
+
+
+def test_review_instructions_is_first_field_and_equals_template(tmp_path: Path) -> None:
+    out_path = run_export(tmp_path)
+    raw_text = out_path.read_text(encoding="utf-8")
+    export_payload = yaml.safe_load(raw_text)
+
+    template_text = REVIEW_TEMPLATE_PATH.read_text(encoding="utf-8")
+    assert export_payload["review_instructions"] == template_text
+    assert list(export_payload.keys())[0] == "review_instructions"
+    # First field of the raw output too, before all metadata and lessons,
+    # rendered as a readable YAML block scalar.
+    assert raw_text.startswith("review_instructions: |")
+
+
+def test_review_instructions_block_scalar_roundtrips_exactly(tmp_path: Path) -> None:
+    out_path = run_export(tmp_path)
+    export_payload = yaml.safe_load(out_path.read_text(encoding="utf-8"))
+    # The block-scalar rendering must not bend the text: re-parsing yields
+    # EXACTLY the template string, byte for byte.
+    assert export_payload["review_instructions"] == REVIEW_TEMPLATE_PATH.read_text(
+        encoding="utf-8"
+    )
+
+
+def test_review_instructions_umlauts_stay_real_utf8_in_json(tmp_path: Path) -> None:
+    out_path = run_export(tmp_path, "--format", "json")
+    raw_text = out_path.read_text(encoding="utf-8")
+
+    export_payload = json.loads(raw_text)
+    assert list(export_payload.keys())[0] == "review_instructions"
+    assert export_payload["review_instructions"] == REVIEW_TEMPLATE_PATH.read_text(
+        encoding="utf-8"
+    )
+    # A known template phrase keeps its umlauts in the written JSON bytes.
+    assert "Prüfkategorien" in raw_text
+    assert "\\u00fc" not in raw_text
+
+
+def test_missing_review_template_fails_with_clear_error(
+    tmp_path: Path, monkeypatch, capsys
+) -> None:
+    monkeypatch.setattr(
+        export_set, "REVIEW_TEMPLATE_PATH", tmp_path / "not-there.md"
+    )
+    out_path = tmp_path / "never-written.yaml"
+    exit_code = export_set.main([KNOWN_SLUG, "--out", str(out_path)])
+    assert exit_code != 0
+    captured_stderr = capsys.readouterr().err
+    assert "ai-review-prompt-template" in captured_stderr or "not-there.md" in captured_stderr
+    assert not out_path.exists()

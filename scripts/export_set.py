@@ -20,18 +20,24 @@ Usage:
 same basename exists under several source-language directories,
 ``--lang`` (the ``sets/<lang>/`` directory, default ``de``) disambiguates.
 
-Output structure (metadata first, then the lessons in the order of the set
-manifest's ``metadata.lessons`` list):
+Output structure (the embedded review instructions FIRST so the export is
+self-contained for a review AI, then the metadata, then the lessons in the
+order of the set manifest's ``metadata.lessons`` list):
 
+    review_instructions: |
+      <full content of docs/ai-review-prompt-template.md>
     set: fuehrerschein-uebung
-    set_id: fuehrerschein-uebung-from-de
-    set_path: sets/de/fuehrerschein-uebung
     language: de
     engine_version: "0.8.1"
     generated_at: "2026-07-11T12:34:56Z"
     lesson_count: 5
     lessons:
       - <full lesson content per file>
+
+``review_instructions`` is read from ``docs/ai-review-prompt-template.md``
+at runtime (never hardcoded here, DRY); edit the prompt there and keep the
+sibling content repos in sync. A missing template file is a hard error, no
+silent export without the field.
 
 Umlauts and every other non-ASCII character are written as real UTF-8
 (``allow_unicode=True`` / ``ensure_ascii=False``), never as escapes.
@@ -40,7 +46,7 @@ Default output: ``exports/<set-slug>-<lang>-<timestamp>.yaml`` (the
 ``exports/`` directory is created on demand and gitignored).
 
 Exit code 0 on success; 2 for an unknown/ambiguous slug (the error lists
-the available sets) or a missing lesson file.
+the available sets), a missing lesson file or a missing review template.
 """
 from __future__ import annotations
 
@@ -55,12 +61,34 @@ import yaml
 REPO_ROOT = Path(__file__).resolve().parents[1]
 ROOT_MANIFEST_PATH = REPO_ROOT / "manifest.yaml"
 ENGINE_VERSION_PATH = REPO_ROOT / "schema" / "engine-version.txt"
+REVIEW_TEMPLATE_PATH = REPO_ROOT / "docs" / "ai-review-prompt-template.md"
 EXPORTS_DIR = REPO_ROOT / "exports"
 YAML_LINE_WIDTH = 100
 
 
 class SetResolutionError(Exception):
-    """Raised when a set slug cannot be resolved to exactly one manifest set."""
+    """Raised when a set slug cannot be resolved to exactly one manifest set,
+    or when a file the export depends on (lesson, review template) is missing."""
+
+
+class BlockScalarDumper(yaml.SafeDumper):
+    """SafeDumper that renders multi-line strings as literal block scalars.
+
+    Keeps the embedded ``review_instructions`` (and multi-line lesson prose)
+    human- and AI-readable instead of one escaped single-line string.
+    PyYAML falls back to a quoted style automatically for strings a block
+    scalar cannot represent, so re-parse equality always holds.
+    """
+
+
+def represent_multiline_string(dumper: yaml.SafeDumper, scalar_text: str):
+    scalar_style = "|" if "\n" in scalar_text else None
+    return dumper.represent_scalar(
+        "tag:yaml.org,2002:str", scalar_text, style=scalar_style
+    )
+
+
+BlockScalarDumper.add_representer(str, represent_multiline_string)
 
 
 def format_available_sets(set_entries: list[dict]) -> str:
@@ -149,16 +177,33 @@ def load_lessons(set_dir: Path) -> list[dict]:
     return lesson_documents
 
 
+def load_review_instructions() -> str:
+    """Return the AI review prompt embedded into every export.
+
+    Read at runtime from ``docs/ai-review-prompt-template.md`` (single
+    source, DRY). Raises ``SetResolutionError`` when the template is
+    missing: the export must never silently lack the field.
+    """
+    if not REVIEW_TEMPLATE_PATH.is_file():
+        raise SetResolutionError(
+            "Review prompt template is missing: "
+            f"{REVIEW_TEMPLATE_PATH}\n"
+            "The export embeds docs/ai-review-prompt-template.md as its "
+            "review_instructions field; restore the file before exporting."
+        )
+    return REVIEW_TEMPLATE_PATH.read_text(encoding="utf-8")
+
+
 def build_export(set_slug: str, lang: str) -> dict:
-    """Assemble the export payload: metadata header first, then the lessons."""
+    """Assemble the export payload: review instructions first, then the
+    metadata header, then the lessons."""
     root_manifest = yaml.safe_load(ROOT_MANIFEST_PATH.read_text(encoding="utf-8"))
     set_entry = resolve_set(root_manifest, set_slug, lang)
     lesson_documents = load_lessons(REPO_ROOT / set_entry["path"])
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     return {
+        "review_instructions": load_review_instructions(),
         "set": set_slug,
-        "set_id": set_entry.get("id"),
-        "set_path": set_entry.get("path"),
         "language": lang,
         "engine_version": ENGINE_VERSION_PATH.read_text(encoding="utf-8").strip(),
         "generated_at": generated_at,
@@ -168,11 +213,13 @@ def build_export(set_slug: str, lang: str) -> dict:
 
 
 def render_export(export_payload: dict, export_format: str) -> str:
-    """Serialize the payload; real UTF-8 in both formats, keys in insert order."""
+    """Serialize the payload; real UTF-8 in both formats, keys in insert order,
+    multi-line strings (notably ``review_instructions``) as YAML block scalars."""
     if export_format == "json":
         return json.dumps(export_payload, ensure_ascii=False, indent=2) + "\n"
     return yaml.dump(
         export_payload,
+        Dumper=BlockScalarDumper,
         allow_unicode=True,
         sort_keys=False,
         default_flow_style=False,
@@ -238,7 +285,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     print(
         f"Exported {export_payload['lesson_count']} lessons of set "
-        f"'{export_payload['set_id']}' to {output_path}"
+        f"'{export_payload['set']}' to {output_path}"
     )
     return 0
 

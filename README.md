@@ -53,6 +53,14 @@ Quellsprachen entscheidet `--lang` (Default `de`). Umlaute bleiben
 echtes UTF-8. Ein unbekannter Slug bricht mit einer Liste der
 verfügbaren Sets ab.
 
+Der Export ist selbsttragend: das erste Feld `review_instructions`
+enthält den kompletten Review-Prompt aus
+[`docs/ai-review-prompt-template.md`](docs/ai-review-prompt-template.md)
+(zur Laufzeit gelesen, nicht im Skript kopiert). Die Exportdatei kann
+also direkt und ohne manuell vorangestellten Prompt an eine Review-KI
+gegeben werden. Änderungen an der Review-Anweisung in der Template-Datei
+vornehmen und in den Geschwister-Content-Repos synchron halten.
+
 **Nur-Lese-Snapshot, KEIN Re-Import-Format:** Der Export wird nirgends
 zurückgelesen. Änderungen fließen ausschließlich über die einzelnen
 schema-validierten Lektions-JSONs unter `sets/` ein. Der Ordner
