@@ -36,6 +36,20 @@ Exit-Code 0, wenn alle Sets bestehen; sonst 1 mit einem Bericht je
 Datei. Der Validator braucht nur Python 3 und PyYAML
 (`pip install pyyaml`).
 
+**Vor dem Push** zusätzlich das Engine-Gate lokal laufen lassen - dieselben
+semantischen Regeln (`E-CARD-REF`, Cloze-Marker, Multiple-Choice-Regeln),
+die sonst erst die CI meldet:
+
+```bash
+make lint
+```
+
+Der erste Lauf installiert die in `schema/engine-version.txt` gepinnte
+Engine lokal nach `node_modules/` (gitignored; braucht Node.js und npm),
+danach laufen Selbsttest und der volle Engine-Lauf wie im CI-Workflow
+`Engine conformance`. Optional gibt `make lint-warnings` die Warnungen
+(`W-*`) der Engine-CLI über alle Lektionen aus.
+
 ## Ein Set für KI-Review exportieren
 
 `scripts/export_set.py` schreibt alle Lektionen EINES Sets in eine
