@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-11T11:18:20Z",
+  "generated": "2026-07-11T16:50:12Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -131,6 +131,28 @@
       "updated_at": "2026-07-11T13:18:10+02:00"
     },
     {
+      "id": "welpen-spezial-from-de",
+      "name": "Hundetraining Welpen-Spezial",
+      "description": "Vertiefung zum Welpenkurs (Teil 0): vier Lektionen zu Themen der Welpenzeit jenseits des Grundkurses — Geräusche und Umweltreize (Habituation, leise anfangen, positiv verknüpfen), Ausrüstung angewöhnen (Halsband, Geschirr, Leine, freiwillig und passend), Angstphasen ruhig begleiten (souverän bleiben, Distanz, positive Gegenkonditionierung) sowie Autofahren und erste Ausflüge (sicher transportieren, dosieren, positive Ersterfahrung). Native multiple_choice plus matching, cloze, free_text und word_tiles.",
+      "source_language": "de",
+      "target_language": "de",
+      "level": "a1",
+      "domain": "knowledge",
+      "lesson_count": 4,
+      "card_count": 28,
+      "tags": [
+        "knowledge",
+        "hundetraining",
+        "hunde",
+        "welpe",
+        "spezial"
+      ],
+      "ai_validated": false,
+      "trust_level": 1,
+      "book": null,
+      "updated_at": "2026-07-11T18:50:02+02:00"
+    },
+    {
       "id": "hundetraining-anfaenger-from-de",
       "name": "Hundetraining für Anfänger",
       "description": "Drei Anfänger-Lektionen zu gewaltfreiem Hundetraining mit positiver Verstärkung: Grundlagen (Timing, Markersignal, Belohnung, Konsequenz), erste Grundkommandos (Sitz und Platz über Locken und Ausschleichen) sowie Rückruf und Leinenführigkeit. Gemischte Übungstypen.",
@@ -196,6 +218,6 @@
       "updated_at": "2026-07-11T13:18:10+02:00"
     }
   ],
-  "total_lessons": 42,
-  "total_cards": 324
+  "total_lessons": 46,
+  "total_cards": 352
 }
