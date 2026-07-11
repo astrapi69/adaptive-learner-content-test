@@ -503,9 +503,17 @@
           "description": "WORD_TILES: ordered list of tile labels. The renderer shuffles before display. Multiple correct orderings are configured via ``accept_orderings`` below.",
           "title": "Tiles"
         },
+        "ext_payload": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Opaque per-exercise payload for an ``ext:`` extension type. The core engine does not interpret it; the registered extension validator does. Absent on core exercises."
+        },
         "type": {
-          "$ref": "#/$defs/ExerciseType",
-          "description": "Which exercise renderer handles this step."
+          "anyOf": [
+            { "$ref": "#/$defs/ExerciseType" },
+            { "$ref": "#/$defs/ExtExerciseType" }
+          ],
+          "description": "Which exercise renderer handles this step. A core ExerciseType value, or an ``ext:<vendor>-<name>`` extension type (ExtExerciseType) that the lesson declares in ``requires_extensions``."
         }
       },
       "required": [
@@ -527,6 +535,12 @@
         "multiple_choice"
       ],
       "title": "ExerciseType",
+      "type": "string"
+    },
+    "ExtExerciseType": {
+      "description": "Extension exercise type in the ``ext:<vendor>-<name>`` namespace (e.g. ``ext:acme-ordering``). Structurally opaque here: an exercise carrying it must be declared in the lesson's ``requires_extensions`` and is validated by a registered extension, never by the core schema. Core content never uses this branch, so pre-1.7 content validates unchanged.",
+      "pattern": "^ext:[a-z0-9]+-[a-z0-9-]+$",
+      "title": "ExtExerciseType",
       "type": "string"
     },
     "InlineExample": {
@@ -1076,6 +1090,15 @@
       "description": "Optional BCP-47 code of the language the learner already speaks (the language the card ``back`` / notes / theory are written in). Absent on pre-v1.2 lessons.",
       "title": "Source Language"
     },
+    "requires_extensions": {
+      "description": "Extensions this lesson needs, each ``ext:<vendor>-<name>@<major>`` (e.g. ``ext:acme-ordering@1``). A consumer that has not registered a declared extension refuses the lesson loudly (E-EXT-UNSUPPORTED) rather than mis-rendering. Absent / empty on core lessons; additive, so pre-1.7 content validates unchanged.",
+      "items": {
+        "pattern": "^ext:[a-z0-9]+-[a-z0-9-]+@\\d+$",
+        "type": "string"
+      },
+      "title": "Requires Extensions",
+      "type": "array"
+    },
     "steps": {
       "description": "Ordered sequence of theory + exercise steps. Must contain at least one step.",
       "items": {
@@ -1141,5 +1164,5 @@
   ],
   "title": "Lesson",
   "type": "object",
-  "x-schema-version": "1.6"
+  "x-schema-version": "1.7"
 }

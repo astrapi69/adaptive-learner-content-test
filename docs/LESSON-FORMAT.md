@@ -128,6 +128,10 @@ Most carry `card_ids` (the cards they draw on) and a `direction`.
 
 ## The six exercise types
 
+Since schema 1.7 the engine additionally defines an opt-in `ext:` namespace
+for extension exercise types (see `docs/extensions.md` in the engine repo);
+this content repo uses core types only.
+
 ### matching
 ```jsonc
 { "type": "matching", "prompt": "…", "card_ids": [ … ],
@@ -243,7 +247,7 @@ domain, and every lesson listed in the set manifest's `metadata.lessons`.
 `sets/<…>/manifest.yaml`:
 
 ```yaml
-schema_version: '1.6'
+schema_version: '1.7'
 name: My Set
 sets:
   - id: my-set-from-en
