@@ -66,6 +66,10 @@ zurückgelesen. Änderungen fließen ausschließlich über die einzelnen
 schema-validierten Lektions-JSONs unter `sets/` ein. Der Ordner
 `exports/` ist gitignored.
 
+Ausführliche Anleitung und Best Practices (u. a. Quellkapitel-Workflow):
+[`docs/export-set-usage.de.md`](docs/export-set-usage.de.md) (Deutsch) /
+[`docs/export-set-usage.md`](docs/export-set-usage.md) (English).
+
 ## Aufgaben mit KI generieren (optional)
 
 `scripts/generate_exercises.py` erzeugt aus einem Thema eine vollständige
