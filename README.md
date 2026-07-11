@@ -1,5 +1,8 @@
 # adaptive-learner-content-test
 
+[![content validation](https://github.com/astrapi69/adaptive-learner-content-test/actions/workflows/validate-content.yml/badge.svg)](https://github.com/astrapi69/adaptive-learner-content-test/actions/workflows/validate-content.yml)
+[![engine on npm](https://img.shields.io/npm/v/learn-content-engine?label=engine%20on%20npm)](https://www.npmjs.com/package/learn-content-engine)
+
 Starter-Kit für eigene Adaptive Learner Lektionen.
 Forke dieses Repo und erstelle deine eigenen Inhalte.
 
