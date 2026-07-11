@@ -166,6 +166,7 @@
         "prompt": "Setze den Merksatz zusammen.",
         "card_ids": ["stressschwelle", "kleinschrittig"],
         "tiles": ["Lieber", "kurz", "und", "entspannt", "als", "lang", "und", "gestresst"],
+        "accept_orderings": [[0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 6, 3, 4, 5, 2, 7]],
         "hint": "Es geht um die Länge und die Stimmung beim Üben.",
         "direction": "target_to_source"
       }
@@ -179,7 +180,7 @@
         "id": "ex-ms-aufbau",
         "type": "multiple_choice",
         "prompt": "Was hilft deinem Hund, entspannt allein zu bleiben?",
-        "card_ids": ["kleinschrittig", "ruheplatz", "kauartikel"],
+        "card_ids": ["kleinschrittig", "ruheplatz", "kauartikel", "alleinbleiben"],
         "multiple": true,
         "options": [
           {"text": "Die Alleinzeit kleinschrittig steigern", "correct": true},
