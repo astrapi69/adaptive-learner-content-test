@@ -62,7 +62,7 @@ Keep these or the validator will complain:
 Create `sets/en/my-set/manifest.yaml`:
 
 ```yaml
-schema_version: '1.6'
+schema_version: '1.7'
 name: My Set
 sets:
   - id: my-set-from-en
