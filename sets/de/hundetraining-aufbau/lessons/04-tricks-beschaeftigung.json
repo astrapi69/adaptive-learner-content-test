@@ -110,16 +110,15 @@
       "title": "Welche Methode ist das?",
       "exercise": {
         "id": "ex-mc-methode",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Dein Hund gähnt von allein; du markierst genau in diesem Moment und benennst es später. Welche Methode ist das?",
         "card_ids": ["einfangen", "formen"],
-        "sentence": "___",
-        "blanks": [{"accept": ["Einfangen (Capturing)"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "Formen (Shaping)",
-          "Locken (Luring)",
-          "Generalisieren"
+        "multiple": false,
+        "options": [
+          {"text": "Einfangen (Capturing)", "correct": true},
+          {"text": "Formen (Shaping)"},
+          {"text": "Locken (Luring)"},
+          {"text": "Generalisieren"}
         ],
         "hint": "Du fängst ein spontan gezeigtes Verhalten ein."
       }
@@ -178,20 +177,17 @@
       "title": "Gute Auslastung",
       "exercise": {
         "id": "ex-ms-auslastung",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Sinnvolle Beschäftigung",
+        "type": "multiple_choice",
+        "prompt": "Womit lastest du deinen Hund sinnvoll geistig aus?",
         "card_ids": ["nasenarbeit", "trick-pfote", "koepfchen"],
-        "sentence": "Womit lastest du deinen Hund sinnvoll geistig aus?",
-        "accept": [
-          "Nasenarbeit und Suchspiele",
-          "Tricks wie „Pfote“ und „Dreh dich“ üben",
-          "Kleine Denkaufgaben, die den Kopf fordern"
-        ],
-        "distractors": [
-          "Stundenlanges Ballwerfen bis zur Erschöpfung",
-          "Den Hund den ganzen Tag sich selbst überlassen",
-          "Immer nur dieselbe Runde ohne jede Aufgabe"
+        "multiple": true,
+        "options": [
+          {"text": "Nasenarbeit und Suchspiele", "correct": true},
+          {"text": "Tricks wie „Pfote“ und „Dreh dich“ üben", "correct": true},
+          {"text": "Kleine Denkaufgaben, die den Kopf fordern", "correct": true},
+          {"text": "Stundenlanges Ballwerfen bis zur Erschöpfung"},
+          {"text": "Den Hund den ganzen Tag sich selbst überlassen"},
+          {"text": "Immer nur dieselbe Runde ohne jede Aufgabe"}
         ],
         "hint": "Denke an Nase, Tricks und Kopfarbeit."
       }

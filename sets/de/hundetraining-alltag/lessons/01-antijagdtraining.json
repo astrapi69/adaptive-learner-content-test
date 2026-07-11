@@ -110,16 +110,15 @@
       "title": "Warum Management zuerst?",
       "exercise": {
         "id": "ex-mc-selbstbelohnend",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Warum ist Management (z. B. die Schleppleine) beim Antijagdtraining so wichtig?",
         "card_ids": ["management", "jagdverhalten"],
-        "sentence": "___",
-        "blanks": [{"accept": ["Weil Jagen selbstbelohnend ist und jeder Erfolg das Verhalten festigt"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "Weil der Hund an der Leine schneller rennen kann",
-          "Weil eine Leine das Jagdbedürfnis vollständig löscht",
-          "Weil man ohne Leine gar nicht spazieren gehen darf"
+        "multiple": false,
+        "options": [
+          {"text": "Weil Jagen selbstbelohnend ist und jeder Erfolg das Verhalten festigt", "correct": true},
+          {"text": "Weil der Hund an der Leine schneller rennen kann"},
+          {"text": "Weil eine Leine das Jagdbedürfnis vollständig löscht"},
+          {"text": "Weil man ohne Leine gar nicht spazieren gehen darf"}
         ],
         "hint": "Denke daran, was jeder gelungene Hetzlauf mit dem Verhalten macht."
       }
@@ -178,20 +177,17 @@
       "title": "Ein guter Antijagd-Plan",
       "exercise": {
         "id": "ex-ms-plan",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Bausteine des Antijagdtrainings",
+        "type": "multiple_choice",
+        "prompt": "Welche Bausteine gehören zu einem guten Antijagdtraining?",
         "card_ids": ["management", "umorientierung", "ersatzbeschaeftigung"],
-        "sentence": "Welche Bausteine gehören zu einem guten Antijagdtraining?",
-        "accept": [
-          "Management über die Schleppleine, damit kein Selbstbelohnen möglich ist",
-          "Umorientierung zum Halter aufbauen und belohnen",
-          "Den Trieb über Reizangel oder Suchspiele kontrolliert ausleben lassen"
-        ],
-        "distractors": [
-          "Den Hund frei jagen lassen, damit er sich austobt",
-          "Erst eingreifen, wenn er schon hetzt",
-          "Das Jagdbedürfnis komplett ignorieren"
+        "multiple": true,
+        "options": [
+          {"text": "Management über die Schleppleine, damit kein Selbstbelohnen möglich ist", "correct": true},
+          {"text": "Umorientierung zum Halter aufbauen und belohnen", "correct": true},
+          {"text": "Den Trieb über Reizangel oder Suchspiele kontrolliert ausleben lassen", "correct": true},
+          {"text": "Den Hund frei jagen lassen, damit er sich austobt"},
+          {"text": "Erst eingreifen, wenn er schon hetzt"},
+          {"text": "Das Jagdbedürfnis komplett ignorieren"}
         ],
         "hint": "Denke an Management, Umorientierung und ein legales Ventil."
       }

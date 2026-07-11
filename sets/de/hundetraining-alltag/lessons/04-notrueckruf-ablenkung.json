@@ -110,16 +110,15 @@
       "title": "Das Signal schützen",
       "exercise": {
         "id": "ex-mc-verbrennen",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Wodurch verliert ein Notrückruf am schnellsten seine Kraft?",
         "card_ids": ["nie-verbrennen", "notrueckruf"],
-        "sentence": "___",
-        "blanks": [{"accept": ["Wenn man ihn oft nutzt oder damit den Spaß beendet"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "Wenn man ihn immer mit einem Jackpot belohnt",
-          "Wenn man ihn nur im Notfall einsetzt",
-          "Wenn man ihn mit einer Pfeife gibt"
+        "multiple": false,
+        "options": [
+          {"text": "Wenn man ihn oft nutzt oder damit den Spaß beendet", "correct": true},
+          {"text": "Wenn man ihn immer mit einem Jackpot belohnt"},
+          {"text": "Wenn man ihn nur im Notfall einsetzt"},
+          {"text": "Wenn man ihn mit einer Pfeife gibt"}
         ],
         "hint": "Denke daran, was das Signal entwertet."
       }
@@ -178,20 +177,17 @@
       "title": "Den Notrückruf richtig aufbauen",
       "exercise": {
         "id": "ex-ms-aufbau",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Sicherer Notrückruf",
+        "type": "multiple_choice",
+        "prompt": "Was gehört zu einem sicher aufgebauten Notrückruf?",
         "card_ids": ["generalisieren-reiz", "distanz-management", "jackpot"],
-        "sentence": "Was gehört zu einem sicher aufgebauten Notrückruf?",
-        "accept": [
-          "Die Ablenkung langsam steigern, von ruhig bis reizvoll",
-          "Mit der Schleppleine absichern, bis es unter Reiz sitzt",
-          "Jedes Kommen mit einem Jackpot belohnen"
-        ],
-        "distractors": [
-          "Sofort im größten Trubel und ohne Absicherung starten",
-          "Das Signal mehrmals täglich für Kleinigkeiten nutzen",
-          "Bei Fehlversuchen den Hund schimpfen"
+        "multiple": true,
+        "options": [
+          {"text": "Die Ablenkung langsam steigern, von ruhig bis reizvoll", "correct": true},
+          {"text": "Mit der Schleppleine absichern, bis es unter Reiz sitzt", "correct": true},
+          {"text": "Jedes Kommen mit einem Jackpot belohnen", "correct": true},
+          {"text": "Sofort im größten Trubel und ohne Absicherung starten"},
+          {"text": "Das Signal mehrmals täglich für Kleinigkeiten nutzen"},
+          {"text": "Bei Fehlversuchen den Hund schimpfen"}
         ],
         "hint": "Denke an Ablenkung steigern, Schleppleine und Jackpot."
       }

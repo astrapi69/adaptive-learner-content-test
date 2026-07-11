@@ -110,16 +110,15 @@
       "title": "Wann kommt das Signalwort?",
       "exercise": {
         "id": "ex-mc-reihenfolge",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Wann solltest du das Signalwort „Sitz“ einführen?",
         "card_ids": ["signalwort"],
-        "sentence": "___",
-        "blanks": [{"accept": ["Erst wenn der Hund die Bewegung zuverlässig zeigt"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "Ganz am Anfang, immer wieder wiederholt",
-          "Nie, das Wort ist unwichtig",
-          "Erst nach mehreren Wochen Pause"
+        "multiple": false,
+        "options": [
+          {"text": "Erst wenn der Hund die Bewegung zuverlässig zeigt", "correct": true},
+          {"text": "Ganz am Anfang, immer wieder wiederholt"},
+          {"text": "Nie, das Wort ist unwichtig"},
+          {"text": "Erst nach mehreren Wochen Pause"}
         ],
         "hint": "Erst die Bewegung, dann das Wort."
       }
@@ -178,20 +177,17 @@
       "title": "Gutes Vorgehen erkennen",
       "exercise": {
         "id": "ex-ms-fehler",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Sicheres Grundkommando",
+        "type": "multiple_choice",
+        "prompt": "Was gehört zu einem sauber aufgebauten Grundkommando?",
         "card_ids": ["ausschleichen", "aufloesen", "generalisieren"],
-        "sentence": "Was gehört zu einem sauber aufgebauten Grundkommando?",
-        "accept": [
-          "Das Leckerli in der Hand früh ausschleichen",
-          "Die Übung mit einem Auflösesignal beenden",
-          "An verschiedenen Orten üben (generalisieren)"
-        ],
-        "distractors": [
-          "Nur belohnen, wenn der Hund Futter sieht",
-          "Das Signalwort ganz am Anfang ständig wiederholen",
-          "Immer nur an genau einem Ort üben"
+        "multiple": true,
+        "options": [
+          {"text": "Das Leckerli in der Hand früh ausschleichen", "correct": true},
+          {"text": "Die Übung mit einem Auflösesignal beenden", "correct": true},
+          {"text": "An verschiedenen Orten üben (generalisieren)", "correct": true},
+          {"text": "Nur belohnen, wenn der Hund Futter sieht"},
+          {"text": "Das Signalwort ganz am Anfang ständig wiederholen"},
+          {"text": "Immer nur an genau einem Ort üben"}
         ],
         "hint": "Denke an Ausschleichen, Auflösen und Generalisieren."
       }

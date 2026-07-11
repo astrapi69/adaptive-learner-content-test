@@ -110,16 +110,15 @@
       "title": "Der Hund sagt „nein“",
       "exercise": {
         "id": "ex-mc-abbruch",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Dein Hund nimmt beim Üben das Kinn vom Target weg. Was tust du?",
         "card_ids": ["abbruch", "startsignal"],
-        "sentence": "___",
-        "blanks": [{"accept": ["Sofort aufhören und ihm eine Pause geben"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "Ihn festhalten und trotzdem weitermachen",
-          "Das Signal ignorieren und schneller arbeiten",
-          "Ihn für den Abbruch schimpfen"
+        "multiple": false,
+        "options": [
+          {"text": "Sofort aufhören und ihm eine Pause geben", "correct": true},
+          {"text": "Ihn festhalten und trotzdem weitermachen"},
+          {"text": "Das Signal ignorieren und schneller arbeiten"},
+          {"text": "Ihn für den Abbruch schimpfen"}
         ],
         "hint": "Der Abbruch ist Teil des Deals — der Hund darf „nein“ sagen."
       }
@@ -178,20 +177,17 @@
       "title": "Bausteine des Medical Trainings",
       "exercise": {
         "id": "ex-ms-bausteine",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Gutes Medical Training",
+        "type": "multiple_choice",
+        "prompt": "Was gehört zu einem guten kooperativen Medical Training?",
         "card_ids": ["station-target", "handling", "kleinschrittig"],
-        "sentence": "Was gehört zu einem guten kooperativen Medical Training?",
-        "accept": [
-          "Ein Stationstraining mit Matte oder Kinntarget",
-          "Handling von Pfoten, Ohren und Maul üben und belohnen",
-          "Jeden Handgriff kleinschrittig und unter der Stressschwelle aufbauen"
-        ],
-        "distractors": [
-          "Den Hund zur Untersuchung fest fixieren",
-          "Alle Handgriffe auf einmal durchziehen",
-          "Abbruchsignale des Hundes übergehen"
+        "multiple": true,
+        "options": [
+          {"text": "Ein Stationstraining mit Matte oder Kinntarget", "correct": true},
+          {"text": "Handling von Pfoten, Ohren und Maul üben und belohnen", "correct": true},
+          {"text": "Jeden Handgriff kleinschrittig und unter der Stressschwelle aufbauen", "correct": true},
+          {"text": "Den Hund zur Untersuchung fest fixieren"},
+          {"text": "Alle Handgriffe auf einmal durchziehen"},
+          {"text": "Abbruchsignale des Hundes übergehen"}
         ],
         "hint": "Denke an Station, Handling und kleine Schritte."
       }
