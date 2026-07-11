@@ -290,7 +290,16 @@ def validate_lesson_quality(lesson: dict, source: str, label: str, errors: list[
             if not ex.get("distractors"):
                 errors.append(f"{label}: free_text '{eid}' needs distractors")
         elif ex.get("type") == "matching":
-            if len(ex.get("pairs") or []) < MIN_MATCHING_PAIRS:
+            # ``from_cards`` (schema 1.6, engine 0.7.0+) derives one pair
+            # per referenced card, so the gate counts ``card_ids`` there -
+            # mirroring the engine semantics instead of demanding explicit
+            # ``pairs`` the exercise intentionally does not have.
+            pair_count = (
+                len(ex.get("card_ids") or [])
+                if ex.get("from_cards")
+                else len(ex.get("pairs") or [])
+            )
+            if pair_count < MIN_MATCHING_PAIRS:
                 errors.append(f"{label}: matching '{eid}' needs >= {MIN_MATCHING_PAIRS} pairs")
         elif ex.get("type") == "picture_choice":
             if not ex.get("distractors"):
