@@ -101,16 +101,15 @@
       "title": "Der Name als Signal",
       "exercise": {
         "id": "ex-mc-name",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Wofür solltest du den Namen deines Welpen NIE verwenden?",
         "card_ids": ["namenskonditionierung"],
-        "sentence": "___",
-        "blanks": [{"accept": ["Zum Schimpfen oder für etwas Unangenehmes"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "Um seine Aufmerksamkeit freundlich zu gewinnen",
-          "Um ihn danach zu belohnen",
-          "Um mit ihm Kontakt aufzunehmen"
+        "multiple": false,
+        "options": [
+          {"text": "Zum Schimpfen oder für etwas Unangenehmes", "correct": true},
+          {"text": "Um seine Aufmerksamkeit freundlich zu gewinnen"},
+          {"text": "Um ihn danach zu belohnen"},
+          {"text": "Um mit ihm Kontakt aufzunehmen"}
         ],
         "hint": "Der Name soll immer etwas Gutes bedeuten."
       }
@@ -169,20 +168,17 @@
       "title": "Ein gutes Fundament",
       "exercise": {
         "id": "ex-ms-fundament",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Fundament für einen gelassenen Hund",
+        "type": "multiple_choice",
+        "prompt": "Was legt in der Welpenzeit ein gutes Fundament?",
         "card_ids": ["positive-eindruecke", "handling-von-anfang", "bindung"],
-        "sentence": "Was legt in der Welpenzeit ein gutes Fundament?",
-        "accept": [
-          "Positive Eindrücke in kleinen, guten Dosen sammeln",
-          "Pfoten, Ohren und Maul früh sanft anfassen",
-          "Vertrauen durch verlässliche, freundliche Führung aufbauen"
-        ],
-        "distractors": [
-          "Den Welpen mit möglichst vielen Reizen auf einmal überfluten",
-          "Den Namen häufig zum Schimpfen nutzen",
-          "Berührungen am Körper ganz vermeiden"
+        "multiple": true,
+        "options": [
+          {"text": "Positive Eindrücke in kleinen, guten Dosen sammeln", "correct": true},
+          {"text": "Pfoten, Ohren und Maul früh sanft anfassen", "correct": true},
+          {"text": "Vertrauen durch verlässliche, freundliche Führung aufbauen", "correct": true},
+          {"text": "Den Welpen mit möglichst vielen Reizen auf einmal überfluten"},
+          {"text": "Den Namen häufig zum Schimpfen nutzen"},
+          {"text": "Berührungen am Körper ganz vermeiden"}
         ],
         "hint": "Denke an positive Eindrücke, Handling und Bindung."
       }

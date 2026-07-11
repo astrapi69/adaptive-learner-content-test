@@ -110,16 +110,15 @@
       "title": "Ein Hund kommt entgegen",
       "exercise": {
         "id": "ex-mc-bogen",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Euch kommt an der Leine ein anderer Hund entgegen. Wie gehst du am besten vorbei?",
         "card_ids": ["bogen-laufen", "distanz-wahren"],
-        "sentence": "___",
-        "blanks": [{"accept": ["In einem Bogen und mit genug Abstand vorbeigehen"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "Frontal und schnell aufeinander zulaufen",
-          "Die Hunde direkt Nase an Nase führen",
-          "An kurzer, straffer Leine stehen bleiben"
+        "multiple": false,
+        "options": [
+          {"text": "In einem Bogen und mit genug Abstand vorbeigehen", "correct": true},
+          {"text": "Frontal und schnell aufeinander zulaufen"},
+          {"text": "Die Hunde direkt Nase an Nase führen"},
+          {"text": "An kurzer, straffer Leine stehen bleiben"}
         ],
         "hint": "Frontal ist für Hunde unhöflich."
       }
@@ -178,20 +177,17 @@
       "title": "Gute Begegnungen gestalten",
       "exercise": {
         "id": "ex-ms-begegnung",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Entspannte Begegnungen",
+        "type": "multiple_choice",
+        "prompt": "Was hilft bei entspannten Begegnungen mit anderen Hunden und Reizen?",
         "card_ids": ["bogen-laufen", "distanz-wahren", "positive-verknuepfung"],
-        "sentence": "Was hilft bei entspannten Begegnungen mit anderen Hunden und Reizen?",
-        "accept": [
-          "Im Bogen statt frontal vorbeigehen",
-          "Genug Distanz wahren, damit der Hund ansprechbar bleibt",
-          "Den Reiz mit etwas Gutem positiv verknüpfen"
-        ],
-        "distractors": [
-          "Möglichst viele Reize auf einmal anbieten",
-          "Den Hund zum direkten Nasenkontakt zwingen",
-          "Bei Unsicherheit an straffer Leine festhalten"
+        "multiple": true,
+        "options": [
+          {"text": "Im Bogen statt frontal vorbeigehen", "correct": true},
+          {"text": "Genug Distanz wahren, damit der Hund ansprechbar bleibt", "correct": true},
+          {"text": "Den Reiz mit etwas Gutem positiv verknüpfen", "correct": true},
+          {"text": "Möglichst viele Reize auf einmal anbieten"},
+          {"text": "Den Hund zum direkten Nasenkontakt zwingen"},
+          {"text": "Bei Unsicherheit an straffer Leine festhalten"}
         ],
         "hint": "Denke an Bogen, Distanz und positive Verknüpfung."
       }

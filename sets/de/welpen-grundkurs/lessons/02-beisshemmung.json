@@ -101,16 +101,15 @@
       "title": "Der Welpe zwickt zu fest",
       "exercise": {
         "id": "ex-mc-zwicken",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Dein Welpe beißt beim Spielen plötzlich zu fest in die Hand. Was ist die beste Reaktion?",
         "card_ids": ["spielabbruch", "alternative-anbieten"],
-        "sentence": "___",
-        "blanks": [{"accept": ["Das Spiel kurz beenden und danach ein Kauspielzeug anbieten"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "Den Welpen fest am Fang zudrücken",
-          "Wilder weiterspielen, damit er sich austobt",
-          "Ihn anschreien und wegstoßen"
+        "multiple": false,
+        "options": [
+          {"text": "Das Spiel kurz beenden und danach ein Kauspielzeug anbieten", "correct": true},
+          {"text": "Den Welpen fest am Fang zudrücken"},
+          {"text": "Wilder weiterspielen, damit er sich austobt"},
+          {"text": "Ihn anschreien und wegstoßen"}
         ],
         "hint": "Zu fest beißen soll den Spaß beenden, nicht steigern."
       }
@@ -169,20 +168,17 @@
       "title": "Guter Umgang mit dem Beißen",
       "exercise": {
         "id": "ex-ms-umgang",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Beißhemmung fördern",
+        "type": "multiple_choice",
+        "prompt": "Was hilft deinem Welpen, eine gute Beißhemmung zu lernen?",
         "card_ids": ["spielabbruch", "alternative-anbieten", "keine-haende"],
-        "sentence": "Was hilft deinem Welpen, eine gute Beißhemmung zu lernen?",
-        "accept": [
-          "Bei zu festem Beißen das Spiel kurz abbrechen",
-          "Den Kaudrang auf ein Kauspielzeug lenken",
-          "Hände nie zum Reizen oder Raufen benutzen"
-        ],
-        "distractors": [
-          "Mit den Fingern wild vor dem Fang wedeln",
-          "Zu festes Beißen mit Schmerz bestrafen",
-          "Immer noch wilder weiterspielen"
+        "multiple": true,
+        "options": [
+          {"text": "Bei zu festem Beißen das Spiel kurz abbrechen", "correct": true},
+          {"text": "Den Kaudrang auf ein Kauspielzeug lenken", "correct": true},
+          {"text": "Hände nie zum Reizen oder Raufen benutzen", "correct": true},
+          {"text": "Mit den Fingern wild vor dem Fang wedeln"},
+          {"text": "Zu festes Beißen mit Schmerz bestrafen"},
+          {"text": "Immer noch wilder weiterspielen"}
         ],
         "hint": "Denke an Spielabbruch, Alternative und die Hand-Regel."
       }

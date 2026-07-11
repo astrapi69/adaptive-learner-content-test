@@ -119,16 +119,15 @@
       "title": "„Aus“ oder „Lass es“?",
       "exercise": {
         "id": "ex-mc-aus-lasses",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Dein Hund hat schon einen Stock im Maul und soll ihn hergeben. Welches Signal passt?",
         "card_ids": ["aus", "lass-es"],
-        "sentence": "___",
-        "blanks": [{"accept": ["„Aus“ — er soll loslassen, was er im Maul hat"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "„Lass es“ — er soll es gar nicht erst aufnehmen",
-          "„Bleib“ — er soll die Position halten",
-          "„Hier“ — er soll zurückkommen"
+        "multiple": false,
+        "options": [
+          {"text": "„Aus“ — er soll loslassen, was er im Maul hat", "correct": true},
+          {"text": "„Lass es“ — er soll es gar nicht erst aufnehmen"},
+          {"text": "„Bleib“ — er soll die Position halten"},
+          {"text": "„Hier“ — er soll zurückkommen"}
         ],
         "hint": "„Lass es“ greift, bevor etwas im Maul ist."
       }
@@ -187,13 +186,18 @@
       "title": "Was sind die drei D?",
       "exercise": {
         "id": "ex-ms-drei-d",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Die drei D",
+        "type": "multiple_choice",
+        "prompt": "Welche drei Faktoren gehören zu den „drei D“, mit denen du ein „Bleib“ schwieriger machst?",
         "card_ids": ["drei-d", "dauer", "distanz"],
-        "sentence": "Welche drei Faktoren gehören zu den „drei D“, mit denen du ein „Bleib“ schwieriger machst?",
-        "accept": ["Dauer", "Distanz", "Ablenkung"],
-        "distractors": ["Disziplin", "Dominanz", "Druck"],
+        "multiple": true,
+        "options": [
+          {"text": "Dauer", "correct": true},
+          {"text": "Distanz", "correct": true},
+          {"text": "Ablenkung", "correct": true},
+          {"text": "Disziplin"},
+          {"text": "Dominanz"},
+          {"text": "Druck"}
+        ],
         "hint": "Wie lange, wie weit weg, wie viel drumherum."
       }
     }

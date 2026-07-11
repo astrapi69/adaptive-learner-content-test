@@ -101,16 +101,15 @@
       "title": "Worauf es zuerst ankommt",
       "exercise": {
         "id": "ex-mc-passform",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Was ist bei einem Maulkorb am allerwichtigsten?",
         "card_ids": ["passform", "maulkorb"],
-        "sentence": "___",
-        "blanks": [{"accept": ["Dass der Hund darin hecheln, trinken und Leckerli nehmen kann"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "Dass er das Maul fest verschlossen hält",
-          "Dass er möglichst eng und leicht ist",
-          "Dass er in einer auffälligen Farbe ist"
+        "multiple": false,
+        "options": [
+          {"text": "Dass der Hund darin hecheln, trinken und Leckerli nehmen kann", "correct": true},
+          {"text": "Dass er das Maul fest verschlossen hält"},
+          {"text": "Dass er möglichst eng und leicht ist"},
+          {"text": "Dass er in einer auffälligen Farbe ist"}
         ],
         "hint": "Denke an Hecheln und Wärmeregulierung."
       }
@@ -169,20 +168,17 @@
       "title": "Wann ein Maulkorb sinnvoll ist",
       "exercise": {
         "id": "ex-ms-gruende",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Gute Gründe für Maulkorbtraining",
+        "type": "multiple_choice",
+        "prompt": "In welchen Situationen ist ein maulkorbgewöhnter Hund im Vorteil?",
         "card_ids": ["warum-maulkorb", "maulkorb"],
-        "sentence": "In welchen Situationen ist ein maulkorbgewöhnter Hund im Vorteil?",
-        "accept": [
-          "Beim Tierarzt und bei schmerzhaften Behandlungen",
-          "In öffentlichen Verkehrsmitteln mit Maulkorbpflicht",
-          "Bei Auslandsreisen mit entsprechenden Vorschriften"
-        ],
-        "distractors": [
-          "Als Strafe nach unerwünschtem Verhalten",
-          "Um dem Hund das Hecheln abzugewöhnen",
-          "Damit er nachts nicht bellt"
+        "multiple": true,
+        "options": [
+          {"text": "Beim Tierarzt und bei schmerzhaften Behandlungen", "correct": true},
+          {"text": "In öffentlichen Verkehrsmitteln mit Maulkorbpflicht", "correct": true},
+          {"text": "Bei Auslandsreisen mit entsprechenden Vorschriften", "correct": true},
+          {"text": "Als Strafe nach unerwünschtem Verhalten"},
+          {"text": "Um dem Hund das Hecheln abzugewöhnen"},
+          {"text": "Damit er nachts nicht bellt"}
         ],
         "hint": "Denke an Tierarzt, Bahn und Reisen — nie an Strafe."
       }

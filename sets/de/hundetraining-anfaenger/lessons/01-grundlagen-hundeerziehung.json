@@ -135,16 +135,15 @@
       "title": "Der Hund springt hoch",
       "exercise": {
         "id": "ex-mc-anspringen",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Dein Hund springt zur Begrüßung an dir hoch. Was ist der beste erste Schritt?",
         "card_ids": ["ignorieren"],
-        "sentence": "___",
-        "blanks": [{"accept": ["Ihn ignorieren und ruhiges Verhalten belohnen"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "Ihn anschreien, damit er aufhört",
-          "Ihn wegschubsen",
-          "Ihm sofort ein Leckerli geben"
+        "multiple": false,
+        "options": [
+          {"text": "Ihn ignorieren und ruhiges Verhalten belohnen", "correct": true},
+          {"text": "Ihn anschreien, damit er aufhört"},
+          {"text": "Ihn wegschubsen"},
+          {"text": "Ihm sofort ein Leckerli geben"}
         ],
         "hint": "Aufmerksamkeit ist für viele Hunde selbst eine Belohnung."
       }
@@ -187,20 +186,17 @@
       "title": "Was gutes Training ausmacht",
       "exercise": {
         "id": "ex-ms-erfolg",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Erfolgreiches Training",
+        "type": "multiple_choice",
+        "prompt": "Welche Punkte machen das Training mit deinem Hund erfolgreich?",
         "card_ids": ["positive-verstaerkung", "timing", "konsequenz", "kurze-einheiten"],
-        "sentence": "Welche Punkte machen das Training mit deinem Hund erfolgreich?",
-        "accept": [
-          "Erwünschtes Verhalten sofort belohnen",
-          "Immer dieselben Signale verwenden",
-          "Lieber mehrmals kurz üben"
-        ],
-        "distractors": [
-          "Fehler streng bestrafen",
-          "Jeden Tag ein anderes Signal für „Sitz“",
-          "Einmal pro Woche eine Stunde am Stück üben"
+        "multiple": true,
+        "options": [
+          {"text": "Erwünschtes Verhalten sofort belohnen", "correct": true},
+          {"text": "Immer dieselben Signale verwenden", "correct": true},
+          {"text": "Lieber mehrmals kurz üben", "correct": true},
+          {"text": "Fehler streng bestrafen"},
+          {"text": "Jeden Tag ein anderes Signal für „Sitz“"},
+          {"text": "Einmal pro Woche eine Stunde am Stück üben"}
         ],
         "hint": "Denke an positive Verstärkung, Konsequenz und kurze Einheiten."
       }

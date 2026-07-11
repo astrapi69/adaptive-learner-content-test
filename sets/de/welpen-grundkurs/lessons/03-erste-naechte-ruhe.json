@@ -101,16 +101,15 @@
       "title": "Der Welpe dreht auf",
       "exercise": {
         "id": "ex-mc-wild",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Dein Welpe wird am Abend immer wilder und zwickt viel. Was steckt oft dahinter?",
         "card_ids": ["ueberdrehen", "schlafbedarf"],
-        "sentence": "___",
-        "blanks": [{"accept": ["Er ist übermüdet und braucht Ruhe, keine Beschäftigung"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "Er ist unterfordert und braucht mehr wildes Spiel",
-          "Er ist dominant und will sich durchsetzen",
-          "Er hat zu viel geschlafen"
+        "multiple": false,
+        "options": [
+          {"text": "Er ist übermüdet und braucht Ruhe, keine Beschäftigung", "correct": true},
+          {"text": "Er ist unterfordert und braucht mehr wildes Spiel"},
+          {"text": "Er ist dominant und will sich durchsetzen"},
+          {"text": "Er hat zu viel geschlafen"}
         ],
         "hint": "Denke an das übermüdete Kind."
       }
@@ -169,20 +168,17 @@
       "title": "Gute erste Wochen",
       "exercise": {
         "id": "ex-ms-naechte",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Ruhe und erste Nächte",
+        "type": "multiple_choice",
+        "prompt": "Was tut deinem Welpen in den ersten Wochen gut?",
         "card_ids": ["erste-naechte-naehe", "ruhephasen-foerdern", "alleinsein-basis"],
-        "sentence": "Was tut deinem Welpen in den ersten Wochen gut?",
-        "accept": [
-          "In den ersten Nächten nah bei dir schlafen lassen",
-          "Ruhe aktiv anbieten und Pausen einplanen",
-          "Das Alleinsein in winzigen Schritten sanft anbahnen"
-        ],
-        "distractors": [
-          "Ihn in der ersten Nacht sofort allein in einem fernen Raum lassen",
-          "Ihn den ganzen Tag durchgehend bespaßen",
-          "Ihn bei Wildheit noch länger toben lassen"
+        "multiple": true,
+        "options": [
+          {"text": "In den ersten Nächten nah bei dir schlafen lassen", "correct": true},
+          {"text": "Ruhe aktiv anbieten und Pausen einplanen", "correct": true},
+          {"text": "Das Alleinsein in winzigen Schritten sanft anbahnen", "correct": true},
+          {"text": "Ihn in der ersten Nacht sofort allein in einem fernen Raum lassen"},
+          {"text": "Ihn den ganzen Tag durchgehend bespaßen"},
+          {"text": "Ihn bei Wildheit noch länger toben lassen"}
         ],
         "hint": "Denke an Nähe, aktive Ruhe und sanftes Alleinsein."
       }

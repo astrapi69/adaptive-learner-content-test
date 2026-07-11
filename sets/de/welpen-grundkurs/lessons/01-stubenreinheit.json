@@ -110,16 +110,15 @@
       "title": "Ein Missgeschick passiert",
       "exercise": {
         "id": "ex-mc-missgeschick",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Du findest eine Pfütze in der Wohnung, das Missgeschick ist schon passiert. Was tust du?",
         "card_ids": ["kein-schimpfen"],
-        "sentence": "___",
-        "blanks": [{"accept": ["Wortlos wegwischen und beim nächsten Mal früher rausbringen"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "Den Welpen schimpfen und zur Pfütze bringen",
-          "Ihm die Nase hineindrücken",
-          "Ihn für eine Weile allein einsperren"
+        "multiple": false,
+        "options": [
+          {"text": "Wortlos wegwischen und beim nächsten Mal früher rausbringen", "correct": true},
+          {"text": "Den Welpen schimpfen und zur Pfütze bringen"},
+          {"text": "Ihm die Nase hineindrücken"},
+          {"text": "Ihn für eine Weile allein einsperren"}
         ],
         "hint": "Strafe für Vergangenes versteht der Welpe nicht."
       }
@@ -178,20 +177,17 @@
       "title": "Was Stubenreinheit fördert",
       "exercise": {
         "id": "ex-ms-plan",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Schneller stubenrein",
+        "type": "multiple_choice",
+        "prompt": "Was hilft deinem Welpen, schnell stubenrein zu werden?",
         "card_ids": ["rausbringen-timing", "loben-draussen", "kein-schimpfen"],
-        "sentence": "Was hilft deinem Welpen, schnell stubenrein zu werden?",
-        "accept": [
-          "Ihn nach Schlafen, Fressen und Spielen sofort rausbringen",
-          "Das Lösen draußen direkt loben",
-          "Missgeschicke drinnen ohne Schimpfen wegwischen"
-        ],
-        "distractors": [
-          "Ihn für Pfützen bestrafen",
-          "Nur zweimal am Tag rausgehen",
-          "Erst zu Hause loben, lange nach dem Lösen"
+        "multiple": true,
+        "options": [
+          {"text": "Ihn nach Schlafen, Fressen und Spielen sofort rausbringen", "correct": true},
+          {"text": "Das Lösen draußen direkt loben", "correct": true},
+          {"text": "Missgeschicke drinnen ohne Schimpfen wegwischen", "correct": true},
+          {"text": "Ihn für Pfützen bestrafen"},
+          {"text": "Nur zweimal am Tag rausgehen"},
+          {"text": "Erst zu Hause loben, lange nach dem Lösen"}
         ],
         "hint": "Denke an Timing, Loben draußen und kein Schimpfen."
       }

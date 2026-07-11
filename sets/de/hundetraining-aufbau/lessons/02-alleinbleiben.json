@@ -110,16 +110,15 @@
       "title": "Wie lange üben?",
       "exercise": {
         "id": "ex-mc-schwelle",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Was bedeutet „unter der Stressschwelle üben“?",
         "card_ids": ["stressschwelle"],
-        "sentence": "___",
-        "blanks": [{"accept": ["So kurz weggehen, dass der Hund noch entspannt bleibt"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "So lange weggehen, bis der Hund sich beruhigt hat",
-          "Erst zurückkommen, wenn der Hund lange gebellt hat",
-          "Den Hund bewusst an seine Grenze bringen"
+        "multiple": false,
+        "options": [
+          {"text": "So kurz weggehen, dass der Hund noch entspannt bleibt", "correct": true},
+          {"text": "So lange weggehen, bis der Hund sich beruhigt hat"},
+          {"text": "Erst zurückkommen, wenn der Hund lange gebellt hat"},
+          {"text": "Den Hund bewusst an seine Grenze bringen"}
         ],
         "hint": "Panik soll gar nicht erst entstehen."
       }
@@ -178,20 +177,17 @@
       "title": "Was das Alleinbleiben erleichtert",
       "exercise": {
         "id": "ex-ms-aufbau",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Gutes Alleinbleib-Training",
+        "type": "multiple_choice",
+        "prompt": "Was hilft deinem Hund, entspannt allein zu bleiben?",
         "card_ids": ["kleinschrittig", "ruheplatz", "kauartikel"],
-        "sentence": "Was hilft deinem Hund, entspannt allein zu bleiben?",
-        "accept": [
-          "Die Alleinzeit kleinschrittig steigern",
-          "Ein sicherer, gemütlicher Ruheplatz",
-          "Ein gefüllter Kong zum Überbrücken der ersten Zeit"
-        ],
-        "distractors": [
-          "Ihn zur Strafe stundenlang allein lassen",
-          "Sich vor dem Gehen ausgiebig und emotional verabschieden",
-          "Erst zurückkommen, wenn er lange gebellt hat"
+        "multiple": true,
+        "options": [
+          {"text": "Die Alleinzeit kleinschrittig steigern", "correct": true},
+          {"text": "Ein sicherer, gemütlicher Ruheplatz", "correct": true},
+          {"text": "Ein gefüllter Kong zum Überbrücken der ersten Zeit", "correct": true},
+          {"text": "Ihn zur Strafe stundenlang allein lassen"},
+          {"text": "Sich vor dem Gehen ausgiebig und emotional verabschieden"},
+          {"text": "Erst zurückkommen, wenn er lange gebellt hat"}
         ],
         "hint": "Denke an kleine Schritte, Ruheplatz und Beschäftigung."
       }

@@ -110,16 +110,15 @@
       "title": "Das Rückrufwort schützen",
       "exercise": {
         "id": "ex-mc-verbrennen",
-        "type": "cloze",
+        "type": "multiple_choice",
         "prompt": "Wofür solltest du dein Rückrufwort NICHT verwenden?",
         "card_ids": ["rueckrufwort"],
-        "sentence": "___",
-        "blanks": [{"accept": ["Zum Schimpfen oder für etwas Unangenehmes"]}],
-        "cloze_mode": "select",
-        "distractors": [
-          "Zum fröhlichen Rufen im Park",
-          "Um den Hund zu belohnen",
-          "Um mit dem Hund zu spielen"
+        "multiple": false,
+        "options": [
+          {"text": "Zum Schimpfen oder für etwas Unangenehmes", "correct": true},
+          {"text": "Zum fröhlichen Rufen im Park"},
+          {"text": "Um den Hund zu belohnen"},
+          {"text": "Um mit dem Hund zu spielen"}
         ],
         "hint": "Kommen muss sich für den Hund immer lohnen."
       }
@@ -178,20 +177,17 @@
       "title": "Gutes Leinentraining",
       "exercise": {
         "id": "ex-ms-leinentraining",
-        "type": "cloze",
-        "cloze_mode": "multiselect",
-        "prompt": "Entspannt an der Leine",
+        "type": "multiple_choice",
+        "prompt": "Was hilft beim Training der lockeren Leinenführigkeit?",
         "card_ids": ["stehenbleiben", "belohnungszone", "ablenkung"],
-        "sentence": "Was hilft beim Training der lockeren Leinenführigkeit?",
-        "accept": [
-          "Bei Zug stehen bleiben und auf eine lockere Leine warten",
-          "Den Hund neben dir auf Höhe des Beins belohnen",
-          "Erst an ruhigen Orten üben und die Ablenkung langsam steigern"
-        ],
-        "distractors": [
-          "Den ziehenden Hund kräftig nach hinten reißen",
-          "Nur weit vor dir an gespannter Leine belohnen",
-          "Sofort im größten Trubel starten"
+        "multiple": true,
+        "options": [
+          {"text": "Bei Zug stehen bleiben und auf eine lockere Leine warten", "correct": true},
+          {"text": "Den Hund neben dir auf Höhe des Beins belohnen", "correct": true},
+          {"text": "Erst an ruhigen Orten üben und die Ablenkung langsam steigern", "correct": true},
+          {"text": "Den ziehenden Hund kräftig nach hinten reißen"},
+          {"text": "Nur weit vor dir an gespannter Leine belohnen"},
+          {"text": "Sofort im größten Trubel starten"}
         ],
         "hint": "Denke an Stehenbleiben, Belohnen neben dir und langsam mehr Ablenkung."
       }
