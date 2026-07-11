@@ -1,0 +1,196 @@
+{
+  "id": "02-ausruestung-angewoehnen",
+  "title": "Halsband, Geschirr und Leine angewöhnen",
+  "description": "Welpen-Spezial: Wie dein Welpe Halsband, Geschirr und Leine entspannt trägt — schrittweise, freiwillig und positiv, als Vorbereitung auf die Leinenführigkeit.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 11,
+  "cards": [
+    {
+      "id": "halsband-gewoehnen",
+      "front": "Halsband angewöhnen",
+      "back": "Das Halsband kurz anlegen, ablenken und belohnen, die Tragezeit langsam steigern.",
+      "notes": "Am Anfang während des Spielens oder Fressens, damit es kaum auffällt.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["ausruestung"]
+    },
+    {
+      "id": "geschirr",
+      "front": "Brustgeschirr",
+      "back": "Ein gut sitzendes Brustgeschirr verteilt den Zug schonend, statt auf den Hals zu wirken.",
+      "notes": "Gerade für Welpen und für Hunde, die noch ziehen, oft die schonendere Wahl.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["ausruestung"]
+    },
+    {
+      "id": "leine-positiv",
+      "front": "Leine positiv einführen",
+      "back": "Die Leine unter Aufsicht locker mitschleifen lassen, damit sie nichts Bedrohliches ist.",
+      "notes": "Erst drinnen, kurz und beaufsichtigt — nie den Welpen daran ruckeln oder festbinden.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["ausruestung"]
+    },
+    {
+      "id": "freiwillig",
+      "front": "Freiwillig hineingehen",
+      "back": "Der Welpe steckt Kopf oder Pfoten selbst ins Geschirr, gelockt mit einem Leckerli.",
+      "notes": "Nichts überstülpen. Freiwilligkeit senkt Stress und macht das Anziehen später leicht.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "kurze-einheiten",
+      "front": "Kurze Einheiten",
+      "back": "Erst Sekunden tragen, dann langsam länger — immer im entspannten Bereich.",
+      "notes": "Kratzt der Welpe stark oder erstarrt er, war der Schritt zu groß.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "passform",
+      "front": "Passform prüfen",
+      "back": "Zwei Finger passen unter das Halsband; das Geschirr scheuert nicht und sitzt sicher.",
+      "notes": "Welpen wachsen schnell — die Passform regelmäßig kontrollieren.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["ausruestung"]
+    },
+    {
+      "id": "vorbereitung-leine",
+      "front": "Basis für die Leinenführigkeit",
+      "back": "Wer Ausrüstung entspannt trägt, tut sich beim späteren Leinentraining (Teil 1) viel leichter.",
+      "notes": "Die Gewöhnung kommt vor dem eigentlichen Gehen an lockerer Leine.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Erst tragen, dann gehen",
+      "body": "# Halsband, Geschirr und Leine\n\nBevor ein Welpe an der Leine läuft, muss er die **Ausrüstung** erst einmal entspannt **tragen**. Das baust du in Ruhe auf:\n\n- **Halsband angewöhnen**: kurz anlegen, ablenken, belohnen, Tragezeit steigern.\n- **Brustgeschirr**: verteilt den Zug schonend — für Welpen oft die bessere Wahl.\n- **Leine positiv einführen**: unter Aufsicht locker mitschleifen lassen, nie daran ruckeln.\n\nWichtig ist die **Freiwilligkeit**: Der Welpe steckt Kopf und Pfoten am besten **selbst** ins Geschirr, gelockt mit einem Leckerli. Nichts wird übergestülpt."
+    },
+    {
+      "id": "step-passform",
+      "type": "theory",
+      "title": "Kurz, passend, positiv",
+      "body": "## Worauf du achtest\n\nDrei Dinge halten die Gewöhnung angenehm:\n\n- **Kurze Einheiten**: erst Sekunden, dann langsam länger.\n- **Passform prüfen**: zwei Finger unter das Halsband, das Geschirr scheuert nicht. Welpen wachsen schnell — regelmäßig kontrollieren.\n- **Positiv bleiben**: Kratzt oder erstarrt der Welpe, gehst du einen Schritt zurück.\n\nSo wird aus dem Anziehen kein Kampf — und die **Basis für die spätere Leinenführigkeit** (Teil 1) steht."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["halsband-gewoehnen", "geschirr", "leine-positiv", "passform"],
+        "pairs": [
+          {"left": "Halsband angewöhnen", "right": "Kurz anlegen, belohnen, Tragezeit steigern."},
+          {"left": "Brustgeschirr", "right": "Verteilt den Zug schonend statt auf den Hals."},
+          {"left": "Leine positiv einführen", "right": "Unter Aufsicht locker mitschleifen lassen."},
+          {"left": "Passform prüfen", "right": "Zwei Finger unter das Halsband."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-geschirr",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Das Geschirr anziehen",
+      "exercise": {
+        "id": "ex-mc-geschirr",
+        "type": "multiple_choice",
+        "prompt": "Wie ziehst du dem Welpen das neue Geschirr am besten an?",
+        "card_ids": ["freiwillig", "kurze-einheiten"],
+        "multiple": false,
+        "options": [
+          {"text": "Ihn mit einem Leckerli freiwillig hineinstecken lassen", "correct": true},
+          {"text": "Es ihm schnell über den Kopf zwängen", "correct": false},
+          {"text": "Ihn festhalten, bis er stillhält", "correct": false},
+          {"text": "Es gleich für mehrere Stunden anlassen", "correct": false}
+        ],
+        "hint": "Freiwilligkeit senkt den Stress."
+      }
+    },
+    {
+      "id": "ex-cloze-passform",
+      "type": "exercise",
+      "theory_ref": "step-passform",
+      "title": "Sitzt es richtig?",
+      "exercise": {
+        "id": "ex-cloze-passform",
+        "type": "cloze",
+        "prompt": "Ergänze die Faustregel.",
+        "card_ids": ["passform"],
+        "sentence": "Ein Halsband sitzt gut, wenn noch ___ Finger darunter passen.",
+        "blanks": [{"accept": ["zwei", "2"]}],
+        "cloze_mode": "type",
+        "hint": "Mehr als einer, weniger als drei."
+      }
+    },
+    {
+      "id": "ex-free-leine",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Die Leine soll gut sein",
+      "exercise": {
+        "id": "ex-free-leine",
+        "type": "free_text",
+        "prompt": "Wie führst du die Leine anfangs ein, damit sie nichts Bedrohliches ist?",
+        "card_ids": ["leine-positiv"],
+        "accept": ["locker mitschleifen lassen", "unter Aufsicht mitschleifen lassen", "positiv einführen", "locker hinterherziehen lassen"],
+        "hint": "Unter Aufsicht, drinnen, ohne Ruckeln.",
+        "distractors": ["daran ziehen", "den Welpen festbinden", "daran hochheben"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-regel",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Merksatz zur Reihenfolge",
+      "exercise": {
+        "id": "ex-tiles-regel",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["vorbereitung-leine", "halsband-gewoehnen"],
+        "tiles": ["Erst", "entspannt", "tragen", "dann", "an", "der", "Leine", "gehen"],
+        "hint": "Die Gewöhnung kommt vor dem Gehen.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-gut",
+      "type": "exercise",
+      "theory_ref": "step-passform",
+      "title": "Gute Angewöhnung",
+      "exercise": {
+        "id": "ex-ms-gut",
+        "type": "multiple_choice",
+        "prompt": "Was gehört zu einer guten Ausrüstungs-Angewöhnung?",
+        "card_ids": ["freiwillig", "kurze-einheiten", "passform"],
+        "multiple": true,
+        "options": [
+          {"text": "Den Welpen freiwillig ins Geschirr gehen lassen", "correct": true},
+          {"text": "In kurzen Einheiten üben und langsam steigern", "correct": true},
+          {"text": "Die Passform regelmäßig prüfen", "correct": true},
+          {"text": "Die Ausrüstung überstülpen und festhalten", "correct": false},
+          {"text": "Von Anfang an den ganzen Tag tragen lassen", "correct": false},
+          {"text": "Bei Gegenwehr fester ziehen", "correct": false}
+        ],
+        "hint": "Freiwillig, kurz, gut sitzend."
+      }
+    }
+  ]
+}

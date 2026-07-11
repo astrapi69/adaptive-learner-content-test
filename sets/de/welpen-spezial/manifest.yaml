@@ -1,0 +1,53 @@
+# Set-Manifest: Hundetraining Welpen-Spezial — deutschsprachig.
+#
+# Sachthema-Set (domain: knowledge): Material und Erklärung sind beide auf
+# Deutsch (source_language == target_language); der Set-Ordner trägt einen
+# Themennamen. Der Content-Loader liest metadata.lessons für die Dateiliste.
+#
+# Vertiefung zum Welpenkurs (Teil 0): vier Spezial-Lektionen zu Themen der
+# Welpenzeit, die der Grundkurs nicht abdeckt — Geräusche/Umweltreize
+# (Habituation), Ausrüstung angewöhnen (Halsband/Geschirr/Leine), Angstphasen
+# ruhig begleiten sowie Autofahren und erste Ausflüge. Native multiple_choice
+# (Schema v1.6) plus matching, cloze, free_text und word_tiles.
+schema_version: '1.3'
+name: Hundetraining Welpen-Spezial
+description: >-
+  Vertiefung zum Welpenkurs: vier Spezial-Lektionen zu Geräuschen und
+  Umweltreizen (Habituation), zum Angewöhnen von Halsband, Geschirr und Leine,
+  zu Angstphasen sowie zu Autofahren und ersten Ausflügen. Gewaltfrei mit
+  positiver Verstärkung, gemischte Übungstypen mit nativem multiple_choice.
+sets:
+  - id: welpen-spezial-from-de
+    title: Hundetraining Welpen-Spezial
+    title_native: Hundetraining Welpen-Spezial
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: A1
+    path: sets/de/welpen-spezial
+    version: '1.0.0'
+    lesson_count: 4
+    domain_label: Hundetraining
+    description: >-
+      Vertiefung zum Welpenkurs (Teil 0): vier Lektionen zu Themen der
+      Welpenzeit jenseits des Grundkurses — Geräusche und Umweltreize
+      (Habituation, leise anfangen, positiv verknüpfen), Ausrüstung angewöhnen
+      (Halsband, Geschirr, Leine, freiwillig und passend), Angstphasen ruhig
+      begleiten (souverän bleiben, Distanz, positive Gegenkonditionierung)
+      sowie Autofahren und erste Ausflüge (sicher transportieren, dosieren,
+      positive Ersterfahrung). Native multiple_choice plus matching, cloze,
+      free_text und word_tiles.
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - welpe
+      - spezial
+metadata:
+  author: Asterios Raptis
+  license: CC-BY-SA-4.0
+  lessons:
+    - 01-geraeusche-habituation.json
+    - 02-ausruestung-angewoehnen.json
+    - 03-angstphasen.json
+    - 04-autofahren-ausfluege.json

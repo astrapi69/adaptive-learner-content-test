@@ -1,0 +1,196 @@
+{
+  "id": "01-geraeusche-habituation",
+  "title": "Geräusche und Umweltreize",
+  "description": "Welpen-Spezial: Wie dein Welpe sich an Alltagsgeräusche und Umweltreize gewöhnt — durch Habituation in kleinen Dosen, leise anfangen, positiv verknüpfen und selbst ruhig bleiben.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 11,
+  "cards": [
+    {
+      "id": "habituation",
+      "front": "Habituation",
+      "back": "Gewöhnung an alltägliche Reize, bis sie den Welpen nicht mehr aufregen.",
+      "notes": "Das Grundprinzip: Bekanntes verliert seinen Schrecken. Anders als aktive Belohnung ist es reines Gewöhnen.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "geraeuschgewoehnung",
+      "front": "Geräusche gewöhnen",
+      "back": "Alltagsgeräusche wie Staubsauger oder Verkehr in kleiner Lautstärke einführen.",
+      "notes": "Erst aus der Ferne oder leise, damit der Welpe gelassen bleibt.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "untergruende",
+      "front": "Verschiedene Untergründe",
+      "back": "Gitter, Teppich, Kies, nasses Gras — den Welpen viele Böden erkunden lassen.",
+      "notes": "Sichere Trittflächen-Erfahrung macht ihn später gelassener in der Umwelt.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["welpe"]
+    },
+    {
+      "id": "leise-anfangen",
+      "front": "Leise anfangen, dann steigern",
+      "back": "Reize erst schwach anbieten und die Stärke langsam erhöhen, immer unter der Schwelle.",
+      "notes": "Bleibt der Welpe entspannt, kannst du steigern; erschrickt er, gehst du zurück.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "positiv-verknuepfen",
+      "front": "Positiv verknüpfen",
+      "back": "Den Reiz mit etwas Gutem wie einem Leckerli verbinden, damit er angenehm wird.",
+      "notes": "Aus „unbekannt und laut“ wird so „kündigt Futter an“.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "ruhig-bleiben",
+      "front": "Selbst ruhig bleiben",
+      "back": "Der Mensch reagiert gelassen; kein aufgeregtes Trösten, kein Drama.",
+      "notes": "Deine Ruhe überträgt sich. Hektik oder Bemitleiden macht den Reiz größer, als er ist.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "laute-ereignisse",
+      "front": "Auf laute Ereignisse vorbereiten",
+      "back": "Gewitter oder Feuerwerk früh und in Ruhe anbahnen, statt erst im Ernstfall.",
+      "notes": "Leise Aufnahmen und ein sicherer Rückzugsort helfen, bevor es das erste Mal richtig knallt.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["welpe"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Die Welt klingt und fühlt sich neu an",
+      "body": "# Geräusche und Umweltreize\n\nFür einen Welpen ist fast alles neu: der Staubsauger, vorbeifahrende Autos, ein Gitterrost unter den Pfoten. Damit daraus keine Angst wird, hilft **Habituation** — die ruhige **Gewöhnung** an Alltagsreize, bis sie ihn nicht mehr aufregen.\n\nDrei Regeln machen es sicher:\n\n- **Leise anfangen**: Reize erst schwach, dann langsam steigern — immer so, dass der Welpe entspannt bleibt.\n- **Positiv verknüpfen**: Reiz plus Leckerli, dann wird das Neue angenehm.\n- **Selbst ruhig bleiben**: Deine Gelassenheit überträgt sich.\n\nDazu gehören auch **verschiedene Untergründe** — Teppich, Kies, nasses Gras."
+    },
+    {
+      "id": "step-laut",
+      "type": "theory",
+      "title": "Vor dem großen Knall",
+      "body": "## Laute Ereignisse vorbereiten\n\n**Gewitter** und **Feuerwerk** sind für viele Hunde ein Problem — meist, weil sie erst im Ernstfall damit konfrontiert werden. Besser: **früh und in Ruhe** anbahnen.\n\n- Leise Geräusch-Aufnahmen in kleiner Lautstärke, während etwas Schönes passiert.\n- Ein **sicherer Rückzugsort**, an den sich der Welpe zurückziehen darf.\n- Selbst gelassen bleiben — **kein aufgeregtes Trösten**.\n\nSo lernt der Welpe: Auch laute Geräusche gehören dazu und gehen vorbei."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["habituation", "geraeuschgewoehnung", "untergruende", "ruhig-bleiben"],
+        "pairs": [
+          {"left": "Habituation", "right": "Gewöhnung an Reize, bis sie nicht mehr aufregen."},
+          {"left": "Geräusche gewöhnen", "right": "Alltagsgeräusche erst leise einführen."},
+          {"left": "Verschiedene Untergründe", "right": "Viele Böden erkunden lassen."},
+          {"left": "Selbst ruhig bleiben", "right": "Gelassen reagieren, kein Drama."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-schwelle",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Der Staubsauger läuft an",
+      "exercise": {
+        "id": "ex-mc-schwelle",
+        "type": "multiple_choice",
+        "prompt": "Dein Welpe erschrickt vor dem Staubsauger. Wie führst du ihn am besten heran?",
+        "card_ids": ["leise-anfangen", "positiv-verknuepfen"],
+        "multiple": false,
+        "options": [
+          {"text": "Aus der Ferne, leise beginnen und dabei belohnen", "correct": true},
+          {"text": "Ihn direkt neben das laufende Gerät setzen", "correct": false},
+          {"text": "Den Staubsauger absichtlich hinter ihm anschalten", "correct": false},
+          {"text": "Ihn ignorieren, bis die Angst von selbst weg ist", "correct": false}
+        ],
+        "hint": "Unter der Schwelle bleiben und den Reiz angenehm machen."
+      }
+    },
+    {
+      "id": "ex-cloze-habituation",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Der Fachbegriff",
+      "exercise": {
+        "id": "ex-cloze-habituation",
+        "type": "cloze",
+        "prompt": "Ergänze den Fachbegriff.",
+        "card_ids": ["habituation"],
+        "sentence": "Die ruhige Gewöhnung an Alltagsreize, bis sie nicht mehr aufregen, nennt man ___ .",
+        "blanks": [{"accept": ["Habituation", "habituation"]}],
+        "cloze_mode": "type",
+        "hint": "Ein Fachwort für Gewöhnung."
+      }
+    },
+    {
+      "id": "ex-free-verknuepfen",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Neues angenehm machen",
+      "exercise": {
+        "id": "ex-free-verknuepfen",
+        "type": "free_text",
+        "prompt": "Wie machst du einen neuen, lauten Reiz für den Welpen angenehm?",
+        "card_ids": ["positiv-verknuepfen"],
+        "accept": ["positiv verknüpfen", "mit Leckerli verknüpfen", "positive Verknüpfung", "belohnen"],
+        "hint": "Reiz plus etwas Gutes.",
+        "distractors": ["lauter machen", "ignorieren", "wegsperren"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-ruhe",
+      "type": "exercise",
+      "theory_ref": "step-laut",
+      "title": "Merksatz zum Verhalten",
+      "exercise": {
+        "id": "ex-tiles-ruhe",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["ruhig-bleiben", "laute-ereignisse"],
+        "tiles": ["Bei", "Krach", "selbst", "gelassen", "bleiben"],
+        "hint": "Deine Reaktion ist das Vorbild.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-plan",
+      "type": "exercise",
+      "theory_ref": "step-laut",
+      "title": "Gute Geräusch-Gewöhnung",
+      "exercise": {
+        "id": "ex-ms-plan",
+        "type": "multiple_choice",
+        "prompt": "Was gehört zu einer guten Gewöhnung an Geräusche und laute Ereignisse?",
+        "card_ids": ["geraeuschgewoehnung", "leise-anfangen", "laute-ereignisse"],
+        "multiple": true,
+        "options": [
+          {"text": "Geräusche erst leise anbieten und langsam steigern", "correct": true},
+          {"text": "Auf Gewitter und Feuerwerk früh und in Ruhe vorbereiten", "correct": true},
+          {"text": "Einen sicheren Rückzugsort anbieten", "correct": true},
+          {"text": "Den Welpen mit voller Lautstärke überraschen", "correct": false},
+          {"text": "Bei Angst selbst hektisch werden", "correct": false},
+          {"text": "Laute Reize komplett vermeiden, bis er erwachsen ist", "correct": false}
+        ],
+        "hint": "Leise steigern, früh vorbereiten, Rückzug erlauben."
+      }
+    }
+  ]
+}
