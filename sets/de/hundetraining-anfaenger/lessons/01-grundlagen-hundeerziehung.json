@@ -137,7 +137,7 @@
         "id": "ex-mc-anspringen",
         "type": "multiple_choice",
         "prompt": "Dein Hund springt zur Begrüßung an dir hoch. Was ist der beste erste Schritt?",
-        "card_ids": ["ignorieren"],
+        "card_ids": ["ignorieren", "koerpersprache"],
         "multiple": false,
         "options": [
           {"text": "Ihn ignorieren und ruhiges Verhalten belohnen", "correct": true},
@@ -175,6 +175,7 @@
         "prompt": "Setze den Merksatz richtig zusammen.",
         "card_ids": ["kurze-einheiten"],
         "tiles": ["Lieber", "kurz", "und", "oft", "als", "lang", "und", "selten"],
+        "accept_orderings": [[0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 6, 3, 4, 5, 2, 7]],
         "hint": "Es geht um die Länge der Trainingseinheiten.",
         "direction": "target_to_source"
       }
@@ -188,7 +189,7 @@
         "id": "ex-ms-erfolg",
         "type": "multiple_choice",
         "prompt": "Welche Punkte machen das Training mit deinem Hund erfolgreich?",
-        "card_ids": ["positive-verstaerkung", "timing", "konsequenz", "kurze-einheiten"],
+        "card_ids": ["positive-verstaerkung", "timing", "konsequenz", "kurze-einheiten", "belohnung"],
         "multiple": true,
         "options": [
           {"text": "Erwünschtes Verhalten sofort belohnen", "correct": true},

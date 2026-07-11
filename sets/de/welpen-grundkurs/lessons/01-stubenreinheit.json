@@ -179,7 +179,7 @@
         "id": "ex-ms-plan",
         "type": "multiple_choice",
         "prompt": "Was hilft deinem Welpen, schnell stubenrein zu werden?",
-        "card_ids": ["rausbringen-timing", "loben-draussen", "kein-schimpfen"],
+        "card_ids": ["rausbringen-timing", "loben-draussen", "kein-schimpfen", "stubenreinheit", "nachts-rausbringen"],
         "multiple": true,
         "options": [
           {"text": "Ihn nach Schlafen, Fressen und Spielen sofort rausbringen", "correct": true},

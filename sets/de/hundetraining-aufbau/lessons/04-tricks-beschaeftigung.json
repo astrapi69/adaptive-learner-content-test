@@ -179,7 +179,7 @@
         "id": "ex-ms-auslastung",
         "type": "multiple_choice",
         "prompt": "Womit lastest du deinen Hund sinnvoll geistig aus?",
-        "card_ids": ["nasenarbeit", "trick-pfote", "koepfchen"],
+        "card_ids": ["nasenarbeit", "trick-pfote", "koepfchen", "trick-drehen"],
         "multiple": true,
         "options": [
           {"text": "Nasenarbeit und Suchspiele", "correct": true},

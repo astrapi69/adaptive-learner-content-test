@@ -179,7 +179,7 @@
         "id": "ex-ms-bausteine",
         "type": "multiple_choice",
         "prompt": "Was gehört zu einem guten kooperativen Medical Training?",
-        "card_ids": ["station-target", "handling", "kleinschrittig"],
+        "card_ids": ["station-target", "handling", "kleinschrittig", "medical-training"],
         "multiple": true,
         "options": [
           {"text": "Ein Stationstraining mit Matte oder Kinntarget", "correct": true},

@@ -123,7 +123,7 @@
         "id": "ex-cloze-hemmung",
         "type": "cloze",
         "prompt": "Ergänze den Fachbegriff.",
-        "card_ids": ["beisshemmung"],
+        "card_ids": ["beisshemmung", "welpenbeissen"],
         "sentence": "Wenn der Welpe lernt, seine Beißkraft zu kontrollieren, nennt man das ___ .",
         "blanks": [{"accept": ["Beißhemmung", "beißhemmung", "Beisshemmung"]}],
         "cloze_mode": "type",
