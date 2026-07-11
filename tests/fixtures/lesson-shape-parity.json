@@ -56,7 +56,7 @@
     {
       "name": "unknown-exercise-type",
       "expectValid": false,
-      "reason": "closed ExerciseType enum rejects multiple_choice",
+      "reason": "closed ExerciseType enum rejects an unknown type",
       "lesson": {
         "id": "04-bad-type",
         "title": "Bad type",
@@ -68,10 +68,38 @@
             "type": "exercise",
             "exercise": {
               "id": "ex",
-              "type": "multiple_choice",
+              "type": "flashcard",
               "prompt": "p",
               "card_ids": ["card-01"],
               "distractors": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "multiple-choice-valid",
+      "expectValid": true,
+      "reason": "multiple_choice with options is a valid ExerciseType in schema v1.6",
+      "lesson": {
+        "id": "06-mc-valid",
+        "title": "MC valid",
+        "estimated_minutes": 5,
+        "cards": [{ "id": "card-01", "front": "a", "back": "b", "tags": [] }],
+        "steps": [
+          {
+            "id": "ex",
+            "type": "exercise",
+            "exercise": {
+              "id": "ex",
+              "type": "multiple_choice",
+              "prompt": "p",
+              "card_ids": ["card-01"],
+              "options": [
+                { "text": "right", "correct": true },
+                { "text": "wrong" }
+              ],
+              "multiple": false
             }
           }
         ]
