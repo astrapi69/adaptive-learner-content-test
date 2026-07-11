@@ -33,6 +33,31 @@ Exit-Code 0, wenn alle Sets bestehen; sonst 1 mit einem Bericht je
 Datei. Der Validator braucht nur Python 3 und PyYAML
 (`pip install pyyaml`).
 
+## Ein Set für KI-Review exportieren
+
+`scripts/export_set.py` schreibt alle Lektionen EINES Sets in eine
+einzige YAML- (oder JSON-) Datei, damit ein KI-Assistent oder ein Mensch
+das ganze Set in einem Durchgang prüfen kann (Syntax, Korrektheit,
+Konsistenz über die Lektionen hinweg):
+
+```bash
+python3 scripts/export_set.py fuehrerschein-uebung
+# -> exports/fuehrerschein-uebung-de-<timestamp>.yaml
+python3 scripts/export_set.py fuehrerschein-uebung --format json --out /tmp/review.json
+```
+
+Der Slug ist die Set-Id aus dem Wurzel-`manifest.yaml`
+(`fuehrerschein-uebung-from-de`) oder der Ordnername des Set-Pfads
+(`fuehrerschein-uebung`); bei gleichnamigen Ordnern unter mehreren
+Quellsprachen entscheidet `--lang` (Default `de`). Umlaute bleiben
+echtes UTF-8. Ein unbekannter Slug bricht mit einer Liste der
+verfügbaren Sets ab.
+
+**Nur-Lese-Snapshot, KEIN Re-Import-Format:** Der Export wird nirgends
+zurückgelesen. Änderungen fließen ausschließlich über die einzelnen
+schema-validierten Lektions-JSONs unter `sets/` ein. Der Ordner
+`exports/` ist gitignored.
+
 ## Aufgaben mit KI generieren (optional)
 
 `scripts/generate_exercises.py` erzeugt aus einem Thema eine vollständige

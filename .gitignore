@@ -12,3 +12,6 @@ node_modules/
 # generate_exercises.py staging: unreviewed AI drafts stay local
 # (the folder's README.md is kept, the generated JSON is not)
 /generated/**/*.json
+
+# export_set.py snapshots for AI review: read-only, never committed
+exports/
