@@ -243,3 +243,27 @@ sets:
       - hunde
       - alltag
       - fortgeschritten
+  - id: hundetraining-verhalten-from-de
+    title: Hundetraining Verhalten verstehen (Teil 4)
+    title_native: Hundetraining Verhalten verstehen (Teil 4)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: B2
+    path: sets/de/hundetraining-verhalten
+    version: '1.0.0'
+    lesson_count: 4
+    domain_label: Hundetraining
+    description: >-
+      Teil 4 der Reihe (B2), aufbauend auf Teil 0-3: fortgeschrittene
+      Verhaltensthemen — Leinenreaktivität (Pöbeln an der Leine),
+      Ressourcenverteidigung, Frust und Übererregung sowie Unsicherheit und
+      Selbstvertrauen aufbauen. Gewaltfrei mit positiver Verstärkung und
+      Hinweisen auf professionelle Hilfe bei ernsten Fällen. Native
+      multiple_choice plus matching, cloze, free_text und word_tiles.
+    tags:
+      - knowledge
+      - hundetraining
+      - hunde
+      - verhalten
+      - fortgeschritten

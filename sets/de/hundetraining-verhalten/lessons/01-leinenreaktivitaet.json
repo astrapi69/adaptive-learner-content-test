@@ -1,0 +1,196 @@
+{
+  "id": "01-leinenreaktivitaet",
+  "title": "Leinenreaktivität (Pöbeln an der Leine)",
+  "description": "Teil 4 (B2): Warum Hunde an der Leine pöbeln, wie du Frust und Angst als Ursachen erkennst und mit Distanz, Schwellenarbeit und Umorientierung (Engage-Disengage, „Look at That“) souverän gegensteuerst.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 13,
+  "cards": [
+    {
+      "id": "leinenreaktivitaet",
+      "front": "Leinenreaktivität",
+      "back": "Bellen, Anspringen oder In-die-Leine-gehen, wenn an der Leine ein Auslöser auftaucht.",
+      "notes": "Typisch gegenüber anderen Hunden oder Menschen. „Pöbeln“ ist der Alltagsbegriff dafür.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["verhalten"]
+    },
+    {
+      "id": "ursache-frust-angst",
+      "front": "Frust oder Angst als Ursache",
+      "back": "Meist steckt Frust (will hin) oder Angst (will Abstand) dahinter — nicht „Dominanz“.",
+      "notes": "Die Ursache zu kennen bestimmt den Weg: mehr Distanz und Ruhe helfen fast immer.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["verhalten"]
+    },
+    {
+      "id": "schwellendistanz",
+      "front": "Schwellendistanz",
+      "back": "Der Abstand zum Auslöser, ab dem der Hund noch ruhig und ansprechbar ist.",
+      "notes": "Näher als diese Distanz kippt der Hund ins Pöbeln. Sie ist der wichtigste Arbeitswert.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["verhalten"]
+    },
+    {
+      "id": "unter-schwelle",
+      "front": "Unter der Schwelle arbeiten",
+      "back": "Nur so nah an den Auslöser gehen, dass der Hund noch entspannt bleibt.",
+      "notes": "Über der Schwelle lernt der Hund nichts Gutes, sondern übt das Pöbeln.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "engage-disengage",
+      "front": "Sehen, markern, umorientieren",
+      "back": "Auslöser sehen → markern → Belohnung → freiwillige Umorientierung zu dir.",
+      "notes": "Der Hund lernt: Reiz sehen lohnt sich und führt zurück zu mir statt ins Pöbeln.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "lat",
+      "front": "„Look at That“ (LAT)",
+      "back": "Der Hund darf den Auslöser anschauen und wird genau dafür belohnt.",
+      "notes": "Das Hinschauen wird zum ruhigen Signal statt zum Auslöser fürs Pöbeln.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "management-abstand",
+      "front": "Management: Abstand schaffen",
+      "back": "Im Alltag ausweichen, einen Bogen laufen oder umdrehen, damit die Schwelle nicht gerissen wird.",
+      "notes": "Anschluss an Teil 2: Bogen statt frontal. Management verhindert das Üben des Falschen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Warum Hunde an der Leine pöbeln",
+      "body": "# Leinenreaktivität\n\n**Leinenreaktivität** — umgangssprachlich „Pöbeln“ — ist Bellen, Anspringen oder In-die-Leine-gehen, sobald an der Leine ein Auslöser auftaucht. Das sieht wild aus, ist aber meist **kein Dominanzproblem**, sondern **Frust** (der Hund will hin) oder **Angst** (er will Abstand).\n\nDer Schlüsselwert ist die **Schwellendistanz**: der Abstand, ab dem dein Hund noch **ruhig und ansprechbar** ist. Näher dran kippt er ins Pöbeln.\n\n> Deshalb gilt: immer **unter der Schwelle** arbeiten. Über der Schwelle übt der Hund nur das Pöbeln."
+    },
+    {
+      "id": "step-uebung",
+      "type": "theory",
+      "title": "Sehen darf sich lohnen",
+      "body": "## Umorientierung statt Eskalation\n\nStatt den Auslöser zu verbieten, machst du das **Hinschauen** zur ruhigen Übung:\n\n- **Sehen, markern, umorientieren** (Engage-Disengage): Auslöser sehen → markern → Belohnung → der Hund dreht sich freiwillig zu dir.\n- **„Look at That“ (LAT)**: Der Hund darf den Auslöser **anschauen** und wird genau dafür belohnt.\n\nBeides braucht genug **Abstand**. Im Alltag hilft **Management**: ausweichen, einen Bogen laufen, umdrehen — damit die Schwelle gar nicht erst gerissen wird.\n\n> Bei starker Reaktivität oder Angst: hol dir eine gute, gewaltfrei arbeitende Trainerin dazu."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["leinenreaktivitaet", "schwellendistanz", "engage-disengage", "lat"],
+        "pairs": [
+          {"left": "Leinenreaktivität", "right": "Pöbeln an der Leine bei einem Auslöser."},
+          {"left": "Schwellendistanz", "right": "Abstand, ab dem der Hund noch ansprechbar ist."},
+          {"left": "Sehen, markern, umorientieren", "right": "Reiz sehen, markern, belohnen, zu dir drehen."},
+          {"left": "Look at That (LAT)", "right": "Anschauen des Auslösers wird belohnt."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-ursache",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Was steckt dahinter?",
+      "exercise": {
+        "id": "ex-mc-ursache",
+        "type": "multiple_choice",
+        "prompt": "Was ist meistens die Ursache für Pöbeln an der Leine?",
+        "card_ids": ["ursache-frust-angst"],
+        "multiple": false,
+        "options": [
+          {"text": "Frust (will hin) oder Angst (will Abstand)", "correct": true},
+          {"text": "Der Hund will dominant sein", "correct": false},
+          {"text": "Der Hund ist einfach böse", "correct": false},
+          {"text": "Der Hund braucht mehr Strenge", "correct": false}
+        ],
+        "hint": "Zwei Gefühle, keine Rangordnung."
+      }
+    },
+    {
+      "id": "ex-cloze-schwelle",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Der wichtigste Wert",
+      "exercise": {
+        "id": "ex-cloze-schwelle",
+        "type": "cloze",
+        "prompt": "Ergänze den Fachbegriff.",
+        "card_ids": ["schwellendistanz", "unter-schwelle"],
+        "sentence": "Der Abstand, ab dem der Hund noch ruhig und ansprechbar ist, heißt ___ .",
+        "blanks": [{"accept": ["Schwellendistanz", "schwellendistanz", "Schwellenabstand"]}],
+        "cloze_mode": "type",
+        "hint": "Ab hier kippt er über die Schwelle."
+      }
+    },
+    {
+      "id": "ex-free-lat",
+      "type": "exercise",
+      "theory_ref": "step-uebung",
+      "title": "Hinschauen belohnen",
+      "exercise": {
+        "id": "ex-free-lat",
+        "type": "free_text",
+        "prompt": "Wie heißt die Übung, bei der der Hund den Auslöser anschauen darf und dafür belohnt wird?",
+        "card_ids": ["lat"],
+        "accept": ["Look at That", "LAT", "look at that", "Schau-das-an"],
+        "hint": "Ein englischer Name, Abkürzung LAT.",
+        "distractors": ["Sitz", "Bei Fuß", "Platz"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-management",
+      "type": "exercise",
+      "theory_ref": "step-uebung",
+      "title": "Merksatz zum Management",
+      "exercise": {
+        "id": "ex-tiles-management",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["management-abstand", "unter-schwelle"],
+        "tiles": ["Genug", "Abstand", "halten", "und", "unter", "der", "Schwelle", "bleiben"],
+        "hint": "Distanz ist das einfachste Werkzeug.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-vorgehen",
+      "type": "exercise",
+      "theory_ref": "step-uebung",
+      "title": "Gutes Vorgehen bei Reaktivität",
+      "exercise": {
+        "id": "ex-ms-vorgehen",
+        "type": "multiple_choice",
+        "prompt": "Was gehört zu einem guten Umgang mit Leinenreaktivität?",
+        "card_ids": ["unter-schwelle", "engage-disengage", "management-abstand"],
+        "multiple": true,
+        "options": [
+          {"text": "Unter der Schwellendistanz arbeiten", "correct": true},
+          {"text": "Das Sehen des Auslösers markern und belohnen", "correct": true},
+          {"text": "Im Alltag ausweichen und einen Bogen laufen", "correct": true},
+          {"text": "So nah wie möglich an den Auslöser gehen", "correct": false},
+          {"text": "Den Hund für das Bellen bestrafen", "correct": false},
+          {"text": "Frontal und stur auf den Auslöser zusteuern", "correct": false}
+        ],
+        "hint": "Distanz, Umorientierung, Management."
+      }
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "id": "03-frust-uebererregung",
+  "title": "Frust und Übererregung",
+  "description": "Teil 4 (B2): Wie du Übererregung erkennst und deinem Hund hilfst, runterzufahren — mit Frusttoleranz, Pausen, Alternativverhalten und dem Blick auf Trigger-Stacking und Ansprechbarkeit.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 12,
+  "cards": [
+    {
+      "id": "uebererregung",
+      "front": "Übererregung",
+      "back": "Der Hund ist so aufgedreht, dass er kaum noch denken oder hören kann.",
+      "notes": "Englisch „Over-Arousal“. Sieht oft wie Ungehorsam aus, ist aber ein Zustand, kein Trotz.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["verhalten"]
+    },
+    {
+      "id": "frusttoleranz",
+      "front": "Frusttoleranz",
+      "back": "Die Fähigkeit zu warten und Enttäuschung auszuhalten, ohne auszurasten.",
+      "notes": "Baut auf der Impulskontrolle aus Teil 2 auf und lässt sich gezielt üben.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["verhalten"]
+    },
+    {
+      "id": "trigger-stacking",
+      "front": "Trigger-Stacking",
+      "back": "Mehrere Reize summieren sich; nach viel Aufregung ist die Schwelle deutlich niedriger.",
+      "notes": "Erklärt, warum ein Hund „aus dem Nichts“ überreagiert — der Tag war schon voll.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["verhalten"]
+    },
+    {
+      "id": "runterfahren",
+      "front": "Aktiv runterfahren",
+      "back": "Nach Aufregung bewusst Ruhe und Entspannung anbieten, statt gleich weiterzumachen.",
+      "notes": "Schnüffeln, Kauen oder ein ruhiger Platz helfen dem Körper, herunterzukommen.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "alternativverhalten",
+      "front": "Alternativverhalten anbieten",
+      "back": "Ein ruhiges Ersatzverhalten zeigen lassen, das mit dem Aufdrehen unvereinbar ist.",
+      "notes": "Zum Beispiel eine Nasenübung oder ein Ziel-Target statt Bellen und Springen.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "pausen",
+      "front": "Bewusste Pausen",
+      "back": "Ruhe aktiv einplanen; nicht jedes Hoch mit noch mehr Action beantworten.",
+      "notes": "Wie beim Welpen (Teil 0): Viele „wilde“ Hunde brauchen mehr Ruhe, nicht mehr Programm.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "ansprechbarkeit",
+      "front": "Ansprechbarkeit lesen",
+      "back": "Erkennen, ob der Hund noch reagiert oder schon „taub“ vor Erregung ist.",
+      "notes": "Hört er nicht mehr, ist Üben sinnlos — dann erst Abstand und Runterfahren.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Zu aufgedreht zum Denken",
+      "body": "# Frust und Übererregung\n\n**Übererregung** heißt: Der Hund ist so aufgedreht, dass er kaum noch **denken oder hören** kann. Das sieht wie Ungehorsam aus, ist aber ein **Zustand**, kein Trotz — in dem Moment ist Üben zwecklos.\n\nZwei Konzepte helfen beim Verstehen:\n\n- **Frusttoleranz**: die Fähigkeit zu **warten**, ohne auszurasten (baut auf der Impulskontrolle aus Teil 2 auf).\n- **Trigger-Stacking**: Reize **summieren** sich. Nach einem aufregenden Tag ist die Schwelle niedriger — so kommt es „aus dem Nichts“ zur Überreaktion.\n\n> Erste Frage immer: Ist mein Hund gerade überhaupt noch **ansprechbar**?"
+    },
+    {
+      "id": "step-runter",
+      "type": "theory",
+      "title": "Wieder runterkommen",
+      "body": "## Vom Hoch zurück zur Ruhe\n\nIst der Hund überdreht, hilft kein „mehr Kommando“, sondern:\n\n- **Aktiv runterfahren**: Ruhe und Entspannung anbieten — Schnüffeln, Kauen, ein ruhiger Platz.\n- **Alternativverhalten anbieten**: ein ruhiges Ersatzverhalten, das mit dem Aufdrehen unvereinbar ist (z. B. eine Nasenübung statt Bellen).\n- **Bewusste Pausen**: Ruhe aktiv einplanen, nicht jedes Hoch mit noch mehr Action beantworten.\n\nUnd immer die **Ansprechbarkeit** lesen: Hört der Hund nicht mehr, zuerst Abstand und Runterfahren — dann erst wieder üben."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["uebererregung", "frusttoleranz", "trigger-stacking", "ansprechbarkeit"],
+        "pairs": [
+          {"left": "Übererregung", "right": "So aufgedreht, dass Denken kaum geht."},
+          {"left": "Frusttoleranz", "right": "Warten können, ohne auszurasten."},
+          {"left": "Trigger-Stacking", "right": "Reize summieren sich, Schwelle sinkt."},
+          {"left": "Ansprechbarkeit lesen", "right": "Erkennen, ob der Hund noch reagiert."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-ueberdreht",
+      "type": "exercise",
+      "theory_ref": "step-runter",
+      "title": "Der Hund dreht auf",
+      "exercise": {
+        "id": "ex-mc-ueberdreht",
+        "type": "multiple_choice",
+        "prompt": "Dein Hund ist völlig überdreht und hört gar nicht mehr. Was ist sinnvoll?",
+        "card_ids": ["runterfahren", "ansprechbarkeit"],
+        "multiple": false,
+        "options": [
+          {"text": "Abstand schaffen und ihm helfen, runterzufahren", "correct": true},
+          {"text": "Immer lautere Kommandos geben", "correct": false},
+          {"text": "Noch wilder mit ihm spielen", "correct": false},
+          {"text": "Ihn strafen, weil er nicht hört", "correct": false}
+        ],
+        "hint": "Im Erregungshoch ist Üben zwecklos."
+      }
+    },
+    {
+      "id": "ex-cloze-stacking",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Warum aus dem Nichts?",
+      "exercise": {
+        "id": "ex-cloze-stacking",
+        "type": "cloze",
+        "prompt": "Ergänze den Fachbegriff.",
+        "card_ids": ["trigger-stacking"],
+        "sentence": "Dass sich mehrere Reize summieren und die Schwelle senken, nennt man ___ .",
+        "blanks": [{"accept": ["Trigger-Stacking", "trigger-stacking", "Trigger Stacking"]}],
+        "cloze_mode": "type",
+        "hint": "Englisch: Auslöser stapeln sich."
+      }
+    },
+    {
+      "id": "ex-free-frust",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Warten können",
+      "exercise": {
+        "id": "ex-free-frust",
+        "type": "free_text",
+        "prompt": "Wie nennt man die Fähigkeit, zu warten und Enttäuschung auszuhalten, ohne auszurasten?",
+        "card_ids": ["frusttoleranz"],
+        "accept": ["Frusttoleranz", "die Frusttoleranz", "frusttoleranz"],
+        "hint": "Toleranz gegenüber Frust.",
+        "distractors": ["Übererregung", "Trigger-Stacking", "Impuls"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-pause",
+      "type": "exercise",
+      "theory_ref": "step-runter",
+      "title": "Merksatz zur Erregung",
+      "exercise": {
+        "id": "ex-tiles-pause",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["pausen", "runterfahren"],
+        "tiles": ["Nach", "Aufregung", "hilft", "Ruhe", "statt", "Action"],
+        "hint": "Nicht jedes Hoch mit mehr Programm beantworten.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-runter",
+      "type": "exercise",
+      "theory_ref": "step-runter",
+      "title": "Gut runterfahren",
+      "exercise": {
+        "id": "ex-ms-runter",
+        "type": "multiple_choice",
+        "prompt": "Was hilft einem überdrehten Hund, wieder runterzukommen?",
+        "card_ids": ["runterfahren", "alternativverhalten", "pausen"],
+        "multiple": true,
+        "options": [
+          {"text": "Ruhe anbieten: Schnüffeln, Kauen, ruhiger Platz", "correct": true},
+          {"text": "Ein ruhiges Alternativverhalten zeigen lassen", "correct": true},
+          {"text": "Bewusst Pausen einplanen", "correct": true},
+          {"text": "Noch wildere Spiele anschließen", "correct": false},
+          {"text": "Ihn im Erregungshoch neue Kommandos üben lassen", "correct": false},
+          {"text": "Ihn für die Aufregung bestrafen", "correct": false}
+        ],
+        "hint": "Ruhe, Alternative, Pause."
+      }
+    }
+  ]
+}

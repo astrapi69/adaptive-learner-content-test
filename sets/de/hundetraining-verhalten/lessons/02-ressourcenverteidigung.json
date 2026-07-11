@@ -1,0 +1,196 @@
+{
+  "id": "02-ressourcenverteidigung",
+  "title": "Ressourcenverteidigung",
+  "description": "Teil 4 (B2): Warum Hunde Futter, Objekte oder Plätze verteidigen, warum Knurren nicht bestraft werden darf und wie du mit Tauschen, Vorbeugen und Management sicher gegensteuerst — plus wann professionelle Hilfe nötig ist.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 13,
+  "cards": [
+    {
+      "id": "ressourcenverteidigung",
+      "front": "Ressourcenverteidigung",
+      "back": "Der Hund verteidigt Futter, Objekte oder Plätze — durch Erstarren, Knurren oder Schnappen.",
+      "notes": "Englisch „Resource Guarding“. Häufig und oft gut behandelbar, wenn man es ernst nimmt.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["verhalten"]
+    },
+    {
+      "id": "knurren-nicht-strafen",
+      "front": "Knurren nicht bestrafen",
+      "back": "Knurren ist Kommunikation, keine Frechheit — bestraft man es weg, warnt der Hund nicht mehr.",
+      "notes": "Ein Hund, dem das Knurren „abtrainiert“ wurde, schnappt oft ohne Vorwarnung. Gefährlich.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["verhalten"]
+    },
+    {
+      "id": "nicht-wegnehmen",
+      "front": "Nicht einfach wegnehmen",
+      "back": "Dem Hund Dinge wegzunehmen bestätigt seine Sorge und verschärft das Verteidigen.",
+      "notes": "Jede Wegnahme lehrt: „Menschen klauen meine Sachen“ — genau das Gegenteil vom Ziel.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["verhalten"]
+    },
+    {
+      "id": "tauschen",
+      "front": "Tauschen statt wegnehmen",
+      "back": "Gegen etwas Gleichwertiges oder Besseres tauschen, damit Abgeben sich lohnt.",
+      "notes": "Aufbaukurs-Prinzip (Teil 2): Der Hund lernt, dass die Annäherung Gutes bringt.",
+      "media_type": "text",
+      "difficulty": 3,
+      "tags": ["methode"]
+    },
+    {
+      "id": "vorbeugen",
+      "front": "Vorbeugen am Napf",
+      "back": "Früh üben, dass die Annäherung an Napf oder Kauartikel etwas Gutes ankündigt.",
+      "notes": "Beim Vorbeigehen ein Extra-Leckerli in den Napf werfen — Menschennähe wird zur guten Nachricht.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "management-guarding",
+      "front": "Situationen entschärfen",
+      "back": "Getrennt füttern, Wertobjekte wegräumen, Kinder und Hund beim Fressen trennen.",
+      "notes": "Management verhindert brenzlige Situationen, während man in Ruhe am Verhalten arbeitet.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["methode"]
+    },
+    {
+      "id": "hilfe-holen",
+      "front": "Hilfe holen",
+      "back": "Bei Schnappen oder Beißen eine gewaltfrei arbeitende Fachperson hinzuziehen.",
+      "notes": "Ressourcenverteidigung mit Bissen ist nichts für Alleingänge — Sicherheit geht vor.",
+      "media_type": "text",
+      "difficulty": 2,
+      "tags": ["sicherheit"]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "type": "theory",
+      "title": "Wenn der Hund verteidigt",
+      "body": "# Ressourcenverteidigung\n\n**Ressourcenverteidigung** (englisch *Resource Guarding*) heißt: Der Hund verteidigt **Futter, Objekte oder Plätze** — durch Erstarren, Knurren oder Schnappen. Bis zu einem Grad ist das **normales** Verhalten; entscheidend ist, wie wir reagieren.\n\nDie zwei wichtigsten Regeln:\n\n- **Knurren nicht bestrafen**: Knurren ist **Kommunikation**. Bestraft man es weg, warnt der Hund irgendwann nicht mehr und schnappt ohne Vorzeichen.\n- **Nicht einfach wegnehmen**: Jede Wegnahme bestätigt die Sorge „Menschen klauen meine Sachen“ und verschärft das Problem.\n\n> Knurren ist also wertvolle Information — nicht der Feind."
+    },
+    {
+      "id": "step-loesung",
+      "type": "theory",
+      "title": "Abgeben lohnt sich",
+      "body": "## Tauschen, vorbeugen, managen\n\nStatt Wegnehmen arbeitest du an einer neuen Erwartung:\n\n- **Tauschen statt wegnehmen**: gegen etwas **Gleichwertiges oder Besseres** — Abgeben lohnt sich.\n- **Vorbeugen am Napf**: beim Vorbeigehen ein Extra-Leckerli in den Napf werfen. Menschennähe wird zur **guten Nachricht**.\n- **Situationen entschärfen** (Management): getrennt füttern, Wertobjekte wegräumen, Kinder und Hund beim Fressen trennen.\n\n> Bei **Schnappen oder Beißen**: unbedingt eine gewaltfrei arbeitende Fachperson dazuholen. Sicherheit geht vor."
+    },
+    {
+      "id": "ex-match-begriffe",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Begriffe zuordnen",
+      "exercise": {
+        "id": "ex-match-begriffe",
+        "type": "matching",
+        "prompt": "Ordne jedem Begriff die passende Erklärung zu.",
+        "card_ids": ["ressourcenverteidigung", "tauschen", "vorbeugen", "management-guarding"],
+        "pairs": [
+          {"left": "Ressourcenverteidigung", "right": "Futter, Objekte oder Plätze verteidigen."},
+          {"left": "Tauschen statt wegnehmen", "right": "Gegen etwas Besseres tauschen."},
+          {"left": "Vorbeugen am Napf", "right": "Annäherung kündigt etwas Gutes an."},
+          {"left": "Situationen entschärfen", "right": "Getrennt füttern, Wertobjekte wegräumen."}
+        ],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-mc-knurren",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Der Hund knurrt am Napf",
+      "exercise": {
+        "id": "ex-mc-knurren",
+        "type": "multiple_choice",
+        "prompt": "Dein Hund knurrt, als du dich seinem Napf näherst. Was ist richtig?",
+        "card_ids": ["knurren-nicht-strafen", "nicht-wegnehmen"],
+        "multiple": false,
+        "options": [
+          {"text": "Das Knurren ernst nehmen, nicht bestrafen und die Situation entschärfen", "correct": true},
+          {"text": "Ihn für das Knurren streng bestrafen", "correct": false},
+          {"text": "Ihm sofort den Napf wegnehmen, um dich durchzusetzen", "correct": false},
+          {"text": "Ihn beim Fressen immer wieder stören, damit er sich dran gewöhnt", "correct": false}
+        ],
+        "hint": "Knurren ist eine Warnung, die man erhalten will."
+      }
+    },
+    {
+      "id": "ex-cloze-tauschen",
+      "type": "exercise",
+      "theory_ref": "step-loesung",
+      "title": "Die zentrale Technik",
+      "exercise": {
+        "id": "ex-cloze-tauschen",
+        "type": "cloze",
+        "prompt": "Ergänze den Satz.",
+        "card_ids": ["tauschen"],
+        "sentence": "Statt etwas wegzunehmen, solltest du gegen etwas Besseres ___ .",
+        "blanks": [{"accept": ["tauschen", "eintauschen"]}],
+        "cloze_mode": "type",
+        "hint": "Geben und nehmen zugleich."
+      }
+    },
+    {
+      "id": "ex-free-hilfe",
+      "type": "exercise",
+      "theory_ref": "step-loesung",
+      "title": "Wann Hilfe holen?",
+      "exercise": {
+        "id": "ex-free-hilfe",
+        "type": "free_text",
+        "prompt": "Ab wann solltest du bei Ressourcenverteidigung unbedingt Fachhilfe holen?",
+        "card_ids": ["hilfe-holen"],
+        "accept": ["bei Schnappen oder Beißen", "wenn er schnappt", "bei Bissen", "wenn er beißt"],
+        "hint": "Sobald es über Knurren hinausgeht und gefährlich wird.",
+        "distractors": ["gar nicht", "erst nach Jahren", "nur wenn er bellt"],
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-tiles-regel",
+      "type": "exercise",
+      "theory_ref": "intro",
+      "title": "Merksatz zum Knurren",
+      "exercise": {
+        "id": "ex-tiles-regel",
+        "type": "word_tiles",
+        "prompt": "Setze den Merksatz zusammen.",
+        "card_ids": ["knurren-nicht-strafen"],
+        "tiles": ["Knurren", "ist", "Kommunikation", "keine", "Frechheit"],
+        "hint": "Deshalb bestraft man es nicht weg.",
+        "direction": "target_to_source"
+      }
+    },
+    {
+      "id": "ex-ms-vorgehen",
+      "type": "exercise",
+      "theory_ref": "step-loesung",
+      "title": "Sicherer Umgang",
+      "exercise": {
+        "id": "ex-ms-vorgehen",
+        "type": "multiple_choice",
+        "prompt": "Was gehört zu einem sicheren Umgang mit Ressourcenverteidigung?",
+        "card_ids": ["tauschen", "vorbeugen", "management-guarding"],
+        "multiple": true,
+        "options": [
+          {"text": "Gegen etwas Besseres tauschen statt wegnehmen", "correct": true},
+          {"text": "Am Napf vorbeugen (Annäherung kündigt Gutes an)", "correct": true},
+          {"text": "Situationen per Management entschärfen", "correct": true},
+          {"text": "Dem Hund Dinge zur Erziehung wegnehmen", "correct": false},
+          {"text": "Das Knurren wegbestrafen", "correct": false},
+          {"text": "Kinder unbeaufsichtigt am fressenden Hund lassen", "correct": false}
+        ],
+        "hint": "Tauschen, vorbeugen, entschärfen."
+      }
+    }
+  ]
+}
