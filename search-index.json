@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-11T16:50:12Z",
+  "generated": "2026-07-11T16:50:34Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -216,8 +216,30 @@
       "trust_level": 1,
       "book": null,
       "updated_at": "2026-07-11T13:18:10+02:00"
+    },
+    {
+      "id": "hundetraining-verhalten-from-de",
+      "name": "Hundetraining Verhalten verstehen (Teil 4)",
+      "description": "Teil 4 der Reihe (B2), aufbauend auf Teil 0-3: fortgeschrittene Verhaltensthemen. Leinenreaktivität (Ursachen Frust/Angst, Schwellen- distanz, Engage-Disengage, „Look at That“), Ressourcenverteidigung (Knurren nicht bestrafen, Tauschen, Vorbeugen, Management, Hilfe holen), Frust und Übererregung (Frusttoleranz, Trigger-Stacking, Runterfahren, Ansprechbarkeit) sowie Unsicherheit und Selbstvertrauen (Vorhersehbar- keit, Wahlmöglichkeit, Erfolgserlebnisse, Konfidenz-Spiele). Native multiple_choice plus matching, cloze, free_text und word_tiles.",
+      "source_language": "de",
+      "target_language": "de",
+      "level": "b2",
+      "domain": "knowledge",
+      "lesson_count": 4,
+      "card_count": 28,
+      "tags": [
+        "knowledge",
+        "hundetraining",
+        "hunde",
+        "verhalten",
+        "fortgeschritten"
+      ],
+      "ai_validated": false,
+      "trust_level": 1,
+      "book": null,
+      "updated_at": "2026-07-11T18:50:24+02:00"
     }
   ],
-  "total_lessons": 46,
-  "total_cards": 352
+  "total_lessons": 50,
+  "total_cards": 380
 }
