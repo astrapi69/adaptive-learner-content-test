@@ -36,12 +36,12 @@ import { parse as parseYaml } from "yaml";
 // consumer's job (the app's validateGeneratedLesson owns the payload rules).
 // Publishing those rules so this gate can reuse them - instead of vendoring a
 // drift-prone copy - is the follow-up. Keep this list in sync with the app
-// when a new extension is adopted (e.g. ext:al-graded-quiz once the app adopts
-// it).
+// when a new extension is adopted.
 const ADOPTED_EXTENSIONS = [
   "ext:al-categorization",
   "ext:al-error-correction",
   "ext:al-reading-comprehension",
+  "ext:al-graded-quiz",
 ].map((type) => ({ type, major: 1, validate: () => [] }));
 
 const withExtensions = { extensions: ADOPTED_EXTENSIONS };
@@ -183,6 +183,23 @@ function selfTest() {
     for (const issue of adopted.errors) console.error(`   ${issue.path}: ${issue.message}`);
   } else {
     console.log("self-test OK: adopted extension ext:al-categorization loads");
+  }
+
+  const gradedQuiz = validateLesson(
+    extLesson("ext:al-graded-quiz", {
+      pass_threshold: 60,
+      questions: [
+        { prompt: "2+2?", type: "multiple_choice", options: [{ text: "4", correct: true }, { text: "5" }], points: 2 },
+      ],
+    }),
+    withExtensions,
+  );
+  if (!gradedQuiz.valid) {
+    failures++;
+    console.error("SELF-TEST FAIL: an adopted ext:al-graded-quiz lesson must load:");
+    for (const issue of gradedQuiz.errors) console.error(`   ${issue.path}: ${issue.message}`);
+  } else {
+    console.log("self-test OK: adopted extension ext:al-graded-quiz loads");
   }
 
   const unadopted = validateLesson(extLesson("ext:zz-unknown", {}), withExtensions);
