@@ -1,6 +1,6 @@
 {
-  "repo": "git@github.com:astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-13T17:27:22Z",
+  "repo": "astrapi69/adaptive-learner-content-test",
+  "generated": "2026-07-13T17:31:50Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -258,7 +258,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": null
+      "updated_at": "2026-07-13T19:31:39+02:00"
     }
   ],
   "total_lessons": 51,
