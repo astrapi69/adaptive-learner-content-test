@@ -25,6 +25,27 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
 
+// --- adopted extension tier (content-test#66) ------------------------------
+// The app has ADOPTED these ext: types - a mirror of its SUPPORTED_EXTENSIONS
+// (frontend/src/lib/content/validation/lesson-schema-validator.ts). Registering
+// them lets a lesson that DECLARES one load through this gate instead of being
+// refused (E-EXT-UNSUPPORTED), while any UNADOPTED ext type is still refused -
+// exactly the app's load-guard contract, applied at content-CI time.
+//
+// The validators are permissive on purpose: ext_payload CORRECTNESS is the
+// consumer's job (the app's validateGeneratedLesson owns the payload rules).
+// Publishing those rules so this gate can reuse them - instead of vendoring a
+// drift-prone copy - is the follow-up. Keep this list in sync with the app
+// when a new extension is adopted (e.g. ext:al-graded-quiz once the app adopts
+// it).
+const ADOPTED_EXTENSIONS = [
+  "ext:al-categorization",
+  "ext:al-error-correction",
+  "ext:al-reading-comprehension",
+].map((type) => ({ type, major: 1, validate: () => [] }));
+
+const withExtensions = { extensions: ADOPTED_EXTENSIONS };
+
 function* walk(dir) {
   for (const name of readdirSync(dir)) {
     const p = join(dir, name);
@@ -111,8 +132,22 @@ const SELF_TEST_CASES = [
   },
 ];
 
+/** A base lesson whose exercise is replaced by an ``ext:`` one. */
+function extLesson(type, extPayload) {
+  const lesson = baseLesson();
+  lesson.requires_extensions = [`${type}@1`];
+  lesson.steps[1].exercise = {
+    id: "e1",
+    type,
+    prompt: "Ext exercise.",
+    card_ids: ["c1"],
+    ext_payload: extPayload,
+  };
+  return lesson;
+}
+
 function selfTest() {
-  const sane = validateLesson(baseLesson());
+  const sane = validateLesson(baseLesson(), withExtensions);
   if (!sane.valid) {
     console.error("SELF-TEST BROKEN: the base lesson must be valid:");
     for (const issue of sane.errors) console.error(`   ${issue.path}: ${issue.message}`);
@@ -122,7 +157,7 @@ function selfTest() {
   for (const testCase of SELF_TEST_CASES) {
     const lesson = baseLesson();
     testCase.mutate(lesson);
-    const result = validateLesson(lesson);
+    const result = validateLesson(lesson, withExtensions);
     if (result.valid) {
       failures++;
       console.error(`SELF-TEST FAIL: engine did not flag: ${testCase.name}`);
@@ -130,8 +165,36 @@ function selfTest() {
       console.log(`self-test OK: ${testCase.name}`);
     }
   }
+
+  // Extension tier (content-test#66): an ADOPTED ext type loads, an UNADOPTED
+  // one is still refused loudly.
+  const adopted = validateLesson(
+    extLesson("ext:al-categorization", {
+      categories: [
+        { name: "A", items: ["x"] },
+        { name: "B", items: ["y"] },
+      ],
+    }),
+    withExtensions,
+  );
+  if (!adopted.valid) {
+    failures++;
+    console.error("SELF-TEST FAIL: an adopted extension lesson must load:");
+    for (const issue of adopted.errors) console.error(`   ${issue.path}: ${issue.message}`);
+  } else {
+    console.log("self-test OK: adopted extension ext:al-categorization loads");
+  }
+
+  const unadopted = validateLesson(extLesson("ext:zz-unknown", {}), withExtensions);
+  if (unadopted.valid) {
+    failures++;
+    console.error("SELF-TEST FAIL: an unadopted extension must be refused (E-EXT-UNSUPPORTED)");
+  } else {
+    console.log("self-test OK: unadopted extension ext:zz-unknown refused");
+  }
+
   if (failures) return 1;
-  console.log(`\nSelf-test passed: the gate rejects all ${SELF_TEST_CASES.length} bad-lesson classes.`);
+  console.log(`\nSelf-test passed: the gate rejects all bad-lesson classes and gates the extension tier.`);
   return 0;
 }
 
@@ -148,7 +211,7 @@ function validateAll(repoRoot) {
     const rel = relative(repoRoot, file);
     if (rel.includes("/lessons/") && rel.endsWith(".json")) {
       lessons += 1;
-      const res = validateLesson(JSON.parse(readFileSync(file, "utf8")));
+      const res = validateLesson(JSON.parse(readFileSync(file, "utf8")), withExtensions);
       if (!res.valid) report(rel, res.errors);
     } else if (rel.endsWith("manifest.yaml")) {
       manifests += 1;
