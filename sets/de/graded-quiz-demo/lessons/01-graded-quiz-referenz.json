@@ -1,0 +1,123 @@
+{
+  "id": "01-graded-quiz-referenz",
+  "title": "Benotetes Quiz - Referenz",
+  "description": "Referenz-Lektion fuer den Extension-Typ ext:al-graded-quiz: Theorie plus fuenf Aufgaben, davon ein benotetes Quiz als Abschluss-Assessment.",
+  "target_language": "de",
+  "source_language": "de",
+  "domain": "knowledge",
+  "estimated_minutes": 10,
+  "requires_extensions": ["ext:al-graded-quiz@1"],
+  "cards": [
+    { "id": "c-gq-was", "front": "Was ist ein benotetes Quiz?", "back": "Ein Quiz mit einer Bestehensgrenze und Punkten pro Frage." },
+    { "id": "c-gq-ext", "front": "Wie wird das Quiz eingebunden?", "back": "Als Extension-Typ ext:al-graded-quiz, in requires_extensions deklariert." },
+    { "id": "c-gq-punkte", "front": "Was entscheidet ueber das Bestehen?", "back": "Die Summe der erreichten Punkte gegen die Bestehensgrenze." }
+  ],
+  "steps": [
+    {
+      "id": "t1",
+      "type": "theory",
+      "title": "Benotete Quizze",
+      "body": "# Benotetes Quiz\n\nEin **benotetes Quiz** (ext:al-graded-quiz) buendelt mehrere Fragen mit einer **Bestehensgrenze** (pass_threshold) und **Punkten** pro Frage. Am Ende entscheidet die Punktsumme ueber Bestehen."
+    },
+    {
+      "id": "e1",
+      "type": "exercise",
+      "theory_ref": "t1",
+      "title": "Was ist es?",
+      "exercise": {
+        "id": "e1",
+        "type": "multiple_choice",
+        "prompt": "Was kennzeichnet ein benotetes Quiz?",
+        "card_ids": ["c-gq-was"],
+        "options": [
+          { "text": "Eine Bestehensgrenze und Punkte pro Frage", "correct": true },
+          { "text": "Nur eine einzige Karteikarte" },
+          { "text": "Keine Bewertung" },
+          { "text": "Ausschliesslich Freitext" }
+        ],
+        "hint": "Denke an die Bestehensgrenze."
+      }
+    },
+    {
+      "id": "e2",
+      "type": "exercise",
+      "theory_ref": "t1",
+      "title": "Einbindung",
+      "exercise": {
+        "id": "e2",
+        "type": "multiple_choice",
+        "prompt": "Wie wird der Quiz-Typ eingebunden?",
+        "card_ids": ["c-gq-ext"],
+        "options": [
+          { "text": "Als ext:al-graded-quiz, in requires_extensions deklariert", "correct": true },
+          { "text": "Als Kernaufgabe ohne Deklaration" },
+          { "text": "Ueber ein Bild" },
+          { "text": "Gar nicht" }
+        ]
+      }
+    },
+    {
+      "id": "e3",
+      "type": "exercise",
+      "theory_ref": "t1",
+      "title": "Bestehen",
+      "exercise": {
+        "id": "e3",
+        "type": "cloze",
+        "prompt": "Was entscheidet ueber das Bestehen?",
+        "card_ids": ["c-gq-punkte"],
+        "sentence": "Ueber das Bestehen entscheidet ___.",
+        "blanks": [{ "accept": ["die Summe der Punkte"] }],
+        "cloze_mode": "select",
+        "distractors": ["die Zahl der Karten", "die Reihenfolge der Fragen", "die Farbe der Buttons"]
+      }
+    },
+    {
+      "id": "e4",
+      "type": "exercise",
+      "theory_ref": "t1",
+      "title": "Begriff",
+      "exercise": {
+        "id": "e4",
+        "type": "cloze",
+        "prompt": "Vervollstaendige den Satz.",
+        "card_ids": ["c-gq-was"],
+        "sentence": "Die Bestehensgrenze heisst im Payload ___.",
+        "blanks": [{ "accept": ["pass_threshold"] }],
+        "cloze_mode": "type"
+      }
+    },
+    {
+      "id": "e5",
+      "type": "exercise",
+      "theory_ref": "t1",
+      "title": "Benotetes Quiz",
+      "exercise": {
+        "id": "e5",
+        "type": "ext:al-graded-quiz",
+        "prompt": "Beantworte das kurze benotete Quiz. Bestanden ab 60%.",
+        "card_ids": ["c-gq-was", "c-gq-punkte"],
+        "ext_payload": {
+          "pass_threshold": 60,
+          "questions": [
+            {
+              "prompt": "Was steuert die Punkte pro Frage?",
+              "type": "multiple_choice",
+              "options": [
+                { "text": "Das Feld points", "correct": true },
+                { "text": "Die Kartenzahl" }
+              ],
+              "points": 2
+            },
+            {
+              "prompt": "Wie heisst die Bestehensgrenze im Payload?",
+              "type": "free_text",
+              "accept": ["pass_threshold"],
+              "points": 3
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
