@@ -44,18 +44,6 @@
       ]
     },
     {
-      "id": "createcontext",
-      "front": "createContext",
-      "back": "Erzeugt ein Context-Objekt mit Provider und einem Standardwert.",
-      "notes": "Der Provider stellt den Wert bereit, useContext liest ihn.",
-      "media_type": "text",
-      "difficulty": 2,
-      "tags": [
-        "react",
-        "fortgeschritten"
-      ]
-    },
-    {
       "id": "when-context",
       "front": "Wann Context?",
       "back": "Für Daten, die viele, tief verschachtelte Komponenten brauchen (Theme, Sprache, angemeldeter Nutzer).",

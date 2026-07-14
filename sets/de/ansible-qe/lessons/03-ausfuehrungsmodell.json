@@ -89,24 +89,6 @@
       "media_type": "text",
       "difficulty": 2,
       "tags": ["status", "qa"]
-    },
-    {
-      "id": "card-10",
-      "front": "Fail-Fast vs. Weiterlaufen",
-      "back": "Ein fehlgeschlagener Host stoppt nur für sich selbst; andere Hosts laufen weiter",
-      "notes": "any_errors_fatal: true bricht das ganze Play bei einem einzigen Fehler ab.",
-      "media_type": "text",
-      "difficulty": 3,
-      "tags": ["fehler", "ausfuehrung"]
-    },
-    {
-      "id": "card-11",
-      "front": "run_once",
-      "back": "Task wird nur auf einem einzigen Host des Batches ausgeführt",
-      "notes": "Nützlich z. B. für Datenbankmigrationen, die nur einmal laufen dürfen.",
-      "media_type": "text",
-      "difficulty": 3,
-      "tags": ["ausfuehrung"]
     }
   ],
   "steps": [

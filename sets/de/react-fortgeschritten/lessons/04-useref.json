@@ -78,18 +78,6 @@
         "react",
         "fortgeschritten"
       ]
-    },
-    {
-      "id": "init-ref",
-      "front": "Anfangswert",
-      "back": "useRef(initial) setzt den Startwert von .current; er bleibt über Renders erhalten.",
-      "notes": "Der Anfangswert wird nur beim ersten Render verwendet.",
-      "media_type": "text",
-      "difficulty": 2,
-      "tags": [
-        "react",
-        "fortgeschritten"
-      ]
     }
   ],
   "steps": [
