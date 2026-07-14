@@ -8,9 +8,11 @@
 #                          CI-Workflow "Engine conformance"
 #                          (.github/workflows/engine-validate.yml), nur VOR
 #                          dem Push statt danach.
-#     make lint-warnings   Optional: zusätzlich die Warnungen (W-*) der
-#                          Engine-CLI über alle Lektionen ausgeben.
-#                          Warnungen brechen den Lauf nicht ab.
+#     make lint-warnings   Optional: derselbe Engine-Lauf, zusätzlich mit den
+#                          Warnungen (W-*) über alle Lektionen. Nutzt dieselbe
+#                          Extension-Registry wie das Gate, ext: Lektionen
+#                          werden also validiert statt abgewiesen. Warnungen
+#                          brechen den Lauf nicht ab.
 #
 # Du brauchst Node.js (>= 20) und npm. Kein package.json nötig: die Engine
 # wird mit --no-save an der in schema/engine-version.txt gepinnten Version
@@ -25,7 +27,7 @@ ENGINE_STAMP := node_modules/.engine-$(ENGINE_PIN)
 
 help:
 	@echo "make lint            - Engine-Gate lokal (Selbsttest + alle Lektionen/Manifeste)"
-	@echo "make lint-warnings   - zusätzlich Engine-CLI-Warnungen (W-*) ausgeben"
+	@echo "make lint-warnings   - derselbe Lauf, zusätzlich mit Warnungen (W-*)"
 
 # Die gepinnte Engine. Wird nur installiert, wenn der Versions-Stempel fehlt
 # (idempotent; ein neuer Pin in schema/engine-version.txt erzwingt eine
@@ -40,4 +42,4 @@ lint: $(ENGINE_STAMP)
 	node scripts/validate_with_engine.mjs .
 
 lint-warnings: $(ENGINE_STAMP)
-	@find sets -path "*/lessons/*.json" -print0 | xargs -0 node_modules/.bin/learn-content-engine lint
+	node scripts/validate_with_engine.mjs --warnings .

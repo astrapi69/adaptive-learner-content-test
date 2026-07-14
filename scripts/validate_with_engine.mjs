@@ -19,6 +19,11 @@
  * validateLesson and exits non-zero unless EVERY one is rejected — so a
  * silently toothless validator cannot masquerade as a green gate. CI runs
  * it before the real pass.
+ *
+ * `--warnings` also lists the author lints (W-*) that never block. It runs
+ * through the SAME extension registry as the error gate, so ext: lessons are
+ * validated instead of refused — `make lint-warnings` used to shell out to the
+ * bare CLI (no registry) and died on ext content (content-test#71).
  */
 import { validateLesson, validateManifest } from "learn-content-engine";
 import { readFileSync, readdirSync, statSync } from "node:fs";
@@ -210,16 +215,41 @@ function selfTest() {
     console.log("self-test OK: unadopted extension ext:zz-unknown refused");
   }
 
+  // Warning tier (content-test#71): author lints (W-*) are surfaced but never
+  // block. Proves the --warnings path is not toothless and that ext lessons
+  // reach the warning check instead of erroring out. A lesson with an unused
+  // card stays valid AND carries a W-CARD-UNUSED warning.
+  const warnLesson = baseLesson();
+  warnLesson.cards.push({ id: "c-unused", front: "orphan", back: "never referenced" });
+  const warned = validateLesson(warnLesson, withExtensions);
+  if (!warned.valid) {
+    failures++;
+    console.error("SELF-TEST BROKEN: an unused-card lesson must stay valid (warning, not error):");
+    for (const issue of warned.errors) console.error(`   ${issue.path}: ${issue.message}`);
+  } else if (!warned.warnings.some((issue) => issue.id === "W-CARD-UNUSED")) {
+    failures++;
+    console.error("SELF-TEST FAIL: expected a surfaced W-CARD-UNUSED warning, got none");
+  } else {
+    console.log("self-test OK: author-lint warning surfaced (W-CARD-UNUSED)");
+  }
+
   if (failures) return 1;
-  console.log(`\nSelf-test passed: the gate rejects all bad-lesson classes and gates the extension tier.`);
+  console.log(`\nSelf-test passed: the gate rejects all bad-lesson classes, gates the extension tier, and surfaces author warnings.`);
   return 0;
 }
 
 // --- full repo run ---------------------------------------------------------
-function validateAll(repoRoot) {
+// With `showWarnings`, the author lints (W-*) are ALSO listed. Warnings never
+// change the exit code (errors-only), so `make lint-warnings` is a reporter,
+// not a gate. Crucially this runs through the SAME extension registry as the
+// error gate, so an ext: lesson is validated (not refused with
+// E-EXT-UNSUPPORTED) - the bug this replaces used the bare CLI without a
+// registry (content-test#71).
+function validateAll(repoRoot, { showWarnings = false } = {}) {
   let lessons = 0;
   let manifests = 0;
   const problems = [];
+  const warned = [];
 
   const report = (file, errors) => problems.push({ file, errors });
 
@@ -230,6 +260,7 @@ function validateAll(repoRoot) {
       lessons += 1;
       const res = validateLesson(JSON.parse(readFileSync(file, "utf8")), withExtensions);
       if (!res.valid) report(rel, res.errors);
+      if (showWarnings && res.warnings.length) warned.push({ file: rel, warnings: res.warnings });
     } else if (rel.endsWith("manifest.yaml")) {
       manifests += 1;
       const res = validateManifest(parseYaml(readFileSync(file, "utf8")));
@@ -244,10 +275,18 @@ function validateAll(repoRoot) {
   );
   if (!rootRes.valid) report("manifest.yaml", rootRes.errors);
 
+  const totalWarnings = warned.reduce((sum, w) => sum + w.warnings.length, 0);
   console.log(
     `engine-validate: ${lessons} lesson(s), ${manifests} manifest(s) checked — ` +
-      `${problems.length} file(s) with errors`,
+      `${problems.length} file(s) with errors` +
+      (showWarnings ? `, ${totalWarnings} warning(s)` : ""),
   );
+  if (showWarnings) {
+    for (const w of warned) {
+      console.log(`\nWARN ${w.file}`);
+      for (const issue of w.warnings) console.log(`   [${issue.id}] ${issue.path} ${issue.message}`);
+    }
+  }
   for (const p of problems) {
     console.error(`\n✗ ${p.file}`);
     for (const e of p.errors) console.error(`   ${e.path}: ${e.message}`);
@@ -259,4 +298,6 @@ const args = process.argv.slice(2);
 if (args.includes("--self-test")) {
   process.exit(selfTest());
 }
-process.exit(validateAll(args[0] ?? "."));
+const showWarnings = args.includes("--warnings");
+const repoRoot = args.find((arg) => !arg.startsWith("--")) ?? ".";
+process.exit(validateAll(repoRoot, { showWarnings }));
