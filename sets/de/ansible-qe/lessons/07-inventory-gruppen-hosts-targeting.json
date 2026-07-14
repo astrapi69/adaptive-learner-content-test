@@ -102,17 +102,6 @@
       "media_type": "text",
       "difficulty": 3,
       "tags": ["inventory", "variablen"]
-    },
-    {
-      "id": "card-11",
-      "front": "ansible-inventory --graph",
-      "back": "Zeigt die Gruppen-/Host-Hierarchie als Baum an",
-      "notes": "Hilft, verschachtelte Inventories zu überprüfen.",
-      "media_type": "code",
-      "code_snippet": "ansible-inventory -i inventory.ini --graph",
-      "code_language": "bash",
-      "difficulty": 2,
-      "tags": ["inventory", "tooling"]
     }
   ],
   "steps": [

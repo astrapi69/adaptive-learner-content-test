@@ -8,15 +8,6 @@
   "estimated_minutes": 12,
   "cards": [
     {
-      "id": "card-01",
-      "front": "state",
-      "back": "Parameter, der den gewünschten Soll-Zustand einer Ressource angibt",
-      "notes": "z. B. present, absent, started, stopped.",
-      "media_type": "text",
-      "difficulty": 2,
-      "tags": ["state", "kernkonzept"]
-    },
-    {
       "id": "card-02",
       "front": "state: present",
       "back": "Stellt sicher, dass eine Ressource vorhanden ist (z. B. Paket installiert)",
@@ -79,24 +70,6 @@
       "tags": ["module", "setup"]
     },
     {
-      "id": "card-08",
-      "front": "Setup-Phase",
-      "back": "Schritte, die die Testumgebung herstellen (installieren, kopieren, starten)",
-      "notes": "Sollte idempotent sein, damit Wiederholungen sicher sind.",
-      "media_type": "text",
-      "difficulty": 2,
-      "tags": ["workflow", "qa"]
-    },
-    {
-      "id": "card-09",
-      "front": "Teardown-Phase",
-      "back": "Schritte, die die Testumgebung wieder bereinigen (state: absent)",
-      "notes": "Hinterlässt einen sauberen Ausgangszustand für den nächsten Lauf.",
-      "media_type": "text",
-      "difficulty": 2,
-      "tags": ["workflow", "qa"]
-    },
-    {
       "id": "card-10",
       "front": "block / always",
       "back": "Gruppiert Tasks; ein always-Abschnitt läuft auch dann, wenn Tests scheitern",
@@ -104,15 +77,6 @@
       "media_type": "text",
       "difficulty": 3,
       "tags": ["workflow", "fehlerbehandlung"]
-    },
-    {
-      "id": "card-11",
-      "front": "Warum reproduzierbare Umgebungen?",
-      "back": "Gleiche Ausgangslage bei jedem Lauf macht Tests verlässlich und vergleichbar",
-      "notes": "Idempotenz + Teardown verhindern, dass Reste den nächsten Test verfälschen.",
-      "media_type": "text",
-      "difficulty": 2,
-      "tags": ["qa", "konzept"]
     }
   ],
   "steps": [

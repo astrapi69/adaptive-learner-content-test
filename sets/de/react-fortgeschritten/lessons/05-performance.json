@@ -56,18 +56,6 @@
       ]
     },
     {
-      "id": "nicht-dauerhaft",
-      "front": "Kein dauerhafter Cache",
-      "back": "useMemo cachet nur zwischen Renders derselben Komponente — NICHT dauerhaft über Unmounts hinweg.",
-      "notes": "Ein häufiger Irrtum ist ein „ewiger\" Cache.",
-      "media_type": "text",
-      "difficulty": 2,
-      "tags": [
-        "react",
-        "fortgeschritten"
-      ]
-    },
-    {
       "id": "premature",
       "front": "Voreilige Optimierung",
       "back": "Alles zu memoisieren bringt oft nichts und macht den Code komplizierter.",

@@ -83,17 +83,6 @@
       "tags": [
         "verkehrsregeln"
       ]
-    },
-    {
-      "id": "tuer-oeffnen",
-      "front": "Tür öffnen",
-      "back": "Beim Öffnen der Autotür muss man auf Radfahrer und den übrigen Verkehr achten.",
-      "notes": "Die Tür vorsichtig und mit Blick nach hinten öffnen.",
-      "media_type": "text",
-      "difficulty": 2,
-      "tags": [
-        "verkehrsregeln"
-      ]
     }
   ],
   "steps": [

@@ -28,15 +28,6 @@
       "tags": ["handlers"]
     },
     {
-      "id": "card-03",
-      "front": "handlers (Abschnitt)",
-      "back": "Eigener Abschnitt im Play, in dem die Handler definiert werden",
-      "notes": "Der Handler-Name muss exakt dem notify-Wert entsprechen.",
-      "media_type": "text",
-      "difficulty": 2,
-      "tags": ["handlers"]
-    },
-    {
       "id": "card-04",
       "front": "Wann laufen Handler?",
       "back": "Gesammelt am Ende des Plays, jeder höchstens einmal",
@@ -55,15 +46,6 @@
       "code_language": "yaml",
       "difficulty": 2,
       "tags": ["templates", "jinja2"]
-    },
-    {
-      "id": "card-06",
-      "front": ".j2-Endung",
-      "back": "Übliche Dateiendung für Jinja2-Templates",
-      "notes": "z. B. nginx.conf.j2",
-      "media_type": "text",
-      "difficulty": 1,
-      "tags": ["templates"]
     },
     {
       "id": "card-07",

@@ -28,15 +28,6 @@
       "tags": ["testing", "assert"]
     },
     {
-      "id": "card-03",
-      "front": "fail_msg / success_msg",
-      "back": "Eigene Meldung von assert bei Fehlschlag bzw. Erfolg",
-      "notes": "Macht Testberichte aussagekräftig.",
-      "media_type": "text",
-      "difficulty": 2,
-      "tags": ["testing", "assert"]
-    },
-    {
       "id": "card-04",
       "front": "uri",
       "back": "Modul für HTTP(S)-Anfragen, ideal für API- und Health-Check-Tests",
@@ -79,24 +70,6 @@
       "tags": ["testing", "shell"]
     },
     {
-      "id": "card-08",
-      "front": "register",
-      "back": "Speichert das Ergebnis eines Tasks in einer Variablen zur späteren Auswertung",
-      "notes": "Pflichtbaustein, um Ausgaben mit assert zu prüfen.",
-      "media_type": "text",
-      "difficulty": 2,
-      "tags": ["testing", "variablen"]
-    },
-    {
-      "id": "card-09",
-      "front": "failed_when",
-      "back": "Definiert eine eigene Fehlerbedingung für einen Task",
-      "notes": "z. B. failed_when: \"'ERROR' in result.stdout\".",
-      "media_type": "text",
-      "difficulty": 3,
-      "tags": ["testing", "fehler"]
-    },
-    {
       "id": "card-10",
       "front": "changed_when",
       "back": "Steuert, wann ein Task als 'changed' gilt — wichtig bei command/shell",
@@ -104,15 +77,6 @@
       "media_type": "text",
       "difficulty": 3,
       "tags": ["testing", "idempotenz"]
-    },
-    {
-      "id": "card-11",
-      "front": "Warum command vor shell?",
-      "back": "command ist sicherer und vorhersehbarer; shell nur bei Bedarf an Shell-Features",
-      "notes": "Best Practice für robuste, reproduzierbare Tests.",
-      "media_type": "text",
-      "difficulty": 3,
-      "tags": ["best-practice"]
     }
   ],
   "steps": [

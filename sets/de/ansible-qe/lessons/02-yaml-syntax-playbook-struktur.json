@@ -8,15 +8,6 @@
   "estimated_minutes": 12,
   "cards": [
     {
-      "id": "card-01",
-      "front": "YAML",
-      "back": "Menschenlesbares Datenformat, das Ansible für Playbooks nutzt",
-      "notes": "Struktur entsteht durch Einrückung, nicht durch Klammern.",
-      "media_type": "text",
-      "difficulty": 1,
-      "tags": ["yaml", "grundlagen"]
-    },
-    {
       "id": "card-02",
       "front": "Einrückung in YAML",
       "back": "Nur Leerzeichen, keine Tabs; gleiche Ebene = gleiche Einrückung",
@@ -84,15 +75,6 @@
       "tags": ["playbook", "lesbarkeit"]
     },
     {
-      "id": "card-09",
-      "front": "Modulparameter",
-      "back": "Schlüssel-Wert-Paare unter dem Modulnamen, die dessen Verhalten steuern",
-      "notes": "z. B. für copy: src und dest.",
-      "media_type": "text",
-      "difficulty": 2,
-      "tags": ["playbook", "modul"]
-    },
-    {
       "id": "card-10",
       "front": "become",
       "back": "Aktiviert Rechteausweitung (z. B. sudo) für privilegierte Tasks",
@@ -100,17 +82,6 @@
       "media_type": "text",
       "difficulty": 2,
       "tags": ["playbook", "rechte"]
-    },
-    {
-      "id": "card-11",
-      "front": "ansible-lint / --syntax-check",
-      "back": "Werkzeuge, die ein Playbook auf Syntax- und Stilfehler prüfen",
-      "notes": "ansible-playbook --syntax-check site.yml findet YAML-Fehler vor dem Lauf.",
-      "media_type": "code",
-      "code_snippet": "ansible-playbook --syntax-check site.yml",
-      "code_language": "bash",
-      "difficulty": 2,
-      "tags": ["qa", "tooling"]
     }
   ],
   "steps": [
@@ -202,7 +173,7 @@
         "prompt": "Womit darf in YAML NICHT eingerückt werden? Nenne das Zeichen/die Taste.",
         "card_ids": ["card-02"],
         "accept": ["Tabs", "Tab", "Tabulator", "mit Tabs", "Tabulatoren"],
-        "hint": "Erlaubt sind nur Leerzeichen — das Gegenstück davon ist verboten.",
+        "hint": "Erlaubt sind nur Leerzeichen — das Gegenstück davon ist untersagt.",
         "distractors": ["Leerzeichen", "Bindestriche", "Doppelpunkte"],
         "direction": "source_to_target"
       }

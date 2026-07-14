@@ -39,15 +39,6 @@
       "tags": ["facts"]
     },
     {
-      "id": "card-04",
-      "front": "gather_facts",
-      "back": "Schalter, der das Sammeln von Facts zu Play-Beginn aktiviert/deaktiviert",
-      "notes": "Standard true; auf false setzen spart Zeit, wenn keine Facts gebraucht werden.",
-      "media_type": "text",
-      "difficulty": 2,
-      "tags": ["facts"]
-    },
-    {
       "id": "card-05",
       "front": "ansible_facts",
       "back": "Wörterbuch, in dem die gesammelten Facts liegen",
@@ -97,24 +88,6 @@
       "code_language": "yaml",
       "difficulty": 3,
       "tags": ["variablen", "jinja2"]
-    },
-    {
-      "id": "card-10",
-      "front": "Variablen-Vorrang (Precedence)",
-      "back": "Bei gleichem Namen gewinnt die Variable mit höherer Priorität (z. B. extra-vars per -e)",
-      "notes": "-e auf der Kommandozeile schlägt fast alles andere.",
-      "media_type": "text",
-      "difficulty": 3,
-      "tags": ["variablen", "precedence"]
-    },
-    {
-      "id": "card-11",
-      "front": "when mit and/or",
-      "back": "Mehrere Bedingungen lassen sich mit and, or sowie als Liste verknüpfen",
-      "notes": "Eine YAML-Liste unter when wirkt wie ein logisches UND.",
-      "media_type": "text",
-      "difficulty": 3,
-      "tags": ["bedingungen"]
     }
   ],
   "steps": [
