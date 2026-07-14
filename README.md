@@ -48,7 +48,7 @@ Der erste Lauf installiert die in `schema/engine-version.txt` gepinnte
 Engine lokal nach `node_modules/` (gitignored; braucht Node.js und npm),
 danach laufen Selbsttest und der volle Engine-Lauf wie im CI-Workflow
 `Engine conformance`. Optional gibt `make lint-warnings` die Warnungen
-(`W-*`) der Engine-CLI über alle Lektionen aus.
+(`W-*`) des Engine-Gates über alle Lektionen aus.
 
 ## Ein Set für KI-Review exportieren
 

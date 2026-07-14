@@ -112,8 +112,7 @@ The first run installs the engine release pinned in
 `schema/engine-version.txt` into `node_modules/` (gitignored; needs Node.js
 and npm); later runs reuse it. It then runs the gate's self-test plus the
 full engine pass over every lesson and manifest - so `E-*` errors show up
-before the push, not after. Optionally, `make lint-warnings` prints the
-engine CLI's warnings (`W-*`) for every lesson; warnings do not fail the
+before the push, not after. Optionally, `make lint-warnings` prints the engine gate's warnings (`W-*`) for every lesson; warnings do not fail the
 run.
 
 ## 5. Use your lessons
