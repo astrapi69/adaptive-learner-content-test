@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-13T17:31:50Z",
+  "generated": "2026-07-14T07:50:33Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -32,7 +32,7 @@
       "level": "b1",
       "domain": "technology",
       "lesson_count": 8,
-      "card_count": 88,
+      "card_count": 69,
       "tags": [
         "ansible",
         "devops",
@@ -42,7 +42,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-07-06T12:56:33Z"
+      "updated_at": "2026-07-14T09:50:19+02:00"
     },
     {
       "id": "react-grundlagen-from-de",
@@ -74,7 +74,7 @@
       "level": "a2",
       "domain": "knowledge",
       "lesson_count": 5,
-      "card_count": 37,
+      "card_count": 36,
       "tags": [
         "knowledge",
         "verkehr",
@@ -84,7 +84,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-07-10T14:36:50+02:00"
+      "updated_at": "2026-07-14T09:50:19+02:00"
     },
     {
       "id": "react-fortgeschritten-from-de",
@@ -95,7 +95,7 @@
       "level": "b1",
       "domain": "programming",
       "lesson_count": 8,
-      "card_count": 55,
+      "card_count": 50,
       "tags": [
         "react",
         "javascript",
@@ -106,7 +106,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-07-06T12:56:33Z"
+      "updated_at": "2026-07-14T09:50:19+02:00"
     },
     {
       "id": "welpen-grundkurs-from-de",
@@ -262,5 +262,5 @@
     }
   ],
   "total_lessons": 51,
-  "total_cards": 383
+  "total_cards": 358
 }
