@@ -17,12 +17,3 @@ domains:
         year: 2025
         description: "Der praxisnahe Einstieg in KI und Prompt Engineering für alle, die ohne Programmierkenntnisse die Möglichkeiten künstlicher Intelligenz nutzen wollen."
         tags: ["ki", "prompt-engineering", "einsteiger"]
-  psychology:
-    books:
-      - title: "Psychologie"
-        author: "Philip Zimbardo, Robert Johnson, Vivian McCann"
-        isbn: "978-3868943238"
-        url: "https://www.amazon.de/dp/3868943234/"
-        language: "de"
-        description: "Das Standardwerk für Psychologie-Einsteiger."
-        tags: ["psychologie", "lehrbuch", "grundlagen"]

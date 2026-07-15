@@ -19,8 +19,11 @@ Anleitung: [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md)
   knowledge) für das Single-JSON-Lektionsformat.
 - `examples/` — eine vollständige Beispiel-Lektion
   ([Inception-Effekt](examples/inception-effekt/)) zum Nachlesen.
-- `sets/de/inception-example/` — dasselbe als lauffähiges
-  Beispiel-Set, im Wurzel-`manifest.yaml` registriert.
+  Als lauffähiges Set lebt sie inhaltsgleich als Lektion 106 des
+  `psych-intro`-Sets in
+  [alc-psychology](https://github.com/astrapi69/alc-psychology).
+- `sets/` — lauffähige Test-Sets, im Wurzel-`manifest.yaml`
+  registriert.
 - `books.yaml` — Buchempfehlungen je Domäne.
 - `scripts/validate_content.py` — lokaler Validator.
 - `scripts/generate_exercises.py` — optionaler KI-Aufgaben-Generator
