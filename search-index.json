@@ -1,6 +1,6 @@
 {
-  "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-15T12:55:18Z",
+  "repo": "git@github.com:astrapi69/adaptive-learner-content-test",
+  "generated": "2026-07-15T13:08:40Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -25,27 +25,6 @@
       "updated_at": "2026-07-14T09:50:19+02:00"
     },
     {
-      "id": "react-grundlagen-from-de",
-      "name": "React-Grundlagen (Einsteiger)",
-      "description": "React-Grundlagen auf Deutsch für Einsteiger: fünf Lektionen mit insgesamt 31 Karten, Theorieschritten und überwiegend Multiple-Choice-Übungen (picture_choice mit plausiblen Distraktoren) plus wenigen Lückentext-Items (cloze) zu React als Library, Komponenten, JSX, Props, State/useState, Events und Grundprinzipien.",
-      "source_language": "de",
-      "target_language": "de",
-      "level": "a2",
-      "domain": "programming",
-      "lesson_count": 5,
-      "card_count": 31,
-      "tags": [
-        "react",
-        "javascript",
-        "frontend",
-        "grundlagen"
-      ],
-      "ai_validated": false,
-      "trust_level": 1,
-      "book": null,
-      "updated_at": "2026-07-06T12:56:33Z"
-    },
-    {
       "id": "fuehrerschein-uebung-from-de",
       "name": "Führerscheinprüfung (Übungsfragen)",
       "description": "Fünf Lektionen mit ausschließlich Multiple-Choice-Übungen (im Schema als cloze select-mode und als nativer multiple_choice-Typ) rund um freie Fakten der deutschen StVO: Vorfahrt und Kreuzungen, Geschwindigkeit und Abstand, Alkohol/Drogen und Fahrtüchtigkeit, Parken/Halten sowie Rettungsgasse und Einsatzfahrzeuge (Referenz für den nativen Typ, Schema v1.6). Eigene Formulierungen — keine amtlichen Prüfungsfragen, keine Bilder, kein Anspruch auf Prüfungsechtheit. Test-Set zum Festnageln der MC-Mechanik.",
@@ -60,28 +39,6 @@
         "verkehr",
         "multiple-choice",
         "test"
-      ],
-      "ai_validated": false,
-      "trust_level": 1,
-      "book": null,
-      "updated_at": "2026-07-14T09:50:19+02:00"
-    },
-    {
-      "id": "react-fortgeschritten-from-de",
-      "name": "React Fortgeschritten (Teil 2)",
-      "description": "Teil 2 der React-Reihe (Fortgeschritten, B1): acht Lektionen mit überwiegend Multiple-Choice — Single-Answer als cloze select-mode und „Wähle alle zutreffenden\" als cloze multiselect — plus matching und kurze Lückentext-Items. Themen: useEffect, Datenfetching, useContext, useRef, Performance, Listen/Keys, Formulare, Komposition/Patterns. Distraktoren aus klassischen React-Irrtümern. React-18, Hooks-first.",
-      "source_language": "de",
-      "target_language": "de",
-      "level": "b1",
-      "domain": "programming",
-      "lesson_count": 8,
-      "card_count": 50,
-      "tags": [
-        "react",
-        "javascript",
-        "frontend",
-        "fortgeschritten",
-        "multiple-choice"
       ],
       "ai_validated": false,
       "trust_level": 1,
@@ -110,6 +67,6 @@
       "updated_at": "2026-07-13T19:31:39+02:00"
     }
   ],
-  "total_lessons": 27,
-  "total_cards": 189
+  "total_lessons": 14,
+  "total_cards": 108
 }

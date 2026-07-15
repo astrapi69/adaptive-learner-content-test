@@ -35,28 +35,6 @@ sets:
       - devops
       - qa
       - automation
-  - id: react-grundlagen-from-de
-    title: React-Grundlagen (Einsteiger)
-    title_native: React-Grundlagen (Einsteiger)
-    target_language: de
-    source_language: de
-    domain: programming
-    level: A2
-    path: sets/de/react-grundlagen
-    version: '1.0.0'
-    lesson_count: 5
-    domain_label: Programmierung
-    description: >-
-      React-Grundlagen auf Deutsch für Einsteiger: fünf Lektionen mit
-      überwiegend Multiple-Choice-Übungen (picture_choice mit plausiblen
-      Distraktoren) plus wenigen Lückentext-Items (cloze) zu React als
-      Library, Komponenten, JSX, Props, State/useState, Events und
-      Grundprinzipien.
-    tags:
-      - react
-      - javascript
-      - frontend
-      - grundlagen
   - id: fuehrerschein-uebung-from-de
     title: Führerscheinprüfung (Übungsfragen)
     title_native: Führerscheinprüfung (Übungsfragen)
@@ -82,30 +60,6 @@ sets:
       - verkehr
       - multiple-choice
       - test
-  - id: react-fortgeschritten-from-de
-    title: React Fortgeschritten (Teil 2)
-    title_native: React Fortgeschritten (Teil 2)
-    target_language: de
-    source_language: de
-    domain: programming
-    level: B1
-    path: sets/de/react-fortgeschritten
-    version: '1.0.0'
-    lesson_count: 8
-    domain_label: Programmierung
-    description: >-
-      Fortsetzung von „React-Grundlagen" (Teil 2, Fortgeschritten, B1): acht
-      Lektionen mit Schwerpunkt Multiple-Choice — Single-Answer als cloze
-      select-mode und „Wähle alle zutreffenden" als cloze multiselect — plus
-      matching und kurze Lückentext-Items. Themen: useEffect, Datenfetching,
-      useContext, useRef, Performance, Listen/Keys, Formulare, Komposition
-      und Patterns. React-18, Hooks-first, konzeptuell.
-    tags:
-      - react
-      - javascript
-      - frontend
-      - fortgeschritten
-      - multiple-choice
   - id: graded-quiz-demo-from-de
     title: Graded-Quiz Demo (Test)
     title_native: Graded-Quiz Demo (Test)
