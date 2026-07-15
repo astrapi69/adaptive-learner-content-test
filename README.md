@@ -61,14 +61,14 @@ das ganze Set in einem Durchgang prüfen kann (Syntax, Korrektheit,
 Konsistenz über die Lektionen hinweg):
 
 ```bash
-python3 scripts/export_set.py fuehrerschein-uebung
-# -> exports/fuehrerschein-uebung-de-<timestamp>.yaml
-python3 scripts/export_set.py fuehrerschein-uebung --format json --out /tmp/review.json
+python3 scripts/export_set.py graded-quiz-demo
+# -> exports/graded-quiz-demo-de-<timestamp>.yaml
+python3 scripts/export_set.py graded-quiz-demo --format json --out /tmp/review.json
 ```
 
 Der Slug ist die Set-Id aus dem Wurzel-`manifest.yaml`
-(`fuehrerschein-uebung-from-de`) oder der Ordnername des Set-Pfads
-(`fuehrerschein-uebung`); bei gleichnamigen Ordnern unter mehreren
+(`graded-quiz-demo-from-de`) oder der Ordnername des Set-Pfads
+(`graded-quiz-demo`); bei gleichnamigen Ordnern unter mehreren
 Quellsprachen entscheidet `--lang` (Default `de`). Umlaute bleiben
 echtes UTF-8. Ein unbekannter Slug bricht mit einer Liste der
 verfügbaren Sets ab.

@@ -15,31 +15,6 @@ description: >-
   Enthält lauffähige Test-Sets als Vorlage; forke das Repo und
   erstelle deine eigenen Inhalte.
 sets:
-  - id: fuehrerschein-uebung-from-de
-    title: Führerscheinprüfung (Übungsfragen)
-    title_native: Führerscheinprüfung (Übungsfragen)
-    target_language: de
-    source_language: de
-    domain: knowledge
-    level: A2
-    path: sets/de/fuehrerschein-uebung
-    version: '1.0.0'
-    lesson_count: 5
-    domain_label: Verkehrskunde
-    description: >-
-      Ausschließlich Multiple-Choice: eigene, frei formulierte Übungsfragen
-      im Stil einer Führerscheinprüfung (Beispiel Deutschland) über freie
-      Fakten der deutschen StVO — Vorfahrt, Geschwindigkeit/Abstand,
-      Alkohol/Fahrtüchtigkeit, Parken/Halten sowie Rettungsgasse und
-      Einsatzfahrzeuge. Keine amtlichen Fragen oder Bilder, kein Anspruch
-      auf Prüfungsechtheit. Test-Set zum Festnageln der MC-Mechanik (MC im
-      Schema als cloze select-mode und als nativer multiple_choice-Typ,
-      Schema v1.6).
-    tags:
-      - knowledge
-      - verkehr
-      - multiple-choice
-      - test
   - id: graded-quiz-demo-from-de
     title: Graded-Quiz Demo (Test)
     title_native: Graded-Quiz Demo (Test)

@@ -13,7 +13,7 @@ Covered behaviours (TDD, RED first):
 * an unknown slug fails with a non-zero exit and lists the available sets,
 * ``--format json`` produces valid JSON with the same lesson content,
 * the default output path lands under ``exports/`` (created on demand),
-* the manifest set id (``fuehrerschein-uebung-from-de``) resolves the same
+* the manifest set id (``graded-quiz-demo-from-de``) resolves the same
   set as the path basename slug.
 """
 from __future__ import annotations
@@ -31,8 +31,8 @@ if str(SCRIPTS_DIR) not in sys.path:
 
 import export_set  # noqa: E402
 
-KNOWN_SLUG = "fuehrerschein-uebung"
-KNOWN_SET_DIR = REPO_ROOT / "sets" / "de" / "fuehrerschein-uebung"
+KNOWN_SLUG = "graded-quiz-demo"
+KNOWN_SET_DIR = REPO_ROOT / "sets" / "de" / "graded-quiz-demo"
 
 
 def load_source_lessons() -> list[dict]:
@@ -101,11 +101,9 @@ def test_umlauts_survive_as_real_utf8(tmp_path: Path) -> None:
     assert "ä" in raw_text
     assert "\\u00fc" not in raw_text
     assert "\\u00e4" not in raw_text
-    # A known lesson phrase must keep its umlaut, never an ue-substitution.
-    # (Plain "gewaehren" DOES occur in the source as the ASCII card id
-    # "vorfahrt-gewaehren", so assert on the prose phrase, not the token.)
-    assert "Vorfahrt gewähren" in raw_text
-    assert "Vorfahrt gewaehren" not in raw_text
+    # The graded-quiz-demo lesson prose is pure ASCII, so the umlaut
+    # roundtrip is carried entirely by the embedded review prompt above
+    # (its ü/ä asserts). No lesson-phrase assert is possible here.
 
 
 def test_yaml_reparse_content_equals_source_lessons(tmp_path: Path) -> None:
@@ -120,8 +118,9 @@ def test_format_json_is_valid_and_content_equal(tmp_path: Path) -> None:
 
     export_payload = json.loads(raw_text)
     assert export_payload["lessons"] == load_source_lessons()
-    # ensure_ascii must be off: real umlauts in the JSON bytes too.
-    assert "gewähren" in raw_text
+    # ensure_ascii must be off: real umlauts in the JSON bytes too
+    # (from the embedded review prompt; the lesson itself is pure ASCII).
+    assert "ü" in raw_text
     assert "\\u00fc" not in raw_text
 
 
@@ -139,11 +138,11 @@ def test_unknown_slug_fails_and_lists_available_sets(tmp_path: Path, capsys) -> 
 def test_manifest_id_resolves_like_path_basename(tmp_path: Path) -> None:
     out_path = tmp_path / "by-id.yaml"
     exit_code = export_set.main(
-        ["fuehrerschein-uebung-from-de", "--out", str(out_path)]
+        ["graded-quiz-demo-from-de", "--out", str(out_path)]
     )
     assert exit_code == 0
     export_payload = yaml.safe_load(out_path.read_text(encoding="utf-8"))
-    assert export_payload["set"] == "fuehrerschein-uebung-from-de"
+    assert export_payload["set"] == "graded-quiz-demo-from-de"
     assert export_payload["lessons"] == load_source_lessons()
 
 
