@@ -1,29 +1,8 @@
 {
-  "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-15T13:10:58Z",
+  "repo": "git@github.com:astrapi69/adaptive-learner-content-test",
+  "generated": "2026-07-15T13:20:12Z",
   "schema_version": "1.0",
   "sets": [
-    {
-      "id": "ansible-qe-from-de",
-      "name": "Ansible-Grundlagen für Quality Engineering",
-      "description": "Ansible für Quality Engineering: acht Lektionen mit insgesamt 88 Karten, Theorieschritten und Übungen (matching, cloze, free_text, word_tiles) zu Playbooks, Testing-Modulen, Testumgebungen und Inventory-Targeting.",
-      "source_language": "de",
-      "target_language": "de",
-      "level": "b1",
-      "domain": "technology",
-      "lesson_count": 8,
-      "card_count": 69,
-      "tags": [
-        "ansible",
-        "devops",
-        "qa",
-        "automation"
-      ],
-      "ai_validated": false,
-      "trust_level": 1,
-      "book": null,
-      "updated_at": "2026-07-14T09:50:19+02:00"
-    },
     {
       "id": "fuehrerschein-uebung-from-de",
       "name": "Führerscheinprüfung (Übungsfragen)",
@@ -67,6 +46,6 @@
       "updated_at": "2026-07-13T19:31:39+02:00"
     }
   ],
-  "total_lessons": 14,
-  "total_cards": 108
+  "total_lessons": 6,
+  "total_cards": 39
 }
