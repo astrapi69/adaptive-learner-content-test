@@ -47,6 +47,7 @@ const ADOPTED_EXTENSIONS = [
   "ext:al-error-correction",
   "ext:al-reading-comprehension",
   "ext:al-graded-quiz",
+  "ext:al-dictation",
 ].map((type) => ({ type, major: 1, validate: () => [] }));
 
 const withExtensions = { extensions: ADOPTED_EXTENSIONS };
@@ -205,6 +206,21 @@ function selfTest() {
     for (const issue of gradedQuiz.errors) console.error(`   ${issue.path}: ${issue.message}`);
   } else {
     console.log("self-test OK: adopted extension ext:al-graded-quiz loads");
+  }
+
+  const dictation = validateLesson(
+    extLesson("ext:al-dictation", {
+      audio: "assets/audio/self-test.mp3",
+      accept: ["der hund kommt", "Der Hund kommt"],
+    }),
+    withExtensions,
+  );
+  if (!dictation.valid) {
+    failures++;
+    console.error("SELF-TEST FAIL: an adopted ext:al-dictation lesson must load:");
+    for (const issue of dictation.errors) console.error(`   ${issue.path}: ${issue.message}`);
+  } else {
+    console.log("self-test OK: adopted extension ext:al-dictation loads");
   }
 
   const unadopted = validateLesson(extLesson("ext:zz-unknown", {}), withExtensions);
