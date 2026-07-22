@@ -16,7 +16,6 @@ sets:
     path: sets/de/graded-quiz-demo
     version: '1.0.0'
     lesson_count: 1
-    domain_label: Test
     description: >-
       Eine Lektion: Theorie plus fuenf Aufgaben (multiple_choice, cloze
       select, cloze type) und ein benotetes Quiz ueber den Extension-Typ
