@@ -23,6 +23,8 @@ test/starter repo unchanged. Per set it derives:
   * ``lesson_count`` — lessons listed in the set manifest
   * ``card_count`` — EXACT sum of ``cards[]`` over every lesson file
   * ``tags``        — from the manifest, else ``[]``
+  * ``visibility``  — consumer-display hint (engine schema 1.8);
+    absent or out-of-enum normalizes to ``"visible"``
   * ``ai_validated``— ``true`` if the set/lesson carries an
     ``ai_validation`` block
   * ``trust_level`` — from ``recommended-repos.json``, else ``1``
@@ -44,6 +46,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 INDEX_PATH = REPO_ROOT / "search-index.json"
 SCHEMA_VERSION = "1.0"
 DEFAULT_TRUST_LEVEL = 1
+VISIBILITY_VALUES = ("visible", "hidden")
 
 
 # --------------------------------------------------------------------------- #
@@ -109,6 +112,16 @@ def load_recommended_trust() -> dict[str, int]:
         if slug and level is not None:
             trust[str(slug)] = int(level)
     return trust
+
+
+def normalize_visibility(raw_visibility: object) -> str:
+    """Engine-parity projection of the manifest ``visibility`` flag.
+
+    Mirrors ``asContentSetEntry`` in learn-content-engine 0.14.0: absent
+    or out-of-enum values fold back to ``"visible"``, so consumers can
+    filter on the field without their own defaulting.
+    """
+    return raw_visibility if raw_visibility in VISIBILITY_VALUES else "visible"
 
 
 def has_ai_validation(set_manifest: dict, lessons: list[dict]) -> bool:
@@ -179,6 +192,7 @@ def build_set_entry(root_set: dict) -> tuple[dict, list[str]]:
         "lesson_count": lesson_count,
         "card_count": card_count,
         "tags": merged.get("tags") or [],
+        "visibility": normalize_visibility(merged.get("visibility")),
         "ai_validated": has_ai_validation(set_manifest, lessons),
         "trust_level": None,  # filled in by caller (repo-level)
         "book": merged.get("book"),
@@ -241,6 +255,7 @@ REQUIRED_SET_FIELDS = (
     "domain",
     "lesson_count",
     "card_count",
+    "visibility",
 )
 
 
