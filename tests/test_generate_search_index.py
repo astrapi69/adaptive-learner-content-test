@@ -24,6 +24,41 @@ if str(SCRIPTS_DIR) not in sys.path:
 import generate_search_index as gsi  # noqa: E402
 
 
+def test_slug_from_https_url() -> None:
+    assert (
+        gsi.slug_from_url("https://github.com/astrapi69/adaptive-learner-content-test.git")
+        == "astrapi69/adaptive-learner-content-test"
+    )
+
+
+def test_slug_from_ssh_url() -> None:
+    """Regression guard for #87: the scp-like SSH form separates host and
+    owner with a colon; the slug must not keep the git@host: prefix."""
+    assert (
+        gsi.slug_from_url("git@github.com:astrapi69/adaptive-learner-content-test.git")
+        == "astrapi69/adaptive-learner-content-test"
+    )
+
+
+def test_slug_from_ssh_scheme_url() -> None:
+    assert (
+        gsi.slug_from_url("ssh://git@github.com/astrapi69/adaptive-learner-content-test")
+        == "astrapi69/adaptive-learner-content-test"
+    )
+
+
+def test_slug_from_url_without_git_suffix_and_trailing_slash() -> None:
+    assert (
+        gsi.slug_from_url("https://github.com/astrapi69/adaptive-learner-content-test/")
+        == "astrapi69/adaptive-learner-content-test"
+    )
+
+
+def test_slug_from_unusable_url_is_none() -> None:
+    assert gsi.slug_from_url("") is None
+    assert gsi.slug_from_url("just-a-name") is None
+
+
 def test_absent_visibility_defaults_to_visible() -> None:
     """Absent flag means visible - every pre-1.8 manifest keeps its shape."""
     assert gsi.normalize_visibility(None) == "visible"
