@@ -49,3 +49,17 @@ def test_every_index_entry_carries_visibility() -> None:
     assert index["sets"], "index carries no sets"
     for entry in index["sets"]:
         assert entry["visibility"] in ("visible", "hidden")
+
+
+def test_graded_quiz_demo_stays_hidden() -> None:
+    """Regression guard for adaptive-learner#1707: the graded-quiz demo is
+    a conformance fixture (the deliberate E-EXT-UNSUPPORTED negative case),
+    not learner content. It must stay in the repo for engine validation
+    but must never surface in a consumer app, so its index entry carries
+    visibility "hidden"."""
+    index, build_errors = gsi.build_index()
+    assert not build_errors
+    demo_entry = next(
+        entry for entry in index["sets"] if entry["id"] == "graded-quiz-demo-from-de"
+    )
+    assert demo_entry["visibility"] == "hidden"

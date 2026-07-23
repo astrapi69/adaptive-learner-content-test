@@ -25,6 +25,9 @@ sets:
     path: sets/de/graded-quiz-demo
     version: '1.0.0'
     lesson_count: 1
+    # Konformanz-Fixture (E-EXT-UNSUPPORTED-Negativfall), kein Lerner-Inhalt:
+    # Engine validiert das Set weiter, Consumer-Apps zeigen es nicht an.
+    visibility: hidden
     description: >-
       Eine Lektion: Theorie plus fuenf Aufgaben (multiple_choice, cloze
       select, cloze type) und ein benotetes Quiz ueber den Extension-Typ

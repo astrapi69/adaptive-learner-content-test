@@ -1,6 +1,6 @@
 {
   "repo": "git@github.com:astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-23T15:55:05Z",
+  "generated": "2026-07-23T15:55:47Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -19,7 +19,7 @@
         "graded-quiz",
         "extension"
       ],
-      "visibility": "visible",
+      "visibility": "hidden",
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
