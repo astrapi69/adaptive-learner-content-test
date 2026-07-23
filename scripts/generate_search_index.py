@@ -52,6 +52,25 @@ VISIBILITY_VALUES = ("visible", "hidden")
 # --------------------------------------------------------------------------- #
 # Helpers
 # --------------------------------------------------------------------------- #
+def slug_from_url(url: str) -> str | None:
+    """Return ``owner/repo`` from a git remote URL, or ``None``.
+
+    Handles the https form, the scp-like SSH form
+    (``git@host:owner/repo``, #87: the colon separates host and owner
+    and must not survive into the slug) and the ``ssh://`` form, each
+    with or without a ``.git`` suffix or trailing slash.
+    """
+    slug = url.strip().rstrip("/")
+    if slug.endswith(".git"):
+        slug = slug[: -len(".git")]
+    if "://" not in slug and ":" in slug:
+        slug = slug.replace(":", "/", 1)
+    parts = [p for p in slug.split("/") if p]
+    if len(parts) >= 2:
+        return f"{parts[-2]}/{parts[-1]}"
+    return None
+
+
 def repo_slug() -> str:
     """Return ``owner/repo`` derived from the git remote (fallback: dir)."""
     try:
@@ -61,14 +80,9 @@ def repo_slug() -> str:
         ).strip()
     except (subprocess.CalledProcessError, OSError):
         url = ""
-    if url:
-        slug = url.rstrip("/")
-        if slug.endswith(".git"):
-            slug = slug[:-4]
-        parts = [p for p in slug.split("/") if p]
-        if len(parts) >= 2:
-            return f"{parts[-2]}/{parts[-1]}"
-    return REPO_ROOT.name
+    if not url:
+        return REPO_ROOT.name
+    return slug_from_url(url) or REPO_ROOT.name
 
 
 def git_updated_at(path: Path) -> str | None:
