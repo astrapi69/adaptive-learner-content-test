@@ -1,4 +1,4 @@
-# Example lesson — Der Inception-Effekt
+# Example lesson: Der Inception-Effekt
 
 A complete, real lesson you can read end-to-end as a reference.
 [`lesson.json`](lesson.json) is a verbatim copy of the shipped lesson:
@@ -19,4 +19,4 @@ It demonstrates the patterns a good knowledge lesson uses:
 > This file is a **copy for reference**; it is not registered as its own set, so
 > it does not change the catalogue totals. The authoritative copy is the one in
 > `sets/de/psych-intro/`. It is written in the single-JSON lesson format that the
-> app loads — the same format every set in this repo uses.
+> app loads, the same format every set in this repo uses.

@@ -1,4 +1,4 @@
-# Lesson format — local summary
+# Lesson format: local summary
 
 > **The canonical, test-validated format reference is the engine's**
 > **[`docs/lesson-format.md`](https://github.com/astrapi69/learn-content-engine/blob/main/docs/lesson-format.md)**
@@ -13,7 +13,7 @@ This is a field-by-field summary of the lesson format used by this repository.
 Lessons that follow it pass `scripts/validate_content.py` and load in the
 Adaptive Learner app.
 
-The lesson format is **one JSON file per lesson** — this is what the app loads
+The lesson format is **one JSON file per lesson**: this is what the app loads
 and the validator checks. It is summarised below.
 
 New to this? Start with [GETTING-STARTED.md](GETTING-STARTED.md) and copy a
@@ -32,7 +32,7 @@ manifest.yaml            # root: lists every set
 ```
 
 - **Language sets** live at `sets/<source>/<target>-<level>/`
-  (e.g. `sets/en/es-a1/` — Spanish for English speakers, level A1).
+  (e.g. `sets/en/es-a1/`: Spanish for English speakers, level A1).
 - **Non-language sets** (e.g. psychology, programming) use a topic folder name
   (e.g. `sets/de/psych-intro/`), because material and explanation share one
   language.
@@ -123,8 +123,8 @@ The inner `exercise` object's `type` picks one of the six exercise types below.
 Most carry `card_ids` (the cards they draw on) and a `direction`.
 
 **`direction`** (productive vs receptive):
-- `source_to_target` — learner produces the target language (harder).
-- `target_to_source` — learner recognises/translates into the source (easier).
+- `source_to_target`: learner produces the target language (harder).
+- `target_to_source`: learner recognises/translates into the source (easier).
 
 ## The six exercise types
 

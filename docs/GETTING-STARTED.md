@@ -1,4 +1,4 @@
-# Getting started — your first lesson in 10 minutes
+# Getting started: your first lesson in 10 minutes
 
 This walkthrough takes you from zero to a validated lesson. You'll copy a
 template, edit it, register it, and run the validator.
@@ -23,7 +23,7 @@ Fork the starter repository and work in your own copy:
 The starter is a minimal content repo you can grow. The **templates** and a
 **worked example** referenced below live in the official repository
 (<https://github.com/astrapi69/adaptive-learner-content>) under
-[`templates/`](../templates/) and [`examples/`](../examples/) — copy what you
+[`templates/`](../templates/) and [`examples/`](../examples/): copy what you
 need from there into your repo.
 
 > An example of a self-contained content repository:

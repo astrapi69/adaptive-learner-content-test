@@ -10,23 +10,23 @@ Anleitung: [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md)
 
 ## Was ist drin
 
-- `docs/` — [GETTING-STARTED.md](docs/GETTING-STARTED.md) und
+- `docs/`: [GETTING-STARTED.md](docs/GETTING-STARTED.md) und
   [LESSON-FORMAT.md](docs/LESSON-FORMAT.md) (lokale Zusammenfassung; die
   kanonische, testvalidierte Format-Referenz ist die
   [learn-content-engine `docs/lesson-format.md`](https://github.com/astrapi69/learn-content-engine/blob/main/docs/lesson-format.md),
   gespiegelt in [`schema/`](schema/)).
-- `templates/` — Vorlagen je Domäne (language / programming /
+- `templates/`: Vorlagen je Domäne (language / programming /
   knowledge) für das Single-JSON-Lektionsformat.
-- `examples/` — eine vollständige Beispiel-Lektion
+- `examples/`: eine vollständige Beispiel-Lektion
   ([Inception-Effekt](examples/inception-effekt/)) zum Nachlesen.
   Als lauffähiges Set lebt sie inhaltsgleich als Lektion 106 des
   `psych-intro`-Sets in
   [alc-psychology](https://github.com/astrapi69/alc-psychology).
-- `sets/` — lauffähige Test-Sets, im Wurzel-`manifest.yaml`
+- `sets/`: lauffähige Test-Sets, im Wurzel-`manifest.yaml`
   registriert.
-- `books.yaml` — Buchempfehlungen je Domäne.
-- `scripts/validate_content.py` — lokaler Validator.
-- `scripts/generate_exercises.py` — optionaler KI-Aufgaben-Generator
+- `books.yaml`: Buchempfehlungen je Domäne.
+- `scripts/validate_content.py`: lokaler Validator.
+- `scripts/generate_exercises.py`: optionaler KI-Aufgaben-Generator
   (siehe unten).
 
 ## Eigene Inhalte lokal prüfen
@@ -98,7 +98,7 @@ Validator laufen, bevor er geschrieben wird. Das Prinzip ist **erst
 Entwurf, dann validieren**: Nichts landet direkt in `sets/`, sondern
 zuerst im Staging-Ordner [`generated/`](generated/).
 
-Setup (BYOK — dein Schlüssel, aus der Umgebung, nie im Repo):
+Setup (BYOK: dein Schlüssel, aus der Umgebung, nie im Repo):
 
 ```bash
 pip install pyyaml jsonschema           # dieselben Deps wie der Validator
@@ -125,11 +125,11 @@ Zwei Gates bleiben nach der Generierung:
 
 1. **Semantik-Gate der Engine** (cloze `___`-Marker == blanks, `card_ids`-
    Integrität, multiselect-Disjunktheit): läuft, wenn die
-   `learn-content-engine` installiert ist, sonst spätestens in der CI —
+   `learn-content-engine` installiert ist, sonst spätestens in der CI:
    die reine Python-Validierung deckt es nicht ab.
 2. **Muttersprachler-Review** für Sprachen, die du nicht muttersprachlich
    sprichst. Kein Validator erkennt eine unnatürliche Formulierung oder
-   eine falsche Umschrift. Maschinell erzeugt, dann menschlich geprüft —
+   eine falsche Umschrift. Maschinell erzeugt, dann menschlich geprüft:
    das ist die einzig verlässliche Reihenfolge für Sprachinhalte.
 
 Hintergrund + Prompt-Rezepte: der Blogpost "Build Your Own Lessons for

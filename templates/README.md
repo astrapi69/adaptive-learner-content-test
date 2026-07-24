@@ -2,7 +2,7 @@
 
 Copy-and-edit starting points for new lessons, one per content **domain**.
 
-A lesson is a **single JSON file** — that is the lesson format. Pick the
+A lesson is a **single JSON file**: that is the lesson format. Pick the
 template for your domain and copy it.
 
 | Template | Domain | Use it for |
@@ -19,7 +19,7 @@ template for your domain and copy it.
 3. **Replace** the placeholder cards, theory and exercises with your content.
 4. **Register** the file in your set's `manifest.yaml` (`metadata.lessons`) and
    make sure the set is listed in the root `manifest.yaml`.
-5. **Validate**: `python scripts/validate_content.py` — it must print
+5. **Validate**: `python scripts/validate_content.py`, it must print
    `All N set(s) passed validation.`
 
 > JSON has no comments, so the field-by-field explanations live in
@@ -35,7 +35,7 @@ with distractors. Keep those minimums when you edit.
 ## Domain differences at a glance
 
 - **language**: `domain: language`, `target_language` **and** `source_language`
-  differ, `level` is a CEFR band (A1–C2). Matching/free-text use a
+  differ, `level` is a CEFR band (A1-C2). Matching/free-text use a
   translation context (target ↔ source).
 - **knowledge**: `domain: psychology` (or another non-language domain),
   `source_language == target_language`, no separate target. Matching/free-text
