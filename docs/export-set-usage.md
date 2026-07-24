@@ -1,4 +1,4 @@
-# Export a set for AI review - usage and best practices
+# Export a set for AI review: usage and best practices
 
 > Deutsche Version: [export-set-usage.de.md](export-set-usage.de.md)
 

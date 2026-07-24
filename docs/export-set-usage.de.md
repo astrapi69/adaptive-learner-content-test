@@ -1,4 +1,4 @@
-# Set-Export für KI-Review - Nutzung und Best Practices
+# Set-Export für KI-Review: Nutzung und Best Practices
 
 > English version: [export-set-usage.md](export-set-usage.md)
 

@@ -100,7 +100,7 @@ All N set(s) passed validation.
 If it fails, the message names the lesson and the rule (e.g.
 `free_text '…' needs distractors`). Fix and re-run.
 
-**Before you push**, also run the engine gate locally - the same semantic
+**Before you push**, also run the engine gate locally: the same semantic
 rules (stable rule ids such as `E-CARD-REF`, cloze markers, multiple-choice
 rules) that CI enforces in the `Engine conformance` workflow:
 
@@ -111,7 +111,7 @@ make lint
 The first run installs the engine release pinned in
 `schema/engine-version.txt` into `node_modules/` (gitignored; needs Node.js
 and npm); later runs reuse it. It then runs the gate's self-test plus the
-full engine pass over every lesson and manifest - so `E-*` errors show up
+full engine pass over every lesson and manifest, so `E-*` errors show up
 before the push, not after. Optionally, `make lint-warnings` prints the engine gate's warnings (`W-*`) for every lesson; warnings do not fail the
 run.
 
