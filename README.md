@@ -39,7 +39,7 @@ Exit-Code 0, wenn alle Sets bestehen; sonst 1 mit einem Bericht je
 Datei. Der Validator braucht nur Python 3 und PyYAML
 (`pip install pyyaml`).
 
-**Vor dem Push** zusätzlich das Engine-Gate lokal laufen lassen - dieselben
+**Vor dem Push** zusätzlich das Engine-Gate lokal laufen lassen: dieselben
 semantischen Regeln (`E-CARD-REF`, Cloze-Marker, Multiple-Choice-Regeln),
 die sonst erst die CI meldet:
 
