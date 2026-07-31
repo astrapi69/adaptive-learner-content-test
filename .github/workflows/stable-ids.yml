@@ -19,13 +19,21 @@ jobs:
         with:
           python-version: "3.12"
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install the pinned engine (the gate ships with it)
+        run: npm install --no-save --no-package-lock --no-audit --no-fund "learn-content-engine@$(cat schema/engine-version.txt)"
+
       - name: Install PyYAML
         run: pip install "pyyaml>=6,<7"
 
-      - name: Self-test (seeded violations, every detector must fire)
-        run: python scripts/check_stable_ids.py --self-test
+      - name: Stability gate against the PR base (shipped command)
+        run: npx --no-install learn-content-engine check-stable-ids --base origin/${{ github.base_ref }}
 
-      - name: Gate against the PR base
-        env:
-          BASE_REF: origin/${{ github.base_ref }}
-        run: python scripts/check_stable_ids.py
+      - name: Coverage ratchet self-test (every path must fire)
+        run: python scripts/check_stable_id_coverage.py --self-test
+
+      - name: Coverage ratchet
+        run: python scripts/check_stable_id_coverage.py
