@@ -1,0 +1,31 @@
+# Stability gate for stable_id (engine#90): compares the PR head against the
+# PR base, so a disappeared/reused id or a coverage regression fails BEFORE
+# merge. Self-test first: a gate whose detectors were never seen firing is a
+# blind gate.
+name: stable-id gate
+
+on:
+  pull_request:
+
+jobs:
+  stable-ids:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML
+        run: pip install "pyyaml>=6,<7"
+
+      - name: Self-test (seeded violations, every detector must fire)
+        run: python scripts/check_stable_ids.py --self-test
+
+      - name: Gate against the PR base
+        env:
+          BASE_REF: origin/${{ github.base_ref }}
+        run: python scripts/check_stable_ids.py
