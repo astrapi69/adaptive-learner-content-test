@@ -25,6 +25,9 @@ test/starter repo unchanged. Per set it derives:
   * ``tags``        — from the manifest, else ``[]``
   * ``visibility``  — consumer-display hint (engine schema 1.8);
     absent or out-of-enum normalizes to ``"visible"``
+  * ``review_status`` - three-state review standing (engine schema 1.9),
+    derived from ORIGIN; absent or out-of-enum normalizes to ``"authored"``.
+    Consumers derive "advertisable" as ``review_status != "generated"``
   * ``ai_validated``— ``true`` if the set/lesson carries an
     ``ai_validation`` block
   * ``trust_level`` — from ``recommended-repos.json``, else ``1``
@@ -47,6 +50,7 @@ INDEX_PATH = REPO_ROOT / "search-index.json"
 SCHEMA_VERSION = "1.0"
 DEFAULT_TRUST_LEVEL = 1
 VISIBILITY_VALUES = ("visible", "hidden")
+REVIEW_STATUS_VALUES = ("authored", "generated", "reviewed")
 
 
 # --------------------------------------------------------------------------- #
@@ -128,6 +132,15 @@ def load_recommended_trust() -> dict[str, int]:
     return trust
 
 
+def normalize_review_status(raw_status: object) -> str:
+    """Engine-parity projection of the manifest ``review_status`` flag.
+
+    Absent or out-of-enum folds back to ``"authored"`` (legacy hand-written
+    content), so consumers filter without their own defaulting.
+    """
+    return raw_status if raw_status in REVIEW_STATUS_VALUES else "authored"
+
+
 def normalize_visibility(raw_visibility: object) -> str:
     """Engine-parity projection of the manifest ``visibility`` flag.
 
@@ -207,6 +220,7 @@ def build_set_entry(root_set: dict) -> tuple[dict, list[str]]:
         "card_count": card_count,
         "tags": merged.get("tags") or [],
         "visibility": normalize_visibility(merged.get("visibility")),
+        "review_status": normalize_review_status(merged.get("review_status")),
         "ai_validated": has_ai_validation(set_manifest, lessons),
         "trust_level": None,  # filled in by caller (repo-level)
         "book": merged.get("book"),
@@ -270,6 +284,7 @@ REQUIRED_SET_FIELDS = (
     "lesson_count",
     "card_count",
     "visibility",
+    "review_status",
 )
 
 

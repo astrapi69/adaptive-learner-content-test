@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-07-31T15:45:03Z",
+  "generated": "2026-07-31T16:08:55Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -20,6 +20,7 @@
         "extension"
       ],
       "visibility": "hidden",
+      "review_status": "authored",
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
