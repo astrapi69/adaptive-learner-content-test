@@ -288,6 +288,9 @@ REQUIRED_SET_FIELDS = (
 )
 
 
+SEARCH_INDEX_SCHEMA = Path(__file__).resolve().parents[1] / "schema" / "search-index.schema.json"
+
+
 def validate_index(index: dict) -> list[str]:
     errors: list[str] = []
     for key in ("repo", "generated", "schema_version", "sets", "total_lessons", "total_cards"):
@@ -304,7 +307,27 @@ def validate_index(index: dict) -> list[str]:
         errors.append("total_lessons does not match sum of set lesson_count")
     if sum(e.get("card_count", 0) for e in index.get("sets", [])) != index.get("total_cards"):
         errors.append("total_cards does not match sum of set card_count")
+    errors.extend(_schema_errors(index))
     return errors
+
+
+def _schema_errors(index: dict) -> list[str]:
+    """Validate against the mirrored federation contract
+    (adaptive-learner-content#175, ``schema/search-index.schema.json``).
+
+    The hand checks above stay as this variant's floor; the schema is the
+    contract every writing repo shares, so the two can no longer disagree
+    silently. Requires ``jsonschema`` (installed by validate-content.yml
+    and generate-index.yml)."""
+    import jsonschema
+
+    contract = json.loads(SEARCH_INDEX_SCHEMA.read_text(encoding="utf-8"))
+    validator = jsonschema.Draft202012Validator(contract)
+    violations: list[str] = []
+    for violation in sorted(validator.iter_errors(index), key=lambda v: list(v.absolute_path)):
+        location = "/" + "/".join(str(step) for step in violation.absolute_path)
+        violations.append(f"schema: {location}: {violation.message}")
+    return violations
 
 
 def _comparable(index: dict) -> dict:

@@ -42,3 +42,11 @@ jobs:
           python-version: "3.12"
       - name: Check schema mirror against the pinned engine release
         run: python scripts/check_schema_drift.py
+      - name: Check search-index schema mirror against adaptive-learner-content
+        # The federation contract (adaptive-learner-content#175) is owned by
+        # the official content repo; this mirror must match its main. Drift
+        # goes red until the mirror is refreshed - same consequence rule as
+        # the engine mirror above.
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/astrapi69/adaptive-learner-content/main/schema/search-index.schema.json -o /tmp/upstream-search-index.schema.json
+          diff -u /tmp/upstream-search-index.schema.json schema/search-index.schema.json
