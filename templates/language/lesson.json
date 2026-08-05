@@ -1,5 +1,5 @@
 {
-  "id": "TEMPLATE-language-lesson",
+  "id": "template-language-lesson",
   "title": "TEMPLATE — Replace with your lesson title",
   "description": "A ready-to-validate language lesson template. Copy this file into your set's lessons/ folder, rename it (kebab-case, matching the id), and replace the placeholder content. See ../README.md and ../../docs/LESSON-FORMAT.md for field-by-field guidance.",
   "target_language": "es",
