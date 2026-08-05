@@ -281,6 +281,11 @@ function validateAll(repoRoot, { showWarnings = false } = {}) {
       manifests += 1;
       const res = validateManifest(parseYaml(readFileSync(file, "utf8")));
       if (!res.valid) report(rel, res.errors);
+      // Manifest warnings were collected for lessons but DROPPED here, so the
+      // set-level ordering gate (learn-content-engine#110, W-SET-ORDER-*)
+      // reached this runner and reported nothing. A connected gate that
+      // stays silent is indistinguishable from one that was never connected.
+      if (showWarnings && res.warnings.length) warned.push({ file: rel, warnings: res.warnings });
     }
   }
 
@@ -290,6 +295,9 @@ function validateAll(repoRoot, { showWarnings = false } = {}) {
     parseYaml(readFileSync(join(repoRoot, "manifest.yaml"), "utf8")),
   );
   if (!rootRes.valid) report("manifest.yaml", rootRes.errors);
+  if (showWarnings && rootRes.warnings.length) {
+    warned.push({ file: "manifest.yaml", warnings: rootRes.warnings });
+  }
 
   const totalWarnings = warned.reduce((sum, w) => sum + w.warnings.length, 0);
   console.log(

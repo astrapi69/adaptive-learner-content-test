@@ -43,6 +43,9 @@ def make_tarball(files: dict[str, bytes]) -> bytes:
 SCHEMA_BYTES = json.dumps({"$id": "lesson", "x-schema-version": "9.9"}).encode()
 MANIFEST_BYTES = json.dumps({"$id": "content-manifest"}).encode()
 QUALITY_BYTES = json.dumps({"rules": {"minExercisesPerLesson": 5}}).encode()
+# The engine also ships the Python validator helper (engine#115); the mirror
+# carries it, so the synthetic tarball must contain it too.
+HELPER_BYTES = b"# stand-in for python/lce_schema.py\n"
 
 
 def engine_tarball(**overrides: bytes) -> bytes:
@@ -50,6 +53,7 @@ def engine_tarball(**overrides: bytes) -> bytes:
         "package/schema/lesson.schema.json": SCHEMA_BYTES,
         "package/schema/content-manifest.schema.json": MANIFEST_BYTES,
         "package/schema/quality-rules.json": QUALITY_BYTES,
+        "package/python/lce_schema.py": HELPER_BYTES,
     }
     files.update(overrides)
     return make_tarball(files)
@@ -60,11 +64,14 @@ def write_mirror(
     lesson: bytes = SCHEMA_BYTES,
     manifest: bytes = MANIFEST_BYTES,
     quality: bytes = QUALITY_BYTES,
+    helper: bytes = HELPER_BYTES,
 ) -> None:
     (root / "schema").mkdir(parents=True, exist_ok=True)
     (root / "schema" / "lesson.schema.json").write_bytes(lesson)
     (root / "schema" / "content-manifest.schema.json").write_bytes(manifest)
     (root / "schema" / "quality-rules.json").write_bytes(quality)
+    (root / "scripts").mkdir(parents=True, exist_ok=True)
+    (root / "scripts" / "lce_schema.py").write_bytes(helper)
 
 
 def test_pin_is_read_from_engine_version_file() -> None:

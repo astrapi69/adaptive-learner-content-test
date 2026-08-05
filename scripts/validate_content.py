@@ -44,7 +44,7 @@ import sys
 from pathlib import Path
 
 import yaml
-from jsonschema import Draft202012Validator
+from lce_schema import build_validator
 
 import generate_search_index
 
@@ -96,15 +96,18 @@ SCRIPT_RANGES = {
 }
 
 
-def _load_lesson_schema() -> Draft202012Validator:
+def _load_lesson_schema():
     if not LESSON_SCHEMA_PATH.is_file():
         raise SystemExit(
             f"FATAL: missing mirrored schema {LESSON_SCHEMA_PATH.relative_to(REPO_ROOT)} "
             "(run scripts/check_schema_drift.py --update)"
         )
     schema = json.loads(LESSON_SCHEMA_PATH.read_text(encoding="utf-8"))
-    Draft202012Validator.check_schema(schema)
-    return Draft202012Validator(schema)
+    # Built through the engine's shipped helper (scripts/lce_schema.py,
+    # mirrored from the pinned release): the slug pattern uses Unicode
+    # property escapes that Python's built-in ``re`` cannot compile, so a
+    # plain Draft202012Validator dies on the schema itself.
+    return build_validator(schema)
 
 
 def _load_quality_rules() -> dict:

@@ -40,7 +40,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install pyyaml "jsonschema>=4,<5"
+        run: pip install pyyaml "jsonschema>=4,<5" regex
 
       - name: Regenerate search-index.json
         run: python scripts/generate_search_index.py

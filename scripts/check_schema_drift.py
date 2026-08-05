@@ -63,6 +63,15 @@ MIRRORED = {
         "package/schema/content-manifest.schema.json"
     ),
     "schema/quality-rules.json": "package/schema/quality-rules.json",
+    # The engine also ships the Python-side validator helper
+    # (learn-content-engine#115). Schema 1.10+ uses Unicode property escapes
+    # (``\p{Ll}``) in the slug pattern, which Python's built-in ``re``
+    # cannot compile - without this helper ``validate_content.py`` and the
+    # whole pytest suite die on every document. Mirrored rather than
+    # imported from node_modules so validation stays Python-only, and
+    # byte-compared against the pinned tarball like every other mirror, so
+    # it cannot drift here unnoticed.
+    "scripts/lce_schema.py": "package/python/lce_schema.py",
 }
 
 
