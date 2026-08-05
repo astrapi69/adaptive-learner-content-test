@@ -1,5 +1,5 @@
 {
-  "id": "TEMPLATE-programming-lesson",
+  "id": "template-programming-lesson",
   "title": "TEMPLATE — Replace with your lesson title",
   "description": "A ready-to-validate programming lesson template. Programming is a non-language domain (source_language == target_language). Code cards use the schema v1.3 fields code_snippet, code_language, expected_output and media_type: \"code\". See ../README.md and ../../docs/LESSON-FORMAT.md.",
   "target_language": "de",
