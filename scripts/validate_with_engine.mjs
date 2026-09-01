@@ -48,6 +48,10 @@ const ADOPTED_EXTENSIONS = [
   "ext:al-reading-comprehension",
   "ext:al-graded-quiz",
   "ext:al-dictation",
+  "ext:al-image-description",
+  "ext:al-speak-and-record",
+  "ext:al-audio-choice",
+  "ext:al-audio-tiles",
 ].map((type) => ({ type, major: 1, validate: () => [] }));
 
 const withExtensions = { extensions: ADOPTED_EXTENSIONS };
