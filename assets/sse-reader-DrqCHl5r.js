@@ -1,0 +1,6 @@
+async function e(e){let n=await fetch(e.url,{method:`POST`,headers:{"Content-Type":`application/json`,Accept:`text/event-stream`,...e.headers??{}},body:JSON.stringify(e.body),signal:e.signal});if(!n.ok){let e=await n.text().catch(()=>``);throw Error(`SSE request failed (${n.status}): ${e}`)}if(!n.body)throw Error(`SSE response has no body`);let r=n.body.getReader(),i=new TextDecoder(`utf-8`),a=``;try{for(;;){let{value:n,done:o}=await r.read();if(o){if(a.trim().length>0){let n=t(a);n&&e.onEvent(n)}return}a+=i.decode(n,{stream:!0});let s=a.indexOf(`
+
+`);for(;s!==-1;){let n=a.slice(0,s);a=a.slice(s+2);let r=t(n);r&&e.onEvent(r),s=a.indexOf(`
+
+`)}}}finally{try{r.releaseLock()}catch{}}}function t(e){let t=`message`,n=[];for(let r of e.split(/\r?\n/)){if(!r||r.startsWith(`:`))continue;let e=r.indexOf(`:`),i=e===-1?r:r.slice(0,e),a=e===-1?``:r.slice(e+1),o=a.startsWith(` `)?a.slice(1):a;i===`event`?t=o:i===`data`&&n.push(o)}if(n.length===0)return null;let r=n.join(`
+`),i;try{i=JSON.parse(r)}catch{i=r}return{event:t,data:i}}export{e as streamSse};

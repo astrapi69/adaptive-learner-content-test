@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8"/>
+    <!-- #1569 — iOS auto-zoom-on-input-focus: suppress via maximum-scale.
+         The #1353 16px-floor is the primary (WCAG-safe) defence and stays;
+         this is a belt-and-suspenders for the reported case where focus-zoom
+         still fired + would not reset on an installed iPhone PWA. iOS >=10
+         still honours the user's pinch-zoom gesture (Safari overrides
+         user-scalable for accessibility), so manual zoom keeps working; only
+         the automatic focus-zoom is suppressed. Trade-off tracked in #1569;
+         the axe `meta-viewport` rule is deliberately excluded in the a11y
+         specs with the same reference.
+         #1569 (tap-offset half): `interactive-widget=resizes-content` makes
+         the on-screen keyboard resize the LAYOUT viewport (iOS Safari 17.4+),
+         so `dvh` + the hit-test grid track the keyboard and the visual and
+         layout viewports coincide — the declarative form of what the
+         reverted #1570 shell hook attempted in JS, engine-atomic and free of
+         its zoom-misdetection flaw. Engines without support ignore the key
+         and keep today's overlay behaviour; the useVisualViewportRealign
+         hook (App.tsx) then covers the lingering phantom-scroll offset. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content"/>
+    <!-- The .ico fallback is the FIRST tag on purpose: browsers
+         that hit /favicon.ico directly (tab restore, bookmarks,
+         many crawlers) ignore the <link> tag below entirely.
+         The PNG variants give crisp tab icons on modern browsers. -->
+    <link rel="icon" href="/adaptive-learner-content-test/favicon.ico" sizes="any"/>
+    <!-- Light-mode favicons are declared first so browsers without
+         ``media`` support (older than Chrome 93 / Firefox 106 /
+         Safari 15.4) fall back to the brand-teal light variant. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/adaptive-learner-content-test/favicon-32x32.png" media="(prefers-color-scheme: light)"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/adaptive-learner-content-test/favicon-16x16.png" media="(prefers-color-scheme: light)"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/adaptive-learner-content-test/favicon-32x32-dark.png" media="(prefers-color-scheme: dark)"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/adaptive-learner-content-test/favicon-16x16-dark.png" media="(prefers-color-scheme: dark)"/>
+    <meta name="theme-color" content="#0d9488"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/adaptive-learner-content-test/apple-touch-icon.png"/>
+    <meta name="application-name" content="Adaptive Learner"/>
+    <meta name="apple-mobile-web-app-title" content="Adaptive Learner"/>
+
+    <!-- SEO (#1104). DE is the primary locale; EN is the og:locale alternate. -->
+    <title>Adaptive Learner - KI-gestützte Sprachlern-App</title>
+    <meta name="description" content="Lern-App, die sich dir anpasst: Erstelle dein Lernmaterial selbst, mit KI, oder lerne mit fertigen Sets - mit Spaced Repetition. Kostenlos, offline-fähig, Open Source."/>
+    <meta name="keywords" content="Sprachlernen, KI, Lernapp, Vokabeltrainer, Spaced Repetition, Flashcards, PWA, Open Source"/>
+    <meta name="author" content="Asterios Raptis"/>
+    <meta name="robots" content="noindex, nofollow"/>
+    <link rel="canonical" href="https://astrapi69.github.io/adaptive-learner/"/>
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp). Absolute URLs point at the
+         canonical public deployment, which is what crawlers fetch. -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="Adaptive Learner"/>
+    <meta property="og:title" content="Adaptive Learner - KI-gestützte Sprachlern-App"/>
+    <meta property="og:description" content="Erstelle dein Lernmaterial selbst, mit KI, oder lerne mit fertigen Sets - mit Spaced Repetition. Kostenlos und offline-fähig."/>
+    <meta property="og:image" content="https://astrapi69.github.io/adaptive-learner/og-image.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:image:alt" content="Adaptive Learner - Lerne Sprachen mit KI"/>
+    <meta property="og:url" content="https://astrapi69.github.io/adaptive-learner/"/>
+    <meta property="og:locale" content="de_DE"/>
+    <meta property="og:locale:alternate" content="en_US"/>
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Adaptive Learner - KI-gestützte Sprachlern-App"/>
+    <meta name="twitter:description" content="Erstelle dein Lernmaterial selbst, mit KI - Spaced Repetition inklusive. Kostenlos und offline-fähig."/>
+    <meta name="twitter:image" content="https://astrapi69.github.io/adaptive-learner/og-image.png"/>
+    <meta name="twitter:image:alt" content="Adaptive Learner - Lerne Sprachen mit KI"/>
+
+    <!-- Structured data: WebApplication (JSON-LD). The version is injected at
+         build time from package.json (no hardcoded literal). -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Adaptive Learner",
+      "description": "KI-gestützte Lern-App: Erstelle dein Lernmaterial selbst, mit KI, oder lerne mit fertigen Sets - mit Spaced Repetition.",
+      "url": "https://astrapi69.github.io/adaptive-learner/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "author": { "@type": "Person", "name": "Asterios Raptis", "url": "https://github.com/astrapi69" },
+      "inLanguage": ["de", "en", "el", "es", "fr", "hi", "ja", "ko", "pt", "tr", "id"],
+      "screenshot": "https://astrapi69.github.io/adaptive-learner/og-image.png",
+      "featureList": [
+        "Learning modes: Practice, Exam, Timed, Error, Reverse, Shuffle, Endless",
+        "AI-generated exercises",
+        "Spaced Repetition System",
+        "Ready-made content sets in multiple languages and domains",
+        "Offline-capable PWA",
+        "GitHub repository sharing with invitation codes",
+        "Social sharing with generated share cards"
+      ],
+      "softwareVersion": "2.14.0",
+      "license": "https://github.com/astrapi69/adaptive-learner/blob/main/LICENSE"
+    }
+    </script>
+    <!-- Fonts are bundled locally in public/fonts/ (no CDN dependency) -->
+    <!-- Phase 58E: apply the saved theme BEFORE first paint to avoid a
+         flash of the wrong theme. Mirrors the resolution in
+         src/hooks/ui/useTheme.ts (dotted key + legacy migration + auto)
+         and DEFAULT_THEME_CHOICE ("soft-pop") in src/lib/theme/themes.ts. -->
+    <script>
+      (function () {
+        // Concrete, selectable themes (keep in sync with THEME_IDS in
+        // src/lib/theme/themes.ts). "auto" is handled separately below.
+        var valid = [
+          "light", "dark", "ocean", "forest", "high-contrast", "sepia",
+          "catppuccin-latte", "supabase", "graphite", "catppuccin-mocha",
+          "soft-pop", "amethyst-haze"
+        ];
+        // Default for users WITHOUT a saved choice (mirrors
+        // DEFAULT_THEME_CHOICE in src/lib/theme/themes.ts).
+        var DEFAULT_THEME = "soft-pop";
+        try {
+          var choice = localStorage.getItem("adaptive-learner.theme");
+          if (choice === null) {
+            var legacy = localStorage.getItem("adaptive-learner-theme");
+            if (legacy === "light" || legacy === "dark") choice = legacy;
+          }
+          var resolved;
+          if (choice === "auto") {
+            // Explicit OS-follow: resolve live to light/dark.
+            resolved =
+              window.matchMedia &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          } else if (choice && valid.indexOf(choice) !== -1) {
+            // Existing user's saved concrete theme wins.
+            resolved = choice;
+          } else {
+            // No saved / invalid choice -> the Soft Pop default.
+            resolved = DEFAULT_THEME;
+          }
+          document.documentElement.setAttribute("data-theme", resolved);
+        } catch (e) {
+          /* localStorage blocked -> apply the Soft Pop default */
+          document.documentElement.setAttribute("data-theme", DEFAULT_THEME);
+        }
+      })();
+    </script>
+  <script type="module" crossorigin src="/adaptive-learner-content-test/assets/index-CalZBf_S.js"></script>
+  <link rel="modulepreload" crossorigin href="/adaptive-learner-content-test/assets/rolldown-runtime-Dqfqb5bO.js">
+  <link rel="modulepreload" crossorigin href="/adaptive-learner-content-test/assets/vendor-charts-EgRYksAH.js">
+  <link rel="modulepreload" crossorigin href="/adaptive-learner-content-test/assets/vendor-react-CF2eQL22.js">
+  <link rel="modulepreload" crossorigin href="/adaptive-learner-content-test/assets/vendor-markdown-C4vF9QVZ.js">
+  <link rel="modulepreload" crossorigin href="/adaptive-learner-content-test/assets/db-D3NohYQk.js">
+  <link rel="modulepreload" crossorigin href="/adaptive-learner-content-test/assets/gamification-B6Sp0g9q.js">
+  <link rel="modulepreload" crossorigin href="/adaptive-learner-content-test/assets/lesson-xp-BZ9U-BXP.js">
+  <link rel="modulepreload" crossorigin href="/adaptive-learner-content-test/assets/createLucideIcon-DdndUWUT.js">
+  <link rel="modulepreload" crossorigin href="/adaptive-learner-content-test/assets/vendor-radix-CM1Hr4_U.js">
+  <link rel="modulepreload" crossorigin href="/adaptive-learner-content-test/assets/vendor-ui-e2O9Mm8-.js">
+  <link rel="stylesheet" crossorigin href="/adaptive-learner-content-test/assets/vendor-ui-qcT314-W.css">
+  <link rel="stylesheet" crossorigin href="/adaptive-learner-content-test/assets/index-j12Q5LQJ.css">
+<link rel="manifest" href="/adaptive-learner-content-test/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/adaptive-learner-content-test/registerSW.js"></script></head>
+<body>
+<!-- Static, crawlable pointer to the landing page (#2409). Visible only
+     without JavaScript; the app renders into #root and never touches it. -->
+<noscript>
+  <p>
+    Adaptive Learner ist eine kostenlose, quelloffene Lern-App, die sich dir
+    anpasst - du erstellst dein Lernmaterial selbst, mit KI. Diese Anwendung
+    braucht JavaScript. Was das Produkt ist, steht auf der
+    <a href="/adaptive-learner-content-test/start/">Landeseite (Deutsch)</a> /
+    <a href="/adaptive-learner-content-test/start/en/">landing page (English)</a>.
+  </p>
+</noscript>
+<div id="root"></div>
+</body>
+</html>

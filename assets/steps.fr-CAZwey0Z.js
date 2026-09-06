@@ -1,0 +1,242 @@
+var e={category:`steps`,language:`fr`,entries:[{key:`step_input`,title:`1. Input`,short:`Vous recevez du nouveau matériel — explication, exemple ou question de l'IA.`,long:`## Étape 1 : Input
+
+Chaque cycle d'apprentissage commence par l'input. L'IA présente
+le matériel : une explication, un exemple, une question ouverte
+ou une situation — selon la méthode choisie.
+
+## Ce que fait l'IA
+
+- **En déductif** : explique la règle.
+- **En inductif** : présente des exemples.
+- **En basé sur les erreurs** : présente un problème avec un piège.
+- **En dialogique** : ouvre la conversation avec une question.
+- **En contextuel** : esquisse le scénario.
+
+## Ce que vous faites
+
+Lisez attentivement. Posez des questions si quelque chose n'est
+pas clair — la session est un dialogue, pas une conférence. Si
+vous trouvez que la confiance de l'IA est trop élevée, restez-y :
+certaines explications ne font leur effet qu'à la deuxième lecture.
+
+## Ce que fait l'évaluateur à double invite
+
+Il tourne en silence. Il observe votre réaction (ou son absence)
+et évalue si vous avez assimilé le matériel. La notation active
+commence à l'étape 2 (attempt).
+
+## Ce qui se passe si vous survolez cette étape
+
+L'erreur la plus courante des débutants : sauter à l'« action »
+sans traiter l'input. Le système le détecte à partir d'une faible
+confiance sur les tentatives suivantes — et vous renvoie à l'étape 1.
+`},{key:`step_attempt`,title:`2. Attempt`,short:`Vous appliquez ce que vous avez appris à une tâche ou une question concrète.`,long:`## Étape 2 : Attempt
+
+Vous recevez une application du matériel et essayez de la
+résoudre. Première réponse, premier exemple, première application
+concrète de la règle.
+
+## Ce que fait l'IA
+
+L'IA vous donne une tâche clairement délimitée. Pour les langues :
+traduire une phrase. Pour le code : écrire une fonction. Pour la
+musique : pratiquer un changement d'accord. La difficulté est
+délibérément basse — la première tentative doit être réalisable.
+
+## Ce que vous faites
+
+Essayez. Même si vous n'êtes pas sûr. Une réponse incomplète
+ou incorrecte est plus précieuse qu'un refus, car elle donne
+à l'évaluateur du matériel avec lequel travailler.
+
+## Évaluateur à double invite
+
+Il s'active ici. Il lit votre réponse et attribue un score de
+confiance (0-100 %). En cas de haute confiance, vous passez
+directement à l'étape 5 (adapt), en sautant l'analyse d'erreur.
+En cas de faible confiance, le chemin passe par l'étape 3
+(error) et l'étape 4 (feedback).
+
+## Conseil : ne bloquez pas
+
+Si vous n'avez aucune approche après 30 secondes, dites-le à
+l'IA (« Je ne sais pas par où commencer »). L'IA vous donne
+un indice plutôt que la solution complète — et l'évaluateur
+ne comptabilise pas cela comme une tentative échouée.
+`},{key:`step_error`,title:`3. Error`,short:`Une erreur ou un malentendu devient visible.`,long:`## Étape 3 : Error
+
+Si votre tentative à l'étape 2 n'a pas atteint l'objectif,
+le cycle passe par cette étape. L'erreur est nommée — pas
+jugée, simplement signalée comme opportunité d'apprentissage.
+
+## Ce que fait l'IA
+
+Elle vous montre où se trouve l'erreur, sans la corriger
+immédiatement. L'essentiel : vous devez *voir* l'erreur, pas
+seulement *entendre que quelque chose était faux*. Cette
+distinction détermine si vous répéterez l'erreur.
+
+## Ce que vous faites
+
+Retracez l'erreur. Si vous pouvez la corriger vous-même,
+faites-le. Sinon, signalez-le à l'IA (« Je ne comprends pas
+où est l'erreur ») — l'étape suivante (feedback) existe
+pour clarifier.
+
+## Quand aucune erreur n'apparaît
+
+En cas de haute confiance à l'étape 2, le cycle saute cette
+étape. Le système le note et augmente la difficulté dans le
+prochain cycle — vous devez être mis au défi, pas vous ennuyer.
+
+## En méthode basée sur les erreurs
+
+Si vous avez choisi cette méthode, l'étape 3 est l'étape
+principale du cycle. L'IA vous guide délibérément vers des
+pièges typiques — voir le glossaire des méthodes.
+`},{key:`step_feedback`,title:`4. Feedback`,short:`L'IA explique pourquoi quelque chose fonctionne ou ne fonctionne pas.`,long:`## Étape 4 : Feedback
+
+Voici l'explication. L'IA décrit le principe derrière votre
+erreur ou votre réponse correcte — idéalement de manière à
+ce que vous puissiez transférer le principe à d'autres cas.
+
+## Ce que contient un bon feedback
+
+- **Ce qui s'est passé** (description de l'observation).
+- **Pourquoi cela s'est passé** (explication du principe).
+- **Comment faire différemment la prochaine fois**
+  (orientation d'action concrète).
+
+Sans le (3), le feedback s'évapore. Avec le (3), une correction
+devient une règle transférable.
+
+## Ce que vous faites
+
+Lisez, suivez, redemandez. Si le feedback n'a pas encore
+fait son effet, dites-le. L'IA est patiente — elle expliquera
+le principe sous une autre forme. Mieux compris deux fois
+qu'échoué une.
+
+## Évaluateur à double invite
+
+Il lit votre réaction au feedback. Si vous dites « Ah, je
+comprends maintenant » (ou l'équivalent), la confiance monte
+et vous avancez. Si vous semblez encore confus, l'évaluateur
+ramène le cycle à l'étape 1 (input) avec une nouvelle approche
+d'explication.
+
+## Aussi pour les bonnes réponses
+
+Le feedback n'est pas réservé aux erreurs. Lorsque vous résolvez
+quelque chose correctement, l'IA explique quand même le principe
+derrière — pour que le succès devienne transférable.
+`},{key:`step_adapt`,title:`5. Adapt`,short:`Vous ajustez votre stratégie ou votre compréhension en vous basant sur le feedback.`,long:`## Étape 5 : Adapt
+
+Vous prenez ce que vous avez appris du feedback et ajustez votre
+approche. Pas seulement intellectuellement (« oui, je comprends
+maintenant »), mais opérationnellement (« la prochaine fois, je
+ferai différemment »).
+
+## Ce qui se passe concrètement ici
+
+- **Pour les langues** : vous reformulez. Au lieu de la mauvaise
+  construction, vous utilisez celle corrigée.
+- **Pour le code** : vous restructurez la fonction avec le
+  principe compris.
+- **Pour les maths** : vous résolvez une variante en utilisant
+  le chemin de solution corrigé.
+
+## Ce que fait l'IA
+
+Elle vous donne une *nouvelle* tâche — pas l'ancienne avec la
+solution connue, mais une variation qui exige le principe
+compris dans un nouveau contexte.
+
+## Pourquoi cette étape compte
+
+La compréhension sans adaptation s'évapore. Si vous vous contentez
+d'« écho » au feedback sans l'intégrer dans votre approche,
+vous répéterez l'erreur la prochaine fois. L'étape 5 force
+l'activation opérationnelle.
+
+## Évaluateur à double invite
+
+Il évalue ici le transfert d'apprentissage. Une adaptation
+réussie dans une nouvelle variation est le meilleur signal
+que l'apprentissage a eu lieu — la confiance monte
+généralement au-dessus de 80 %.
+`},{key:`step_repeat`,title:`6. Repeat`,short:`Vous pratiquez avec des variations jusqu'à ce que ce que vous avez appris soit fluide.`,long:`## Étape 6 : Repeat
+
+Vous recevez d'autres variations de la tâche. Pas une répétition
+identique (qui mène juste à la mémorisation), mais des variations :
+même noyau, contexte différent, difficulté différente.
+
+## Ce que fait l'IA
+
+Elle génère des tâches qui testent le même principe sous des
+formes différentes. Pour les langues : vocabulaire différent,
+structure de phrase différente, même grammaire. Pour le code :
+données différentes, même structure algorithmique.
+
+## Pourquoi la variation, pas la répétition
+
+La recherche sur la **pratique entrelacée** montre : la pratique
+en blocs (toutes les tâches sur le même sujet d'affilée) crée
+une illusion de compétence. La pratique entrelacée (tâches
+connexes avec variation) crée des connaissances transférables.
+
+## Quand l'étape se termine
+
+Dès que l'évaluateur à double invite constate trois variations
+consécutives avec une confiance > 80 %, vous passez à l'étape 7.
+Si la confiance fluctue, le cycle reste à l'étape 6 — jusqu'à
+ce que la stabilité soit atteinte.
+
+## Lien avec la répétition espacée
+
+Ce que vous résolvez avec succès à l'étape 6 entre dans le
+système de répétition espacée. Le système planifie des révisions
+à 1 jour, 3 jours, 7 jours, 14 jours, 30 jours — pour que
+l'apprentissage reste ancré à long terme.
+`},{key:`step_integrate`,title:`7. Integrate`,short:`Vous reliez ce que vous avez appris à d'autres connaissances ou à une application réelle.`,long:`## Étape 7 : Integrate
+
+Le cycle d'apprentissage se termine avec vous qui placez le
+nouvel apprentissage dans un contexte plus large. Pas de manière
+isolée (« aujourd'hui j'ai appris ça »), mais en le reliant à
+ce que vous saviez déjà.
+
+## Ce que fait l'IA
+
+Elle vous met au défi de relier le nouveau contenu à d'autres
+concepts ou de l'appliquer dans un scénario réel :
+
+- **Langues** : utilisez le temps dans une conversation libre.
+- **Code** : appliquez la nouvelle technique dans un projet
+  plus large.
+- **Théorie** : combinez le concept avec l'une de vos propres
+  questions.
+
+## Ce que vous faites
+
+Articulez le lien requis. Trouvez vos propres exemples.
+Atteignez le point où vous pouvez dire : « Je suis capable
+de le faire maintenant — pas parce que je l'ai mémorisé,
+mais parce que je peux le déployer. »
+
+## Ce qui se passe après l'étape 7
+
+Le cycle est complet. Trois options :
+
+- **Terminer la session** et l'évaluer (compréhension / stress
+  / adéquation de la méthode).
+- **Auto-boucle** : un nouveau cycle avec un nouveau sujet
+  démarre automatiquement.
+- **Changement de méthode** : en cas de faible adéquation,
+  le système recommande un changement pour le prochain cycle.
+
+## Pourquoi le système se clôt ici
+
+L'intégration est le seul test robuste que l'apprentissage a
+fonctionné. Un contenu mémorisé échoue à l'étape 7 ;
+des connaissances comprises s'y épanouissent.
+`}]};export{e as default};

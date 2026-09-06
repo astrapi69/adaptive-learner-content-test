@@ -1,0 +1,1 @@
+var e=`adaptive-learner.review_limit`,t=[5,10,15,20];function n(){try{let n=localStorage.getItem(e);if(n===null)return 10;let r=parseInt(n,10);return t.includes(r)?r:10}catch{return 10}}function r(n){if(t.includes(n))try{localStorage.setItem(e,String(n))}catch{}}export{n,r,t};

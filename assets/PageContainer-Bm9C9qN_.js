@@ -1,0 +1,1 @@
+import{o as e}from"./vendor-markdown-C4vF9QVZ.js";import{wn as t}from"./index-CalZBf_S.js";var n=e(),r=`mx-auto w-full max-w-5xl p-4`;function i({children:e,className:i,testId:a}){return(0,n.jsx)(`main`,{id:`main`,"data-slot":`page-container`,"data-testid":a,className:t(r,i),children:e})}export{i as t};

@@ -1,0 +1,1 @@
+import{o as e}from"./vendor-markdown-C4vF9QVZ.js";import{wn as t}from"./index-CalZBf_S.js";var n=e();function r({children:e,as:r=`p`,variant:i=`default`,className:a,...o}){return(0,n.jsx)(r,{className:t(`text-fg-muted text-[0.85rem]`,a),...o,children:e})}export{r as t};

@@ -1,0 +1,228 @@
+var e={category:`methods`,language:`fr`,entries:[{key:`method_deductive`,title:`Déductive`,short:`Apprendre d'abord la règle, puis l'appliquer à des exemples concrets.`,long:`## Méthode déductive
+
+L'IA explique une règle ou un concept ; vous le pratiquez ensuite
+avec des exemples. Du général au particulier : approche descendante.
+
+## Quand elle fonctionne bien
+
+- **Sujets structurés** avec des règles claires (grammaire, formules
+  mathématiques, syntaxe de programmation).
+- **Vous avez des connaissances préalables** auxquelles la règle peut
+  s'accrocher.
+- **Vous préférez la clarté** : vous voulez savoir ce qui est correct
+  avant d'essayer.
+
+## Déroulement d'une session
+
+1. L'IA explique la règle avec un bref exemple.
+2. Vous recevez un exercice pratique.
+3. Vous le résolvez ; l'IA donne un retour.
+4. En cas de compréhension : une nouvelle tâche de complexité supérieure.
+5. En cas d'erreur : l'IA affine l'explication.
+
+## Invites IA typiques
+
+Les invites système pour cette méthode mettent l'accent sur la clarté
+et la progression par étapes. L'IA est instruite d'énoncer la règle
+*avant* de passer à l'application.
+
+## Quand le système peut recommander un changement
+
+Si votre note de **stress** augmente sur plusieurs sessions et que
+vous avez l'impression d'« apprendre des règles sans les comprendre »,
+le système recommande de passer à une méthode plus axée sur la pratique
+(inductive, contextuelle ou dialogique). Vous avez toujours le dernier
+mot sur le changement.
+`},{key:`method_inductive`,title:`Inductive`,short:`Voir d'abord des exemples, en déduire la règle soi-même.`,long:`## Méthode inductive
+
+L'IA présente des exemples ; vous reconnaissez le schéma et formulez
+la règle vous-même. Du particulier au général : approche ascendante.
+
+## Quand elle fonctionne bien
+
+- **Sujets à reconnaissance de schémas** comme la grammaire en
+  contexte, les gammes musicales, les concepts statistiques.
+- **Vous apprenez par la découverte** plutôt qu'en mémorisant des règles.
+- **Les exemples sont nombreux** — l'IA dispose de matériel rendant
+  la règle visible.
+
+## Déroulement d'une session
+
+1. L'IA présente 3 à 5 exemples d'un phénomène.
+2. Question : « Quel schéma voyez-vous ? »
+3. Vous formulez une hypothèse.
+4. L'IA confirme, corrige ou présente d'autres exemples.
+5. Sur la règle correcte : l'IA l'énonce formellement.
+
+## Pourquoi cela ancre plus profondément
+
+La recherche montre que les règles découvertes par soi-même
+restent plus longtemps que celles qu'on répète. Le chemin inductif
+prend plus de temps, mais la compréhension est plus solide.
+
+## Quand cela devient difficile
+
+Si les schémas sont trop complexes ou si vos bases sont trop
+insuffisantes, l'apprentissage inductif peut frustrer. Le système
+le détecte à partir de faibles valeurs de confiance et peut
+basculer vers la méthode déductive.
+`},{key:`method_error_based`,title:`Basée sur les erreurs`,short:`Faire des erreurs délibérément, puis comprendre pourquoi elles se produisent.`,long:`## Méthode basée sur les erreurs
+
+L'IA vous guide délibérément vers des erreurs courantes — puis
+vous en ressortez ensemble. Les erreurs ne sont pas évitées
+mais utilisées comme opportunités d'apprentissage.
+
+## Pourquoi les erreurs délibérées fonctionnent
+
+La recherche sur l'**échec productif** montre que les erreurs
+que vous faites vous-même et que vous comprenez ensuite créent
+des modèles mentaux plus robustes que les erreurs que vous évitez.
+
+La méthode n'est PAS punitive : il ne s'agit pas de honte,
+mais de clarté. Une erreur comprise vaut plus qu'une réponse
+correcte par hasard.
+
+## Comment l'IA la met en œuvre
+
+1. L'IA présente un problème avec des pièges.
+2. Vous le résolvez — et tombez souvent dans le piège.
+3. L'IA vous montre l'erreur et explique le malentendu sous-jacent.
+4. Vous résolvez une variante sans répéter l'erreur.
+5. L'IA généralise le principe.
+
+## Quand cette méthode convient
+
+- **Sujets avec des sources d'erreurs classiques** (faux amis dans
+  les langues, erreurs de décalage en code, erreurs de signe en maths).
+- **Vous ne cédez pas au stress** quand vous faites des erreurs.
+- **Vous avez des bases** — des erreurs liées à une ignorance totale
+  n'enseignent pas grand-chose.
+
+## Attention au stress élevé
+
+Si votre note de stress dépasse 3 lors d'une session, le système
+bascule vers la méthode dialogique ou déductive — cette méthode
+nécessite un calme mental pour être productive.
+`},{key:`method_dialogic`,title:`Dialogique`,short:`Apprendre par la conversation avec l'IA dans un cadre sans pression.`,long:`## Méthode dialogique
+
+Vous apprenez par la conversation : pas d'exercices rigides,
+pas de bonnes/mauvaises réponses, juste un dialogue flexible
+sur le sujet. L'IA rebondit, approfondit, encourage.
+
+## Quand elle fonctionne
+
+- **Situations de stress élevé** où l'anxiété des examens ou
+  l'inhibition de la parole bloquent l'apprentissage.
+- **Consolidation pure** : vous expliquez à l'IA ce que vous
+  avez compris.
+- **Sujets complexes** que vous souhaitez explorer avant de vous
+  engager sur une solution structurée.
+
+## Déroulement d'une session
+
+Pas d'étapes fixes. Vous commencez avec une question, une
+hypothèse ou un concept. L'IA poursuit la conversation, pose
+des questions complémentaires, suggère des concepts connexes,
+donne des exemples. Vous pouvez changer de sujet à tout moment —
+contrairement à la méthode déductive ou inductive, où le système
+vous maintient sur la bonne voie.
+
+## Ce que fait l'IA
+
+- **Sans pression** : aucun ton de jugement.
+- **Motivant** : les progrès sont soulignés, mais pas artificiellement.
+- **Adaptatif** : adapte la complexité à votre aisance et à votre énergie.
+
+## Ce que fait l'évaluateur à double invite
+
+L'évaluation de la confiance tourne toujours, mais de manière
+plus tolérante — la progression par étapes est permise à 50 %
+de confiance (contre 70 % habituel). Cette méthode est
+explicitement faite pour l'exploration, pas pour le test.
+`},{key:`method_contextual`,title:`Contextuelle`,short:`Apprendre dans des situations réelles simulées.`,long:`## Méthode contextuelle
+
+L'IA simule une situation concrète — restaurant, entretien
+d'embauche, entretien de code — et vous résolvez la tâche
+en vous y inscrivant. L'apprentissage se fait dans le contexte
+d'application, pas de manière abstraite.
+
+## Pourquoi le contexte fait la différence
+
+La recherche sur la **cognition située** montre que les
+connaissances acquises en contexte se transfèrent mieux
+dans la pratique. Ce que vous avez appris à table au restaurant,
+vous pouvez l'appliquer au restaurant — les connaissances
+abstraites souvent pas.
+
+Cette méthode aide particulièrement avec le **problème de
+transfert** : « Je connais la règle, mais dans une vraie
+conversation je ne peux pas y accéder. »
+
+## Exemples pour les langues
+
+- « Vous êtes dans un café à Madrid. Commandez trois tapas
+  différentes et demandez la recommandation de la maison. »
+- « Vous demandez votre chemin pour la gare ; le passant
+  répond en dialecte — que répondez-vous ? »
+
+## Exemples pour le code
+
+- « Revue de code : vous recevez ce PR. Que dites-vous au
+  développeur junior ? »
+- « Scénario de bug en production : les logs affichent X.
+  Comment déboguez-vous ? »
+
+## Quand elle convient
+
+- **Quand votre objectif est appliqué** (« Espagnol pour
+  voyager » convient mieux que « Espagnol pour l'examen »).
+- **Après les premières bases** — le contexte ne fonctionne
+  qu'une fois les briques de base en place.
+- **Quand vous vous préparez à une situation spécifique**
+  (entretien d'embauche la semaine prochaine).
+
+## Quand elle convient moins
+
+Pour les sujets purement académiques (mémorisation de listes
+de faits), la méthode déductive ou la répétition espacée est
+généralement plus efficace.
+`},{key:`method_ai_adaptive`,title:`IA adaptative`,short:`Le système choisit automatiquement la meilleure méthode selon votre historique.`,long:`## Méthode IA adaptative
+
+Vous laissez le système choisir la méthode. Après chaque étape,
+il évalue votre progression (valeur de confiance), votre stress
+et l'adéquation de la méthode, puis décide avec quelle méthode
+démarrer le prochain cycle d'apprentissage.
+
+## Comment le système décide
+
+Trois sources de données alimentent le choix :
+
+- **Profil d'apprentissage** : les pondérations de votre évaluation.
+  Les méthodes avec des pondérations plus élevées sont privilégiées.
+- **Historique des sessions** : quelles méthodes ont conduit à des
+  progrès rapides lors de vos 5 à 10 dernières sessions ?
+- **Niveau de stress actuel** : en cas de stress élevé, le système
+  bascule vers des méthodes moins exigeantes (dialogique, contextuelle).
+
+## Évaluation à double invite
+
+Contrairement aux méthodes fixes, une seconde instance IA évalue
+vos réponses après chaque étape et signale à la première : « continuer
+ainsi », « changer de méthode », « répéter l'étape ».
+
+## Quand c'est idéal
+
+- **Vous débutez avec Adaptive Learner** et n'avez pas encore
+  expérimenté les méthodes par vous-même.
+- **Vous changez souvent de sujet** — le système se recalibre
+  par projet.
+- **Vous aimez être surpris** — l'IA mélange les méthodes
+  délibérément.
+
+## Vous avez toujours le dernier mot
+
+Si le système suggère un changement, vous pouvez refuser. Si
+une méthode suggérée ne convient pas, vous terminez la session
+et en démarrez une autre. La méthode IA adaptative est un
+système de recommandation, pas une contrainte.
+`}]};export{e as default};

@@ -1,0 +1,1 @@
+import{o as e}from"./vendor-markdown-C4vF9QVZ.js";var t=e();function n({title:e,tags:n,description:r,actions:i,status:a,className:o,metaClassName:s,actionsClassName:c,testId:l}){return(0,t.jsxs)(`li`,{className:o,"data-testid":l,children:[(0,t.jsxs)(`div`,{className:s,children:[e,n,r]}),(0,t.jsxs)(`div`,{className:c,children:[a,i]})]})}export{n as t};
