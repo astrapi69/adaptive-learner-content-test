@@ -1,0 +1,38 @@
+# Content validation (Phase 60 / v1.44.0, D-108; EXP-039).
+#
+# Runs the validator on every pull request (and on pushes to main)
+# so no broken or low-quality lesson set can land. The structural
+# fields are validated against the canonical JSON Schema vendored
+# under schema/ (a mirror of the pinned learn-content-engine
+# release; source-of-truth chain: adaptive-learner Pydantic ->
+# engine -> this mirror), the quality minimums are read from
+# schema/quality-rules.json, and the content-repo specifics
+# (language pair, directory structure, non-Latin scripts) stay in
+# the validator. Everything here reads only committed files — the
+# validation itself works fully offline.
+name: Validate content
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Coerce Node-runtime actions onto Node 24 as a safety net for any
+# action still defaulting to the deprecated Node 20 runtime.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install validator dependencies
+        run: pip install "pyyaml>=6,<7" "jsonschema>=4,<5" "pytest>=8,<9" regex
+      - name: Validate content tree
+        run: python scripts/validate_content.py
+      - name: Repo test suite (shape parity #1208, drift-gate units)
+        run: python -m pytest tests -q

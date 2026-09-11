@@ -1,0 +1,1 @@
+import"./index-C8vOmvIB.js";function e(e,t){return e===`user-generated`&&!t.startsWith(`analysis-`)}export{e as t};

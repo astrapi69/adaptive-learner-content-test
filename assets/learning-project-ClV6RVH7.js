@@ -1,0 +1,1 @@
+function e(e){return(e.kind??`standard`)===`standard`}function t(t){return t.filter(e)}export{t};

@@ -1,0 +1,233 @@
+var e={category:`methods`,language:`es`,entries:[{key:`method_deductive`,title:`Deductivo`,short:`Aprende primero la regla y luego aplícala a ejemplos concretos.`,long:`## Método deductivo
+
+La IA explica una regla o concepto; luego lo practicas con
+ejemplos. De arriba a abajo: de lo general a lo específico.
+
+## Cuándo funciona bien
+
+- **Temas estructurados** con reglas claras (gramática, fórmulas
+  matemáticas, sintaxis de programación).
+- **Tienes conocimientos previos** a los que la regla puede
+  anclarse.
+- **Prefieres la claridad**: quieres saber qué es correcto antes
+  de intentar algo.
+
+## Cómo fluye una sesión
+
+1. La IA explica la regla con un breve ejemplo.
+2. Recibes un ejercicio de práctica.
+3. Lo resuelves; la IA da retroalimentación.
+4. Si lo comprendes: una nueva tarea con mayor complejidad.
+5. Si cometes errores: la IA refina la explicación.
+
+## Prompts típicos de la IA
+
+Los prompts del sistema para este método enfatizan la claridad y
+la construcción paso a paso. La IA tiene instrucciones de
+enunciar la regla *antes* de pasar a la aplicación.
+
+## Cuándo el sistema puede cambiar de método
+
+Si tu calificación de **estrés** sube durante varias sesiones y
+sientes que «aprendes reglas sin comprenderlas», el sistema
+recomienda cambiar a un método más orientado a la práctica
+(inductivo, contextual o dialógico). Siempre tienes la última
+palabra sobre el cambio.
+`},{key:`method_inductive`,title:`Inductivo`,short:`Observa ejemplos primero y deduce la regla tú mismo.`,long:`## Método inductivo
+
+La IA presenta ejemplos; tú reconoces el patrón y formulas
+la regla por ti mismo. De abajo a arriba: de lo concreto a
+lo general.
+
+## Cuándo funciona bien
+
+- **Temas de reconocimiento de patrones**, como gramática en
+  contexto, escalas musicales, conceptos estadísticos.
+- **Aprendes por descubrimiento** en lugar de memorizar reglas.
+- **Los ejemplos abundan** — la IA tiene material que hace
+  visible la regla.
+
+## Cómo fluye una sesión
+
+1. La IA muestra 3-5 ejemplos de un fenómeno.
+2. Pregunta: «¿Qué patrón ves?»
+3. Formulas una hipótesis.
+4. La IA confirma, corrige o muestra más ejemplos.
+5. Con la regla correcta: la IA la enuncia formalmente.
+
+## Por qué este camino va más al fondo
+
+La investigación demuestra que las reglas que uno descubre por
+sí mismo perduran más que las repetidas. El camino inductivo
+lleva más tiempo, pero la comprensión se asienta más
+profundamente.
+
+## Cuándo se vuelve difícil
+
+Si los patrones son demasiado complejos o tu base es demasiado
+débil, el aprendizaje inductivo puede frustrarte. El sistema
+detecta esto a partir de valores de confianza bajos y puede
+cambiar al método deductivo.
+`},{key:`method_error_based`,title:`Basado en errores`,short:`Comete errores deliberadamente y luego comprende por qué ocurren.`,long:`## Método basado en errores
+
+La IA te lleva deliberadamente a cometer errores comunes y
+luego te acompaña en la salida. Los errores no se evitan, sino
+que se usan como oportunidades de aprendizaje.
+
+## Por qué los errores deliberados funcionan
+
+La investigación sobre el **fracaso productivo** demuestra que
+los errores que uno comete y luego comprende crean modelos
+mentales más robustos que los errores que se evitan.
+
+El método NO es punitivo: no se trata de vergüenza, sino de
+claridad. Un error comprendido vale más que una respuesta
+correcta por azar.
+
+## Cómo lo implementa la IA
+
+1. La IA presenta un problema con trampas.
+2. Lo intentas resolver y a menudo caes en la trampa.
+3. La IA muestra el error y explica el concepto erróneo
+   subyacente.
+4. Resuelves una variante sin repetir el error.
+5. La IA generaliza el principio.
+
+## Cuándo se adapta este método
+
+- **Temas con fuentes de error clásicas** (falsos amigos en
+  idiomas, errores por uno en código, errores de signo en
+  matemáticas).
+- **No te estresan los errores**.
+- **Tienes conocimientos básicos** — los errores fruto de la
+  ignorancia total enseñan poco.
+
+## Precaución con estrés alto
+
+Si tu calificación de estrés supera el 3 en una sesión, el
+sistema cambia a dialógico o deductivo; este método necesita
+calma mental para ser productivo.
+`},{key:`method_dialogic`,title:`Dialógico`,short:`Aprende mediante la conversación con la IA en un entorno sin presión.`,long:`## Método dialógico
+
+Aprendes a través de la conversación: sin ejercicios rígidos,
+sin respuestas correctas o incorrectas, solo un diálogo
+flexible sobre el tema. La IA hace seguimiento, profundiza
+y te anima.
+
+## Cuándo funciona
+
+- **Situaciones de alto estrés** donde la ansiedad ante los
+  exámenes o la inhibición al hablar bloquean el aprendizaje.
+- **Refuerzo puro**: le explicas a la IA lo que comprendiste.
+- **Temas complejos** que quieres explorar antes de
+  comprometerte con una solución estructurada.
+
+## Cómo fluye una sesión
+
+Sin pasos fijos. Comienzas con una pregunta, una suposición
+o un concepto. La IA continúa la conversación, hace preguntas
+de seguimiento, sugiere conceptos relacionados, da ejemplos.
+Puedes cambiar de tema en cualquier momento; a diferencia del
+deductivo o el inductivo, el sistema no te mantiene en la
+misma dirección.
+
+## Lo que hace la IA
+
+- **Sin presión**: sin tono de juicio.
+- **Motivadora**: destaca el progreso sin artificialidad.
+- **Adaptativa**: ajusta la complejidad a tu fluidez y energía.
+
+## Lo que hace el evaluador de doble prompt
+
+La evaluación de confianza sigue ejecutándose, pero con más
+tolerancia: la progresión de pasos se permite con un 50 % de
+confianza (frente al 70 % habitual). El método es explícitamente
+para la exploración, no para la prueba.
+`},{key:`method_contextual`,title:`Contextual`,short:`Aprende en situaciones reales simuladas.`,long:`## Método contextual
+
+La IA simula una situación concreta — un restaurante, una
+entrevista de trabajo, una entrevista de programación — y
+tú resuelves la tarea dentro de ella. El aprendizaje ocurre
+en el contexto de la aplicación, no de forma abstracta.
+
+## Por qué el contexto marca la diferencia
+
+La investigación sobre la **cognición situada** demuestra que
+el conocimiento aprendido en contexto se transfiere mejor a la
+práctica. Lo que aprendiste en la mesa del restaurante puedes
+aplicarlo en el restaurante; el conocimiento abstracto a menudo
+no.
+
+El método ayuda especialmente con el **problema de la
+transferencia**: «Conozco la regla, pero en una conversación
+real no puedo acceder a ella.»
+
+## Ejemplos para idiomas
+
+- «Estás en un café en Madrid. Pide tres tapas distintas y
+  pregunta cuál es la recomendación de la casa.»
+- «Pides indicaciones para llegar a la estación de tren; el
+  transeúnte responde en dialecto — ¿cómo respondes?»
+
+## Ejemplos para programación
+
+- «Revisión de código: recibes este PR. ¿Qué le dices al
+  desarrollador junior?»
+- «Escenario de bug en producción: los registros muestran X.
+  ¿Cómo lo depuras?»
+
+## Cuándo se adapta
+
+- **Cuando tu objetivo es aplicado** («español para viajar»
+  encaja mejor que «español para el examen»).
+- **Después de los primeros fundamentos** — el contexto solo
+  funciona cuando los bloques de construcción están en su lugar.
+- **Al prepararte para una situación específica** (entrevista
+  de trabajo la próxima semana).
+
+## Cuándo se adapta menos
+
+Para temas de examen puro (memorizar listas de hechos), el
+método deductivo o la repetición espaciada suelen ser más
+eficientes.
+`},{key:`method_ai_adaptive`,title:`Adaptativo con IA`,short:`El sistema elige automáticamente el mejor método según tu historial.`,long:`## Método adaptativo con IA
+
+Dejas que el sistema elija el método. Después de cada paso
+evalúa tu progreso (valor de confianza), tu estrés y la
+adecuación del método, y luego decide con qué método iniciar
+el siguiente ciclo de aprendizaje.
+
+## Cómo decide el sistema
+
+Tres fuentes de datos alimentan la elección:
+
+- **Perfil de aprendizaje**: los pesos de tu evaluación. Los
+  métodos con pesos más altos tienen preferencia.
+- **Historial de sesiones**: ¿qué métodos llevaron a un progreso
+  rápido en tus últimas 5-10 sesiones?
+- **Nivel de estrés actual**: con estrés alto, el sistema cambia
+  a métodos menos exigentes (dialógico, contextual).
+
+## Evaluación de doble prompt
+
+A diferencia de los métodos fijos, una segunda instancia de IA
+evalúa tus respuestas después de cada paso y le señala a la
+primera IA: «continúa igual», «cambia de método», «repite el
+paso».
+
+## Cuándo es ideal
+
+- **Eres nuevo en Adaptive Learner** y aún no has experimentado
+  los métodos de primera mano.
+- **Cambias de tema con frecuencia** — el sistema se recalibra
+  por proyecto.
+- **Te gusta la sorpresa** — la IA combina métodos
+  deliberadamente.
+
+## Tú siempre tienes la última palabra
+
+Si el sistema sugiere un cambio, puedes rechazarlo. Si un método
+sugerido no se adapta, termina la sesión e inicia otra con un
+método diferente. El adaptativo con IA es un sistema de
+recomendaciones, no una restricción.
+`}]};export{e as default};
