@@ -1,0 +1,19 @@
+# books.yaml — recommended reading per domain.
+#
+# Optional companion to the lesson catalogue: maps a content domain to a list
+# of books the app can surface as further reading. Not a content set, so it is
+# not processed by scripts/validate_content.py.
+domains:
+  ai:
+    books:
+      - title: "KI für Einsteiger: Prompts gestalten ohne Programmierkenntnisse"
+        subtitle: "Entfessle die Kraft der KI, ganz ohne Technik-Vorkenntnisse"
+        author: "Asterios Raptis"
+        isbn: "979-8317093280"
+        asin: "B0F43H6T2M"
+        url: "https://www.amazon.de/dp/B0F43H6T2M/"
+        language: "de"
+        pages: 158
+        year: 2025
+        description: "Der praxisnahe Einstieg in KI und Prompt Engineering für alle, die ohne Programmierkenntnisse die Möglichkeiten künstlicher Intelligenz nutzen wollen."
+        tags: ["ki", "prompt-engineering", "einsteiger"]

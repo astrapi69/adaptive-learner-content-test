@@ -1,0 +1,223 @@
+var e={category:`concepts`,language:`fr`,entries:[{key:`curriculum`,title:`Curriculum`,short:`Un plan d'apprentissage structuré qui relie objectifs, contenus, méthodes et évaluation.`,long:`## Qu'est-ce qu'un curriculum ?
+
+En pédagogie, un curriculum (pluriel : curricula) est un
+plan structuré et un concept systématique décrivant comment
+l'apprentissage et l'enseignement se déroulent.
+
+## Quatre questions fondamentales
+
+Tout curriculum répond à quatre questions centrales :
+
+- **Objectifs d'apprentissage (pourquoi ?)** — Quelles compétences
+  doivent être acquises ?
+- **Contenu (quoi ?)** — Quels sujets seront abordés ?
+- **Méthodes et didactique (comment ?)** — Quelles formes
+  d'enseignement et d'apprentissage seront utilisées ?
+- **Évaluation (avec quel résultat ?)** — Comment mesurer
+  la réussite de l'apprentissage ?
+
+## Différence avec un syllabus
+
+Un curriculum place l'apprenant et l'acquisition de compétences
+au centre (orientation par les résultats), pas seulement une
+liste rigide de domaines. Un syllabus documente **quoi** doit
+être enseigné ; un curriculum décrit aussi **pourquoi** et
+**comment** — et mesure **ce qui a réellement été appris**.
+
+## Quatre dimensions
+
+La recherche curriculaire distingue quatre manifestations :
+
+- **Curriculum prévu** — la cible documentée.
+- **Curriculum mis en œuvre** — ce qui est réellement enseigné.
+- **Curriculum atteint** — ce que les apprenants comprennent
+  effectivement.
+- **Curriculum caché** — l'apprentissage implicite qui se produit
+  en parallèle (habitudes de travail, attitudes, normes sociales).
+
+## Dans Adaptive Learner
+
+Dans Adaptive Learner, un curriculum est votre plan d'apprentissage
+personnel pour un sujet. Il organise les thèmes de manière hiérarchique
+et les associe à des leçons. Vous définissez les objectifs, les contenus
+et les méthodes — le système assiste l'évaluation via le suivi,
+le profil d'apprentissage et les retours IA après chaque étape.
+
+Contrairement à un curriculum imprimé, celui-ci s'adapte en continu :
+lorsqu'une recommandation de changement de méthode apparaît, c'est le
+curriculum mis en œuvre qui réagit au curriculum atteint.
+`},{key:`learning_project`,title:`Projet d'apprentissage`,short:`Votre effort d'apprentissage concret avec sujet, objectif, calendrier et temps quotidien.`,long:`## Qu'est-ce qu'un projet d'apprentissage ?
+
+Un projet d'apprentissage regroupe tout ce qui appartient à un
+effort d'apprentissage : le sujet, votre objectif, le calendrier
+et votre temps d'apprentissage quotidien. C'est le cadre qui
+englobe vos sessions, votre curriculum et votre profil d'apprentissage.
+
+## Pourquoi ces quatre champs ?
+
+- **Sujet** — ce que vous voulez apprendre (par ex. « Espagnol pour
+  voyager », « Bases de Python », « Gamme de do majeur au piano »).
+  Concret et délimité, pas trop vaste.
+- **Objectif** — ce que vous voulez être capable de faire à la fin.
+  Des objectifs concrets (« commander à manger au restaurant ») produisent
+  de meilleures invites IA que des formulations vagues (« apprendre l'espagnol »).
+- **Calendrier** — pour quand. Influence l'agressivité avec laquelle le
+  système planifie les révisions et le moment où la recommandation de
+  changement de méthode apparaît.
+- **Temps d'apprentissage quotidien** — combien de minutes par jour vous
+  pouvez consacrer. Pilote les recommandations de répétition espacée
+  et la durée des sessions.
+
+## Pourquoi des objectifs concrets sont importants
+
+La recherche en apprentissage est claire : les objectifs SMART
+(spécifiques, mesurables, attrayants, réalistes, temporellement définis)
+doublent la réussite par rapport aux intentions vagues. Adaptive Learner
+traduit votre objectif dans l'invite système de l'IA ; plus vous êtes
+précis, plus les exercices générés sont ciblés.
+
+## Dans Adaptive Learner
+
+Vous pouvez avoir plusieurs projets d'apprentissage en parallèle. Chaque
+session appartient à exactement un projet ; votre progression (XP, badges,
+série) est suivie par projet. Lorsque vous modifiez le calendrier, le
+système ajuste automatiquement la cadence de répétition — un calendrier
+serré espace les révisions de manière plus dense.
+`},{key:`learning_profile`,title:`Profil d'apprentissage`,short:`Votre profil de forces personnel sur les six méthodes d'apprentissage, issu du test d'évaluation.`,long:`## Qu'est-ce que le profil d'apprentissage ?
+
+Le profil d'apprentissage montre à quel point chacune des six méthodes
+d'Adaptive Learner vous convient. Il est issu de vos réponses au test
+d'évaluation (12 questions) et visualisé sous forme de diagramme radar.
+
+## Les six axes
+
+Chaque axe est une méthode avec une pondération entre 0 et 100 :
+
+- **Déductive** — apprendre la règle, puis l'appliquer.
+- **Inductive** — voir des exemples, en déduire la règle soi-même.
+- **Basée sur les erreurs** — faire des erreurs délibérément,
+  puis comprendre pourquoi.
+- **Dialogique** — apprendre par la conversation.
+- **Contextuelle** — apprendre dans des situations du quotidien simulées.
+- **IA adaptative** — le système choisit automatiquement.
+
+## C'est un profil, pas une étiquette
+
+Personne n'est « un apprenant déductif ». Chaque apprenant possède
+un schéma pondéré sur les six méthodes. Un profil avec des pondérations
+inductives et dialogiques élevées ne signifie pas que la déductive ne
+fonctionnera pas pour vous — cela signifie que les deux autres vous
+mènent généralement plus vite vers la réussite.
+
+## Évolution dans le temps
+
+Le profil d'apprentissage n'est pas gravé dans le marbre. À chaque
+cycle d'apprentissage complété et chaque changement de méthode, le
+système ajuste ses recommandations. Vous pouvez repasser le test
+d'évaluation à tout moment — généralement utile tous les 3 à 6 mois,
+ou après un changement de sujet majeur.
+
+## Dans Adaptive Learner
+
+Le profil pilote l'affichage du tableau de bord et les recommandations
+de sessions. Si vous démarrez une session sans préciser de méthode,
+le système choisit la méthode ayant la pondération la plus élevée
+dans votre profil.
+`},{key:`learning_session`,title:`Session d'apprentissage`,short:`Une unité d'apprentissage guidée par l'IA qui suit le cycle en 7 étapes.`,long:`## Qu'est-ce qu'une session d'apprentissage ?
+
+Une session d'apprentissage est une unité continue sur un sujet,
+pilotée par le cycle en 7 étapes (input, attempt, error, feedback,
+adapt, repeat, integrate). L'IA joue le rôle de l'enseignant ;
+vous menez le dialogue.
+
+## En quoi une session diffère-t-elle d'un chat ?
+
+Dans une session, l'**évaluateur à double invite** tourne en parallèle :
+après chaque réponse, une seconde instance IA juge votre compréhension
+(confiance de 0 à 100 %) et décide si vous êtes prêt pour l'étape
+suivante. Un chat ordinaire n'a pas ce correctif.
+
+## Streaming
+
+Les réponses de l'IA apparaissent mot par mot (Server-Sent Events)
+pour que vous n'attendiez pas la réponse complète. Vous pouvez
+interrompre à tout moment et poser des questions complémentaires —
+la session se poursuit jusqu'à ce que vous la terminiez ou que le
+cycle soit complété.
+
+## Quand terminer une session ?
+
+- Après l'étape 7 (integrate), lorsque le cycle d'apprentissage
+  est complet.
+- Lorsque le système recommande un changement de méthode et que
+  vous acceptez.
+- Lorsque votre note de **stress** est supérieure à 4 lors des
+  dernières évaluations — une pause est plus productive que
+  de s'acharner.
+
+## Les évaluations se transmettent
+
+Chaque session se termine par trois curseurs (compréhension, stress,
+adéquation de la méthode, chacun de 1 à 5). Ces valeurs alimentent
+votre profil d'apprentissage et orientent les recommandations futures :
+un stress élevé soutenu associé à une faible adéquation de méthode
+déclenche la recommandation de changement de méthode.
+
+## Dans Adaptive Learner
+
+Une session appartient à exactement un projet d'apprentissage. Vous
+ne pouvez avoir qu'une seule session active à la fois ; cela évite
+le mélange de sujets et protège la logique de changement de méthode
+du bruit.
+`},{key:`content_repository`,title:`Dépôt de contenu`,short:`Un dépôt GitHub public de jeux de leçons structurés qu'Adaptive Learner peut charger comme source de contenu.`,docs_slug:`features/content-repos`,long:`## Qu'est-ce qu'un dépôt de contenu ?
+
+Les leçons proviennent de dépôts de contenu — des dépôts
+GitHub publics qui regroupent des jeux de leçons. Le dépôt
+officiel est toujours chargé ; en plus de celui-ci, vous
+pouvez connecter le vôtre.
+
+## Plusieurs sources
+
+Sous Paramètres > Données, vous gérez un nombre quelconque de
+dépôts (ajouter, retirer, l'ordre = la priorité). Chaque jeu
+porte un badge de source pour que vous puissiez voir d'où
+provient une leçon.
+`},{key:`trust_level`,title:`Niveau de confiance`,short:`L'évaluation de confiance automatique d'un dépôt de contenu connecté, dérivée de sa validation technique.`,docs_slug:`features/content-repos`,long:`## Qu'est-ce qu'un niveau de confiance ?
+
+Chaque dépôt connecté exécute une validation technique
+automatique à chaque synchronisation. Celle-ci produit un
+niveau de confiance : 0 (non validé ou échoué), 1
+(techniquement valide : au moins une leçon, aucun contenu
+exécutable) et 3 (officiellement recommandé).
+
+## Ce que ce n'est PAS
+
+Le niveau est purement technique. Une évaluation basée sur
+le contenu ou la communauté (confiance 2) nécessite un
+service backend partagé et est reportée.
+`},{key:`streak`,title:`Série`,short:`Le nombre de jours consécutifs où vous avez appris — le carburant du multiplicateur d'XP.`,docs_slug:`user-guide/dashboard`,long:`## Qu'est-ce qu'une série ?
+
+Une série compte les jours d'apprentissage consécutifs.
+Chaque session ou leçon complétée remplit la carte de
+chaleur et maintient la série en vie.
+
+## Effet
+
+La série alimente un multiplicateur d'XP (+25 % par jour
+consécutif, plafonné à 7 jours). C'est un miroir de votre
+régularité, pas un bâton — manquer une mission quotidienne
+ne coûte aucune pénalité.
+`},{key:`assessment`,title:`Évaluation`,short:`Un court test qui détermine laquelle des six méthodes d'apprentissage vous convient.`,docs_slug:`user-guide/assessment`,long:`## Qu'est-ce que l'évaluation ?
+
+L'évaluation pose douze questions et en calcule votre profil
+d'apprentissage — la pondération des six méthodes sur
+lesquelles l'application s'appuie.
+
+## Optionnelle et reprenable
+
+Depuis la refonte de l'accueil, l'évaluation est optionnelle
+et accessible uniquement via l'assistant de profil. Si vous
+l'abandonnez, l'application mémorise votre progression pour
+que vous puissiez plus tard reprendre là où vous vous étiez
+arrêté.
+`}]};export{e as default};

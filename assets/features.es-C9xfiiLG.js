@@ -1,0 +1,307 @@
+var e={category:`features`,language:`es`,entries:[{key:`feature_method_switch`,title:`Cambio de método`,short:`El sistema recomienda un método diferente cuando te estancas; tú decides si cambiar.`,long:`## ¿Qué es el cambio de método?
+
+Si tus sesiones de aprendizaje se estancan en un método o
+generan un estrés elevado, Adaptive Learner sugiere un cambio
+de método. Verás la sugerencia como un banner sobre el chat de
+la sesión; puedes aceptarla, rechazarla o posponerla.
+
+## Cuándo se activa la sugerencia
+
+Deben cumplirse tres condiciones simultáneamente:
+
+- **Al menos 3 sesiones** con el método actual.
+- **Estrés promedio > 3** (en la escala 1-5) en las últimas
+  3 calificaciones.
+- **Adecuación del método < 3** en las últimas 3 calificaciones.
+
+La detección del estancamiento por sí sola no es suficiente:
+las dificultades breves en un método que por lo demás es
+apropiado son normales y pasan. Solo la combinación de
+duración + estrés + baja adecuación activa la sugerencia.
+
+## Cómo decide el sistema
+
+El hook \`\`recommend_method_switch\`\` del plugin de sesión
+compara tu perfil de aprendizaje con tu trayectoria actual y
+sugiere el método con la mayor adecuación esperada. Si los dos
+primeros métodos están muy cercanos, verás ambos como opciones.
+
+## Tú decides
+
+El sistema recomienda; tú eliges. Aceptar el cambio lo guarda
+como una entrada de auditoría \`\`MethodSwitch\`\` (un rastro para
+tu perfil). Rechazarlo no hace nada: la sugerencia reaparece
+como mínimo después de 3 sesiones más.
+
+## ¿Por qué no es automático?
+
+Los cambios de método son un cambio importante en la experiencia
+de aprendizaje. Un cambio automático interrumpiría la continuidad
+del aprendizaje y podría activarse durante una fase difícil pero
+productiva. Tú conoces tu contexto mejor que el sistema.
+`},{key:`feature_auto_loop`,title:`Auto-bucle`,short:`Después del paso 7, un nuevo ciclo con contenido nuevo comienza automáticamente.`,long:`## ¿Qué es el auto-bucle?
+
+Cuando completas el paso 7 (integración), la sesión puede
+iniciar automáticamente un nuevo ciclo con el siguiente tema
+de tu plan de estudios, sin que tengas que pulsar el botón
+«siguiente ciclo».
+
+## Cómo se elige el siguiente tema
+
+- **Si existe un plan de estudios**: el siguiente tema en el
+  orden jerárquico.
+- **Si no hay plan de estudios**: la IA genera un tema de
+  seguimiento apropiado basándose en la trayectoria actual.
+- **Si hay tarjetas de repetición espaciada pendientes**: se
+  priorizan antes del contenido nuevo.
+
+## Contador de ciclos
+
+Cada sesión muestra un contador de ciclos («3/5»). Cuando se
+alcanza el número máximo de ciclos (predeterminado: 5), el
+auto-bucle hace una pausa y pregunta si quieres continuar.
+Esto protege contra sesiones interminables.
+
+## Cómo interrumpir el auto-bucle
+
+- **Enviar una calificación**: después de cada ciclo, recibes
+  los tres controles deslizantes (comprensión, estrés,
+  adecuación del método). Si el estrés supera el 3, el sistema
+  sugiere un descanso.
+- **Botón «Terminar sesión»**: disponible en cualquier momento.
+- **Aceptar un cambio de método**: interrumpe el bucle actual e
+  inicia uno nuevo con el nuevo método.
+
+## Cuándo el auto-bucle es más valioso
+
+Para el aprendizaje de idiomas con unidades temáticas pequeñas,
+donde el tiempo de iniciar una nueva sesión ralentiza el
+aprendizaje. Para programación, el auto-bucle suele ser menos
+útil porque las transiciones de tema son más grandes.
+`},{key:`feature_spaced_repetition`,title:`Repetición espaciada`,short:`Repasos optimizados en el tiempo según tu historial de aprendizaje.`,long:`## ¿Qué es la repetición espaciada?
+
+La repetición espaciada es la técnica de situar los repasos a
+intervalos crecientes. Aprovecha el efecto de la curva del
+olvido: cada elemento recordado con éxito dura más tiempo la
+próxima vez.
+
+## El sistema de bandas en Adaptive Learner
+
+Seis bandas de fechas de vencimiento:
+
+- **Hoy** — tarjetas nuevas + repasos del día.
+- **+1d** — aprendido ayer, repasar hoy.
+- **+3d** — repasado hace tres días, repasar hoy.
+- **+7d** — hace una semana.
+- **+14d** — hace dos semanas.
+- **+30d** — hace un mes.
+
+Una vez que una tarjeta supera cuatro repasos con éxito, se
+marca como «estable» y sale de la lista activa, aunque
+permanece en el sistema para comprobaciones de repaso
+ocasionales.
+
+## Cómo se alimenta del historial
+
+Un «repaso exitoso» no es solo un clic. El sistema evalúa:
+
+- **Confianza durante la sesión de repaso** (del evaluador de
+  doble prompt).
+- **Tiempo de respuesta** comparado con tu promedio.
+- **Recuento de errores** en el ciclo actual.
+
+Con confianza baja, la tarjeta retrocede a una banda anterior
+en lugar de avanzar.
+
+## Conexión con Anki
+
+Con el plugin de Anki activo, puedes exportar tarjetas
+directamente al formato Anki. El sistema traduce las bandas a
+los calendarios de Anki; no se pierde ningún progreso en la
+transición.
+
+## Cuándo el sistema recomienda repasos
+
+El panel «Recomendaciones espaciadas» del panel principal muestra
+las tarjetas pendientes de hoy. Puedes repasarlas una a una o
+indicarle al sistema que las coloque al inicio de tu próxima
+sesión habitual, antes del contenido nuevo. El sistema prioriza
+las tarjetas con mayor riesgo de olvido.
+`},{key:`feature_conversation_analysis`,title:`Análisis de conversaciones / Importación`,short:`Analiza historiales de chat existentes y extrae de ellos artefactos de aprendizaje concretos.`,long:`## ¿Qué es el análisis de conversaciones?
+
+Adaptive Learner puede analizar chats existentes de ChatGPT,
+Claude o Gemini y extraer de ellos contenido de aprendizaje.
+Importas la transcripción una vez; el sistema la lee, la
+estructura y la convierte en un artefacto de aprendizaje
+utilizable.
+
+## Qué se extrae
+
+- **Conceptos** — términos e ideas discutidos en el chat.
+- **Lagunas de conocimiento** — puntos donde hiciste preguntas
+  de seguimiento o cometiste errores.
+- **Errores** — conceptos erróneos concretos visibles en el
+  chat.
+- **Vocabulario / terminología** — palabras del dominio
+  (especialmente relevantes para el aprendizaje de idiomas o
+  campos especializados).
+
+## Cómo funciona la importación
+
+1. Exporta tu chat de ChatGPT, Claude o Gemini como Markdown
+   o JSON.
+2. Sube el archivo a Adaptive Learner (arrastrar y soltar o
+   selector de archivos).
+3. El sistema detecta el formato automáticamente y almacena los
+   mensajes.
+4. Inicia el análisis: la IA lee el chat en tu idioma de
+   aprendizaje y produce el desglose estructurado.
+
+## Qué puedes hacer a continuación
+
+Del análisis se derivan tres acciones:
+
+- **«Crear plan de estudios»** — los conceptos extraídos
+  alimentan un plan de estudios jerárquico.
+- **«Iniciar sesión»** — una sesión que comienza directamente
+  desde las lagunas de conocimiento detectadas.
+- **«Generar tarjetas Anki»** — tarjetas de memoria a partir
+  de los conceptos y el vocabulario.
+
+## Duplicados
+
+Si importas el mismo chat dos veces, el sistema lo detecta
+mediante el hash del contenido y te ofrece navegar al análisis
+existente en lugar de crear una copia.
+
+## Privacidad
+
+El contenido del chat va ÚNICAMENTE a tu proveedor de IA activo
+(el que configuraste en los ajustes). El sistema no envía nada
+a un servidor central. Cuando borras el chat, el contenido
+desaparece.
+`},{key:`feature_gamification`,title:`Gamificación (XP, Insignias, Rachas)`,short:`Sistema de progreso con puntos de experiencia, insignias y rachas: motivación sin artificios.`,long:`## ¿Qué es la capa de gamificación?
+
+Tres mecánicas hacen que el progreso de aprendizaje sea visible
+y gratificante:
+
+- **XP (puntos de experiencia)** — por cada sesión completada,
+  cada cambio de método, cada tarjeta de repetición espaciada.
+  Los niveles suben con el XP.
+- **Insignias** — por hitos temáticos («primera sesión»,
+  «10 sesiones en un método», «racha de 30 días», ...).
+- **Rachas** — series de aprendizaje diario. Caducan a las
+  24 horas sin una sesión, con tres «congelaciones de racha»
+  al mes como pausas de emergencia.
+
+## Cómo se gana XP
+
+Diferentes acciones generan diferentes valores de XP:
+
+- **Enviar una sesión calificada**: 50 XP.
+- **Alcanzar el paso 7 (integración)**: +25 XP de bonificación.
+- **Aceptar un cambio de método**: 10 XP (tomaste una decisión
+  de aprendizaje deliberada).
+- **Tarjeta de repetición espaciada con confianza > 80%**: 5 XP.
+- **Exportación de un conjunto a Anki**: 20 XP.
+
+Los niveles escalan con una función de raíz cuadrada
+(nivel n = √(XP / 100)); los niveles iniciales suben rápido,
+los más altos requieren mayor dedicación.
+
+## Las insignias no son coercitivas
+
+Los criterios de las insignias no son condicionantes de la
+interfaz: no *necesitas* una sola insignia para usar la
+aplicación productivamente. Son un espejo, no un objetivo.
+Si empiezas a sentir que aprendes para obtener insignias en
+lugar de hacerlo para ti mismo, desactiva su visualización
+en los ajustes.
+
+## Congelaciones de racha
+
+Tres congelaciones de racha al mes. Si te saltas un día, una
+congelación protege automáticamente tu racha. Diseñadas
+explícitamente como permiso para el «día enfermo» o el «día
+de viaje», no como mecanismo de excepción para la pereza.
+
+## Por qué funciona sin artificios
+
+La investigación educativa lo muestra: la recompensa extrínseca
+puede destruir la motivación intrínseca (el «efecto de
+sobrejustificación»). Adaptive Learner confía en que las
+mecánicas sean un **espejo** del progreso, no un sistema de
+incentivos. Sin clasificaciones, sin características sociales,
+sin intercambio de puntos: los datos se quedan contigo.
+
+## Reinicio
+
+Si los valores de gamificación ya no corresponden a tu
+situación (p. ej., comienzo fresco después de una larga pausa),
+puedes reiniciarlos en los ajustes. El plan de estudios, las
+sesiones y las calificaciones se conservan.
+`},{key:`view_dashboard`,title:`Panel principal`,short:`Tu base de operaciones: progreso, racha, XP, insignias, repasos pendientes y acciones rápidas.`,docs_slug:`user-guide/dashboard`,long:`## ¿Qué muestra el panel principal?
+
+El panel principal es tu centro de mando. «Continuar
+aprendiendo» se sitúa arriba con tu lección más reciente,
+luego las tarjetas accionables (lecciones en pausa, misiones,
+áreas de enfoque, cola de repaso), después la gamificación
+(XP, racha, insignias) y, por último, los paneles analíticos.
+
+## Filtro
+
+Un filtro de materias lista solo tus propias materias,
+ordenadas primero por las más usadas.
+`},{key:`view_content_browser`,title:`Explorador de contenido`,short:`La página donde encuentras, descargas e inicias conjuntos de lecciones.`,docs_slug:`features/content-browser`,long:`## ¿Cómo encuentro lecciones?
+
+El explorador de contenido en /content está organizado en
+torno al flujo de aprendizaje: la búsqueda primero (instantánea
+y tolerante a acentos), luego «Continuar aprendiendo» y después
+el catálogo. El catálogo se divide en «Idiomas» (origen >
+destino > nivel) y «Conocimiento» (dominios no lingüísticos).
+
+## Fuentes y libros
+
+Las insignias de fuente muestran de dónde procede un conjunto;
+un filtro de fuentes oculta fuentes individuales. Un dominio
+puede mostrar recomendaciones de libros.
+`},{key:`view_lesson`,title:`Lección`,short:`El visor que te guía paso a paso a través de la teoría y los ejercicios de una lección.`,docs_slug:`user-guide/lessons`,long:`## ¿Cómo funcionan los ejercicios?
+
+Una lección es una secuencia de pasos de teoría y ejercicio.
+Aparecen cinco tipos de ejercicio: emparejamiento (parejas con
+colores + insignias numéricas), elección de imagen, texto libre,
+fichas de palabras y cloze.
+
+## Controles
+
+Enter comprueba un ejercicio respondido y avanza. Desde un
+ejercicio puedes saltar a la teoría correspondiente mediante
+«Releer teoría». Al final ves tu puntuación con estrellas y
+puedes exportarla como Markdown.
+`},{key:`view_settings`,title:`Ajustes`,short:`Todo lo que puedes cambiar sin código ni YAML: idioma, IA, aprendizaje, datos, apariencia.`,docs_slug:`user-guide/settings`,long:`## ¿Qué puedo configurar?
+
+Los ajustes agrupan el idioma, el proveedor de IA y las claves,
+el modo de almacenamiento, las opciones de aprendizaje (p. ej.,
+atajo de Enter, dirección de ejercicio preferida), los datos
+(copia de seguridad, repositorios de contenido), la apariencia
+(12 temas) y la gamificación.
+
+## Tus datos en tus manos
+
+En «Datos» creas e importas copias de seguridad y conectas tus
+propios repositorios de contenido. Nada de ello sale de tu
+dispositivo sin que lo pidas.
+`},{key:`feature_backup`,title:`Copia de seguridad y restauración`,short:`Una instantánea completa de tu estado de aprendizaje que puedes guardar y restaurar en otro lugar.`,docs_slug:`features/backup`,long:`## ¿Qué es una copia de seguridad?
+
+Una copia de seguridad es una instantánea completa: cada tabla
+(proyectos, sesiones, progreso de lecciones, errores,
+gamificación, misiones...) más tus conjuntos de contenido
+descargados, como un único archivo JSON.
+
+## Entre identidades
+
+Puedes importar una copia de seguridad en una instalación nueva
+o bajo un perfil diferente; la restauración vuelve a resolver
+las referencias internas de forma limpia. Al importar ves un
+resumen por tabla.
+`}]};export{e as default};

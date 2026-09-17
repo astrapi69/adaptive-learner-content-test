@@ -1,0 +1,238 @@
+var e={category:`steps`,language:`es`,entries:[{key:`step_input`,title:`1. Entrada`,short:`Recibes material nuevo: una explicación, un ejemplo o una pregunta de la IA.`,long:`## Paso 1: Entrada
+
+Cada ciclo de aprendizaje comienza con la entrada. La IA
+presenta el material: una explicación, un ejemplo, una pregunta
+abierta o una situación, según el método seleccionado.
+
+## Lo que hace la IA
+
+- **En deductivo**: explica la regla.
+- **En inductivo**: muestra ejemplos.
+- **En basado en errores**: presenta un problema con trampa.
+- **En dialógico**: abre la conversación con una pregunta.
+- **En contextual**: esboza el escenario.
+
+## Lo que haces tú
+
+Leer con atención. Preguntar cuando algo no esté claro: la
+sesión es un diálogo, no una conferencia. Si la confianza de
+la IA te parece demasiado alta, mantente firme: algunas
+explicaciones solo cuajan en la segunda lectura.
+
+## Lo que hace el evaluador de doble prompt
+
+Funciona silenciosamente en segundo plano. Observa tu reacción
+(o la ausencia de ella) y evalúa si asimilaste el material. La
+puntuación activa comienza en el paso 2 (intento).
+
+## Qué ocurre si pasas demasiado rápido por este paso
+
+El error más frecuente de los principiantes: saltar a la
+«acción» sin procesar la entrada. El sistema lo detecta a partir
+de una confianza baja en los intentos posteriores y te devuelve
+al paso 1.
+`},{key:`step_attempt`,title:`2. Intento`,short:`Aplicas lo aprendido a una tarea o pregunta concreta.`,long:`## Paso 2: Intento
+
+Recibes una aplicación del material e intentas resolverla.
+Primera respuesta, primer ejemplo, primera aplicación concreta
+de la regla.
+
+## Lo que hace la IA
+
+La IA te da una tarea con alcance claramente definido. Para
+idiomas: traduce una oración. Para programación: escribe una
+función. Para música: practica un cambio de acorde. La
+dificultad es deliberadamente baja: el primer intento debe ser
+alcanzable.
+
+## Lo que haces tú
+
+Inténtalo. Aunque no estés seguro. Una respuesta incompleta o
+incorrecta vale más que una negativa, porque le da al evaluador
+material con el que trabajar.
+
+## Evaluador de doble prompt
+
+Se activa aquí. Lee tu respuesta y asigna una puntuación de
+confianza (0-100 %). Con confianza alta pasas directamente al
+paso 5 (adaptación), saltando el análisis de errores. Con
+confianza baja, el camino pasa por el paso 3 (error) y el
+paso 4 (retroalimentación).
+
+## Consejo: no te quedes bloqueado
+
+Si tras 30 segundos no tienes por dónde empezar, díselo a la
+IA («No sé por dónde empezar»). La IA te da una pista en lugar
+de la solución completa, y el evaluador no cuenta esto como un
+intento fallido.
+`},{key:`step_error`,title:`3. Error`,short:`Un error o una idea equivocada se hace visible.`,long:`## Paso 3: Error
+
+Si tu intento en el paso 2 no alcanzó el objetivo, el ciclo
+pasa por este paso. El error se nombra, no se juzga, sino que
+se marca como una oportunidad de aprendizaje.
+
+## Lo que hace la IA
+
+Te muestra dónde está el error, sin corregirlo de inmediato.
+El objetivo: debes *ver* el error, no solo *escuchar que algo
+estuvo mal*. Esa distinción determina si repetirás el error.
+
+## Lo que haces tú
+
+Rastrear el error. Si puedes corregirlo tú mismo, hazlo. Si
+no, indícaselo a la IA («No entiendo dónde está el error»): el
+siguiente paso (retroalimentación) existe precisamente para
+aclararlo.
+
+## Cuándo no aparece ningún error
+
+Con confianza alta en el paso 2, el ciclo omite este paso. El
+sistema lo registra y aumenta la dificultad en el siguiente
+ciclo: debes ser desafiado, no aburrido.
+
+## En el método basado en errores
+
+Si elegiste este método, el paso 3 es el paso principal del
+ciclo. La IA te lleva deliberadamente a las trampas típicas;
+consulta el glosario de métodos.
+`},{key:`step_feedback`,title:`4. Retroalimentación`,short:`La IA explica por qué algo funciona o no funciona.`,long:`## Paso 4: Retroalimentación
+
+Aquí llega la explicación. La IA describe el principio detrás
+de tu error o respuesta correcta, idealmente de tal manera que
+puedas transferir el principio a otros casos.
+
+## Qué contiene una buena retroalimentación
+
+- **Qué ocurrió** (descripción de la observación).
+- **Por qué ocurrió** (explicación del principio).
+- **Cómo hacerlo de otra manera la próxima vez** (orientación
+  concreta para actuar).
+
+Sin el punto (3), la retroalimentación se desvanece. Con el
+punto (3), una corrección se convierte en una regla transferible.
+
+## Lo que haces tú
+
+Leer, seguir, preguntar. Si la retroalimentación todavía no ha
+«hecho clic», díselo. La IA es paciente: explicará el principio
+de otra manera. Mejor entenderlo dos veces que repetirlo sin
+comprender.
+
+## Evaluador de doble prompt
+
+Lee tu reacción ante la retroalimentación. Si dices «Ah, ahora
+entiendo» (o equivalente), la confianza sube y avanzas. Si
+todavía suenas confundido, el evaluador devuelve el ciclo al
+paso 1 (entrada) con un nuevo enfoque de explicación.
+
+## También en las respuestas correctas
+
+La retroalimentación no es solo para los errores. Cuando
+resuelves algo correctamente, la IA igualmente explica el
+principio detrás; así el éxito se vuelve transferible.
+`},{key:`step_adapt`,title:`5. Adaptación`,short:`Ajustas tu estrategia o comprensión a partir de la retroalimentación.`,long:`## Paso 5: Adaptación
+
+Tomas lo aprendido de la retroalimentación y ajustas tu enfoque.
+No solo intelectualmente («sí, ahora entiendo»), sino
+operacionalmente («la próxima vez lo haré de otra manera»).
+
+## Qué ocurre concretamente aquí
+
+- **Para idiomas**: reformulas. En lugar de la construcción
+  incorrecta, usas la corregida.
+- **Para programación**: reestructuras la función con el
+  principio comprendido.
+- **Para matemáticas**: resuelves una variante usando el camino
+  de solución corregido.
+
+## Lo que hace la IA
+
+Te da una tarea *nueva* — no la antigua con la solución
+conocida, sino una variación que exige el principio comprendido
+en un nuevo contexto.
+
+## Por qué importa este paso
+
+La comprensión sin adaptación se desvanece. Si solo «repites»
+la retroalimentación sin incorporarla a tu enfoque, repetirás el
+error la próxima vez. El paso 5 fuerza la activación operacional.
+
+## Evaluador de doble prompt
+
+Aquí evalúa la transferencia del aprendizaje. Una adaptación
+exitosa en una nueva variación es la mejor señal de que el
+aprendizaje cuajó: la confianza suele subir por encima del 80 %.
+`},{key:`step_repeat`,title:`6. Repetición`,short:`Practicas con variaciones hasta que lo aprendido fluye con soltura.`,long:`## Paso 6: Repetición
+
+Recibes más variaciones de la tarea. No repetición idéntica
+(que solo lleva a la memorización), sino variación: mismo
+núcleo, diferente contexto, diferente dificultad.
+
+## Lo que hace la IA
+
+Genera tareas que prueban el mismo principio en distintos
+formatos. Para idiomas: vocabulario diferente, estructura de
+oración diferente, misma gramática. Para programación: datos
+diferentes, misma estructura algorítmica.
+
+## Por qué variación y no repetición
+
+La investigación sobre la **práctica intercalada** demuestra
+que la práctica en bloques (todas las tareas sobre el mismo
+tema seguidas) crea una ilusión de competencia. La práctica
+intercalada (tareas relacionadas con variación) crea
+conocimiento transferible.
+
+## Cuándo termina el paso
+
+Una vez que el evaluador de doble prompt ve tres variaciones
+seguidas con confianza > 80 %, avanzas al paso 7. Si la
+confianza fluctúa, el ciclo permanece en el paso 6 hasta
+alcanzar la estabilidad.
+
+## Conexión con la repetición espaciada
+
+Lo que resuelves con éxito en el paso 6 entra en el sistema
+de repetición espaciada. El sistema programa repasos a 1 día,
+3 días, 7 días, 14 días y 30 días, para que el aprendizaje
+perdure a largo plazo.
+`},{key:`step_integrate`,title:`7. Integración`,short:`Conectas lo aprendido con otros conocimientos o con una aplicación real.`,long:`## Paso 7: Integración
+
+El ciclo de aprendizaje termina colocando el nuevo aprendizaje
+en un contexto más amplio. No en aislamiento («hoy aprendí
+esto»), sino conectado a lo que ya sabías.
+
+## Lo que hace la IA
+
+Te desafía a vincular el nuevo contenido con otros conceptos
+o a aplicarlo en un escenario real:
+
+- **Idiomas**: usa el tiempo verbal en una conversación libre.
+- **Programación**: aplica la nueva técnica en un proyecto más
+  grande.
+- **Teoría**: combina el concepto con una de tus propias
+  preguntas.
+
+## Lo que haces tú
+
+Articular el vínculo requerido. Buscar tus propios ejemplos.
+Llegar al punto en el que puedas decir: «Ahora sé hacer esto,
+no porque lo memoricé, sino porque puedo aplicarlo.»
+
+## Qué ocurre después del paso 7
+
+El ciclo está completo. Tres opciones:
+
+- **Terminar la sesión** y calificarla (comprensión / estrés /
+  adecuación del método).
+- **Auto-bucle**: un nuevo ciclo con un nuevo tema comienza
+  automáticamente.
+- **Cambio de método**: con baja adecuación del método, el
+  sistema recomienda un cambio para el siguiente ciclo.
+
+## Por qué el sistema cierra aquí
+
+La integración es la única prueba robusta de que el aprendizaje
+funcionó. El contenido memorizado falla en el paso 7; el
+conocimiento comprendido prospera aquí.
+`}]};export{e as default};

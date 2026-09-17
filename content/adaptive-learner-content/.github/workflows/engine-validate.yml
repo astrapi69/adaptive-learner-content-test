@@ -1,0 +1,40 @@
+# Engine conformance gate — structural AND semantic validation.
+#
+# Runs learn-content-engine's validateLesson()/validateManifest() (at the
+# version pinned in schema/engine-version.txt) over the WHOLE repo
+# content: every lesson plus the root and per-set manifests. This is the
+# semantic layer the structural CI (validate_content.py against the
+# vendored JSON Schema) cannot see: cloze blanks == '___' markers,
+# referential integrity of card_ids, multiselect disjointness, picture
+# "exactly one correct". Rationale: a real engine conformance run found
+# two semantic bugs in the official content repo
+# (astrapi69/adaptive-learner-content#92) that the structural CI let
+# through.
+# Gate: zero errors.
+name: Engine conformance
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  engine-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+      - name: Install the pinned engine release
+        # yaml is installed explicitly (the runner parses the manifests
+        # itself); the version range matches the engine's own dependency.
+        run: npm install --no-save "learn-content-engine@$(cat schema/engine-version.txt)" "yaml@^2.9.0"
+      - name: Self-test (the gate must bite before it may pass)
+        run: node scripts/validate_with_engine.mjs --self-test
+      - name: Validate all lessons and manifests with the engine
+        run: node scripts/validate_with_engine.mjs .
