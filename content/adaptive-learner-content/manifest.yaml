@@ -1,0 +1,39 @@
+# Wurzel-Manifest des Test-/Starter-Repos.
+#
+# Dies ist ein Starter-Kit: die mitgelieferte Beispiel-Lektion liegt
+# unter examples/inception-effekt/ zum Nachlesen. Forke das Repo, lege
+# eigene Sets unter sets/<quellsprache>/<set-ordner>/ an und
+# registriere sie hier. Validieren mit:
+#
+#     python3 scripts/validate_content.py
+#
+# Anleitung: docs/GETTING-STARTED.md
+schema_version: '1.2'
+name: Adaptive Learner — Test- und Starter-Inhalte
+description: >-
+  Starter-Kit-Inhalte für eigene Adaptive-Learner-Lektionen.
+  Enthält lauffähige Test-Sets als Vorlage; forke das Repo und
+  erstelle deine eigenen Inhalte.
+sets:
+  - id: graded-quiz-demo-from-de
+    title: Graded-Quiz Demo (Test)
+    title_native: Graded-Quiz Demo (Test)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: A1
+    path: sets/de/graded-quiz-demo
+    version: '1.0.0'
+    lesson_count: 1
+    # Konformanz-Fixture (E-EXT-UNSUPPORTED-Negativfall), kein Lerner-Inhalt:
+    # Engine validiert das Set weiter, Consumer-Apps zeigen es nicht an.
+    visibility: hidden
+    description: >-
+      Eine Lektion: Theorie plus fuenf Aufgaben (multiple_choice, cloze
+      select, cloze type) und ein benotetes Quiz ueber den Extension-Typ
+      ext:al-graded-quiz.
+    tags:
+      - knowledge
+      - test
+      - graded-quiz
+      - extension

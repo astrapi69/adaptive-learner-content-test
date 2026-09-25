@@ -1,0 +1,2674 @@
+{
+  "$schema-version": "1.16",
+  "description": "Grading presets for a content set's evaluation block (schema: content-manifest.schema.json, ContentSetEvaluation). A preset's evaluation is COPIED into a set's manifest when the author picks it; a later correction of a preset in this file does not change sets that already carry a copy, and the manifest does not record which preset it came from. Class A presets follow a primary source, class B presets are widely used conventions and say so in their note, templates carry a scale's grades and pass mark but no thresholds (the author sets them), and unavailable entries name scales that cannot be expressed as percentages, with the reason. label is the grade as written (a number, a letter or a range); label_native is the official word for it, where one exists. min_percent is an integer in the schema. Where an official lower bound is not a whole percent (52 of 60 points is 86.67 %), the row carries the whole percent below it. On the national scale that is exact, not an approximation: only whole points are reachable, and between 51 points (85 %) and 52 points (86.67 %) no reachable value lies, so 86 separates them as the regulation does; 87 would give 52 points the lower grade. The rule maps the national scale, not a consumer's run: a run counts answered units on its own grid (40 units: 2.5 % steps), so it can land between two reachable points of the scale, for example at 86.25 %, and then earns the upper grade. Every such row is listed in the preset's rounded_rows with its official value; a preset with an empty list has exact thresholds. The lowest row always sits at 0, also where a scale starts above 0 (1 of 60 points), so every run earns a grade.",
+  "presets": [
+    {
+      "id": "pass-fail",
+      "name": "Pass / fail",
+      "class": "base",
+      "country": null,
+      "scope": "any set",
+      "languages": [],
+      "evaluation": {
+        "scheme": "pass_fail",
+        "pass_percent": 60
+      },
+      "pass": null,
+      "rounded_rows": [],
+      "note": "60 is a starting value for the author to change; the engine has no default.",
+      "sources": []
+    },
+    {
+      "id": "percent",
+      "name": "Percent",
+      "class": "base",
+      "country": null,
+      "scope": "any set",
+      "languages": [],
+      "evaluation": {
+        "scheme": "percent"
+      },
+      "pass": null,
+      "rounded_rows": [],
+      "note": "Shows the percentage only. A pass_percent may be added as a guide mark.",
+      "sources": []
+    },
+    {
+      "id": "de-chamber-exam",
+      "name": "Germany, chamber examination (IHK/HWK), 1 to 6",
+      "class": "A",
+      "country": "DE",
+      "scope": "final and retraining examinations under the Vocational Training Act (BBiG)",
+      "languages": [
+        "de"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 92,
+            "label": "1",
+            "label_native": "sehr gut"
+          },
+          {
+            "min_percent": 81,
+            "label": "2",
+            "label_native": "gut"
+          },
+          {
+            "min_percent": 67,
+            "label": "3",
+            "label_native": "befriedigend"
+          },
+          {
+            "min_percent": 50,
+            "label": "4",
+            "label_native": "ausreichend"
+          },
+          {
+            "min_percent": 30,
+            "label": "5",
+            "label_native": "mangelhaft"
+          },
+          {
+            "min_percent": 0,
+            "label": "6",
+            "label_native": "ungenügend"
+          }
+        ]
+      },
+      "pass": {
+        "label": "4",
+        "min_percent": 50
+      },
+      "rounded_rows": [],
+      "note": "The 100-point key of the BIBB model examination regulation, adopted by the chambers. It is not a school grading key: German school grading is a matter for each Land.",
+      "sources": [
+        {
+          "title": "BIBB-Musterprüfungsordnung, § 24 and § 25 (Richtlinie des Hauptausschusses vom 7.10.2025)",
+          "url": "https://www.bibb.de/dokumente/pdf/HA120.pdf"
+        }
+      ]
+    },
+    {
+      "id": "de-abitur-points",
+      "name": "Germany, Abitur points 15 to 0",
+      "class": "A",
+      "country": "DE",
+      "scope": "written Abitur examinations in subjects with national educational standards",
+      "languages": [
+        "de"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 95,
+            "label": "15",
+            "label_native": "1+"
+          },
+          {
+            "min_percent": 90,
+            "label": "14",
+            "label_native": "1"
+          },
+          {
+            "min_percent": 85,
+            "label": "13",
+            "label_native": "1-"
+          },
+          {
+            "min_percent": 80,
+            "label": "12",
+            "label_native": "2+"
+          },
+          {
+            "min_percent": 75,
+            "label": "11",
+            "label_native": "2"
+          },
+          {
+            "min_percent": 70,
+            "label": "10",
+            "label_native": "2-"
+          },
+          {
+            "min_percent": 65,
+            "label": "9",
+            "label_native": "3+"
+          },
+          {
+            "min_percent": 60,
+            "label": "8",
+            "label_native": "3"
+          },
+          {
+            "min_percent": 55,
+            "label": "7",
+            "label_native": "3-"
+          },
+          {
+            "min_percent": 50,
+            "label": "6",
+            "label_native": "4+"
+          },
+          {
+            "min_percent": 45,
+            "label": "5",
+            "label_native": "4"
+          },
+          {
+            "min_percent": 40,
+            "label": "4",
+            "label_native": "4-"
+          },
+          {
+            "min_percent": 33,
+            "label": "3",
+            "label_native": "5+"
+          },
+          {
+            "min_percent": 27,
+            "label": "2",
+            "label_native": "5"
+          },
+          {
+            "min_percent": 20,
+            "label": "1",
+            "label_native": "5-"
+          },
+          {
+            "min_percent": 0,
+            "label": "0",
+            "label_native": "6"
+          }
+        ]
+      },
+      "pass": {
+        "label": "5",
+        "min_percent": 45
+      },
+      "rounded_rows": [],
+      "note": "Binding for written Abitur examinations in subjects with national educational standards (KMK, section 8.4.2); 05 points is the lowest result that counts.",
+      "sources": [
+        {
+          "title": "KMK, Vereinbarung zur Gestaltung der gymnasialen Oberstufe und der Abiturprüfung (16.03.2023), Anlage 1",
+          "url": "https://www.kmk.org/fileadmin/Dateien/pdf/PresseUndAktuelles/2023/2023_03_16-Vereinb-GymnOberstufe-Abitur.pdf"
+        }
+      ]
+    },
+    {
+      "id": "gr-lykeio",
+      "name": "Greece, general Lykeio, 0 to 20",
+      "class": "A",
+      "country": "GR",
+      "scope": "general upper secondary school (Geniko Lykeio)",
+      "languages": [
+        "el"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 90,
+            "label": "18,1–20",
+            "label_native": "Άριστα"
+          },
+          {
+            "min_percent": 80,
+            "label": "16,1–18",
+            "label_native": "Λίαν καλώς"
+          },
+          {
+            "min_percent": 65,
+            "label": "13,1–16",
+            "label_native": "Καλώς"
+          },
+          {
+            "min_percent": 50,
+            "label": "10–13",
+            "label_native": "Σχεδόν καλώς"
+          },
+          {
+            "min_percent": 25,
+            "label": "5,1–9,9",
+            "label_native": "Ανεπαρκώς"
+          },
+          {
+            "min_percent": 0,
+            "label": "0–5",
+            "label_native": "Κακώς"
+          }
+        ]
+      },
+      "pass": {
+        "label": "10–13",
+        "min_percent": 50
+      },
+      "rounded_rows": [
+        {
+          "label": "18,1–20",
+          "official_min_percent": 90.5
+        },
+        {
+          "label": "16,1–18",
+          "official_min_percent": 80.5
+        },
+        {
+          "label": "13,1–16",
+          "official_min_percent": 65.5
+        },
+        {
+          "label": "5,1–9,9",
+          "official_min_percent": 25.5
+        }
+      ],
+      "note": "The official bands start at 18,1 / 16,1 / 13,1 / 5,1 of 20. Those rows carry the whole percent below the bound (see rounded_rows), so a run at 18,0 of 20 already reads as Άριστα.",
+      "sources": [
+        {
+          "title": "Law 4610/2019: promotion and graduation in the general Lykeio (overview of the bands)",
+          "url": "https://gym-vasil.lef.sch.gr/2020/06/13/proagogi-apolysi-gel-2020-2021/"
+        }
+      ]
+    },
+    {
+      "id": "gr-university-degree",
+      "name": "Greece, university degree grade, 0 to 10",
+      "class": "A",
+      "country": "GR",
+      "scope": "the final degree grade (average), not a single examination",
+      "languages": [
+        "el"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 85,
+            "label": "8,50–10",
+            "label_native": "Άριστα"
+          },
+          {
+            "min_percent": 65,
+            "label": "6,50–8,49",
+            "label_native": "Λίαν καλώς"
+          },
+          {
+            "min_percent": 50,
+            "label": "5,00–6,49",
+            "label_native": "Καλώς"
+          },
+          {
+            "min_percent": 0,
+            "label": "0–4,99"
+          }
+        ]
+      },
+      "pass": {
+        "label": "5,00–6,49",
+        "min_percent": 50
+      },
+      "rounded_rows": [],
+      "note": "The characterisations apply to the degree average. A course below 5 is not passed; no official name exists for that band.",
+      "sources": [
+        {
+          "title": "Ministerial Decision Φ.141/Β3/2166 (FEK 308/B/1987), as summarised by the University of the Aegean",
+          "url": "http://www2.env.aegean.gr/site/GR/studies/grading.htm"
+        }
+      ]
+    },
+    {
+      "id": "fr-mentions",
+      "name": "France, diploma mentions, 0 to 20",
+      "class": "A",
+      "country": "FR",
+      "scope": "baccalauréat and diplomas awarded with a mention",
+      "languages": [
+        "fr"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 90,
+            "label": "18–20",
+            "label_native": "très bien avec les félicitations du jury"
+          },
+          {
+            "min_percent": 80,
+            "label": "16–17,9",
+            "label_native": "très bien"
+          },
+          {
+            "min_percent": 70,
+            "label": "14–15,9",
+            "label_native": "bien"
+          },
+          {
+            "min_percent": 60,
+            "label": "12–13,9",
+            "label_native": "assez bien"
+          },
+          {
+            "min_percent": 50,
+            "label": "10–11,9",
+            "label_native": "admis"
+          },
+          {
+            "min_percent": 0,
+            "label": "0–9,9",
+            "label_native": "non admis"
+          }
+        ]
+      },
+      "pass": {
+        "label": "10–11,9",
+        "min_percent": 50
+      },
+      "rounded_rows": [],
+      "note": "The mentions describe a diploma average, not a single test. Other countries grade on 0 to 20 with a pass at 10 (Tunisia, Algeria, Morocco, Iran and others), but with their own names and bands; this preset is the French one.",
+      "sources": [
+        {
+          "title": "Code de l'éducation, article D334-11",
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046159352"
+        },
+        {
+          "title": "Ministère de l'Éducation nationale: les résultats du baccalauréat",
+          "url": "https://www.education.gouv.fr/reussir-au-lycee/les-resultats-du-baccalaureat-1124"
+        }
+      ]
+    },
+    {
+      "id": "pt-higher-education",
+      "name": "Portugal, higher education, 0 to 20",
+      "class": "A",
+      "country": "PT",
+      "scope": "higher education final classification",
+      "languages": [
+        "pt"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 90,
+            "label": "18–20",
+            "label_native": "Excelente"
+          },
+          {
+            "min_percent": 80,
+            "label": "16–17",
+            "label_native": "Muito bom"
+          },
+          {
+            "min_percent": 70,
+            "label": "14–15",
+            "label_native": "Bom"
+          },
+          {
+            "min_percent": 50,
+            "label": "10–13",
+            "label_native": "Suficiente"
+          },
+          {
+            "min_percent": 0,
+            "label": "0–9"
+          }
+        ]
+      },
+      "pass": {
+        "label": "10–13",
+        "min_percent": 50
+      },
+      "rounded_rows": [],
+      "note": "The decree names only the passing bands. Secondary school also grades 0 to 20 with a pass at 10, but has no national names for the bands.",
+      "sources": [
+        {
+          "title": "Decreto-Lei 42/2005, via DGES",
+          "url": "https://www.dges.gov.pt/en/node/2721?plid=374"
+        },
+        {
+          "title": "Decreto-Lei 42/2005",
+          "url": "https://diariodarepublica.pt/dr/detalhe/decreto-lei/42-2005-606304"
+        }
+      ]
+    },
+    {
+      "id": "ee-school",
+      "name": "Estonia, school grades 5 to 1",
+      "class": "A",
+      "country": "EE",
+      "scope": "basic school and gymnasium, point-scored written work",
+      "languages": [
+        "et"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 90,
+            "label": "5",
+            "label_native": "väga hea"
+          },
+          {
+            "min_percent": 75,
+            "label": "4",
+            "label_native": "hea"
+          },
+          {
+            "min_percent": 50,
+            "label": "3",
+            "label_native": "rahuldav"
+          },
+          {
+            "min_percent": 20,
+            "label": "2",
+            "label_native": "puudulik"
+          },
+          {
+            "min_percent": 0,
+            "label": "1",
+            "label_native": "nõrk"
+          }
+        ]
+      },
+      "pass": {
+        "label": "3",
+        "min_percent": 50
+      },
+      "rounded_rows": [],
+      "note": "The percentages are the default of the national curricula for point-scored written work, unless the teacher announces otherwise. The separate scale for pupils in remedial teaching (parandusõpe) is not covered.",
+      "sources": [
+        {
+          "title": "Põhikooli riiklik õppekava, § 21",
+          "url": "https://www.riigiteataja.ee/akt/123122025007"
+        },
+        {
+          "title": "Gümnaasiumi riiklik õppekava, § 17",
+          "url": "https://www.riigiteataja.ee/akt/123122025009"
+        }
+      ]
+    },
+    {
+      "id": "tr-secondary",
+      "name": "Türkiye, secondary school, 0 to 100",
+      "class": "A",
+      "country": "TR",
+      "scope": "secondary school (ortaöğretim, lise)",
+      "languages": [
+        "tr"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 85,
+            "label": "85–100",
+            "label_native": "Pekiyi"
+          },
+          {
+            "min_percent": 70,
+            "label": "70–84",
+            "label_native": "İyi"
+          },
+          {
+            "min_percent": 60,
+            "label": "60–69",
+            "label_native": "Orta"
+          },
+          {
+            "min_percent": 50,
+            "label": "50–59",
+            "label_native": "Geçer"
+          },
+          {
+            "min_percent": 0,
+            "label": "0–49",
+            "label_native": "Geçmez"
+          }
+        ]
+      },
+      "pass": {
+        "label": "50–59",
+        "min_percent": 50
+      },
+      "rounded_rows": [],
+      "note": "Lower secondary school (ortaokul) has its own regulation and names only the pass from 50.",
+      "sources": [
+        {
+          "title": "Ortaöğretim Kurumları Yönetmeliği, Madde 44 and 56",
+          "url": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=18812&MevzuatTur=7&MevzuatTertip=5"
+        }
+      ]
+    },
+    {
+      "id": "es-university",
+      "name": "Spain, university, 0 to 10",
+      "class": "A",
+      "country": "ES",
+      "scope": "university degrees",
+      "languages": [
+        "es"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 90,
+            "label": "9–10",
+            "label_native": "Sobresaliente"
+          },
+          {
+            "min_percent": 70,
+            "label": "7–8,9",
+            "label_native": "Notable"
+          },
+          {
+            "min_percent": 50,
+            "label": "5–6,9",
+            "label_native": "Aprobado"
+          },
+          {
+            "min_percent": 0,
+            "label": "0–4,9",
+            "label_native": "Suspenso"
+          }
+        ]
+      },
+      "pass": {
+        "label": "5–6,9",
+        "min_percent": 50
+      },
+      "rounded_rows": [],
+      "note": "Matrícula de Honor is not a row: it is awarded from 9,0 up to a quota of the enrolled students.",
+      "sources": [
+        {
+          "title": "Real Decreto 1125/2003, artículo 5",
+          "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2003-17643"
+        }
+      ]
+    },
+    {
+      "id": "lu-secondary",
+      "name": "Luxembourg, secondary school, 1 to 60",
+      "class": "A",
+      "country": "LU",
+      "scope": "secondary school; the mentions belong to the average of the end-of-studies examination",
+      "languages": [
+        "fr"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 86,
+            "label": "52–60",
+            "label_native": "excellent"
+          },
+          {
+            "min_percent": 80,
+            "label": "48–51",
+            "label_native": "très bien"
+          },
+          {
+            "min_percent": 66,
+            "label": "40–47",
+            "label_native": "bien"
+          },
+          {
+            "min_percent": 60,
+            "label": "36–39",
+            "label_native": "assez bien"
+          },
+          {
+            "min_percent": 50,
+            "label": "30–35",
+            "label_native": "suffisant"
+          },
+          {
+            "min_percent": 0,
+            "label": "1–29",
+            "label_native": "insuffisant"
+          }
+        ]
+      },
+      "pass": {
+        "label": "30–35",
+        "min_percent": 50
+      },
+      "rounded_rows": [
+        {
+          "label": "52–60",
+          "official_min_percent": 86.67
+        },
+        {
+          "label": "40–47",
+          "official_min_percent": 66.67
+        }
+      ],
+      "note": "Marks run from 1 to 60; 30 is the pass. 52 and 40 of 60 are not whole percents; those rows carry the whole percent below the bound (see rounded_rows).",
+      "sources": [
+        {
+          "title": "Ministère de l'Éducation nationale: examen de fin d'études secondaires, mentions (art. 19)",
+          "url": "https://men.public.lu/dam-assets/fr/secondaire/examen-fin-etudes/broch-exam-ged.pdf"
+        }
+      ]
+    },
+    {
+      "id": "ca-ontario",
+      "name": "Canada, Ontario, levels and letters",
+      "class": "A",
+      "country": "CA",
+      "scope": "Ontario schools",
+      "languages": [
+        "en"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 80,
+            "label": "A",
+            "label_native": "level 4"
+          },
+          {
+            "min_percent": 70,
+            "label": "B",
+            "label_native": "level 3"
+          },
+          {
+            "min_percent": 60,
+            "label": "C",
+            "label_native": "level 2"
+          },
+          {
+            "min_percent": 50,
+            "label": "D",
+            "label_native": "level 1"
+          },
+          {
+            "min_percent": 0,
+            "label": "R",
+            "label_native": "below level 1"
+          }
+        ]
+      },
+      "pass": {
+        "label": "D",
+        "min_percent": 50
+      },
+      "rounded_rows": [],
+      "note": "Canada has no national scale; education is provincial. British Columbia, for example, starts A at 86. Ontario reports R below level 1 in grades 1 to 8 and a percentage in grades 9 to 12.",
+      "sources": [
+        {
+          "title": "Ontario Ministry of Education, Growing Success (2010), achievement chart",
+          "url": "https://www.edu.gov.on.ca/eng/policyfunding/growSuccess.pdf"
+        }
+      ]
+    },
+    {
+      "id": "cu-pass",
+      "name": "Cuba, pass mark 60 of 100",
+      "class": "A",
+      "country": "CU",
+      "scope": "school subjects graded in points",
+      "languages": [
+        "es"
+      ],
+      "evaluation": {
+        "scheme": "pass_fail",
+        "pass_percent": 60
+      },
+      "pass": null,
+      "rounded_rows": [],
+      "note": "The regulation fixes only the pass (60 points in the final grade). Its categories Excelente to Insuficiente form a separate qualitative scale with no mapping to points.",
+      "sources": [
+        {
+          "title": "Resolución Ministerial 238/2014, artículo 26",
+          "url": "https://siteal.iiep.unesco.org/sites/default/files/sit_accion_files/11161.pdf"
+        }
+      ]
+    },
+    {
+      "id": "us-letter",
+      "name": "United States, letter grades",
+      "class": "B",
+      "country": "US",
+      "scope": "schools and colleges",
+      "languages": [
+        "en"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 90,
+            "label": "A"
+          },
+          {
+            "min_percent": 80,
+            "label": "B"
+          },
+          {
+            "min_percent": 70,
+            "label": "C"
+          },
+          {
+            "min_percent": 60,
+            "label": "D"
+          },
+          {
+            "min_percent": 0,
+            "label": "F"
+          }
+        ]
+      },
+      "pass": {
+        "label": "D",
+        "min_percent": 60
+      },
+      "rounded_rows": [],
+      "note": "The most common scale, not a national rule: states, districts and institutions set their own, and some pass only from C.",
+      "sources": [
+        {
+          "title": "Florida Statutes 1003.437 (one state that writes this scale into law)",
+          "url": "https://www.flsenate.gov/Laws/Statutes/2023/1003.437"
+        },
+        {
+          "title": "Academic grading in the United States",
+          "url": "https://en.wikipedia.org/wiki/Academic_grading_in_the_United_States"
+        }
+      ]
+    },
+    {
+      "id": "us-letter-plus-minus",
+      "name": "United States, letter grades with plus and minus",
+      "class": "B",
+      "country": "US",
+      "scope": "schools and colleges that use plus and minus grades",
+      "languages": [
+        "en"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 97,
+            "label": "A+"
+          },
+          {
+            "min_percent": 93,
+            "label": "A"
+          },
+          {
+            "min_percent": 90,
+            "label": "A-"
+          },
+          {
+            "min_percent": 87,
+            "label": "B+"
+          },
+          {
+            "min_percent": 83,
+            "label": "B"
+          },
+          {
+            "min_percent": 80,
+            "label": "B-"
+          },
+          {
+            "min_percent": 77,
+            "label": "C+"
+          },
+          {
+            "min_percent": 73,
+            "label": "C"
+          },
+          {
+            "min_percent": 70,
+            "label": "C-"
+          },
+          {
+            "min_percent": 67,
+            "label": "D+"
+          },
+          {
+            "min_percent": 63,
+            "label": "D"
+          },
+          {
+            "min_percent": 60,
+            "label": "D-"
+          },
+          {
+            "min_percent": 0,
+            "label": "F"
+          }
+        ]
+      },
+      "pass": {
+        "label": "D-",
+        "min_percent": 60
+      },
+      "rounded_rows": [],
+      "note": "The most widely quoted plus/minus table; many institutions award no A+.",
+      "sources": [
+        {
+          "title": "Academic grading in the United States",
+          "url": "https://en.wikipedia.org/wiki/Academic_grading_in_the_United_States"
+        }
+      ]
+    },
+    {
+      "id": "uk-bachelor",
+      "name": "United Kingdom, bachelor's degree classification",
+      "class": "B",
+      "country": "GB",
+      "scope": "honours degrees",
+      "languages": [
+        "en"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 70,
+            "label": "First"
+          },
+          {
+            "min_percent": 60,
+            "label": "Upper second (2:1)"
+          },
+          {
+            "min_percent": 50,
+            "label": "Lower second (2:2)"
+          },
+          {
+            "min_percent": 40,
+            "label": "Third"
+          },
+          {
+            "min_percent": 0,
+            "label": "Fail"
+          }
+        ]
+      },
+      "pass": {
+        "label": "Third",
+        "min_percent": 40
+      },
+      "rounded_rows": [],
+      "note": "The sector calls 70/60/50/40 an overarching convention; degree algorithms and borderline rules are set by each provider, and some award a pass or ordinary degree for 35 to 39.",
+      "sources": [
+        {
+          "title": "UKSCQA, Degree classification: transparent, consistent and fair academic standards",
+          "url": "https://ukscqa.org.uk/wp-content/uploads/2017/09/degree-classification-academic-standards.pdf"
+        }
+      ]
+    },
+    {
+      "id": "uk-master",
+      "name": "United Kingdom, taught master's degree",
+      "class": "B",
+      "country": "GB",
+      "scope": "taught master's degrees",
+      "languages": [
+        "en"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 70,
+            "label": "Distinction"
+          },
+          {
+            "min_percent": 60,
+            "label": "Merit"
+          },
+          {
+            "min_percent": 50,
+            "label": "Pass"
+          },
+          {
+            "min_percent": 0,
+            "label": "Fail"
+          }
+        ]
+      },
+      "pass": {
+        "label": "Pass",
+        "min_percent": 50
+      },
+      "rounded_rows": [],
+      "note": "A common convention; each university sets its own regulations.",
+      "sources": [
+        {
+          "title": "University of Edinburgh, taught assessment regulations, section E",
+          "url": "https://registryservices.ed.ac.uk/academic-services/policies-regulations/regulations/assessment-regulations/taught/section-e"
+        },
+        {
+          "title": "UCL Academic Manual, chapter 4, section 7",
+          "url": "https://www.ucl.ac.uk/academic-manual/chapters/chapter-4-assessment-framework-taught-programmes/section-7-classification"
+        }
+      ]
+    },
+    {
+      "id": "il-school",
+      "name": "Israel, school and Bagrut, 0 to 100",
+      "class": "B",
+      "country": "IL",
+      "scope": "school and matriculation (Bagrut)",
+      "languages": [
+        "he"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 95,
+            "label": "95–100",
+            "label_native": "מצוין"
+          },
+          {
+            "min_percent": 85,
+            "label": "85–94",
+            "label_native": "טוב מאוד"
+          },
+          {
+            "min_percent": 75,
+            "label": "75–84",
+            "label_native": "טוב"
+          },
+          {
+            "min_percent": 65,
+            "label": "65–74",
+            "label_native": "כמעט טוב"
+          },
+          {
+            "min_percent": 55,
+            "label": "55–64",
+            "label_native": "מספיק"
+          },
+          {
+            "min_percent": 45,
+            "label": "45–54",
+            "label_native": "מספיק בקושי"
+          },
+          {
+            "min_percent": 0,
+            "label": "0–44",
+            "label_native": "בלתי מספיק"
+          }
+        ]
+      },
+      "pass": {
+        "label": "55–64",
+        "min_percent": 55
+      },
+      "rounded_rows": [],
+      "note": "The 0 to 100 scale is itself a percentage; the verbal bands are a widespread convention. Universities mostly pass from 60, some from 55.",
+      "sources": [
+        {
+          "title": "Academic grading in Israel",
+          "url": "https://en.wikipedia.org/wiki/Academic_grading_in_Israel"
+        },
+        {
+          "title": "ציון (הערכה)",
+          "url": "https://he.wikipedia.org/wiki/%D7%A6%D7%99%D7%95%D7%9F_(%D7%94%D7%A2%D7%A8%D7%9B%D7%94)"
+        }
+      ]
+    },
+    {
+      "id": "gr-gymnasio",
+      "name": "Greece, Gymnasio, 1 to 20",
+      "class": "B",
+      "country": "GR",
+      "scope": "lower secondary school (Gymnasio)",
+      "languages": [
+        "el"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 92,
+            "label": "18,5–20",
+            "label_native": "Άριστα"
+          },
+          {
+            "min_percent": 77,
+            "label": "15,5–18,4",
+            "label_native": "Πολύ καλά"
+          },
+          {
+            "min_percent": 62,
+            "label": "12,5–15,4",
+            "label_native": "Καλά"
+          },
+          {
+            "min_percent": 50,
+            "label": "10–12,4",
+            "label_native": "Μέτρια"
+          },
+          {
+            "min_percent": 0,
+            "label": "1–9,9",
+            "label_native": "Ανεπαρκώς"
+          }
+        ]
+      },
+      "pass": {
+        "label": "10–12,4",
+        "min_percent": 50
+      },
+      "rounded_rows": [
+        {
+          "label": "18,5–20",
+          "official_min_percent": 92.5
+        },
+        {
+          "label": "15,5–18,4",
+          "official_min_percent": 77.5
+        },
+        {
+          "label": "12,5–15,4",
+          "official_min_percent": 62.5
+        }
+      ],
+      "note": "Linear from the 20-point grade; the grade itself is awarded by the teacher. The lower bounds 18,5 / 15,5 / 12,5 carry the whole percent below them (see rounded_rows).",
+      "sources": [
+        {
+          "title": "Βαθμολογική κλίμακα Γυμνασίου",
+          "url": "https://blogs.sch.gr/4gymanliosion/2013/05/19/vathmologiki-klimaka-gymnasioy/"
+        },
+        {
+          "title": "Σχολική βαθμολογία στην Ελλάδα",
+          "url": "https://el.wikipedia.org/wiki/%CE%A3%CF%87%CE%BF%CE%BB%CE%B9%CE%BA%CE%AE_%CE%B2%CE%B1%CE%B8%CE%BC%CE%BF%CE%BB%CE%BF%CE%B3%CE%AF%CE%B1_%CF%83%CF%84%CE%B7%CE%BD_%CE%95%CE%BB%CE%BB%CE%AC%CE%B4%CE%B1"
+        }
+      ]
+    },
+    {
+      "id": "at-school-50",
+      "name": "Austria, school grades 1 to 5 (50 percent key)",
+      "class": "B",
+      "country": "AT",
+      "scope": "schools",
+      "languages": [
+        "de"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 90,
+            "label": "1",
+            "label_native": "Sehr gut"
+          },
+          {
+            "min_percent": 80,
+            "label": "2",
+            "label_native": "Gut"
+          },
+          {
+            "min_percent": 70,
+            "label": "3",
+            "label_native": "Befriedigend"
+          },
+          {
+            "min_percent": 50,
+            "label": "4",
+            "label_native": "Genügend"
+          },
+          {
+            "min_percent": 0,
+            "label": "5",
+            "label_native": "Nicht genügend"
+          }
+        ]
+      },
+      "pass": {
+        "label": "4",
+        "min_percent": 50
+      },
+      "rounded_rows": [],
+      "note": "The grading regulation (LBVO § 14) defines the grades verbally and sets no percentages; the key is set by the teacher or school. Keys with 60 percent for Genügend are also in use, for example in the standardised matriculation examination in foreign languages.",
+      "sources": [
+        {
+          "title": "Leistungsbeurteilungsverordnung, § 14",
+          "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10009375&Artikel=&Paragraf=14&Anlage=&Uebergangsrecht="
+        }
+      ]
+    },
+    {
+      "id": "ch-half-grades",
+      "name": "Switzerland, grades 6 to 1 in half steps",
+      "class": "B",
+      "country": "CH",
+      "scope": "schools",
+      "languages": [
+        "de"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 95,
+            "label": "6",
+            "label_native": "sehr gut"
+          },
+          {
+            "min_percent": 85,
+            "label": "5,5"
+          },
+          {
+            "min_percent": 75,
+            "label": "5",
+            "label_native": "gut"
+          },
+          {
+            "min_percent": 65,
+            "label": "4,5"
+          },
+          {
+            "min_percent": 55,
+            "label": "4",
+            "label_native": "genügend"
+          },
+          {
+            "min_percent": 45,
+            "label": "3,5"
+          },
+          {
+            "min_percent": 35,
+            "label": "3",
+            "label_native": "ungenügend"
+          },
+          {
+            "min_percent": 25,
+            "label": "2,5"
+          },
+          {
+            "min_percent": 15,
+            "label": "2",
+            "label_native": "schwach"
+          },
+          {
+            "min_percent": 5,
+            "label": "1,5"
+          },
+          {
+            "min_percent": 0,
+            "label": "1",
+            "label_native": "sehr schwach"
+          }
+        ]
+      },
+      "pass": {
+        "label": "4",
+        "min_percent": 55
+      },
+      "rounded_rows": [],
+      "note": "From the linear formula grade = 5 × achieved / maximum + 1, rounded to half grades with a quarter rounded up. The formula is a common convention, not a rule, and cantons and schools round differently (half grades, quarters or tenths).",
+      "sources": [
+        {
+          "title": "Berufsbildungsverordnung (BBV), Art. 34: grades in whole or half steps",
+          "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2003/748/20250301/de/pdf-a/fedlex-data-admin-ch-eli-cc-2003-748-20250301-de-pdf-a-2.pdf"
+        },
+        {
+          "title": "Kanton Zürich, Zeugnisreglement der Volksschule, § 9 (grade names)",
+          "url": "https://www2.zhlex.zh.ch/appl/zhlex_r.nsf/0/A926FCF05A075964C125826A0023A631/$file/412.121.31.pdf"
+        },
+        {
+          "title": "ETH Zürich, guidelines on grading",
+          "url": "https://ethz.ch/content/dam/ethz/main/eth-zurich/organisation/let/files_EN/guidelines_grading.pdf"
+        }
+      ]
+    },
+    {
+      "id": "pt-basic-school",
+      "name": "Portugal, basic school levels 5 to 1",
+      "class": "B",
+      "country": "PT",
+      "scope": "2nd and 3rd cycles of basic education (grades 5 to 9)",
+      "languages": [
+        "pt"
+      ],
+      "evaluation": {
+        "scheme": "grades",
+        "grades": [
+          {
+            "min_percent": 90,
+            "label": "5",
+            "label_native": "Muito bom"
+          },
+          {
+            "min_percent": 70,
+            "label": "4",
+            "label_native": "Bom"
+          },
+          {
+            "min_percent": 50,
+            "label": "3",
+            "label_native": "Suficiente"
+          },
+          {
+            "min_percent": 20,
+            "label": "2",
+            "label_native": "Insuficiente"
+          },
+          {
+            "min_percent": 0,
+            "label": "1",
+            "label_native": "Muito insuficiente"
+          }
+        ]
+      },
+      "pass": {
+        "label": "3",
+        "min_percent": 50
+      },
+      "rounded_rows": [],
+      "note": "The levels 1 to 5 are national; the percentage bands and their names are set by each school. These are a common set of school criteria.",
+      "sources": [
+        {
+          "title": "Portaria 223-A/2018",
+          "url": "https://diariodarepublica.pt/dr/detalhe/portaria/223-a-2018-115886163"
+        },
+        {
+          "title": "AERDL, critérios gerais de avaliação (example school criteria)",
+          "url": "https://www.nsite.aerdl.eu/images/DocsAgrupamento/AERDL/Criterios/crit_geraisv2.pdf"
+        }
+      ]
+    }
+  ],
+  "templates": [
+    {
+      "id": "nl-1-10",
+      "name": "Netherlands, 1 to 10",
+      "country": "NL",
+      "scope": "schools and higher education",
+      "languages": [
+        "nl"
+      ],
+      "scale": [
+        {
+          "label": "10"
+        },
+        {
+          "label": "9"
+        },
+        {
+          "label": "8"
+        },
+        {
+          "label": "7"
+        },
+        {
+          "label": "6"
+        },
+        {
+          "label": "5"
+        },
+        {
+          "label": "4"
+        },
+        {
+          "label": "3"
+        },
+        {
+          "label": "2"
+        },
+        {
+          "label": "1"
+        }
+      ],
+      "pass_label": "6",
+      "note": "5,5 is rounded to 6 in secondary education; central examinations convert scores with a per-exam formula.",
+      "sources": [
+        {
+          "title": "Nuffic, grading systems in the Netherlands",
+          "url": "https://www.nuffic.nl/en/education-systems/the-netherlands/grading-systems"
+        }
+      ]
+    },
+    {
+      "id": "it-school",
+      "name": "Italy, school, 1 to 10",
+      "country": "IT",
+      "scope": "secondary school",
+      "languages": [
+        "it"
+      ],
+      "scale": [
+        {
+          "label": "10"
+        },
+        {
+          "label": "9"
+        },
+        {
+          "label": "8"
+        },
+        {
+          "label": "7"
+        },
+        {
+          "label": "6"
+        },
+        {
+          "label": "5"
+        },
+        {
+          "label": "4"
+        },
+        {
+          "label": "3"
+        },
+        {
+          "label": "2"
+        },
+        {
+          "label": "1"
+        }
+      ],
+      "pass_label": "6",
+      "note": "No national percent conversion; each school sets its own grid. Primary school uses verbal judgements.",
+      "sources": [
+        {
+          "title": "D.Lgs. 62/2017",
+          "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2017/aprile/DLGS_20170413_62/cap3-art18"
+        }
+      ]
+    },
+    {
+      "id": "it-university",
+      "name": "Italy, university, 18 to 30",
+      "country": "IT",
+      "scope": "university examinations",
+      "languages": [
+        "it"
+      ],
+      "scale": [
+        {
+          "label": "30 e lode"
+        },
+        {
+          "label": "30"
+        },
+        {
+          "label": "29"
+        },
+        {
+          "label": "28"
+        },
+        {
+          "label": "27"
+        },
+        {
+          "label": "26"
+        },
+        {
+          "label": "25"
+        },
+        {
+          "label": "24"
+        },
+        {
+          "label": "23"
+        },
+        {
+          "label": "22"
+        },
+        {
+          "label": "21"
+        },
+        {
+          "label": "20"
+        },
+        {
+          "label": "19"
+        },
+        {
+          "label": "18"
+        }
+      ],
+      "pass_label": "18",
+      "note": "Marks below 18 are not recorded; lode is added by a unanimous commission.",
+      "sources": [
+        {
+          "title": "Academic grading in Italy",
+          "url": "https://en.wikipedia.org/wiki/Academic_grading_in_Italy"
+        }
+      ]
+    },
+    {
+      "id": "pl-school",
+      "name": "Poland, school, 6 to 1",
+      "country": "PL",
+      "scope": "schools",
+      "languages": [
+        "pl"
+      ],
+      "scale": [
+        {
+          "label": "6",
+          "label_native": "celujący"
+        },
+        {
+          "label": "5",
+          "label_native": "bardzo dobry"
+        },
+        {
+          "label": "4",
+          "label_native": "dobry"
+        },
+        {
+          "label": "3",
+          "label_native": "dostateczny"
+        },
+        {
+          "label": "2",
+          "label_native": "dopuszczający"
+        },
+        {
+          "label": "1",
+          "label_native": "niedostateczny"
+        }
+      ],
+      "pass_label": "2",
+      "note": "Each school sets its own percent thresholds. Higher education uses a different scale.",
+      "sources": [
+        {
+          "title": "Nuffic, Poland: grades and study results",
+          "url": "https://www.nuffic.nl/en/education-systems/poland/grades-and-study-results"
+        }
+      ]
+    },
+    {
+      "id": "ru-school",
+      "name": "Russia, 5 to 1",
+      "country": "RU",
+      "scope": "schools and universities",
+      "languages": [
+        "ru"
+      ],
+      "scale": [
+        {
+          "label": "5",
+          "label_native": "отлично"
+        },
+        {
+          "label": "4",
+          "label_native": "хорошо"
+        },
+        {
+          "label": "3",
+          "label_native": "удовлетворительно"
+        },
+        {
+          "label": "2",
+          "label_native": "неудовлетворительно"
+        },
+        {
+          "label": "1"
+        }
+      ],
+      "pass_label": "3",
+      "note": "Grade 1 exists but is hardly used. Examination point conversions are set per subject and year.",
+      "sources": [
+        {
+          "title": "Academic grading in Russia",
+          "url": "https://en.wikipedia.org/wiki/Academic_grading_in_Russia"
+        }
+      ]
+    },
+    {
+      "id": "ua-school",
+      "name": "Ukraine, school, 12 to 1",
+      "country": "UA",
+      "scope": "schools",
+      "languages": [
+        "uk"
+      ],
+      "scale": [
+        {
+          "label": "12"
+        },
+        {
+          "label": "11"
+        },
+        {
+          "label": "10"
+        },
+        {
+          "label": "9"
+        },
+        {
+          "label": "8"
+        },
+        {
+          "label": "7"
+        },
+        {
+          "label": "6"
+        },
+        {
+          "label": "5"
+        },
+        {
+          "label": "4"
+        },
+        {
+          "label": "3"
+        },
+        {
+          "label": "2"
+        },
+        {
+          "label": "1"
+        }
+      ],
+      "pass_label": null,
+      "note": "Four levels: 1-3 initial, 4-6 average, 7-9 sufficient, 10-12 high. The current order defines no fail grade.",
+      "sources": [
+        {
+          "title": "MON Order No. 722 (2026)",
+          "url": "https://osvita.ua/legislation/Ser_osv/97517/"
+        }
+      ]
+    },
+    {
+      "id": "hu-school",
+      "name": "Hungary, 5 to 1",
+      "country": "HU",
+      "scope": "schools",
+      "languages": [
+        "hu"
+      ],
+      "scale": [
+        {
+          "label": "5",
+          "label_native": "jeles"
+        },
+        {
+          "label": "4",
+          "label_native": "jó"
+        },
+        {
+          "label": "3",
+          "label_native": "közepes"
+        },
+        {
+          "label": "2",
+          "label_native": "elégséges"
+        },
+        {
+          "label": "1",
+          "label_native": "elégtelen"
+        }
+      ],
+      "pass_label": "2",
+      "note": "Classroom keys are set by schools; the matriculation examination (érettségi) has its own percent table.",
+      "sources": [
+        {
+          "title": "Érettségi 2026: pontozás, osztályozás",
+          "url": "https://eduline.hu/erettsegi-felveteli/20260314_erettsegi-2026-pontozas-osztalyozas"
+        }
+      ]
+    },
+    {
+      "id": "cz-school",
+      "name": "Czech Republic, 1 to 5",
+      "country": "CZ",
+      "scope": "schools",
+      "languages": [
+        "cs"
+      ],
+      "scale": [
+        {
+          "label": "1",
+          "label_native": "výborný"
+        },
+        {
+          "label": "2",
+          "label_native": "chvalitebný"
+        },
+        {
+          "label": "3",
+          "label_native": "dobrý"
+        },
+        {
+          "label": "4",
+          "label_native": "dostatečný"
+        },
+        {
+          "label": "5",
+          "label_native": "nedostatečný"
+        }
+      ],
+      "pass_label": "4",
+      "note": "No percent scale in the regulation; schools set their own.",
+      "sources": [
+        {
+          "title": "Vyhláška 48/2005 Sb.",
+          "url": "https://www.zakonyprolidi.cz/cs/2005-48"
+        }
+      ]
+    },
+    {
+      "id": "sk-school",
+      "name": "Slovakia, 1 to 5",
+      "country": "SK",
+      "scope": "schools",
+      "languages": [
+        "sk"
+      ],
+      "scale": [
+        {
+          "label": "1",
+          "label_native": "výborný"
+        },
+        {
+          "label": "2",
+          "label_native": "chválitebný"
+        },
+        {
+          "label": "3",
+          "label_native": "dobrý"
+        },
+        {
+          "label": "4",
+          "label_native": "dostatočný"
+        },
+        {
+          "label": "5",
+          "label_native": "nedostatočný"
+        }
+      ],
+      "pass_label": "4",
+      "note": "No percent scale in the regulation; schools set their own.",
+      "sources": [
+        {
+          "title": "Metodický pokyn 22/2011",
+          "url": "http://www.ppprk.sk/wp-content/uploads/2012/01/22metodickypokyn.pdf"
+        }
+      ]
+    },
+    {
+      "id": "bg-2-6",
+      "name": "Bulgaria, 6 to 2",
+      "country": "BG",
+      "scope": "schools and higher education",
+      "languages": [
+        "bg"
+      ],
+      "scale": [
+        {
+          "label": "6",
+          "label_native": "отличен"
+        },
+        {
+          "label": "5",
+          "label_native": "много добър"
+        },
+        {
+          "label": "4",
+          "label_native": "добър"
+        },
+        {
+          "label": "3",
+          "label_native": "среден"
+        },
+        {
+          "label": "2",
+          "label_native": "слаб"
+        }
+      ],
+      "pass_label": "3",
+      "note": "The ministry publishes a point scale for the state matriculation examinations; classroom keys vary.",
+      "sources": [
+        {
+          "title": "Nuffic, Bulgaria",
+          "url": "https://www.nuffic.nl/en/education-systems/bulgaria"
+        }
+      ]
+    },
+    {
+      "id": "ro-school",
+      "name": "Romania, secondary school, 10 to 1",
+      "country": "RO",
+      "scope": "secondary school",
+      "languages": [
+        "ro"
+      ],
+      "scale": [
+        {
+          "label": "10"
+        },
+        {
+          "label": "9"
+        },
+        {
+          "label": "8"
+        },
+        {
+          "label": "7"
+        },
+        {
+          "label": "6"
+        },
+        {
+          "label": "5"
+        },
+        {
+          "label": "4"
+        },
+        {
+          "label": "3"
+        },
+        {
+          "label": "2"
+        },
+        {
+          "label": "1"
+        }
+      ],
+      "pass_label": "5",
+      "note": "Primary school uses the verbal marks foarte bine, bine, suficient, insuficient.",
+      "sources": [
+        {
+          "title": "Eurydice, Romania: assessment in upper secondary education",
+          "url": "https://eurydice.eacea.ec.europa.eu/ro/national-education-systems/romania/evaluarea-invatamantul-secundar-superior"
+        }
+      ]
+    },
+    {
+      "id": "rs-school",
+      "name": "Serbia, school, 5 to 1",
+      "country": "RS",
+      "scope": "schools",
+      "languages": [
+        "sr"
+      ],
+      "scale": [
+        {
+          "label": "5",
+          "label_native": "odličan"
+        },
+        {
+          "label": "4",
+          "label_native": "vrlo dobar"
+        },
+        {
+          "label": "3",
+          "label_native": "dobar"
+        },
+        {
+          "label": "2",
+          "label_native": "dovoljan"
+        },
+        {
+          "label": "1",
+          "label_native": "nedovoljan"
+        }
+      ],
+      "pass_label": "2",
+      "note": "Serbian higher education uses 10 to 5 with a statutory point conversion.",
+      "sources": [
+        {
+          "title": "Eurydice, Serbia: assessment in basic education",
+          "url": "https://eurydice.eacea.ec.europa.eu/sr/eurypedia/serbia/ocenivane-u-osnovnom-obrazovanu-i-vaspitanu"
+        }
+      ]
+    },
+    {
+      "id": "rs-higher-education",
+      "name": "Serbia, higher education, 10 to 5",
+      "country": "RS",
+      "scope": "higher education",
+      "languages": [
+        "sr"
+      ],
+      "scale": [
+        {
+          "label": "10"
+        },
+        {
+          "label": "9"
+        },
+        {
+          "label": "8"
+        },
+        {
+          "label": "7"
+        },
+        {
+          "label": "6"
+        },
+        {
+          "label": "5"
+        }
+      ],
+      "pass_label": "6",
+      "note": "The Law on Higher Education converts points: 51-60 = 6, 61-70 = 7, 71-80 = 8, 81-90 = 9, 91-100 = 10.",
+      "sources": [
+        {
+          "title": "Zakon o visokom obrazovanju (2017)",
+          "url": "https://prosveta.gov.rs/wp-content/uploads/2017/12/visoko-zakon.pdf"
+        }
+      ]
+    },
+    {
+      "id": "hr-school",
+      "name": "Croatia, 5 to 1",
+      "country": "HR",
+      "scope": "schools",
+      "languages": [
+        "hr"
+      ],
+      "scale": [
+        {
+          "label": "5",
+          "label_native": "odličan"
+        },
+        {
+          "label": "4",
+          "label_native": "vrlo dobar"
+        },
+        {
+          "label": "3",
+          "label_native": "dobar"
+        },
+        {
+          "label": "2",
+          "label_native": "dovoljan"
+        },
+        {
+          "label": "1",
+          "label_native": "nedovoljan"
+        }
+      ],
+      "pass_label": "2",
+      "note": "Universities use the same scale, with 5 named izvrstan.",
+      "sources": [
+        {
+          "title": "Academic grading in Croatia",
+          "url": "https://en.wikipedia.org/wiki/Academic_grading_in_Croatia"
+        }
+      ]
+    },
+    {
+      "id": "ba-school",
+      "name": "Bosnia and Herzegovina, 5 to 1",
+      "country": "BA",
+      "scope": "schools",
+      "languages": [
+        "bs"
+      ],
+      "scale": [
+        {
+          "label": "5",
+          "label_native": "odličan"
+        },
+        {
+          "label": "4",
+          "label_native": "vrlo dobar"
+        },
+        {
+          "label": "3",
+          "label_native": "dobar"
+        },
+        {
+          "label": "2",
+          "label_native": "dovoljan"
+        },
+        {
+          "label": "1",
+          "label_native": "nedovoljan"
+        }
+      ],
+      "pass_label": "2",
+      "note": "",
+      "sources": [
+        {
+          "title": "Eurydice, Serbia: assessment in basic education (same scale)",
+          "url": "https://eurydice.eacea.ec.europa.eu/sr/eurypedia/serbia/ocenivane-u-osnovnom-obrazovanu-i-vaspitanu"
+        }
+      ]
+    },
+    {
+      "id": "si-school",
+      "name": "Slovenia, school, 5 to 1",
+      "country": "SI",
+      "scope": "schools",
+      "languages": [
+        "sl"
+      ],
+      "scale": [
+        {
+          "label": "5",
+          "label_native": "odlično"
+        },
+        {
+          "label": "4",
+          "label_native": "prav dobro"
+        },
+        {
+          "label": "3",
+          "label_native": "dobro"
+        },
+        {
+          "label": "2",
+          "label_native": "zadostno"
+        },
+        {
+          "label": "1",
+          "label_native": "nezadostno"
+        }
+      ],
+      "pass_label": "2",
+      "note": "Higher education uses 10 to 1 with 6 as the pass.",
+      "sources": [
+        {
+          "title": "Pravilnik o ocenjevanju (Uradni list 80/2025)",
+          "url": "https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2025-01-2806"
+        }
+      ]
+    },
+    {
+      "id": "mk-school",
+      "name": "North Macedonia, school, 5 to 1",
+      "country": "MK",
+      "scope": "schools",
+      "languages": [
+        "mk"
+      ],
+      "scale": [
+        {
+          "label": "5"
+        },
+        {
+          "label": "4"
+        },
+        {
+          "label": "3"
+        },
+        {
+          "label": "2"
+        },
+        {
+          "label": "1"
+        }
+      ],
+      "pass_label": "2",
+      "note": "The early primary grades use descriptive marks.",
+      "sources": [
+        {
+          "title": "Eurydice, North Macedonia: assessment",
+          "url": "https://eurydice.eacea.ec.europa.eu/national-education-systems/republic-north-macedonia/assessment"
+        }
+      ]
+    },
+    {
+      "id": "dk-7-step",
+      "name": "Denmark, 7-step scale",
+      "country": "DK",
+      "scope": "schools and higher education",
+      "languages": [
+        "da"
+      ],
+      "scale": [
+        {
+          "label": "12",
+          "label_native": "A"
+        },
+        {
+          "label": "10",
+          "label_native": "B"
+        },
+        {
+          "label": "7",
+          "label_native": "C"
+        },
+        {
+          "label": "4",
+          "label_native": "D"
+        },
+        {
+          "label": "02",
+          "label_native": "E"
+        },
+        {
+          "label": "00",
+          "label_native": "Fx"
+        },
+        {
+          "label": "-3",
+          "label_native": "F"
+        }
+      ],
+      "pass_label": "02",
+      "note": "Criterion-based; no percent conversion. A new scale was proposed in November 2025.",
+      "sources": [
+        {
+          "title": "Børne- og Undervisningsministeriet, karakterer på 7-trins-skalaen",
+          "url": "https://uvm.dk/ministeriet/uddannelsessystemet/7-trins-skalaen/karakterer-paa-7-trins-skalaen/"
+        }
+      ]
+    },
+    {
+      "id": "no-school",
+      "name": "Norway, school, 6 to 1",
+      "country": "NO",
+      "scope": "schools",
+      "languages": [
+        "nn"
+      ],
+      "scale": [
+        {
+          "label": "6",
+          "label_native": "framifrå kompetanse"
+        },
+        {
+          "label": "5",
+          "label_native": "mykje god kompetanse"
+        },
+        {
+          "label": "4",
+          "label_native": "god kompetanse"
+        },
+        {
+          "label": "3",
+          "label_native": "nokså god kompetanse"
+        },
+        {
+          "label": "2",
+          "label_native": "låg kompetanse"
+        },
+        {
+          "label": "1",
+          "label_native": "svært låg kompetanse"
+        }
+      ],
+      "pass_label": "2",
+      "note": "The pass applies to upper secondary school; higher education grades A to F.",
+      "sources": [
+        {
+          "title": "Opplæringsforskrifta, § 9-3 (Lovdata)",
+          "url": "https://lovdata.no/dokument/SF/forskrift/2024-06-03-900/KAPITTEL_3-1-1"
+        }
+      ]
+    },
+    {
+      "id": "fi-school",
+      "name": "Finland, school, 10 to 4",
+      "country": "FI",
+      "scope": "basic education",
+      "languages": [
+        "fi"
+      ],
+      "scale": [
+        {
+          "label": "10",
+          "label_native": "erinomainen"
+        },
+        {
+          "label": "9",
+          "label_native": "kiitettävä"
+        },
+        {
+          "label": "8",
+          "label_native": "hyvä"
+        },
+        {
+          "label": "7",
+          "label_native": "tyydyttävä"
+        },
+        {
+          "label": "6",
+          "label_native": "kohtalainen"
+        },
+        {
+          "label": "5",
+          "label_native": "välttävä"
+        },
+        {
+          "label": "4",
+          "label_native": "hylätty"
+        }
+      ],
+      "pass_label": "5",
+      "note": "Criterion-based; no percent conversion.",
+      "sources": [
+        {
+          "title": "Perusopetusasetus 852/1998, § 10",
+          "url": "https://finlex.fi/en/legislation/1998/852"
+        }
+      ]
+    },
+    {
+      "id": "fi-higher-education",
+      "name": "Finland, higher education, 5 to 0",
+      "country": "FI",
+      "scope": "higher education",
+      "languages": [
+        "fi"
+      ],
+      "scale": [
+        {
+          "label": "5",
+          "label_native": "erinomainen"
+        },
+        {
+          "label": "4",
+          "label_native": "kiitettävä"
+        },
+        {
+          "label": "3",
+          "label_native": "hyvä"
+        },
+        {
+          "label": "2",
+          "label_native": "tyydyttävä"
+        },
+        {
+          "label": "1",
+          "label_native": "välttävä"
+        },
+        {
+          "label": "0",
+          "label_native": "hylätty"
+        }
+      ],
+      "pass_label": "1",
+      "note": "Thresholds are set per course.",
+      "sources": [
+        {
+          "title": "University of Helsinki, grades and grading criteria",
+          "url": "https://teaching.helsinki.fi/instructions/article/grades-assessment-and-grading-criteria"
+        }
+      ]
+    },
+    {
+      "id": "lv-school",
+      "name": "Latvia, 10 to 1",
+      "country": "LV",
+      "scope": "schools",
+      "languages": [
+        "lv"
+      ],
+      "scale": [
+        {
+          "label": "10",
+          "label_native": "izcili"
+        },
+        {
+          "label": "9",
+          "label_native": "teicami"
+        },
+        {
+          "label": "8",
+          "label_native": "ļoti labi"
+        },
+        {
+          "label": "7",
+          "label_native": "labi"
+        },
+        {
+          "label": "6",
+          "label_native": "gandrīz labi"
+        },
+        {
+          "label": "5",
+          "label_native": "viduvēji"
+        },
+        {
+          "label": "4",
+          "label_native": "gandrīz viduvēji"
+        },
+        {
+          "label": "3",
+          "label_native": "vāji"
+        },
+        {
+          "label": "2",
+          "label_native": "ļoti vāji"
+        },
+        {
+          "label": "1",
+          "label_native": "ļoti, ļoti vāji"
+        }
+      ],
+      "pass_label": "4",
+      "note": "Schools set their own, non-linear percent tables.",
+      "sources": [
+        {
+          "title": "University of Latvia, academic information",
+          "url": "https://www.lu.lv/en/admission/for-international-students/degree/academic-information/"
+        }
+      ]
+    },
+    {
+      "id": "ge-school",
+      "name": "Georgia, school, 10 to 1",
+      "country": "GE",
+      "scope": "schools",
+      "languages": [
+        "ka"
+      ],
+      "scale": [
+        {
+          "label": "10"
+        },
+        {
+          "label": "9"
+        },
+        {
+          "label": "8"
+        },
+        {
+          "label": "7"
+        },
+        {
+          "label": "6"
+        },
+        {
+          "label": "5"
+        },
+        {
+          "label": "4"
+        },
+        {
+          "label": "3"
+        },
+        {
+          "label": "2"
+        },
+        {
+          "label": "1"
+        }
+      ],
+      "pass_label": "5",
+      "note": "A school year counts as passed with 5,0 or more after rounding. Higher education has its own 100-point scale.",
+      "sources": [
+        {
+          "title": "Ministry of Education: National Curriculum FAQ",
+          "url": "https://mes.gov.ge/content.php?id=7056&lang=geo"
+        }
+      ]
+    },
+    {
+      "id": "jp-elementary-viewpoints",
+      "name": "Japan, elementary school viewpoint marks",
+      "country": "JP",
+      "scope": "elementary school, per assessment viewpoint",
+      "languages": [
+        "ja"
+      ],
+      "scale": [
+        {
+          "label": "A",
+          "label_native": "十分満足できる"
+        },
+        {
+          "label": "B",
+          "label_native": "おおむね満足できる"
+        },
+        {
+          "label": "C",
+          "label_native": "努力を要する"
+        }
+      ],
+      "pass_label": null,
+      "note": "Compulsory schooling has no pass or fail; C means needs effort.",
+      "sources": [
+        {
+          "title": "MEXT: 指導要録",
+          "url": "https://www.mext.go.jp/b_menu/hakusho/nc/1415169.htm"
+        }
+      ]
+    },
+    {
+      "id": "jp-5-1",
+      "name": "Japan, middle and high school, 5 to 1",
+      "country": "JP",
+      "scope": "middle and high school",
+      "languages": [
+        "ja"
+      ],
+      "scale": [
+        {
+          "label": "5"
+        },
+        {
+          "label": "4"
+        },
+        {
+          "label": "3"
+        },
+        {
+          "label": "2"
+        },
+        {
+          "label": "1"
+        }
+      ],
+      "pass_label": null,
+      "note": "Absolute evaluation against curriculum objectives. Middle school has no failing grade; in high school a 1 commonly means no credit, set by each school.",
+      "sources": [
+        {
+          "title": "Static assessment criteria (example)",
+          "url": "https://www.kyobun.co.jp/article/k20230605-02"
+        }
+      ]
+    },
+    {
+      "id": "mx-basic",
+      "name": "Mexico, basic education, 10 to 5",
+      "country": "MX",
+      "scope": "primary and secondary school",
+      "languages": [
+        "es"
+      ],
+      "scale": [
+        {
+          "label": "10"
+        },
+        {
+          "label": "9"
+        },
+        {
+          "label": "8"
+        },
+        {
+          "label": "7"
+        },
+        {
+          "label": "6"
+        },
+        {
+          "label": "5"
+        }
+      ],
+      "pass_label": "6",
+      "note": "5 is the single failing grade.",
+      "sources": [
+        {
+          "title": "SEP, Acuerdo 10/09/23",
+          "url": "https://www.gob.mx/sep/articulos/boletin-201-publica-sep-acuerdo-para-la-evaluacion-de-aprendizaje-promocion-regularizacion-y-certificacion-de-educacion-basica"
+        }
+      ]
+    },
+    {
+      "id": "br-0-10",
+      "name": "Brazil, 0 to 10",
+      "country": "BR",
+      "scope": "schools and universities",
+      "languages": [
+        "pt"
+      ],
+      "scale": [
+        {
+          "label": "10"
+        },
+        {
+          "label": "9"
+        },
+        {
+          "label": "8"
+        },
+        {
+          "label": "7"
+        },
+        {
+          "label": "6"
+        },
+        {
+          "label": "5"
+        },
+        {
+          "label": "4"
+        },
+        {
+          "label": "3"
+        },
+        {
+          "label": "2"
+        },
+        {
+          "label": "1"
+        },
+        {
+          "label": "0"
+        }
+      ],
+      "pass_label": null,
+      "note": "No national pass mark: 5 in São Paulo state schools and at USP, other systems use 6 or 7.",
+      "sources": [
+        {
+          "title": "Lei 9.394/96 (LDB), Art. 24",
+          "url": "https://www.planalto.gov.br/ccivil_03/leis/l9394.htm"
+        }
+      ]
+    },
+    {
+      "id": "ar-school",
+      "name": "Argentina, school, 10 to 1",
+      "country": "AR",
+      "scope": "secondary school",
+      "languages": [
+        "es"
+      ],
+      "scale": [
+        {
+          "label": "10"
+        },
+        {
+          "label": "9"
+        },
+        {
+          "label": "8"
+        },
+        {
+          "label": "7"
+        },
+        {
+          "label": "6"
+        },
+        {
+          "label": "5"
+        },
+        {
+          "label": "4"
+        },
+        {
+          "label": "3"
+        },
+        {
+          "label": "2"
+        },
+        {
+          "label": "1"
+        }
+      ],
+      "pass_label": null,
+      "note": "The pass mark is provincial: 6 in the City of Buenos Aires, 7 in the Province of Buenos Aires from 2025.",
+      "sources": [
+        {
+          "title": "Provincia de Buenos Aires, Resolución 1650/24",
+          "url": "https://normas.gba.gob.ar/ar-b/resolucion-conjunta/2024/1650/440121"
+        }
+      ]
+    },
+    {
+      "id": "cl-1-7",
+      "name": "Chile, 7,0 to 1,0",
+      "country": "CL",
+      "scope": "schools and universities",
+      "languages": [
+        "es"
+      ],
+      "scale": [
+        {
+          "label": "7,0"
+        },
+        {
+          "label": "6,0"
+        },
+        {
+          "label": "5,0"
+        },
+        {
+          "label": "4,0"
+        },
+        {
+          "label": "3,0"
+        },
+        {
+          "label": "2,0"
+        },
+        {
+          "label": "1,0"
+        }
+      ],
+      "pass_label": "4,0",
+      "note": "4,0 at 60 percent of the points (escala al 60 %) is the dominant convention, set by each school; 50 percent is also used.",
+      "sources": [
+        {
+          "title": "MINEDUC, normativa de evaluación y promoción",
+          "url": "https://www.ayudamineduc.cl/ficha/normativa-de-evaluacion-y-promocion-educacion-basica"
+        }
+      ]
+    },
+    {
+      "id": "uy-school",
+      "name": "Uruguay, public school (ANEP), 10 to 1",
+      "country": "UY",
+      "scope": "public education (ANEP)",
+      "languages": [
+        "es"
+      ],
+      "scale": [
+        {
+          "label": "10",
+          "label_native": "avance destacado"
+        },
+        {
+          "label": "9",
+          "label_native": "avance destacado"
+        },
+        {
+          "label": "8",
+          "label_native": "avance significativo"
+        },
+        {
+          "label": "7",
+          "label_native": "avance significativo"
+        },
+        {
+          "label": "6",
+          "label_native": "avance moderado"
+        },
+        {
+          "label": "5",
+          "label_native": "avance moderado"
+        },
+        {
+          "label": "4",
+          "label_native": "avance escaso"
+        },
+        {
+          "label": "3",
+          "label_native": "avance escaso"
+        },
+        {
+          "label": "2",
+          "label_native": "avance mínimo"
+        },
+        {
+          "label": "1",
+          "label_native": "avance mínimo"
+        }
+      ],
+      "pass_label": "5",
+      "note": "Replaced the 1 to 12 scale in 2024. The Universidad de la República has its own scale.",
+      "sources": [
+        {
+          "title": "ANEP, REDE 2024, Art. 40",
+          "url": "https://www.anep.edu.uy/sites/default/files/images/Archivos/doc-curriculares/generales/2025/ebi/REDE%202024.pdf"
+        }
+      ]
+    },
+    {
+      "id": "gr-dimotiko",
+      "name": "Greece, primary school grades 5 and 6, 10 to 1",
+      "country": "GR",
+      "scope": "primary school, grades 5 and 6 only",
+      "languages": [
+        "el"
+      ],
+      "scale": [
+        {
+          "label": "9–10",
+          "label_native": "Άριστα"
+        },
+        {
+          "label": "7–8",
+          "label_native": "Πολύ καλά"
+        },
+        {
+          "label": "5–6",
+          "label_native": "Καλά"
+        },
+        {
+          "label": "1–4",
+          "label_native": "Σχεδόν καλά"
+        }
+      ],
+      "pass_label": null,
+      "note": "Grades 1 and 2 are assessed descriptively, 3 and 4 with letters. There is no pass per subject; a pupil repeats a year only if the overall average is below 4,5.",
+      "sources": [
+        {
+          "title": "Υπουργική Απόφαση Φ.7Α/ΦΜ/212191/Δ1/2017",
+          "url": "https://www.e-nomothesia.gr/kat-ekpaideuse/protobathmia-ekpaideuse/upourgike-apophase-ph7-aphm-212191-d1-2017.html"
+        }
+      ]
+    }
+  ],
+  "unavailable": [
+    {
+      "id": "ects",
+      "name": "ECTS grades A to E",
+      "reason": "ECTS grades describe a distribution over the students who passed, not a performance threshold; no percentage maps to them.",
+      "sources": [
+        {
+          "title": "ECTS Users' Guide 2015 (European Commission)",
+          "url": "https://op.europa.eu/en/publication-detail/-/publication/da7467e6-8450-11e5-b8b7-01aa75ed71a1"
+        }
+      ]
+    },
+    {
+      "id": "gcse-a-level",
+      "name": "GCSE and A-level grades (England, Wales, Northern Ireland)",
+      "reason": "Grade boundaries are set anew for each examination series; since 1987 no fixed percentages or proportions define the grades.",
+      "sources": [
+        {
+          "title": "Ofqual: GCSE, AS and A level grade standards",
+          "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/451321/2015-08-05-summer-series-gcse-as-and-a-level-grade-standards.pdf"
+        }
+      ]
+    },
+    {
+      "id": "de-state-law-examination",
+      "name": "Germany, state law examination, 18 points",
+      "reason": "The examiners award points directly on a fixed 18-point scale with fixed bands; no percentage underlies them, so no percent threshold can be derived.",
+      "sources": [
+        {
+          "title": "Verordnung über eine Noten- und Punkteskala für die erste und zweite juristische Prüfung",
+          "url": "https://www.gesetze-im-internet.de/jurprnotskv/BJNR012430981.html"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,318 @@
+var e={category:`features`,language:`de`,entries:[{key:`feature_method_switch`,title:`Methodenwechsel`,short:`Das System empfiehlt eine andere Methode, wenn du stagnierst — du entscheidest, ob du wechselst.`,long:`## Was ist der Methodenwechsel?
+
+Wenn deine Lernsessions in einer Methode stagnieren oder
+hohen Stress erzeugen, schlaegt dir Adaptive Learner einen
+Methodenwechsel vor. Du siehst den Vorschlag als Banner
+ueber dem Session-Chat — du kannst ihn annehmen, ablehnen
+oder spaeter entscheiden.
+
+## Wann der Vorschlag ausgeloest wird
+
+Drei Bedingungen muessen gleichzeitig erfuellt sein:
+
+- **Mindestens 3 Sessions** in der aktuellen Methode.
+- **Durchschnittlicher Stress > 3** (auf 1-5-Skala) in
+  den letzten 3 Bewertungen.
+- **Methodenpassung < 3** in den letzten 3 Bewertungen.
+
+Stagnations-Erkennung allein reicht nicht: kurze
+Schwierigkeiten in einer ansonsten passenden Methode sind
+normal und gehen wieder vorbei. Erst die Kombination aus
+Dauer + Stress + niedriger Passung loest den Vorschlag aus.
+
+## Wie das System entscheidet
+
+Der \`\`recommend_method_switch\`\`-Hook im Session-Plugin
+vergleicht dein Lernprofil mit deinem aktuellen Verlauf
+und schlaegt die Methode mit der hoechsten erwarteten
+Passung vor. Wenn die top-2 Methoden nahe beieinander
+liegen, siehst du beide als Optionen.
+
+## Du entscheidest
+
+Das System schlaegt vor; du waehlst. Wenn du den Wechsel
+annimmst, wird der Wechsel als \`\`MethodSwitch\`\`-Eintrag
+gespeichert (Auditspur fuer dein Profil). Wenn du
+ablehnst, passiert nichts — der Vorschlag erscheint
+fruehestens nach 3 weiteren Sessions wieder.
+
+## Warum nicht automatisch?
+
+Methodenwechsel sind eine grosse Veraenderung im
+Lernerlebnis. Ein automatischer Wechsel wuerde die
+Lernkontinuitaet brechen und kann auch dann ausgeloest
+werden, wenn du gerade in einer schwierigen aber
+produktiven Phase bist. Du kennst deinen Kontext besser
+als das System.
+`},{key:`feature_auto_loop`,title:`Auto-Loop`,short:`Nach Schritt 7 startet automatisch ein neuer Zyklus mit frischem Inhalt.`,long:`## Was ist der Auto-Loop?
+
+Wenn du Schritt 7 (Integration) abschliesst, kann die
+Session automatisch einen neuen Zyklus zum nachfolgenden
+Thema deines Curriculums starten — ohne dass du den
+"Naechster Zyklus"-Button druecken musst.
+
+## Wie das System das naechste Thema waehlt
+
+- **Wenn ein Curriculum existiert**: das naechste Thema
+  in der hierarchischen Reihenfolge.
+- **Wenn kein Curriculum existiert**: die AI generiert
+  ein passendes Folgethema basierend auf dem aktuellen
+  Lernverlauf.
+- **Wenn Spaced-Repetition-Karten faellig sind**: diese
+  werden vorgezogen, bevor neuer Stoff kommt.
+
+## Cycle-Counter
+
+Jede Session zeigt einen Cycle-Counter ("3/5"). Wenn
+max_cycles erreicht ist (Default: 5), pausiert der
+Auto-Loop und das System fragt, ob du weitermachen
+moechtest. Das schuetzt vor uebermaessig langen Sessions.
+
+## Wie du den Auto-Loop unterbrichst
+
+- **Bewertung abgeben**: nach jedem Zyklus bekommst du
+  die drei Regler (Verstaendnis, Stress, Methodenpassung).
+  Wenn dein Stress > 3 ist, schlaegt das System eine
+  Pause vor.
+- **"Session beenden"-Button**: jederzeit klickbar.
+- **Methodenwechsel annehmen**: bricht den aktuellen
+  Loop und startet einen neuen mit der neuen Methode.
+
+## Wann der Auto-Loop besonders wertvoll ist
+
+Bei Sprachenlernen mit kleinen Themen-Einheiten, wo der
+Overhead "neue Session starten" das Lernen ausbremst.
+Beim Coding ist die Auto-Loop oft weniger nuetzlich, weil
+die Themen-Wechsel groesser sind.
+`},{key:`feature_spaced_repetition`,title:`Spaced Repetition`,short:`Zeitlich optimierte Wiederholungen basierend auf deinem Lernverlauf.`,long:`## Was ist Spaced Repetition?
+
+Spaced Repetition ist die Lerntechnik, Wiederholungen in
+immer groesseren Abstaenden anzuordnen. Das nutzt den
+Vergessens-Kurve-Effekt: jede erfolgreich abgerufene
+Information haelt das naechste Mal laenger.
+
+## Das Band-System im Adaptive Learner
+
+Sechs Faelligkeits-Baender (Bands):
+
+- **Today** — neue Karten + Tages-Wiederholungen.
+- **+1d** — gestern gelernt, heute wiederholen.
+- **+3d** — vor drei Tagen wiederholt, heute wieder.
+- **+7d** — eine Woche her.
+- **+14d** — zwei Wochen her.
+- **+30d** — ein Monat her.
+
+Sobald eine Karte vier Wiederholungen erfolgreich
+bestanden hat, wird sie als "stabil" markiert und
+verlaesst die aktive Liste — bleibt aber im System fuer
+gelegentliche Auffrischung.
+
+## Wie der Verlauf eingeht
+
+Eine "erfolgreiche Wiederholung" ist nicht nur ein Klick.
+Das System bewertet:
+
+- **Confidence in der Wiederholungs-Session** (vom
+  Dual-Prompt-Evaluator).
+- **Antwortzeit** im Vergleich zu deinem Durchschnitt.
+- **Fehleranzahl** im aktuellen Zyklus.
+
+Bei niedriger Confidence rutscht die Karte zurueck in ein
+frueheres Band statt einfach das naechste zu erreichen.
+
+## Verbindung zu Anki
+
+Wenn das Anki-Plugin aktiv ist, kannst du Karten direkt
+ins Anki-Format exportieren. Das System uebersetzt die
+Bands in Anki-Schedules — du verlierst keinen Fortschritt
+beim Umstieg.
+
+## Wann das System Wiederholungen empfiehlt
+
+Im Dashboard zeigen dir die "Spaced Recommendations" die
+heute faelligen Karten. Du kannst sie einzeln durchgehen
+oder am Anfang einer regulaeren Session vorausschicken
+lassen — vor dem neuen Stoff. Das System bevorzugt die
+Karten mit dem hoechsten Vergessens-Risiko.
+`},{key:`feature_conversation_analysis`,title:`Conversation Analysis / Import`,short:`Analysiere bestehende Chat-Verlaeufe und extrahiere daraus konkrete Lernerkenntnisse.`,long:`## Was ist Conversation Analysis?
+
+Adaptive Learner kann bestehende Chats mit ChatGPT,
+Claude oder Gemini analysieren und daraus
+Lerngegenstaende extrahieren. Du importierst den
+Chat-Verlauf einmal — das System liest ihn, ordnet ihn
+ein und macht ihn zu einem nutzbaren Lernartefakt.
+
+## Was extrahiert wird
+
+- **Konzepte** — Begriffe und Ideen, die im Chat
+  diskutiert wurden.
+- **Wissensluecken** — Stellen, an denen du nachgefragt
+  oder Fehler gemacht hast.
+- **Fehler** — konkrete Missverstaendnisse, die im Chat
+  sichtbar wurden.
+- **Vokabular / Terminologie** — Fachbegriffe (besonders
+  beim Sprachenlernen oder in Spezialgebieten).
+
+## Wie der Import funktioniert
+
+1. Du exportierst deinen Chat aus ChatGPT, Claude oder
+  Gemini als Markdown oder JSON.
+2. Du laedst die Datei in Adaptive Learner hoch
+  (drag&drop oder Dateiauswahl).
+3. Das System erkennt das Format automatisch und
+  speichert die Nachrichten.
+4. Du startest die Analyse — die AI liest den Chat in
+  deiner Lernsprache und liefert die strukturierte
+  Auswertung.
+
+## Was du danach tun kannst
+
+Aus der Analyse entstehen drei Aktionen:
+
+- **"Curriculum erstellen"** — die extrahierten Konzepte
+  werden in ein hierarchisches Curriculum ueberfuehrt.
+- **"Session starten"** — eine Session, die direkt mit
+  den erkannten Wissensluecken startet.
+- **"Anki-Karten generieren"** — Karteikarten aus den
+  Konzepten + Vokabular.
+
+## Duplikate
+
+Wenn du denselben Chat zweimal importierst, erkennt das
+System es ueber den Inhalts-Hash und bietet dir an, zur
+bestehenden Analyse zu navigieren statt eine Kopie
+anzulegen.
+
+## Datenschutz
+
+Die Chat-Inhalte gehen NUR an deinen aktiven AI-Provider
+(den, den du in den Einstellungen konfiguriert hast).
+Das System schickt nichts an einen zentralen Server.
+Wenn du den Chat loescht, sind die Inhalte komplett weg.
+`},{key:`feature_gamification`,title:`Gamification (XP, Badges, Streaks)`,short:`Fortschrittssystem mit Erfahrungspunkten, Abzeichen und Lernserien — Motivation ohne Spielerei.`,long:`## Was ist die Gamification-Schicht?
+
+Drei Mechaniken machen Lernfortschritt sichtbar und
+belohnend:
+
+- **XP (Erfahrungspunkte)** — fuer jede abgeschlossene
+  Session, jeden Methodenwechsel, jede Spaced-Repetition-
+  Karte. Levels steigen mit den XP.
+- **Badges** — fuer thematische Meilensteine ("Erste
+  Session", "10 Sessions in einer Methode", "30 Tage
+  Streak", ...).
+- **Streaks** — taegliche Lernserien. Verfallen nach
+  24 Stunden ohne Session — mit drei "Streak Freezes"
+  pro Monat als Notfall-Pause.
+
+## Wie XP verdient wird
+
+Verschiedene Aktionen geben verschiedene XP-Werte:
+
+- **Session bewertet abgeben**: 50 XP.
+- **Schritt 7 (Integration) erreicht**: +25 XP Bonus.
+- **Methodenwechsel angenommen**: 10 XP (du nimmst eine
+  bewusste Lernentscheidung).
+- **Spaced-Repetition-Karte mit Confidence > 80%**: 5 XP.
+- **Anki-Export einer Sammlung**: 20 XP.
+
+Levels skalieren mit Wurzel-Funktion (Level n = sqrt(XP /
+100)) — Anfangslevels gehen schnell, hoehere brauchen
+laengeren Atem.
+
+## Badges sind kein Zwang
+
+Badge-Kriterien sind nicht UI-relevant — du *musst* kein
+einziges Badge holen, um die App produktiv zu nutzen. Sie
+sind ein Spiegel, kein Ziel. Wenn du das Gefuehl
+bekommst, fuer Badges statt fuer dich zu lernen,
+deaktiviere die Anzeige in den Einstellungen.
+
+## Streak-Freezes
+
+Drei Streak-Freezes pro Monat. Wenn du einen Tag
+verpasst, schuetzt der Freeze deine Streak automatisch.
+Das ist explizit als "Krankheitstag" oder "Reisetag"
+gedacht, nicht als Ausnahme-Mechanik fuer Faulheit.
+
+## Warum das ohne Gimmicks funktioniert
+
+Lernforschung zeigt: extrinsische Belohnung kann
+intrinsische Motivation zerstoeren ("overjustification
+effect"). Adaptive Learner setzt darauf, dass die
+Mechaniken ein **Spiegel** des Fortschritts sind, kein
+Anreiz-System. Keine Vergleichs-Ranglisten, keine
+Social-Features, keine Punkte-Sharing — die Daten
+bleiben bei dir.
+
+## Reset
+
+Wenn dir die Gamification-Werte nicht mehr passen
+(z.B. neuer Anlauf nach langer Pause), kannst du sie in
+den Einstellungen zuruecksetzen. Curriculum, Sessions
+und Bewertungen bleiben erhalten.
+`},{key:`view_dashboard`,title:`Dashboard`,short:`Deine Startseite: Fortschritt, Streak, XP, Abzeichen, faellige Wiederholungen und schnelle Aktionen.`,docs_slug:`user-guide/dashboard`,long:`## Was zeigt das Dashboard?
+
+Das Dashboard ist deine Kommandozentrale. Oben steht
+"Weitermachen" mit der zuletzt beruehrten Lektion, darunter
+die handlungsrelevanten Karten (pausierte Lektionen,
+Missionen, Fokusbereiche, Wiederholungs-Warteschlange),
+dann die Gamification (XP, Streak, Abzeichen) und
+schliesslich die analytischen Panels.
+
+## Filter
+
+Ein Subject-Filter listet nur deine eigenen Fachgebiete,
+nach haeufigster Nutzung sortiert.
+`},{key:`view_content_browser`,title:`Content Browser`,short:`Die Seite, auf der du Lektionssaetze findest, herunterlaedst und startest.`,docs_slug:`features/content-browser`,long:`## Wie finde ich Lektionen?
+
+Der Content Browser unter /content ist rund um den
+Lernfluss gebaut: zuerst die Suche (sofort,
+akzent-tolerant), dann "Weitermachen", dann der Katalog.
+Dieser teilt sich in "Sprachen" (Quellsprache >
+Zielsprache > Niveau) und "Wissen" (Nicht-Sprach-Domaenen).
+
+## Quellen und Buecher
+
+Quell-Badges zeigen, woher ein Satz stammt; ein
+Quell-Filter blendet einzelne Quellen aus. Zu einer
+Domaene koennen Buchempfehlungen erscheinen.
+`},{key:`view_lesson`,title:`Lektion`,short:`Der Viewer, der dich Schritt fuer Schritt durch Theorie und Uebungen einer Lektion fuehrt.`,docs_slug:`user-guide/lessons`,long:`## Wie funktionieren die Uebungen?
+
+Eine Lektion ist eine Folge von Theorie- und
+Uebungsschritten. Fuenf Uebungstypen kommen vor: Zuordnen
+(farbige Paare + Nummern-Badges), Bildauswahl, Freitext,
+Wort-Kacheln und Lueckentext.
+
+## Bedienung
+
+Enter prueft eine beantwortete Uebung und geht weiter. Aus
+einer Uebung springst du per "Theorie nochmal lesen" zur
+passenden Theorie. Am Ende siehst du dein Ergebnis mit
+Sternen und kannst es als Markdown exportieren.
+`},{key:`view_settings`,title:`Einstellungen`,short:`Alles, was du ohne Code oder YAML aendern kannst — Sprache, KI, Lernen, Daten, Darstellung.`,docs_slug:`user-guide/settings`,long:`## Was kann ich einstellen?
+
+Die Einstellungen buendeln Sprache, KI-Anbieter und
+-Schluessel, Speichermodus, Lern-Optionen (z.B.
+Enter-Shortcut, bevorzugte Uebungsrichtung), Daten (Backup,
+Content-Repositories), Darstellung (12 Themes) und
+Gamification.
+
+## Daten in deiner Hand
+
+Unter "Daten" erstellst und importierst du Backups und
+verbindest eigene Content-Repositories. Nichts davon
+verlaesst dein Geraet ungefragt.
+`},{key:`feature_backup`,title:`Backup und Wiederherstellung`,short:`Ein vollstaendiger Snapshot deines Lernzustands, den du speichern und woanders wiederherstellen kannst.`,docs_slug:`features/backup`,long:`## Was ist ein Backup?
+
+Ein Backup ist ein vollstaendiger Snapshot: alle Tabellen
+(Projekte, Sessions, Lektionsfortschritt, Fehler,
+Gamification, Missionen ...) plus deine heruntergeladenen
+Content-Sets — als eine JSON-Datei.
+
+## Cross-Identity
+
+Du kannst ein Backup in eine frische Installation oder
+unter einem anderen Profil einspielen; die
+Wiederherstellung loest interne Verweise sauber neu auf.
+Beim Import siehst du eine Zusammenfassung pro Tabelle.
+`}]};export{e as default};

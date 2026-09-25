@@ -1,0 +1,32 @@
+{
+  "repo": "astrapi69/adaptive-learner-content-test",
+  "generated": "2026-07-31T16:08:55Z",
+  "schema_version": "1.0",
+  "sets": [
+    {
+      "id": "graded-quiz-demo-from-de",
+      "name": "Graded-Quiz Demo (Test)",
+      "description": "Eine Lektion: Theorie plus fuenf Aufgaben (multiple_choice, cloze select, cloze type) und ein benotetes Quiz ueber den Extension-Typ ext:al-graded-quiz.",
+      "source_language": "de",
+      "target_language": "de",
+      "level": "a1",
+      "domain": "knowledge",
+      "lesson_count": 1,
+      "card_count": 3,
+      "tags": [
+        "knowledge",
+        "test",
+        "graded-quiz",
+        "extension"
+      ],
+      "visibility": "hidden",
+      "review_status": "authored",
+      "ai_validated": false,
+      "trust_level": 1,
+      "book": null,
+      "updated_at": "2026-07-31T17:44:49+02:00"
+    }
+  ],
+  "total_lessons": 1,
+  "total_cards": 3
+}
