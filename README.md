@@ -17,10 +17,10 @@ Anleitung: [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md)
   gespiegelt in [`schema/`](schema/)).
 - `templates/`: Vorlagen je Domäne (language / programming /
   knowledge) für das Single-JSON-Lektionsformat.
-- `examples/`: eine vollständige Beispiel-Lektion
-  ([Inception-Effekt](examples/inception-effekt/)) zum Nachlesen.
-  Als lauffähiges Set lebt sie inhaltsgleich als Lektion 106 des
-  `psych-intro`-Sets in
+- Eine vollständige Beispiel-Lektion zum Nachlesen, den
+  [Inception-Effekt](https://github.com/astrapi69/adaptive-learner-content/tree/main/examples/inception-effekt),
+  führt das offizielle Repo. Als lauffähiges Set lebt sie
+  inhaltsgleich als Lektion 106 des `psych-intro`-Sets in
   [alc-psychology](https://github.com/astrapi69/alc-psychology).
 - `sets/`: lauffähige Test-Sets, im Wurzel-`manifest.yaml`
   registriert.
@@ -36,12 +36,13 @@ python3 scripts/validate_content.py
 ```
 
 Exit-Code 0, wenn alle Sets bestehen; sonst 1 mit einem Bericht je
-Datei. Der Validator braucht nur Python 3 und PyYAML
-(`pip install pyyaml`).
+Datei. Der Validator braucht Python 3 und die Pakete aus
+`requirements.txt` (`pip install -r requirements.txt`; `make validate`
+legt dafür ein eigenes venv an).
 
 **Vor dem Push** zusätzlich das Engine-Gate lokal laufen lassen: dieselben
-semantischen Regeln (`E-CARD-REF`, Cloze-Marker, Multiple-Choice-Regeln),
-die sonst erst die CI meldet:
+semantischen Regeln (`E-CARD-REF`, Cloze-Marker, Multiple-Choice-Regeln)
+und Qualitäts-Mindestanforderungen, die sonst erst die CI meldet:
 
 ```bash
 make lint
@@ -101,7 +102,8 @@ zuerst im Staging-Ordner [`generated/`](generated/).
 Setup (BYOK: dein Schlüssel, aus der Umgebung, nie im Repo):
 
 ```bash
-pip install pyyaml jsonschema           # dieselben Deps wie der Validator
+pip install -r requirements.txt         # dieselben Deps wie der Validator
+make lint                               # installiert einmalig die gepinnte Engine
 export ANTHROPIC_API_KEY="sk-..."       # oder OPENAI_API_KEY / GEMINI_API_KEY
 ```
 
@@ -117,20 +119,20 @@ python3 scripts/generate_exercises.py \
 Anbieter-agnostisch: `--provider anthropic|openai|gemini` (Default
 `anthropic`), Modell per `--model` überschreibbar. Der Ablauf ist ein
 Schleifen-Gate: Der Prompt gibt die exakte Lektions-JSON-Form vor, die
-Antwort wird geparst und validiert; schlägt die Validierung fehl, gehen
-die Fehler zurück ins Modell und es versucht es erneut (begrenzt). Ein
-Entwurf, der nie valide wird, wird verworfen, nicht geschrieben.
+Antwort wird geparst und geprüft, erst gegen das gespiegelte Schema,
+dann durch die gepinnte Engine (`scripts/engine_check.mjs`: semantische
+Regeln wie cloze `___`-Marker == blanks, `card_ids`-Integrität,
+multiselect-Disjunktheit, dazu die Qualitäts-Mindestanforderungen).
+Schlägt die Prüfung fehl, gehen die Fehler zurück ins Modell und es
+versucht es erneut (begrenzt). Ein Entwurf, der nie besteht, wird
+verworfen, nicht geschrieben. Ohne installierte Engine bricht der
+Generator ab (`make lint` installiert sie).
 
-Zwei Gates bleiben nach der Generierung:
-
-1. **Semantik-Gate der Engine** (cloze `___`-Marker == blanks, `card_ids`-
-   Integrität, multiselect-Disjunktheit): läuft, wenn die
-   `learn-content-engine` installiert ist, sonst spätestens in der CI:
-   die reine Python-Validierung deckt es nicht ab.
-2. **Muttersprachler-Review** für Sprachen, die du nicht muttersprachlich
-   sprichst. Kein Validator erkennt eine unnatürliche Formulierung oder
-   eine falsche Umschrift. Maschinell erzeugt, dann menschlich geprüft:
-   das ist die einzig verlässliche Reihenfolge für Sprachinhalte.
+Ein Gate bleibt nach der Generierung: das **Muttersprachler-Review** für
+Sprachen, die du nicht muttersprachlich sprichst. Kein Validator erkennt
+eine unnatürliche Formulierung oder eine falsche Umschrift. Maschinell
+erzeugt, dann menschlich geprüft: das ist die einzig verlässliche
+Reihenfolge für Sprachinhalte.
 
 Hintergrund + Prompt-Rezepte: der Blogpost "Build Your Own Lessons for
 Adaptive Learner".
