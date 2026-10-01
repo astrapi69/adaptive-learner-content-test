@@ -1,7 +1,7 @@
 {
   "id": "01-graded-quiz-referenz",
   "title": "Benotetes Quiz - Referenz",
-  "description": "Referenz-Lektion fuer den Extension-Typ ext:al-graded-quiz: Theorie plus fuenf Aufgaben, davon ein benotetes Quiz als Abschluss-Assessment.",
+  "description": "Referenz-Lektion für den Extension-Typ ext:al-graded-quiz: Theorie plus fünf Aufgaben, davon ein benotetes Quiz als Abschluss-Assessment.",
   "target_language": "de",
   "source_language": "de",
   "domain": "knowledge",
@@ -10,14 +10,14 @@
   "cards": [
     { "id": "c-gq-was", "stable_id": "card-ms93yui70010f", "front": "Was ist ein benotetes Quiz?", "back": "Ein Quiz mit einer Bestehensgrenze und Punkten pro Frage." },
     { "id": "c-gq-ext", "stable_id": "card-ms93yui7002o5", "front": "Wie wird das Quiz eingebunden?", "back": "Als Extension-Typ ext:al-graded-quiz, in requires_extensions deklariert." },
-    { "id": "c-gq-punkte", "stable_id": "card-ms93yui7003hr", "front": "Was entscheidet ueber das Bestehen?", "back": "Die Summe der erreichten Punkte gegen die Bestehensgrenze." }
+    { "id": "c-gq-punkte", "stable_id": "card-ms93yui7003hr", "front": "Was entscheidet über das Bestehen?", "back": "Die Summe der erreichten Punkte gegen die Bestehensgrenze." }
   ],
   "steps": [
     {
       "id": "t1",
       "type": "theory",
       "title": "Benotete Quizze",
-      "body": "# Benotetes Quiz\n\nEin **benotetes Quiz** (ext:al-graded-quiz) buendelt mehrere Fragen mit einer **Bestehensgrenze** (pass_threshold) und **Punkten** pro Frage. Am Ende entscheidet die Punktsumme ueber Bestehen."
+      "body": "# Benotetes Quiz\n\nEin **benotetes Quiz** (ext:al-graded-quiz) bündelt mehrere Fragen mit einer **Bestehensgrenze** (pass_threshold) und **Punkten** pro Frage. Am Ende entscheidet die Punktsumme über Bestehen."
     },
     {
       "id": "e1",
@@ -34,7 +34,7 @@
           { "text": "Eine Bestehensgrenze und Punkte pro Frage", "correct": true },
           { "text": "Nur eine einzige Karteikarte" },
           { "text": "Keine Bewertung" },
-          { "text": "Ausschliesslich Freitext" }
+          { "text": "Ausschließlich Freitext" }
         ],
         "hint": "Denke an die Bestehensgrenze."
       }
@@ -53,7 +53,7 @@
         "options": [
           { "text": "Als ext:al-graded-quiz, in requires_extensions deklariert", "correct": true },
           { "text": "Als Kernaufgabe ohne Deklaration" },
-          { "text": "Ueber ein Bild" },
+          { "text": "Über ein Bild" },
           { "text": "Gar nicht" }
         ]
       }
@@ -67,7 +67,7 @@
         "id": "e3",
         "stable_id": "ex-ms93yui70069f",
         "type": "cloze",
-        "prompt": "Was entscheidet ueber das Bestehen?",
+        "prompt": "Was entscheidet über das Bestehen?",
         "card_ids": ["c-gq-punkte"],
         "sentence": "Ueber das Bestehen entscheidet ___.",
         "blanks": [{ "accept": ["die Summe der Punkte"] }],
@@ -84,7 +84,7 @@
         "id": "e4",
         "stable_id": "ex-ms93yui7007xz",
         "type": "cloze",
-        "prompt": "Vervollstaendige den Satz.",
+        "prompt": "Vervollständige den Satz.",
         "card_ids": ["c-gq-was"],
         "sentence": "Die Bestehensgrenze heisst im Payload ___.",
         "blanks": [{ "accept": ["pass_threshold"] }],
@@ -115,7 +115,7 @@
               "points": 2
             },
             {
-              "prompt": "Wie heisst die Bestehensgrenze im Payload?",
+              "prompt": "Wie heißt die Bestehensgrenze im Payload?",
               "type": "free_text",
               "accept": ["pass_threshold"],
               "points": 3

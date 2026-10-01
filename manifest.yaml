@@ -10,7 +10,7 @@
 #
 # Anleitung: docs/GETTING-STARTED.md
 schema_version: '1.2'
-name: Adaptive Learner — Test- und Starter-Inhalte
+name: Adaptive Learner - Test- und Starter-Inhalte
 description: >-
   Starter-Kit-Inhalte für eigene Adaptive-Learner-Lektionen.
   Enthält lauffähige Test-Sets als Vorlage; forke das Repo und
@@ -30,8 +30,8 @@ sets:
     # Engine validiert das Set weiter, Consumer-Apps zeigen es nicht an.
     visibility: hidden
     description: >-
-      Eine Lektion: Theorie plus fuenf Aufgaben (multiple_choice, cloze
-      select, cloze type) und ein benotetes Quiz ueber den Extension-Typ
+      Eine Lektion: Theorie plus fünf Aufgaben (multiple_choice, cloze
+      select, cloze type) und ein benotetes Quiz über den Extension-Typ
       ext:al-graded-quiz.
     tags:
       - knowledge

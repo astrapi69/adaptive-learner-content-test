@@ -1,4 +1,4 @@
-# books.yaml — recommended reading per domain.
+# books.yaml, recommended reading per domain.
 #
 # Optional companion to the lesson catalogue: maps a content domain to a list
 # of books the app can surface as further reading. Not a content set, so it is
