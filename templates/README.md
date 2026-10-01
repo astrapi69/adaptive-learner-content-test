@@ -27,10 +27,11 @@ template for your domain and copy it.
 
 ## What each template already satisfies
 
-Every JSON template is a **valid lesson** (checked with the validator's
-lesson rules): ≥ 1 theory step, ≥ 5 exercises across ≥ 2 types, free-text with
-≥ 2 accepts **and** distractors, matching with ≥ 3 pairs, and a picture-choice
-with distractors. Keep those minimums when you edit.
+Every JSON template is a **valid lesson** that meets the engine's quality
+minimums: ≥ 1 theory step, ≥ 5 exercises across ≥ 2 types, free-text with
+≥ 2 accepts, and matching with ≥ 3 pairs. Keep those minimums when you edit,
+or declare the lesson's `purpose` (`bridge`, `quiz`) when it is meant to be
+lighter.
 
 ## Domain differences at a glance
 

@@ -6,19 +6,25 @@ enforces the hard quality gate (and fails CI); this audit hunts for the
 softer quality problems a schema check can miss and prints them as a
 table so they can be fixed:
 
-  * duplicate cards within a lesson (same id, or same front, or same
-    front/back pair)
-  * duplicate exercise / step ids within a lesson
-  * exercises whose answer set is malformed for their type
-    (matching pairs, free_text accept/distractors, cloze blanks,
-    word_tiles tiles, picture_choice single correct + distractors)
+  * duplicate cards within a lesson (same front, or same front/back pair)
+  * a free_text answer that is also listed as a distractor
   * matching pairs / free_text accepts that don't line up with any
     card the exercise references (possible wrong "correct" answer)
   * empty / whitespace-only fields (card front/back, prompts, theory
-    body, titles)
+    body, titles, matching pair sides): the schema's ``minLength`` lets a
+    string of spaces through
   * lessons missing in their set manifest, or set fields missing
 
-Exit code is always 0 — this is advisory. ``--strict`` makes it exit 1
+Not here, because the engine gate (validate_with_engine.mjs) blocks on them,
+and one rule lives in one place: malformed answer sets (cloze markers and
+blanks, multiselect accept/distractors, word_tiles with fewer than two tiles,
+picture_choice without exactly one correct image, a repeated matching left
+term), duplicate card, step and exercise ids (learn-content-engine#202), and
+the quality minimums such as matching pairs and free_text accepts (#185, keyed
+to a lesson's ``purpose``). The distractor requirement on free_text and
+picture_choice was dropped by the same decision.
+
+Exit code is always 0 - this is advisory. ``--strict`` makes it exit 1
 when any finding is reported (handy in CI once the tree is clean).
 """
 from __future__ import annotations
@@ -42,7 +48,7 @@ def audit_lesson(lesson: dict, label: str, findings: list[tuple]):
 
     cards = lesson.get("cards", []) or []
     # --- duplicate / empty cards -------------------------------------
-    seen_ids, seen_front, seen_pair = {}, {}, {}
+    seen_front, seen_pair = {}, {}
     card_by_front = {}
     for c in cards:
         cid = c.get("id", "?")
@@ -51,9 +57,6 @@ def audit_lesson(lesson: dict, label: str, findings: list[tuple]):
         if is_blank(c.get("front")) or is_blank(c.get("back")):
             add(f"card '{cid}' has empty front/back", "fill both fields")
         card_by_front[front.lower()] = back
-        if cid in seen_ids:
-            add(f"duplicate card id '{cid}'", "make card ids unique")
-        seen_ids[cid] = True
         if front and front.lower() in seen_front:
             add(f"duplicate card front '{front}' (ids {seen_front[front.lower()]}, {cid})",
                 "remove/merge the duplicate card")
@@ -65,12 +68,8 @@ def audit_lesson(lesson: dict, label: str, findings: list[tuple]):
 
     # --- steps: ids, theory, exercises -------------------------------
     steps = lesson.get("steps", []) or []
-    seen_step_ids = {}
     for s in steps:
         sid = s.get("id", "?")
-        if sid in seen_step_ids:
-            add(f"duplicate step id '{sid}'", "make step ids unique")
-        seen_step_ids[sid] = True
         if s.get("type") == "theory":
             if is_blank(s.get("body")):
                 add(f"theory step '{sid}' has empty body", "add Markdown body")
@@ -79,39 +78,22 @@ def audit_lesson(lesson: dict, label: str, findings: list[tuple]):
 
     exercises = [s.get("exercise") for s in steps
                  if s.get("type") == "exercise" and s.get("exercise")]
-    seen_ex_ids = {}
     for ex in exercises:
         eid = ex.get("id", "?")
         etype = ex.get("type", "?")
-        if eid in seen_ex_ids:
-            add(f"duplicate exercise id '{eid}'", "make exercise ids unique")
-        seen_ex_ids[eid] = True
         if is_blank(ex.get("prompt")):
             add(f"exercise '{eid}' ({etype}) has empty prompt", "add a prompt")
 
         if etype == "matching":
-            pairs = ex.get("pairs") or []
-            if len(pairs) < 3:
-                add(f"matching '{eid}' has {len(pairs)} pairs (need >= 3)", "add pairs")
-            seen_left = set()
-            for p in pairs:
-                left = (p.get("left") or "").strip()
-                right = (p.get("right") or "").strip()
+            for p in ex.get("pairs") or []:
                 if is_blank(p.get("left")) or is_blank(p.get("right")):
                     add(f"matching '{eid}' has an empty pair side", "fill left/right")
-                if left.lower() in seen_left:
-                    add(f"matching '{eid}' duplicate left '{left}'", "remove duplicate pair")
-                seen_left.add(left.lower())
                 # NB: we deliberately do NOT cross-check the pair's right side
-                # against the card gloss — matching exercises legitimately pair
+                # against the card gloss - matching exercises legitimately pair
                 # a word with its article / gender / category, not its dictionary
                 # translation, so such a check is all false positives.
         elif etype == "free_text":
             accept = ex.get("accept") or []
-            if len([a for a in accept if not is_blank(a)]) < 2:
-                add(f"free_text '{eid}' has < 2 non-empty accepts", "add accepted answers")
-            if not (ex.get("distractors") or []):
-                add(f"free_text '{eid}' has no distractors", "add distractors")
             # An accepted answer appearing verbatim in distractors is
             # contradictory. Compare case-SENSITIVELY: a distractor that
             # differs only by capitalisation (e.g. testing that Spanish
@@ -121,24 +103,6 @@ def audit_lesson(lesson: dict, label: str, findings: list[tuple]):
             if overlap:
                 add(f"free_text '{eid}' accept & distractors overlap: {sorted(overlap)}",
                     "remove the overlap")
-        elif etype == "cloze":
-            blanks = ex.get("blanks") or []
-            sentence = ex.get("sentence") or ""
-            if "___" not in sentence:
-                add(f"cloze '{eid}' sentence has no ___ gap", "add a ___ gap")
-            if not blanks or any(not (b.get("accept") or []) for b in blanks):
-                add(f"cloze '{eid}' has a blank with no accepted answers", "add accepts")
-        elif etype == "word_tiles":
-            if len(ex.get("tiles") or []) < 2:
-                add(f"word_tiles '{eid}' has < 2 tiles", "add tiles")
-        elif etype == "picture_choice":
-            images = ex.get("images") or []
-            correct = [i for i in images if str(i.get("is_correct")).lower() == "true"]
-            if len(correct) != 1:
-                add(f"picture_choice '{eid}' has {len(correct)} correct images (need 1)",
-                    "mark exactly one is_correct")
-            if not (ex.get("distractors") or []):
-                add(f"picture_choice '{eid}' has no distractors", "add distractors")
 
 
 def main() -> int:

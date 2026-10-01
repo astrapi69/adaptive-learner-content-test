@@ -1,6 +1,6 @@
 {
   "id": "template-knowledge-lesson",
-  "title": "TEMPLATE — Replace with your lesson title",
+  "title": "TEMPLATE - Replace with your lesson title",
   "description": "A ready-to-validate knowledge (non-language) lesson template. For non-language content the material and the explanation share ONE language, so source_language == target_language is allowed and the set folder carries a topic name. This example uses domain: psychology. See ../README.md and ../../docs/LESSON-FORMAT.md.",
   "target_language": "de",
   "source_language": "de",
@@ -11,7 +11,7 @@
       "id": "begriff-1",
       "front": "Fachbegriff",
       "back": "Definition des Begriffs in einem klaren Satz.",
-      "notes": "Für Wissensthemen: front = Begriff/Frage, back = Definition/Antwort — beide in derselben Sprache. Originalbegriffe (z. B. englisch) gehören in Klammern.",
+      "notes": "Für Wissensthemen: front = Begriff/Frage, back = Definition/Antwort, beide in derselben Sprache. Originalbegriffe (z. B. englisch) gehören in Klammern.",
       "media_type": "text",
       "difficulty": 2,
       "tags": ["beispiel"]

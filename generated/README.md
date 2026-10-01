@@ -8,8 +8,9 @@ so lange nur ein Entwurf, bis ein Mensch ihn gesichtet hat.
 Ablauf:
 
 1. Generieren: `python3 scripts/generate_exercises.py --topic ... ` legt
-   `generated/<set-id>/<lektion>.json` an (nur nachdem der Entwurf den
-   Struktur- + Qualitäts-Gate von `validate_content.py` bestanden hat).
+   `generated/<set-id>/<lektion>.json` an (nur nachdem der Entwurf die
+   Formprüfung von `validate_content.py` und die Regeln und
+   Qualitäts-Mindestwerte der gepinnten Engine bestanden hat).
 2. Sichten: Lies die Lektion. Für eine Sprache, die du nicht muttersprachlich
    sprichst, hol ein Muttersprachler-Review ein: kein Validator erkennt
    eine unnatürliche Formulierung oder eine falsche Umschrift.

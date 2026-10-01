@@ -1,4 +1,4 @@
-# Engine conformance gate — structural AND semantic validation.
+# Engine conformance gate - structural AND semantic validation.
 #
 # Runs learn-content-engine's validateLesson()/validateManifest() (at the
 # version pinned in schema/engine-version.txt) over the WHOLE repo
@@ -38,3 +38,35 @@ jobs:
         run: node scripts/validate_with_engine.mjs --self-test
       - name: Validate all lessons and manifests with the engine
         run: node scripts/validate_with_engine.mjs .
+      - name: Author lints (warnings, non-blocking)
+        # The warning tier never blocks - it reports authoring smells the
+        # error gate deliberately lets pass. It runs here so a lint shipped in
+        # a newly pinned engine release becomes visible on its own: warnings
+        # otherwise reach nobody unless someone runs `make lint-warnings` by
+        # hand, so a pin bump changes a version number and nothing on screen.
+        # The findings go into the job summary, readable without opening the
+        # log.
+        continue-on-error: true
+        run: |
+          # Keep the runner's exit code: it is 0 when it only finds warnings, so
+          # anything else is a crash, and a crash must show red instead of a
+          # green step with an empty table that reads like "no warnings".
+          set +e
+          node scripts/validate_with_engine.mjs --warnings . > /tmp/lint-warnings.txt 2>&1
+          status=$?
+          set -e
+          cat /tmp/lint-warnings.txt
+          # Per rule, and for every warning the repository decided to keep
+          # (.github/quality-state.json) the decision next to the number and a
+          # comparison of the recorded elements with the current ones.
+          python3 scripts/quality_state.py warnings /tmp/lint-warnings.txt >> "$GITHUB_STEP_SUMMARY"
+          {
+            echo
+            echo "<details><summary>full list</summary>"
+            echo
+            echo '```'
+            head -c 60000 /tmp/lint-warnings.txt
+            echo '```'
+            echo "</details>"
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit $status

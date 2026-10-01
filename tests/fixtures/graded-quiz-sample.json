@@ -1,0 +1,48 @@
+{
+  "id": "beispiel-benoteter-test",
+  "title": "Beispiel: benoteter Test",
+  "requires_extensions": ["ext:ref-graded-quiz@1"],
+  "steps": [
+    {
+      "id": "s1",
+      "type": "exercise",
+      "exercise": {
+        "id": "quiz-1",
+        "type": "ext:ref-graded-quiz",
+        "prompt": "Beantworte alle Fragen. Bestanden ab 60%.",
+        "ext_payload": {
+          "pass_threshold": 60,
+          "questions": [
+            {
+              "prompt": "Was ist die Hauptstadt von Frankreich?",
+              "type": "multiple_choice",
+              "options": [
+                { "text": "Paris", "correct": true },
+                { "text": "Berlin" },
+                { "text": "Madrid" }
+              ],
+              "points": 2
+            },
+            {
+              "prompt": "Nenne ein Synonym für 'schnell'.",
+              "type": "free_text",
+              "accept": ["rasch", "flink", "zügig"],
+              "points": 3
+            },
+            {
+              "prompt": "Welche Zahlen sind Primzahlen?",
+              "type": "multiple_choice",
+              "options": [
+                { "text": "2", "correct": true },
+                { "text": "3", "correct": true },
+                { "text": "4" }
+              ],
+              "points": 4,
+              "partial_credit": true
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

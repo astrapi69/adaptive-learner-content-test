@@ -1,6 +1,6 @@
 {
   "id": "template-programming-lesson",
-  "title": "TEMPLATE — Replace with your lesson title",
+  "title": "TEMPLATE - Replace with your lesson title",
   "description": "A ready-to-validate programming lesson template. Programming is a non-language domain (source_language == target_language). Code cards use the schema v1.3 fields code_snippet, code_language, expected_output and media_type: \"code\". See ../README.md and ../../docs/LESSON-FORMAT.md.",
   "target_language": "de",
   "source_language": "de",
@@ -47,7 +47,7 @@
       "id": "py-typen",
       "front": "Was ist der Unterschied zwischen 5 und '5'?",
       "back": "5 ist eine Zahl (int), '5' ist eine Zeichenkette (str).",
-      "notes": "Nicht jede Karte braucht Code — Konzeptkarten dürfen reiner Text sein (media_type: \"text\").",
+      "notes": "Nicht jede Karte braucht Code, Konzeptkarten dürfen reiner Text sein (media_type: \"text\").",
       "media_type": "text",
       "difficulty": 2,
       "tags": ["typen"]

@@ -5,7 +5,7 @@ The lesson SHAPE is canonical: ``schema/lesson.schema.json`` is mirrored from
 the pinned learn-content-engine release (source-of-truth chain: engine
 (canonical) → this mirror) and validated here with ``jsonschema`` exactly
 as ajv-based consumers (the app, the engine) validate it. The remaining half of
-the #699 contract is *parity* — every consumer must accept/reject the same
+the #699 contract is *parity* - every consumer must accept/reject the same
 input identically.
 
 This test pins the content-repo validator against the locally-owned fixture
@@ -54,7 +54,7 @@ try:
         "case", CASES, ids=[c["name"] for c in CASES]
     )
     def test_shape_parity_case(case: dict) -> None:
-        """Each fixture input gets the expected SHAPE verdict — the same
+        """Each fixture input gets the expected SHAPE verdict - the same
         verdict ajv-based consumers assert for the identical input."""
         got = vc.lesson_shape_ok(case["lesson"])
         expected = case["expectValid"]
@@ -89,7 +89,7 @@ def _run_standalone() -> int:
     if failures:
         print(f"\nDIVERGENCE: {len(failures)} case(s) disagree: {failures}")
         return 1
-    print(f"\nParity OK — all {len(CASES)} shared-fixture verdicts match.")
+    print(f"\nParity OK - all {len(CASES)} shared-fixture verdicts match.")
     return 0
 
 

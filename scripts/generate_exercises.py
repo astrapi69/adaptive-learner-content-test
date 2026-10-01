@@ -19,9 +19,11 @@ Design (see issue #25 / the "Build Your Own Lessons" blog post):
   disjoint multiselect sets, deliberate distractors, hint rules) are
   spelled out in the prompt.
 * **The validator is a hard gate, in a retry loop.** Each candidate is
-  run through ``lesson_shape_errors`` + ``validate_lesson_quality``; on
-  failure the error text is fed back to the model and it retries
-  (bounded). A candidate that never validates is discarded, not written.
+  run through ``lesson_shape_errors`` and then the pinned engine
+  (``scripts/engine_check.mjs``: semantic rules plus the quality
+  minimums); on failure the error text is fed back to the model and it
+  retries (bounded). A candidate that never validates is discarded, not
+  written.
 
 The heavy AI generation pipeline that ships INSIDE the app (EXP-036,
 ``frontend/src/lib/ai/generation/``) is browser-embedded TypeScript that
@@ -354,59 +356,60 @@ def call_model(prompt: str, config: ModelConfig) -> str:
 # --------------------------------------------------------------------------
 
 
-def validate_candidate(lesson: dict, source_language: str) -> list[str]:
-    """Gate a candidate lesson through this repo's own validator.
+ENGINE_CHECK = REPO_ROOT / "scripts" / "engine_check.mjs"
+ENGINE_MISSING = (
+    "learn-content-engine is not installed: the quality minimums and the "
+    "semantic rules are the engine's (run `make lint` once to install the "
+    "pinned engine)"
+)
 
-    Runs the structural schema check first (``lesson_shape_errors``); only
-    when the shape is valid does the quality layer run (it indexes fields
-    the schema guarantees). Returns an empty list when the lesson passes.
 
-    Note: the cross-field SEMANTIC rules (cloze blanks == ``___`` markers,
-    multiselect disjointness, card_ids referential integrity, picture
-    exactly-one-correct) live in the engine layer (``validate_with_engine``
-    / the engine's ``validateLesson``), not in ``validate_content.py``. Use
-    :func:`engine_check` when the engine is installed, and rely on the
-    repo's engine CI gate before shipping.
+def engine_installed() -> bool:
+    """Whether Node and the pinned ``learn-content-engine`` are installed here."""
+    return bool(_which("node")) and (REPO_ROOT / "node_modules" / "learn-content-engine").is_dir()
+
+
+def engine_issues(lesson: dict, source_language: str | None = None) -> list[str] | None:
+    """The pinned engine's verdict on one lesson, as messages.
+
+    Runs ``scripts/engine_check.mjs``: the engine's validity errors and, for
+    a valid lesson, its quality shortfalls (``validateLessonQuality``, keyed
+    to the lesson's ``purpose``). Empty list == the lesson passes. Returns
+    ``None`` when Node or the pinned ``learn-content-engine`` is not
+    installed in the repo.
     """
-    errors = vc.lesson_shape_errors(lesson)
-    if errors:
-        return errors
-    vc.validate_lesson_quality(lesson, source_language, "<candidate>", errors)
-    return errors
-
-
-def engine_check(lesson_path: Path) -> list[str] | None:
-    """Best-effort semantic gate via the installed engine.
-
-    Runs the engine's ``validateLesson`` on a single file when Node and the
-    pinned ``learn-content-engine`` are both available in the repo. Returns
-    the list of semantic errors (empty == valid), or ``None`` when the
-    engine is not installed (the caller then warns and defers to CI).
-    """
-    node = _which("node")
-    engine_dir = REPO_ROOT / "node_modules" / "learn-content-engine"
-    if not node or not engine_dir.is_dir():
+    if not engine_installed():
         return None
-    script = (
-        "import{validateLesson} from 'learn-content-engine';"
-        "import{readFileSync} from 'node:fs';"
-        "const l=JSON.parse(readFileSync(process.argv[1],'utf8'));"
-        "const r=validateLesson(l);"
-        "if(r&&r.ok===false){console.log(JSON.stringify(r.errors||[r.error||'invalid']));"
-        "process.exit(3);}"
-    )
+    command = [_which("node"), str(ENGINE_CHECK)]
+    if source_language:
+        command += ["--source-language", source_language]
     result = subprocess.run(  # noqa: S603  (fixed args, no shell)
-        [node, "--input-type=module", "-e", script, str(lesson_path)],
+        command,
+        input=json.dumps(lesson),
         cwd=REPO_ROOT,
         capture_output=True,
         text=True,
     )
-    if result.returncode == 0:
-        return []
-    try:
-        return list(json.loads(result.stdout.strip()))
-    except (json.JSONDecodeError, ValueError):
-        return [result.stdout.strip() or result.stderr.strip() or "engine rejected the lesson"]
+    if result.returncode != 0:
+        return [result.stderr.strip() or "engine_check.mjs failed"]
+    report = json.loads(result.stdout)
+    return [f"{issue['path'] or '<lesson>'}: [{issue['id']}] {issue['message']}" for issue in report["errors"]]
+
+
+def validate_candidate(lesson: dict, source_language: str) -> list[str]:
+    """Gate a candidate lesson: this repo's shape check, then the engine.
+
+    The structural schema check runs first (``lesson_shape_errors``, the
+    mirrored schema); only a shape-valid lesson goes to the engine, which
+    applies the semantic rules and the quality minimums (they moved there:
+    learn-content-engine#185, #190, #202). Returns an empty list when the
+    lesson passes; the messages feed the model's next attempt.
+    """
+    errors = vc.lesson_shape_errors(lesson)
+    if errors:
+        return errors
+    engine = engine_issues(lesson, source_language)
+    return [ENGINE_MISSING] if engine is None else engine
 
 
 def _which(binary: str) -> str | None:
@@ -541,6 +544,10 @@ def main(argv: list[str] | None = None) -> int:
         print(f"FATAL: {exc}", file=sys.stderr)
         return 2
 
+    if not engine_installed():
+        print(f"FATAL: {ENGINE_MISSING}.", file=sys.stderr)
+        return 2
+
     params = GenerationParams(
         topic=args.topic,
         target_language=args.target_lang,
@@ -567,8 +574,8 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     path = stage_lesson(result.lesson, REPO_ROOT / args.out, args.set_id)
-    print(f"OK: staged {_display_path(path)} (passed structure + quality gate).")
-    _report_next_steps(path)
+    print(f"OK: staged {_display_path(path)} (passed the shape check, the engine's rules and its quality minimums).")
+    _report_next_steps()
     return 0
 
 
@@ -580,26 +587,11 @@ def _display_path(path: Path) -> str:
         return str(path)
 
 
-def _report_next_steps(path: Path) -> None:
-    """Print the remaining, non-automatable gates the author still owes."""
-    semantic = engine_check(path)
-    if semantic is None:
-        print(
-            "NOTE: semantic engine gate skipped (learn-content-engine not installed). "
-            "The structure + quality gate passed, but cloze blanks==markers, "
-            "card_ids integrity and multiselect disjointness are only verified by "
-            "the engine gate. Run the engine gate / open a PR so CI checks them.",
-            file=sys.stderr,
-        )
-    elif semantic:
-        print("WARNING: the engine's semantic gate rejected this lesson:", file=sys.stderr)
-        for err in semantic:
-            print(f"  - {err}", file=sys.stderr)
-    else:
-        print("Semantic engine gate: passed.", file=sys.stderr)
+def _report_next_steps() -> None:
+    """Print the remaining, non-automatable gate the author still owes."""
     print(
         "REVIEW BEFORE SHIPPING: read the lesson, and for a language you do not "
-        "speak natively, get a native-speaker review — no validator catches an "
+        "speak natively, get a native-speaker review - no validator catches an "
         "unnatural phrasing or a wrong romanization.",
         file=sys.stderr,
     )

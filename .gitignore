@@ -13,5 +13,15 @@ node_modules/
 # (the folder's README.md is kept, the generated JSON is not)
 /generated/**/*.json
 
+# Local Python environment created by `make setup` / `make validate`
+.venv/
+
 # export_set.py snapshots for AI review: read-only, never committed
 exports/
+
+# Editor and IDE settings (IntelliJ, VS Code): per developer, never
+# committed. Without this, an IDE folder in a checkout shows up as
+# untracked and a `git add -A` commits it.
+.idea/
+*.iml
+.vscode/
