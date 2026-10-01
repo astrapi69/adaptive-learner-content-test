@@ -172,6 +172,13 @@ right = card `back`). Requires non-empty `card_ids` and forbids an explicit
   "direction": "source_to_target" }
 ```
 
+Case is not an error. An exercise that teaches case (capitalisation)
+declares `"case_sensitive": true` (schema 1.19), and the app then grades
+it in case. No distractor may also be an accepted answer
+(`E-FREETEXT-DISJOINT`); they are compared without case unless the
+exercise declares `case_sensitive`, so `i am Anna` can be a distractor
+for `I am Anna` only there.
+
 ### cloze
 ```jsonc
 { "type": "cloze", "prompt": "…", "card_ids": [ … ],
