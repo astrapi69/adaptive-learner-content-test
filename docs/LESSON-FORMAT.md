@@ -44,8 +44,8 @@ manifest.yaml            # root: lists every set
   "id": "01-greetings",            // kebab-case; match the filename (without .json)
   "title": "Greetings",            // shown in the app
   "description": "…",              // one or two sentences
-  "target_language": "es",         // ISO 639-1 — the language being LEARNED
-  "source_language": "en",         // ISO 639-1 — the explanation language
+  "target_language": "es",         // BCP 47 tag, the language being LEARNED
+  "source_language": "en",         // BCP 47 tag, the explanation language
   "domain": "language",            // "language" (default) | "psychology" | "programming" | …
   "estimated_minutes": 10,         // integer
   "cards": [ … ],                  // see below
@@ -126,6 +126,16 @@ Most carry `card_ids` (the cards they draw on) and a `direction`.
 - `source_to_target`: learner produces the target language (harder).
 - `target_to_source`: learner recognises/translates into the source (easier).
 
+**`variables`** (schema v1.14, optional, any exercise type): makes one
+authored exercise stand for many concrete instances. Each entry is sampled
+(`min`/`max`, optional `step`) or computed (`expression` over earlier
+entries, optional `tolerance`); any string field of the exercise may
+reference one as `{{name}}`, and the app draws, computes and substitutes per
+attempt. Only an exercise that declares `variables` is parametric: without
+it, `{{` is ordinary text (a lesson about Jinja2 templates is not
+parametric). Rules and a full example: `docs/lesson-format.md`, section
+"Variables (parametric exercises)", in the engine repo.
+
 ## The six exercise types
 
 Since schema 1.7 the engine additionally defines an opt-in `ext:` namespace
@@ -158,7 +168,7 @@ right = card `back`). Requires non-empty `card_ids` and forbids an explicit
 { "type": "free_text", "prompt": "Translate: thank you", "card_ids": [ … ],
   "accept": ["gracias", "Gracias"],        // >= 2 accepted answers
   "hint": "…",
-  "distractors": ["hola", "por favor"],    // REQUIRED: >= 1 plausible wrong answer
+  "distractors": ["hola", "por favor"],    // optional: plausible wrong answers
   "direction": "source_to_target" }
 ```
 
@@ -187,7 +197,7 @@ right = card `back`). Requires non-empty `card_ids` and forbids an explicit
     {"src": "assets/img/hola.png",  "label": "hola"},
     … ],
   "hint": "…",
-  "distractors": ["hola", "gracias"],      // REQUIRED
+  "distractors": ["hola", "gracias"],      // optional: the images not marked correct are the distractors
   "direction": "target_to_source" }
 ```
 
@@ -224,23 +234,38 @@ valid.
 
 ## Validation rules (the quality gate)
 
-`scripts/validate_content.py` (plus the engine gate in CI for the rules
-marked *engine*) enforces, per lesson:
+Two gates run on every pull request. The **engine gate**
+(`scripts/validate_with_engine.mjs`, the `Engine conformance` workflow, `make
+lint` locally) applies every rule about the content itself: the pinned
+learn-content-engine's validity rules and, for a valid lesson, its quality
+minimums (`validateLessonQuality`). Per lesson:
 
 | Rule | Minimum |
 |---|---|
-| exercises | ≥ 5 |
-| distinct exercise types | ≥ 2 |
+| exercises | ≥ 5, unless `"purpose": "bridge"` |
+| distinct exercise types | ≥ 2, unless `"purpose": "quiz"` or `"bridge"` |
 | theory steps | ≥ 1 |
-| `free_text` accepts | ≥ 2 **and** `distractors` present |
-| `matching` pairs | ≥ 3 (explicit or derived via `from_cards`) |
-| `picture_choice` | `distractors` present |
-| `multiple_choice` options | ≥ 2, no duplicate option texts (*engine*) |
-| `multiple_choice` correct count | exactly 1 (single) / ≥ 1 (`multiple: true`) (*engine*) |
-| cards | no empty `front`/`back` |
+| `free_text` accepts | ≥ 2 |
+| `matching` pairs | ≥ 3 (explicit, or the cards `from_cards` names) |
+| `picture_choice` | exactly one `is_correct: "true"` |
+| `multiple_choice` options | ≥ 2, no duplicate option texts |
+| `multiple_choice` correct count | exactly 1 (single) / ≥ 1 (`multiple: true`) |
+| card, step and exercise ids | unique within the lesson, each kind on its own |
+| language tags | well-formed BCP 47 (`gsw`, `pt-BR` are fine; `en_US` is not) |
 
-…and, per set: a valid ISO 639-1 language pair, the correct `path` for the
-domain, and every lesson listed in the set manifest's `metadata.lessons`.
+A lesson's optional `purpose` says what it is for: `practice` (the default),
+`bridge` (an introduction or part divider that carries theory and leads over)
+or `quiz` (a check of what was taught). The engine also warns, without
+blocking, on a non-canonical language tag (`deu` for `de`), a language set
+whose source and target are one language or that has no `title_native`, and
+card backs written in another script than the source language. The full
+catalog is in the engine's
+[rule catalog](https://github.com/astrapi69/learn-content-engine/blob/main/docs/lesson-format.md#rule-catalog).
+
+The **structure gate** (`scripts/validate_content.py`) checks what the engine
+cannot see: the lesson shape against the mirrored schema, the correct `path`
+for the domain, and every lesson listed in the set manifest's
+`metadata.lessons` existing and parsing.
 
 ## Registering a set
 

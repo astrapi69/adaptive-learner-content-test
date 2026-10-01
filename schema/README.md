@@ -19,7 +19,7 @@ together in one deliberate PR, so the pinned version lives in exactly one place
 |------|-----------------------------|------------------|
 | `lesson.schema.json` | `package/schema/lesson.schema.json` | `scripts/validate_content.py` (structural validation via `jsonschema`), `tests/test_shape_parity.py` |
 | `content-manifest.schema.json` | `package/schema/content-manifest.schema.json` | vendored for IDE autocomplete / third-party manifest validation; CI validates manifests with the engine itself (`engine-validate.yml`) |
-| `quality-rules.json` | `package/schema/quality-rules.json` (engine ≥ 0.4.0, locally owned before that) | `scripts/validate_content.py` (quality minimums: `minExercisesPerLesson`, `minExerciseTypes`, `minFreeTextAccepts`, `minMatchingPairs`, `minTheorySteps`) |
+| `quality-rules.json` | `package/schema/quality-rules.json` (engine ≥ 0.4.0, locally owned before that) | mirrored for reference only: the engine applies these minimums itself (`validateLessonQuality`, keyed to a lesson's `purpose`), in `scripts/validate_with_engine.mjs` and `scripts/engine_check.mjs` |
 | `engine-version.txt` | - (the pin itself) | `scripts/check_schema_drift.py`, `.github/workflows/engine-validate.yml` |
 
 `lesson.schema.json` is a self-contained JSON Schema (Draft 2020-12). Its

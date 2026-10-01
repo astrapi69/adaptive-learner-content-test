@@ -1,38 +1,54 @@
 #!/usr/bin/env python3
-"""Generate ``search-index.json`` from the repo's content manifests.
+"""Generate ``search-index.json`` from the content manifests.
 
-The search index is a flat, machine-readable catalogue of every content
-set in the repo. It is consumed by Adaptive Learner's *multi-repo
-discovery*: the app loads the index from each recommended repo in
-parallel and searches across all of them, without having to clone or
-walk the full content tree.
+A machine-readable catalogue of every lesson set in the repo, written
+to the repo root as ``search-index.json``. It is the discovery feed an
+app (or a federated index across repos) reads to list, filter and rank
+sets without cloning the whole tree or parsing every lesson.
 
-The index is **always generated, never hand-edited** (see CI workflow
-``.github/workflows/generate-index.yml``). Run it after changing any
-manifest or lesson:
+The index is ALWAYS generated, never hand-edited. The root
+``manifest.yaml`` is the authoritative set list (it carries each set's
+``path``); for every set we open its own ``<path>/manifest.yaml`` for
+the lesson file list and book metadata, then open each lesson JSON to
+count cards exactly.
 
-    python3 scripts/generate_search_index.py            # (re)write index
-    python3 scripts/generate_search_index.py --check    # exit 1 if stale
+Per set the index records:
+  * id, name (set title), description
+  * source_language, target_language (ISO 639-1 base codes), level
+  * domain (default "language")
+  * lesson_count: lessons actually listed in the set manifest
+  * card_count: exact sum of ``cards[]`` over every lesson (a lesson
+    without cards counts zero)
+  * tags: from the manifest, else []
+  * visibility: consumer-display hint (engine schema 1.8); absent or
+    out-of-enum normalizes to "visible"
+  * review_status: three-state review standing (engine schema 1.9), derived
+    from ORIGIN; absent or out-of-enum normalizes to "authored". Consumers
+    derive "advertisable as reviewed" as review_status != "generated"
+  * ai_validated: true when the set manifest carries an ``ai_validation``
+    block under its free-form ``metadata`` (set-entry fallback for older
+    manifests: the canonical manifest schema keeps set entries strict)
+  * trust_level: this repo's level from recommended-repos.json, else 1
+  * book: the set's ``book`` block, else null
+  * updated_at: ``git log -1 --format=%cI`` for the set directory,
+    serialized canonically as UTC with a ``Z`` suffix regardless of
+    the source (git emits the committer's local offset)
 
-It is intentionally self-contained (stdlib + PyYAML) and repo-agnostic,
-so the same script drops into the official content repo and this
-test/starter repo unchanged. Per set it derives:
+The index names the repository it was built in: ``repo`` is the
+``owner/repo`` slug of the git remote (the directory name without one), and
+``trust_level`` is looked up in ``recommended-repos.json`` by that slug.
+This file is owned by adaptive-learner-content and copied byte for byte into
+every content repository (``.github/ownership.json``), so it must not name
+any one of them.
 
-  * ``id``/``name``/``description`` from the root + set manifest
-  * ``source_language`` / ``target_language`` / ``level`` / ``domain``
-  * ``lesson_count`` — lessons listed in the set manifest
-  * ``card_count`` — EXACT sum of ``cards[]`` over every lesson file
-  * ``tags``        — from the manifest, else ``[]``
-  * ``visibility``  — consumer-display hint (engine schema 1.8);
-    absent or out-of-enum normalizes to ``"visible"``
-  * ``review_status`` - three-state review standing (engine schema 1.9),
-    derived from ORIGIN; absent or out-of-enum normalizes to ``"authored"``.
-    Consumers derive "advertisable" as ``review_status != "generated"``
-  * ``ai_validated``— ``true`` if the set/lesson carries an
-    ``ai_validation`` block
-  * ``trust_level`` — from ``recommended-repos.json``, else ``1``
-  * ``book``        — from the manifest, else ``null``
-  * ``updated_at``  — ``git log -1 --format=%cI`` for the set directory
+Usage:
+  python scripts/generate_search_index.py
+      Write the index. When nothing of substance changed, the committed
+      ``generated`` stamp is kept, so a run leaves no diff.
+  python scripts/generate_search_index.py --check
+      Regenerate in memory and compare to the committed file
+      (ignoring the volatile ``generated`` timestamp). Exit 1 if the
+      committed index is stale.
 """
 from __future__ import annotations
 
@@ -46,97 +62,40 @@ from pathlib import Path
 import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+ROOT_MANIFEST = REPO_ROOT / "manifest.yaml"
 INDEX_PATH = REPO_ROOT / "search-index.json"
+RECOMMENDED_REPOS = REPO_ROOT / "recommended-repos.json"
+
+VISIBILITY_VALUES = ("visible", "hidden")
 SCHEMA_VERSION = "1.0"
 DEFAULT_TRUST_LEVEL = 1
-VISIBILITY_VALUES = ("visible", "hidden")
+
+# Required, non-empty fields on every set entry in the index.
+REQUIRED_SET_FIELDS = (
+    "id",
+    "name",
+    "source_language",
+    "target_language",
+    "level",
+    "domain",
+    "visibility",
+    "review_status",
+)
+
+
+def base_lang(code: str) -> str:
+    return (code or "").split("-")[0].lower()
+
+
 REVIEW_STATUS_VALUES = ("authored", "generated", "reviewed")
-
-
-# --------------------------------------------------------------------------- #
-# Helpers
-# --------------------------------------------------------------------------- #
-def slug_from_url(url: str) -> str | None:
-    """Return ``owner/repo`` from a git remote URL, or ``None``.
-
-    Handles the https form, the scp-like SSH form
-    (``git@host:owner/repo``, #87: the colon separates host and owner
-    and must not survive into the slug) and the ``ssh://`` form, each
-    with or without a ``.git`` suffix or trailing slash.
-    """
-    slug = url.strip().rstrip("/")
-    if slug.endswith(".git"):
-        slug = slug[: -len(".git")]
-    if "://" not in slug and ":" in slug:
-        slug = slug.replace(":", "/", 1)
-    parts = [p for p in slug.split("/") if p]
-    if len(parts) >= 2:
-        return f"{parts[-2]}/{parts[-1]}"
-    return None
-
-
-def repo_slug() -> str:
-    """Return ``owner/repo`` derived from the git remote (fallback: dir)."""
-    try:
-        url = subprocess.check_output(
-            ["git", "-C", str(REPO_ROOT), "config", "--get", "remote.origin.url"],
-            text=True,
-        ).strip()
-    except (subprocess.CalledProcessError, OSError):
-        url = ""
-    if not url:
-        return REPO_ROOT.name
-    return slug_from_url(url) or REPO_ROOT.name
-
-
-def git_updated_at(path: Path) -> str | None:
-    """ISO-8601 commit date of the last change touching ``path``."""
-    try:
-        out = subprocess.check_output(
-            ["git", "-C", str(REPO_ROOT), "log", "-1", "--format=%cI", "--", str(path)],
-            text=True,
-        ).strip()
-    except (subprocess.CalledProcessError, OSError):
-        return None
-    return out or None
-
-
-def load_yaml(path: Path) -> dict:
-    return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
-
-
-def load_recommended_trust() -> dict[str, int]:
-    """Map ``owner/repo`` -> trust_level from ``recommended-repos.json``.
-
-    The file is optional; absent it, every repo defaults to
-    ``DEFAULT_TRUST_LEVEL``. Both a top-level list and a ``{"repos": [...]}``
-    wrapper are accepted, and a repo entry may key its slug under
-    ``repo``, ``slug``, ``name`` or ``full_name``.
-    """
-    path = REPO_ROOT / "recommended-repos.json"
-    if not path.is_file():
-        return {}
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError:
-        return {}
-    entries = data.get("repos") if isinstance(data, dict) else data
-    trust: dict[str, int] = {}
-    for entry in entries or []:
-        if not isinstance(entry, dict):
-            continue
-        slug = entry.get("repo") or entry.get("slug") or entry.get("name") or entry.get("full_name")
-        level = entry.get("trust_level", entry.get("trust"))
-        if slug and level is not None:
-            trust[str(slug)] = int(level)
-    return trust
 
 
 def normalize_review_status(raw_status: object) -> str:
     """Engine-parity projection of the manifest ``review_status`` flag.
 
-    Absent or out-of-enum folds back to ``"authored"`` (legacy hand-written
-    content), so consumers filter without their own defaulting.
+    Mirrors ``asContentSetEntry`` in learn-content-engine 0.16.x: absent or
+    out-of-enum values fold back to ``"authored"`` (legacy hand-written
+    content), so a consumer can filter without its own defaulting.
     """
     return raw_status if raw_status in REVIEW_STATUS_VALUES else "authored"
 
@@ -151,46 +110,102 @@ def normalize_visibility(raw_visibility: object) -> str:
     return raw_visibility if raw_visibility in VISIBILITY_VALUES else "visible"
 
 
-def has_ai_validation(set_manifest: dict, lessons: list[dict]) -> bool:
-    if set_manifest.get("ai_validation"):
-        return True
-    if isinstance(set_manifest.get("metadata"), dict) and set_manifest["metadata"].get("ai_validation"):
-        return True
-    return any(isinstance(l, dict) and l.get("ai_validation") for l in lessons)
+def collapse_ws(text: str | None) -> str:
+    return " ".join((text or "").split())
 
 
-# --------------------------------------------------------------------------- #
-# Index building
-# --------------------------------------------------------------------------- #
-def build_set_entry(root_set: dict) -> tuple[dict, list[str]]:
-    """Return ``(entry, errors)`` for one root-manifest set."""
-    errors: list[str] = []
-    sid = root_set.get("id", "?")
-    path = root_set.get("path")
-    if not path:
-        return {}, [f"set {sid}: missing path"]
+def slug_from_url(url: str) -> str | None:
+    """``owner/repo`` from a git remote URL, or None.
 
-    set_dir = REPO_ROOT / path
-    set_manifest_path = set_dir / "manifest.yaml"
-    set_manifest: dict = {}
-    if set_manifest_path.is_file():
-        set_manifest = load_yaml(set_manifest_path)
-    else:
-        errors.append(f"set {sid}: missing {path}/manifest.yaml")
+    Handles the https form, the scp-like SSH form (``git@host:owner/repo``:
+    the colon separates host and owner and must not survive into the slug,
+    content-test#87) and the ``ssh://`` form, each with or without a
+    ``.git`` suffix or trailing slash.
+    """
+    slug = url.strip().rstrip("/")
+    if slug.endswith(".git"):
+        slug = slug[: -len(".git")]
+    if "://" not in slug and ":" in slug:
+        slug = slug.replace(":", "/", 1)
+    parts = [part for part in slug.split("/") if part]
+    if len(parts) >= 2:
+        return f"{parts[-2]}/{parts[-1]}"
+    return None
 
-    # Prefer the richer set-manifest entry, fall back to the root entry.
-    inner_sets = set_manifest.get("sets") or []
-    inner = next((s for s in inner_sets if s.get("id") == sid), inner_sets[0] if inner_sets else {})
-    merged = {**root_set, **{k: v for k, v in inner.items() if v is not None}}
 
-    # Lessons: the set manifest's metadata.lessons is the source of truth.
-    lesson_files = (set_manifest.get("metadata") or {}).get("lessons") or []
-    lesson_count = len(lesson_files) if lesson_files else int(merged.get("lesson_count", 0) or 0)
+def origin_url() -> str:
+    """The URL of the ``origin`` remote, or "" without one."""
+    try:
+        out = subprocess.run(
+            ["git", "config", "--get", "remote.origin.url"],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return ""
+    return out.stdout.strip()
 
-    # card_count: open every lesson and count cards[] EXACTLY.
-    card_count = 0
-    lessons: list[dict] = []
-    for filename in lesson_files:
+
+def repo_slug() -> str:
+    """``owner/repo`` of this repository from its git remote; the directory
+    name when there is no usable remote."""
+    return slug_from_url(origin_url()) or REPO_ROOT.name
+
+
+def repo_trust_level(slug: str) -> int:
+    """The trust level ``recommended-repos.json`` gives ``slug``, else the
+    default. Only the hub carries the registry, so every other repository
+    gets the default. A URL matches on whole path segments."""
+    if not RECOMMENDED_REPOS.is_file():
+        return DEFAULT_TRUST_LEVEL
+    try:
+        registry = json.loads(RECOMMENDED_REPOS.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return DEFAULT_TRUST_LEVEL
+    for listed in registry.get("repos") or []:
+        if slug_from_url(listed.get("url") or "") == slug:
+            level = listed.get("trust_level")
+            if isinstance(level, int):
+                return level
+    return DEFAULT_TRUST_LEVEL
+
+
+def canonical_utc(stamp: str) -> str:
+    """Serialize an ISO-8601 timestamp canonically: UTC with a ``Z`` suffix.
+
+    Accepts offset forms (``+02:00``, git's ``%cI``), ``Z``-suffixed and
+    naive stamps (naive is taken as already-UTC), so the git source and
+    the ``generated`` fallback serialize identically in every
+    environment. Raises ``ValueError`` for non-ISO input (crash early:
+    a malformed stamp is a generator bug, not content).
+    """
+    parsed = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def git_updated_at(set_dir: Path) -> str | None:
+    """Last commit date (ISO-8601) that touched ``set_dir``, or None."""
+    try:
+        out = subprocess.run(
+            ["git", "log", "-1", "--format=%cI", "--", str(set_dir)],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return None
+    stamp = out.stdout.strip()
+    return stamp or None
+
+
+def count_cards(set_dir: Path, lessons: list[str], errors: list[str], sid: str) -> int:
+    total = 0
+    for filename in lessons:
         lesson_path = set_dir / "lessons" / filename
         if not lesson_path.is_file():
             errors.append(f"set {sid}: lesson file '{filename}' is missing")
@@ -200,125 +215,135 @@ def build_set_entry(root_set: dict) -> tuple[dict, list[str]]:
         except json.JSONDecodeError as exc:
             errors.append(f"set {sid}: {filename} is invalid JSON: {exc}")
             continue
-        lessons.append(lesson)
-        card_count += len(lesson.get("cards") or [])
+        # ``cards`` is optional in the lesson schema: a lesson of exercises
+        # only (a case lesson, a graded quiz) has none and counts zero.
+        cards = lesson.get("cards", [])
+        if not isinstance(cards, list):
+            errors.append(f"set {sid}: {filename} has a cards field that is not a list")
+            continue
+        total += len(cards)
+    return total
 
-    name = merged.get("title") or merged.get("name") or sid
-    description = (merged.get("description") or "").strip()
-    level = (merged.get("level") or "").strip().lower()
-    domain = (merged.get("domain") or "language").strip().lower()
 
-    entry = {
+def build_set_entry(
+    content_set: dict, trust_level: int, generated: str, errors: list[str]
+) -> dict:
+    sid = content_set.get("id", "?")
+    path = content_set.get("path")
+    if not path:
+        errors.append(f"set {sid}: missing path")
+    set_dir = REPO_ROOT / path if path else None
+
+    set_manifest: dict = {}
+    set_entry: dict = content_set
+    if set_dir is not None:
+        manifest_path = set_dir / "manifest.yaml"
+        if manifest_path.is_file():
+            set_manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8")) or {}
+            # Prefer the set's own manifest entry for metadata; fall back
+            # to the root-manifest entry when the set manifest omits it.
+            for s in set_manifest.get("sets") or []:
+                if s.get("id") == sid:
+                    set_entry = {**content_set, **{k: v for k, v in s.items() if v is not None}}
+                    break
+        else:
+            errors.append(f"set {sid}: missing {path}/manifest.yaml")
+
+    lessons = (set_manifest.get("metadata") or {}).get("lessons") or []
+    if set_dir is not None and not lessons:
+        errors.append(f"set {sid}: set manifest lists no lessons")
+
+    card_count = count_cards(set_dir, lessons, errors, sid) if set_dir is not None else 0
+
+    updated_at = canonical_utc(
+        (git_updated_at(set_dir) if set_dir is not None else None) or generated
+    )
+
+    return {
         "id": sid,
-        "name": name,
-        "description": description,
-        "source_language": merged.get("source_language"),
-        "target_language": merged.get("target_language"),
-        "level": level,
-        "domain": domain,
-        "lesson_count": lesson_count,
+        "name": set_entry.get("title") or set_entry.get("name") or sid,
+        "description": collapse_ws(set_entry.get("description")),
+        "source_language": base_lang(set_entry.get("source_language", "")),
+        "target_language": base_lang(set_entry.get("target_language", "")),
+        "level": (set_entry.get("level") or "").strip().lower(),
+        "domain": (set_entry.get("domain") or "language").strip().lower(),
+        "lesson_count": len(lessons),
         "card_count": card_count,
-        "tags": merged.get("tags") or [],
-        "visibility": normalize_visibility(merged.get("visibility")),
-        "review_status": normalize_review_status(merged.get("review_status")),
-        "ai_validated": has_ai_validation(set_manifest, lessons),
-        "trust_level": None,  # filled in by caller (repo-level)
-        "book": merged.get("book"),
-        "updated_at": git_updated_at(set_dir),
+        "tags": list(set_entry.get("tags") or []),
+        "visibility": normalize_visibility(set_entry.get("visibility")),
+        "review_status": normalize_review_status(set_entry.get("review_status")),
+        # ai_validation is repo-local provenance; the canonical (engine)
+        # manifest schema keeps set entries strict, so the block lives in
+        # the set manifest's free-form metadata (set-entry read kept as a
+        # fallback for older manifests).
+        "ai_validated": bool(
+            (set_manifest.get("metadata") or {}).get("ai_validation")
+            or set_entry.get("ai_validation")
+        ),
+        "trust_level": trust_level,
+        "book": set_entry.get("book"),
+        "updated_at": updated_at,
     }
-    return entry, errors
 
 
-def build_index() -> tuple[dict, list[str]]:
+def build_index(generated: str | None = None) -> tuple[dict, list[str]]:
+    """Build the index dict from the manifests. Returns (index, errors)."""
     errors: list[str] = []
-    root_manifest_path = REPO_ROOT / "manifest.yaml"
-    if not root_manifest_path.is_file():
-        return {}, ["no root manifest.yaml"]
-    root_manifest = load_yaml(root_manifest_path)
-    root_sets = root_manifest.get("sets") or []
+    if generated is None:
+        generated = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    if not ROOT_MANIFEST.is_file():
+        errors.append("no root manifest.yaml")
+        return {}, errors
+
+    manifest = yaml.safe_load(ROOT_MANIFEST.read_text(encoding="utf-8")) or {}
+    root_sets = manifest.get("sets") or []
     if not root_sets:
-        return {}, ["root manifest lists no sets"]
+        errors.append("root manifest lists no sets")
 
     slug = repo_slug()
-    trust_map = load_recommended_trust()
-    trust_level = trust_map.get(slug, DEFAULT_TRUST_LEVEL)
+    trust_level = repo_trust_level(slug)
 
-    entries: list[dict] = []
-    total_lessons = 0
-    total_cards = 0
-    for root_set in root_sets:
-        entry, set_errors = build_set_entry(root_set)
-        errors.extend(set_errors)
-        if not entry:
-            continue
-        entry["trust_level"] = trust_level
-        entries.append(entry)
-        total_lessons += entry["lesson_count"]
-        total_cards += entry["card_count"]
+    sets = [build_set_entry(s, trust_level, generated, errors) for s in root_sets]
 
     index = {
         "repo": slug,
-        "generated": _now_iso(),
+        "generated": generated,
         "schema_version": SCHEMA_VERSION,
-        "sets": entries,
-        "total_lessons": total_lessons,
-        "total_cards": total_cards,
+        "sets": sets,
+        "total_lessons": sum(s["lesson_count"] for s in sets),
+        "total_cards": sum(s["card_count"] for s in sets),
     }
+    validate_index(index, root_sets, errors)
     return index, errors
-
-
-def _now_iso() -> str:
-    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
-
-# --------------------------------------------------------------------------- #
-# Validation
-# --------------------------------------------------------------------------- #
-REQUIRED_SET_FIELDS = (
-    "id",
-    "name",
-    "source_language",
-    "target_language",
-    "level",
-    "domain",
-    "lesson_count",
-    "card_count",
-    "visibility",
-    "review_status",
-)
 
 
 SEARCH_INDEX_SCHEMA = Path(__file__).resolve().parents[1] / "schema" / "search-index.schema.json"
 
 
-def validate_index(index: dict) -> list[str]:
-    errors: list[str] = []
-    for key in ("repo", "generated", "schema_version", "sets", "total_lessons", "total_cards"):
-        if key not in index:
-            errors.append(f"index missing top-level field '{key}'")
+def validate_index(index: dict, root_sets: list[dict], errors: list[str]) -> None:
+    """Schema-level checks: all sets present, no empty required fields."""
+    root_ids = [s.get("id") for s in root_sets]
+    index_ids = [s["id"] for s in index.get("sets", [])]
+    missing = set(root_ids) - set(index_ids)
+    if missing:
+        errors.append(f"index missing sets: {sorted(missing)}")
     for entry in index.get("sets", []):
-        sid = entry.get("id", "?")
         for field in REQUIRED_SET_FIELDS:
-            value = entry.get(field)
-            if value is None or value == "":
-                errors.append(f"set {sid}: empty required field '{field}'")
-    # Totals must add up.
-    if sum(e.get("lesson_count", 0) for e in index.get("sets", [])) != index.get("total_lessons"):
-        errors.append("total_lessons does not match sum of set lesson_count")
-    if sum(e.get("card_count", 0) for e in index.get("sets", [])) != index.get("total_cards"):
-        errors.append("total_cards does not match sum of set card_count")
+            if not entry.get(field):
+                errors.append(f"set {entry.get('id', '?')}: empty required field '{field}'")
     errors.extend(_schema_errors(index))
-    return errors
 
 
 def _schema_errors(index: dict) -> list[str]:
-    """Validate against the mirrored federation contract
+    """Validate against the owned federation contract
     (adaptive-learner-content#175, ``schema/search-index.schema.json``).
 
-    The hand checks above stay as this variant's floor; the schema is the
-    contract every writing repo shares, so the two can no longer disagree
-    silently. Requires ``jsonschema`` (installed by validate-content.yml
-    and generate-index.yml)."""
+    This repo owns the schema the nine other writing repos mirror; the
+    hand checks above stay as the repo-specific floor, the schema is the
+    contract all writers share, so the two can no longer disagree
+    silently. Requires ``jsonschema`` (installed by validate-content.yml,
+    validate-registered-repos.yml and generate-index.yml)."""
     import jsonschema
 
     contract = json.loads(SEARCH_INDEX_SCHEMA.read_text(encoding="utf-8"))
@@ -330,70 +355,70 @@ def _schema_errors(index: dict) -> list[str]:
     return violations
 
 
+def serialize(index: dict) -> str:
+    return json.dumps(index, ensure_ascii=False, indent=2) + "\n"
+
+
 def _comparable(index: dict) -> dict:
-    """Strip the volatile ``generated`` timestamp for staleness checks."""
-    clean = dict(index)
-    clean.pop("generated", None)
-    return clean
+    """Index without the volatile ``generated`` timestamp, for --check."""
+    return {k: v for k, v in index.items() if k != "generated"}
 
 
-# --------------------------------------------------------------------------- #
-# Entry point
-# --------------------------------------------------------------------------- #
+def _committed_index() -> dict | None:
+    """The committed index, or None when it is absent or not JSON."""
+    if not INDEX_PATH.is_file():
+        return None
+    try:
+        return json.loads(INDEX_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+
+
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Generate search-index.json")
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--check",
         action="store_true",
-        help="Verify the on-disk index is current; exit 1 if stale.",
+        help="verify the committed index is up to date; exit 1 if stale",
     )
     args = parser.parse_args(argv)
 
-    index, build_errors = build_index()
-    if build_errors:
-        print("Errors while building the index:", file=sys.stderr)
-        for e in build_errors:
+    index, errors = build_index()
+    if errors:
+        print("FAIL: search index generation errors:", file=sys.stderr)
+        for e in errors:
             print(f"  - {e}", file=sys.stderr)
         return 1
-
-    schema_errors = validate_index(index)
-    if schema_errors:
-        print("Index failed validation:", file=sys.stderr)
-        for e in schema_errors:
-            print(f"  - {e}", file=sys.stderr)
-        return 1
-
-    existing: dict | None = None
-    if INDEX_PATH.is_file():
-        try:
-            existing = json.loads(INDEX_PATH.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            existing = None
-
-    # Preserve the old timestamp when nothing of substance changed, so the
-    # generator is idempotent (no spurious diffs / CI commits).
-    unchanged = existing is not None and _comparable(existing) == _comparable(index)
-    if unchanged:
-        index["generated"] = existing["generated"]
 
     if args.check:
-        if existing is None:
-            print("search-index.json is missing — run generate_search_index.py", file=sys.stderr)
+        if not INDEX_PATH.is_file():
+            print("FAIL: search-index.json is missing (run the generator).", file=sys.stderr)
             return 1
-        if not unchanged:
-            print("search-index.json is stale — run generate_search_index.py", file=sys.stderr)
+        try:
+            current = json.loads(INDEX_PATH.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            print(f"FAIL: search-index.json is invalid JSON: {exc}", file=sys.stderr)
+            return 1
+        if _comparable(current) != _comparable(index):
+            print(
+                "FAIL: search-index.json is stale. Run "
+                "`python scripts/generate_search_index.py` and commit.",
+                file=sys.stderr,
+            )
             return 1
         print("search-index.json is up to date.")
         return 0
 
-    if unchanged and existing == index:
-        print(f"search-index.json already current ({index['total_cards']} cards across "
-              f"{len(index['sets'])} set(s)).")
-        return 0
-
-    INDEX_PATH.write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Wrote {INDEX_PATH.relative_to(REPO_ROOT)}: {len(index['sets'])} set(s), "
-          f"{index['total_lessons']} lesson(s), {index['total_cards']} card(s).")
+    committed = _committed_index()
+    if committed is not None and _comparable(committed) == _comparable(index):
+        # Nothing of substance changed: keep the committed stamp, so a
+        # local run or the index workflow leaves no diff.
+        index = {**index, "generated": committed.get("generated", index["generated"])}
+    INDEX_PATH.write_text(serialize(index), encoding="utf-8")
+    print(
+        f"Wrote {INDEX_PATH.name}: {len(index['sets'])} set(s), "
+        f"{index['total_lessons']} lessons, {index['total_cards']} cards."
+    )
     return 0
 
 

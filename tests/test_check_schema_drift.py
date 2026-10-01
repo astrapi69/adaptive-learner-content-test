@@ -4,7 +4,7 @@ The drift gate compares the vendored mirror under ``schema/`` against the
 npm tarball of the PINNED ``learn-content-engine`` release (see
 ``schema/engine-version.txt``). These tests are fully OFFLINE: they build a
 fake npm tarball in ``tmp_path`` and drive the gate's core functions
-directly — no registry access, mirroring the repo's rule that everything
+directly - no registry access, mirroring the repo's rule that everything
 except the drift CHECK itself must work without network.
 
 RED/GREEN contract (TDD):
@@ -142,7 +142,7 @@ def test_update_refreshes_mirror_from_tarball(tmp_path: Path) -> None:
 
 
 def test_mirror_declares_no_app_source() -> None:
-    """The gate's own docs must declare the ENGINE as the mirror source —
+    """The gate's own docs must declare the ENGINE as the mirror source -
     no reference to the app repo remains in the drift mechanics."""
     text = (SCRIPTS_DIR / "check_schema_drift.py").read_text(encoding="utf-8")
     assert "learn-content-engine" in text
@@ -152,7 +152,7 @@ def test_mirror_declares_no_app_source() -> None:
 
 def test_repo_mirror_matches_local_engine_tarball_when_available() -> None:
     """Full-loop check against the REAL pinned tarball if it is cached
-    locally (env ENGINE_TARBALL) — skipped otherwise, so CI stays offline."""
+    locally (env ENGINE_TARBALL) - skipped otherwise, so CI stays offline."""
     import os
 
     path = os.environ.get("ENGINE_TARBALL")

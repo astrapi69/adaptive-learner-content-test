@@ -3,8 +3,8 @@
 
 No real API call is ever made: the model-call function is injected, and the
 one provider-transport test patches the HTTP helper. The point of these
-tests is the parts that carry the value — defensive JSON extraction, the
-validator gate, and the validate-retry-discard loop — not the network.
+tests is the parts that carry the value - defensive JSON extraction, the
+validator gate, and the validate-retry-discard loop - not the network.
 """
 from __future__ import annotations
 
@@ -97,7 +97,7 @@ def test_valid_lesson_fixture_passes_the_real_gate():
 
 
 # --------------------------------------------------------------------------
-# extract_json — defensive parsing
+# extract_json - defensive parsing
 # --------------------------------------------------------------------------
 
 
@@ -228,7 +228,7 @@ def _too_thin() -> dict:
 
 
 # --------------------------------------------------------------------------
-# Staging output — never touches sets/, lands in generated/
+# Staging output - never touches sets/, lands in generated/
 # --------------------------------------------------------------------------
 
 
@@ -268,7 +268,7 @@ def test_resolve_api_key_raises_when_missing(monkeypatch):
 
 
 # --------------------------------------------------------------------------
-# Provider transport (HTTP helper patched — still no real network)
+# Provider transport (HTTP helper patched - still no real network)
 # --------------------------------------------------------------------------
 
 
@@ -309,7 +309,7 @@ def test_call_model_gemini_reads_parts(monkeypatch):
 
 
 # --------------------------------------------------------------------------
-# main() end to end — HTTP helper patched (no real network), real gate + staging
+# main() end to end - HTTP helper patched (no real network), real gate + staging
 # --------------------------------------------------------------------------
 
 

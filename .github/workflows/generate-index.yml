@@ -1,12 +1,13 @@
-# Auto-generate search-index.json on every content change.
+# Auto-generate search-index.json (DIS-03).
 #
-# search-index.json is never hand-maintained: this workflow regenerates
-# it from the manifests whenever sets/ or manifest.yaml change on main,
-# and self-heals the repo by committing the result back. The
-# "[skip ci]" tag on the auto-commit breaks the push -> run -> push loop.
-#
-# Analogous to the self-healing deploy workflow (#652).
-name: generate-search-index
+# The search index is NEVER hand-maintained: on every push to main
+# that touches the content tree (sets/) or the root manifest.yaml,
+# this regenerates search-index.json from the manifests and, if it
+# changed, commits it straight back to main. The "[skip ci]" tag on
+# the auto-commit stops the push from re-triggering this workflow
+# (self-healing loop guard, analogous to the self-healing deploy in
+# #652).
+name: Generate search index
 
 on:
   push:
@@ -14,12 +15,19 @@ on:
     paths:
       - "sets/**"
       - "manifest.yaml"
+      - "recommended-repos.json"
       - "scripts/generate_search_index.py"
 
+# Coerce Node-runtime actions onto Node 24 as a safety net for any
+# action still defaulting to the deprecated Node 20 runtime.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+# The job commits the regenerated index back to the repo.
 permissions:
   contents: write
 
-# Never run two regenerations against main at once.
+# Never run two index regenerations against main at once.
 concurrency:
   group: generate-search-index
   cancel-in-progress: false
@@ -28,23 +36,18 @@ jobs:
   generate-index:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
-          # Full history so `git log` can date each set directory.
+          # Full history so ``git log`` yields accurate per-set
+          # ``updated_at`` timestamps.
           fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
-          python-version: "3.11"
-
-      - name: Install dependencies
-        run: pip install pyyaml "jsonschema>=4,<5" regex
-
+          python-version: "3.12"
+      - name: Install generator dependencies
+        run: pip install "pyyaml>=6,<7" "jsonschema>=4,<5"
       - name: Regenerate search-index.json
         run: python scripts/generate_search_index.py
-
       - name: Commit & push if changed
         run: |
           if git diff --quiet -- search-index.json; then
@@ -52,7 +55,7 @@ jobs:
             exit 0
           fi
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add search-index.json
           git commit -m "docs: auto-update search-index.json [skip ci]"
           git push

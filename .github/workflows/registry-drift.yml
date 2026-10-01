@@ -1,0 +1,118 @@
+# Registry drift: the ext: types this repo's content gate accepts vs the ones
+# the app renders.
+#
+# scripts/adopted-extensions.mjs used to carry a comment calling itself a
+# mirror of the app's SUPPORTED_EXTENSIONS, and nothing compared the two. The
+# app adopted ordering, parsons and hotspot; this list stayed at nine, and a
+# lesson using one of the three was refused here although the app renders it.
+#
+# The comparison does not belong in the PR gate: the app's list moves in the
+# app's repository, so a PR here would turn red for something this repo did
+# not do. It runs nightly, opens or updates one issue while the lists differ,
+# and closes it when they agree again.
+name: Registry drift
+
+on:
+  schedule:
+    - cron: "45 5 * * *"
+  workflow_dispatch:
+    inputs:
+      app_ref:
+        description: >-
+          Branch or tag of adaptive-learner to compare against. Empty uses the
+          tracked APP_REF.
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  # The app branch this repo follows. The list moves on develop; main lags
+  # behind it, and following main would report drift late instead of never.
+  APP_REF: develop
+  DRIFT_LABEL: registry-drift
+
+jobs:
+  registry-drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: Compare the adopted list against the app
+        id: compare
+        env:
+          DISPATCH_REF: ${{ inputs.app_ref }}
+        run: |
+          ref="${DISPATCH_REF:-}"
+          [ -n "$ref" ] || ref="$APP_REF"
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+          node scripts/check_adopted_extensions.mjs --self-test
+          set +e
+          APP_REF="$ref" node scripts/check_adopted_extensions.mjs > /tmp/registry-report.txt 2>&1
+          status=$?
+          set -e
+          cat /tmp/registry-report.txt
+          # 0 = in sync, 1 = drift, anything else = the check itself is broken
+          # (fetch failed, source shape changed) and must fail the job loudly.
+          if [ "$status" -gt 1 ]; then exit "$status"; fi
+          echo "drift=$([ "$status" -eq 1 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Adopted extensions vs the app (\`$ref\`)"
+            echo
+            echo '```'
+            cat /tmp/registry-report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or update the drift issue
+        if: steps.compare.outputs.drift == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APP_BRANCH: ${{ steps.compare.outputs.ref }}
+        run: |
+          gh label create "$DRIFT_LABEL" \
+            --description "The adopted ext: registry differs from the app" \
+            --color ededed 2>/dev/null || true
+          title="chore(registry): adopted ext: types differ from the app ($APP_BRANCH)"
+          body="$(cat <<EOF
+          The list in \`scripts/adopted-extensions.mjs\` and the app's
+          \`SUPPORTED_EXTENSIONS\` disagree:
+
+          \`\`\`
+          $(cat /tmp/registry-report.txt)
+          \`\`\`
+
+          A type the app renders but this gate refuses makes a valid lesson
+          unmergeable here (\`E-EXT-UNSUPPORTED\`). A type this gate accepts but
+          the app refuses lets a lesson land that the app will not load.
+
+          Fix: align \`scripts/adopted-extensions.mjs\`. This issue is
+          maintained by \`.github/workflows/registry-drift.yml\` and closes
+          itself once the lists agree.
+          EOF
+          )"
+          existing="$(gh issue list --label "$DRIFT_LABEL" --state open --json number --jq '.[0].number')"
+          if [ -n "$existing" ]; then
+            gh issue edit "$existing" --title "$title" --body "$body"
+            echo "updated issue #$existing" >> "$GITHUB_STEP_SUMMARY"
+          else
+            gh issue create --title "$title" --body "$body" --label "$DRIFT_LABEL"
+          fi
+
+      - name: Close the drift issue once the lists agree
+        if: steps.compare.outputs.drift == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APP_BRANCH: ${{ steps.compare.outputs.ref }}
+        run: |
+          existing="$(gh issue list --label "$DRIFT_LABEL" --state open --json number --jq '.[0].number' 2>/dev/null || true)"
+          if [ -n "$existing" ]; then
+            gh issue close "$existing" \
+              --comment "The adopted list matches the app on \`$APP_BRANCH\` again. Closed by the registry-drift check."
+          fi

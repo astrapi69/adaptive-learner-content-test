@@ -13,10 +13,21 @@ through the individual schema-validated lesson JSON files (validated by
 Usage:
 
     python3 scripts/export_set.py <set-slug> [--lang de] [--format yaml|json] [--out PATH]
+    python3 scripts/export_set.py <set-slug> --split-size N [--lang de] [--format yaml|json]
+
+``--split-size N`` splits a large set into multiple files of at most N
+lessons each (e.g. for handing a course to an AI reviewer one digestible
+chunk at a time instead of one huge file - a 115-lesson set has no business
+being reviewed in one context window). Each part is self-contained: it
+carries its own ``review_instructions`` copy plus ``part``/``of`` and
+``total_lesson_count`` fields so a reviewer knows where the chunk sits in
+the whole set. Incompatible with ``--out`` (a split export always writes
+multiple files under ``exports/``, named
+``<set-slug>-<lang>-<timestamp>-part<NN>-of-<MM>.<format>``).
 
 ``<set-slug>`` matches either a set id from the root manifest (e.g.
-``fuehrerschein-uebung-from-de``) or the basename of a set path (e.g.
-``fuehrerschein-uebung`` for ``sets/de/fuehrerschein-uebung``). When the
+``führerschein-übung-from-de``) or the basename of a set path (e.g.
+``führerschein-übung`` for ``sets/de/führerschein-übung``). When the
 same basename exists under several source-language directories,
 ``--lang`` (the ``sets/<lang>/`` directory, default ``de``) disambiguates.
 
@@ -26,7 +37,7 @@ order of the set manifest's ``metadata.lessons`` list):
 
     review_instructions: |
       <full content of docs/ai-review-prompt-template.md>
-    set: fuehrerschein-uebung
+    set: führerschein-übung
     language: de
     engine_version: "0.8.1"
     generated_at: "2026-07-11T12:34:56Z"
@@ -212,6 +223,52 @@ def build_export(set_slug: str, lang: str) -> dict:
     }
 
 
+def chunk_lessons(lesson_documents: list[dict], split_size: int) -> list[list[dict]]:
+    """Split ``lesson_documents`` into consecutive chunks of at most
+    ``split_size`` lessons each, preserving order. The last chunk may be
+    smaller. A ``split_size`` at or above the lesson count yields a single
+    chunk. Pure and independent of I/O so it is trivially unit-testable."""
+    if split_size < 1:
+        raise ValueError(f"split_size must be >= 1, got {split_size}")
+    return [
+        lesson_documents[start : start + split_size]
+        for start in range(0, len(lesson_documents), split_size)
+    ] or [[]]
+
+
+def build_export_parts(set_slug: str, lang: str, split_size: int) -> list[dict]:
+    """Assemble one export payload PER CHUNK of at most ``split_size``
+    lessons, for AI review sessions that cannot fit an entire large set in
+    one context window (e.g. a 115-lesson set). Every part is
+    self-contained: it carries its own copy of ``review_instructions`` so
+    each file can be handed to a reviewer independently, plus ``part``/``of``
+    and ``total_lesson_count`` so the reviewer knows where a chunk sits in
+    the whole set. All parts share one ``generated_at`` timestamp (one
+    export run)."""
+    root_manifest = yaml.safe_load(ROOT_MANIFEST_PATH.read_text(encoding="utf-8"))
+    set_entry = resolve_set(root_manifest, set_slug, lang)
+    lesson_documents = load_lessons(REPO_ROOT / set_entry["path"])
+    generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    engine_version = ENGINE_VERSION_PATH.read_text(encoding="utf-8").strip()
+    review_instructions = load_review_instructions()
+    chunks = chunk_lessons(lesson_documents, split_size)
+    return [
+        {
+            "review_instructions": review_instructions,
+            "set": set_slug,
+            "language": lang,
+            "engine_version": engine_version,
+            "generated_at": generated_at,
+            "part": part_index + 1,
+            "of": len(chunks),
+            "lesson_count": len(chunk),
+            "total_lesson_count": len(lesson_documents),
+            "lessons": chunk,
+        }
+        for part_index, chunk in enumerate(chunks)
+    ]
+
+
 def render_export(export_payload: dict, export_format: str) -> str:
     """Serialize the payload; real UTF-8 in both formats, keys in insert order,
     multi-line strings (notably ``review_instructions``) as YAML block scalars."""
@@ -231,6 +288,20 @@ def default_output_path(set_slug: str, lang: str, export_format: str) -> Path:
     """Return ``exports/<set-slug>-<lang>-<timestamp>.<format>``."""
     file_timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     return EXPORTS_DIR / f"{set_slug}-{lang}-{file_timestamp}.{export_format}"
+
+
+def default_split_output_path(
+    set_slug: str, lang: str, export_format: str, part: int, of: int, file_timestamp: str
+) -> Path:
+    """Return ``exports/<set-slug>-<lang>-<timestamp>-part<NN>-of-<MM>.<format>``,
+    one file per chunk of a ``--split-size`` export. ``file_timestamp`` is
+    computed ONCE by the caller and shared across every part of one export
+    run, so the parts sort together and are recognisable as one batch."""
+    width = max(2, len(str(of)))
+    return (
+        EXPORTS_DIR
+        / f"{set_slug}-{lang}-{file_timestamp}-part{part:0{width}d}-of-{of}.{export_format}"
+    )
 
 
 def parse_arguments(argv: list[str] | None) -> argparse.Namespace:
@@ -259,13 +330,23 @@ def parse_arguments(argv: list[str] | None) -> argparse.Namespace:
     )
     argument_parser.add_argument(
         "--out",
-        help="output file path (default: exports/<set-slug>-<lang>-<timestamp>.<format>)",
+        help="output file path (default: exports/<set-slug>-<lang>-<timestamp>.<format>). "
+        "Incompatible with --split-size (which writes multiple files).",
+    )
+    argument_parser.add_argument(
+        "--split-size",
+        type=int,
+        default=None,
+        help="split the export into multiple files of at most N lessons each, "
+        "e.g. for AI review sessions that cannot fit a large set in one "
+        "context window. Each file is self-contained (its own "
+        "review_instructions) and carries part/of/total_lesson_count. "
+        "Default: one file for the whole set. Incompatible with --out.",
     )
     return argument_parser.parse_args(argv)
 
 
-def main(argv: list[str] | None = None) -> int:
-    cli_arguments = parse_arguments(argv)
+def _write_single_export(cli_arguments: argparse.Namespace) -> int:
     try:
         export_payload = build_export(cli_arguments.set_slug, cli_arguments.lang)
     except SetResolutionError as resolution_error:
@@ -288,6 +369,52 @@ def main(argv: list[str] | None = None) -> int:
         f"'{export_payload['set']}' to {output_path}"
     )
     return 0
+
+
+def _write_split_export(cli_arguments: argparse.Namespace) -> int:
+    try:
+        export_parts = build_export_parts(
+            cli_arguments.set_slug, cli_arguments.lang, cli_arguments.split_size
+        )
+    except (SetResolutionError, ValueError) as build_error:
+        print(f"ERROR: {build_error}", file=sys.stderr)
+        return 2
+
+    EXPORTS_DIR.mkdir(parents=True, exist_ok=True)
+    file_timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    of = len(export_parts)
+    for export_payload in export_parts:
+        output_path = default_split_output_path(
+            cli_arguments.set_slug,
+            cli_arguments.lang,
+            cli_arguments.export_format,
+            export_payload["part"],
+            of,
+            file_timestamp,
+        )
+        output_path.write_text(
+            render_export(export_payload, cli_arguments.export_format), encoding="utf-8"
+        )
+        print(
+            f"Exported part {export_payload['part']}/{of} "
+            f"({export_payload['lesson_count']} of {export_payload['total_lesson_count']} "
+            f"lessons) of set '{export_payload['set']}' to {output_path}"
+        )
+    return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    cli_arguments = parse_arguments(argv)
+    if cli_arguments.split_size is not None and cli_arguments.out:
+        print(
+            "ERROR: --out cannot be combined with --split-size "
+            "(a split export writes multiple files)",
+            file=sys.stderr,
+        )
+        return 2
+    if cli_arguments.split_size is not None:
+        return _write_split_export(cli_arguments)
+    return _write_single_export(cli_arguments)
 
 
 if __name__ == "__main__":

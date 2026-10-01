@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Schema-mirror drift gate — pinned to a learn-content-engine release.
+"""Schema-mirror drift gate - pinned to a learn-content-engine release.
 
 The JSON-Schema artefacts under ``schema/`` are a **mirror of
 learn-content-engine ``schema/``** at the version pinned in
@@ -12,7 +12,7 @@ The mirror stays VENDORED so everything except this drift CHECK works
 offline (``validate_content.py`` and the shape-parity test read only the
 committed files). This gate gives an engine-side schema change a visible
 consequence here: CI goes red until the mirror is refreshed against a new,
-deliberately bumped pin — no floating branch is ever compared against.
+deliberately bumped pin - no floating branch is ever compared against.
 
 Mechanism: download the npm tarball of the PINNED engine release at CI
 time and compare its ``package/schema/*.json`` byte-for-byte with the
@@ -21,7 +21,7 @@ source because a published npm version is immutable (the registry refuses
 re-publishing the same version, while git tags can be moved or deleted),
 it is exactly the artefact validator consumers install via
 ``npm ci learn-content-engine@<pin>``, and it needs just one anonymous
-HTTPS GET — no GitHub token, no git, still Python-stdlib-only.
+HTTPS GET - no GitHub token, no git, still Python-stdlib-only.
 
 Usage::
 
@@ -140,7 +140,7 @@ def compare(mirror_root: Path, tarball: bytes, *, update: bool) -> int:
         return 0
 
     if drift:
-        print("\nSCHEMA DRIFT detected — the mirror is out of date:", file=sys.stderr)
+        print("\nSCHEMA DRIFT detected - the mirror is out of date:", file=sys.stderr)
         for d in drift:
             print(f"  - {d}", file=sys.stderr)
         print(
