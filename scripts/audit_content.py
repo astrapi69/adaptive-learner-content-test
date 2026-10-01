@@ -7,9 +7,6 @@ softer quality problems a schema check can miss and prints them as a
 table so they can be fixed:
 
   * duplicate cards within a lesson (same front, or same front/back pair)
-  * a free_text answer that is also listed as a distractor
-  * matching pairs / free_text accepts that don't line up with any
-    card the exercise references (possible wrong "correct" answer)
   * empty / whitespace-only fields (card front/back, prompts, theory
     body, titles, matching pair sides): the schema's ``minLength`` lets a
     string of spaces through
@@ -19,9 +16,10 @@ Not here, because the engine gate (validate_with_engine.mjs) blocks on them,
 and one rule lives in one place: malformed answer sets (cloze markers and
 blanks, multiselect accept/distractors, word_tiles with fewer than two tiles,
 picture_choice without exactly one correct image, a repeated matching left
-term), duplicate card, step and exercise ids (learn-content-engine#202), and
-the quality minimums such as matching pairs and free_text accepts (#185, keyed
-to a lesson's ``purpose``). The distractor requirement on free_text and
+term, a free_text answer that is also a distractor (#237, 0.35.0)),
+duplicate card, step and exercise ids (learn-content-engine#202), and the
+quality minimums such as matching pairs and free_text accepts (#185, keyed to
+a lesson's ``purpose``). The distractor requirement on free_text and
 picture_choice was dropped by the same decision.
 
 Exit code is always 0 - this is advisory. ``--strict`` makes it exit 1
@@ -92,17 +90,6 @@ def audit_lesson(lesson: dict, label: str, findings: list[tuple]):
                 # against the card gloss - matching exercises legitimately pair
                 # a word with its article / gender / category, not its dictionary
                 # translation, so such a check is all false positives.
-        elif etype == "free_text":
-            accept = ex.get("accept") or []
-            # An accepted answer appearing verbatim in distractors is
-            # contradictory. Compare case-SENSITIVELY: a distractor that
-            # differs only by capitalisation (e.g. testing that Spanish
-            # nationalities are lower-case) is a legitimate wrong answer.
-            overlap = {a.strip() for a in accept} & {
-                d.strip() for d in (ex.get("distractors") or [])}
-            if overlap:
-                add(f"free_text '{eid}' accept & distractors overlap: {sorted(overlap)}",
-                    "remove the overlap")
 
 
 def main() -> int:

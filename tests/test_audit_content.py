@@ -2,12 +2,12 @@
 """Tests for scripts/audit_content.py.
 
 The audit is advisory and reports what no gate blocks: whitespace-only
-fields, duplicate card fronts, a free_text answer that is also a
-distractor, lessons missing from their set. What the engine gate blocks
-(validate_with_engine.mjs) is not repeated here: a malformed cloze, a
-multiselect overlap, too few word tiles, a picture choice without exactly
-one correct image, a repeated matching left term. One rule, one place
-(learn-content-engine's rule ownership).
+fields, duplicate card fronts, lessons missing from their set. What the
+engine gate blocks (validate_with_engine.mjs) is not repeated here: a
+malformed cloze, a multiselect overlap, too few word tiles, a picture
+choice without exactly one correct image, a repeated matching left term,
+a free_text answer that is also a distractor (learn-content-engine 0.35.0).
+One rule, one place (learn-content-engine's rule ownership).
 """
 from __future__ import annotations
 
@@ -69,6 +69,10 @@ ENGINE_OWNED = {
         "id": "m1", "type": "matching", "prompt": "Match.",
         "pairs": [{"left": "a", "right": "1"}, {"left": "A", "right": "2"}, {"left": "b", "right": "3"}],
     },
+    "free_text answer that is also a distractor (E-FREETEXT-DISJOINT)": {
+        "id": "f1", "type": "free_text", "prompt": "?",
+        "accept": ["gracias", "Gracias"], "distractors": ["gracias"],
+    },
 }
 
 
@@ -88,13 +92,6 @@ def test_duplicate_card_front_is_reported() -> None:
     cards = [{"id": "c1", "front": "Hund", "back": "dog"}, {"id": "c2", "front": "hund", "back": "hound"}]
     problems = _audit({"id": "f1", "type": "free_text", "prompt": "?", "accept": ["a", "b"]}, cards)
     assert any("duplicate card front" in problem for problem in problems)
-
-
-def test_free_text_answer_that_is_also_a_distractor_is_reported() -> None:
-    problems = _audit(
-        {"id": "f1", "type": "free_text", "prompt": "?", "accept": ["gracias", "Gracias"], "distractors": ["gracias"]}
-    )
-    assert any("accept & distractors overlap" in problem for problem in problems)
 
 
 def test_a_clean_lesson_reports_nothing() -> None:
