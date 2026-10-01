@@ -289,6 +289,95 @@ def test_inline_code_spans_are_not_prose():
     assert [w for w, _ in check_prose.substituted_words("`x` ist fuer dich")] == ["fuer"]
 
 
+def _scanned(path: str, text: str) -> str:
+    return " ".join(segment for _, segment in check_prose.prose_segments(path, text))
+
+
+def test_accept_entries_after_the_first_are_typing_variants():
+    # The app shows accept[0] as the solution; the later entries only catch
+    # what a learner types, and an ASCII spelling is there on purpose for a
+    # keyboard without umlauts. The first entry is still prose.
+    lesson = json.dumps(
+        {
+            "steps": [
+                {"exercise": {"accept": ["Überzeugung", "Ueberzeugung"]}},
+                {"exercise": {"blanks": [{"accept": ["Domänenwissen", "Fachwissen", "Domaenenwissen"]}]}},
+                {"exercise": {"accept": ["Uebersicht", "Übersicht"]}},
+            ]
+        },
+        ensure_ascii=False,
+    )
+    scanned = _scanned("lesson.json", lesson)
+    assert "Überzeugung" in scanned and "Domänenwissen" in scanned
+    assert "Ueberzeugung" not in scanned and "Domaenenwissen" not in scanned
+    assert "Uebersicht" in scanned
+
+
+def test_a_statement_ending_in_a_semicolon_is_code():
+    # A select cloze can offer code lines as options; an identifier in them is
+    # spelled by whoever wrote it. Prose does not end a field with ";".
+    lesson = json.dumps(
+        {"exercise": {"distractors": ["zaehler++;", "zaehler = zaehler + 1;", "Der Zaehler steigt"]}},
+        ensure_ascii=False,
+    )
+    scanned = _scanned("lesson.json", lesson)
+    assert "zaehler++;" not in scanned and "zaehler = zaehler + 1;" not in scanned
+    assert "Der Zaehler steigt" in scanned
+
+
+def test_yaml_tags_are_machine_values():
+    # Tags are slugs, ASCII on purpose, as in a lesson file's "tags".
+    text = (
+        "sets:\n"
+        "  - id: hunde\n"
+        "    tags:\n"
+        "      - anfaenger\n"
+        "      # Kommentar fuer Menschen\n"
+        "      - hund\n"
+        "    description: Fuer alle\n"
+        "books:\n"
+        "  - tags: [\"koerpersprache\", \"hund\"]\n"
+        "tags:\n"
+        "- uebung\n"
+        "title: Zurueck\n"
+    )
+    segments = check_prose.prose_segments("manifest.yaml", text)
+    scanned = " ".join(segment for _, segment in segments)
+    assert "anfaenger" not in scanned and "koerpersprache" not in scanned and "uebung" not in scanned
+    hits = [(n, w) for n, seg in segments for w, _ in check_prose.substituted_words(seg)]
+    assert hits == [(5, "fuer"), (7, "Fuer"), (12, "Zurueck")]
+
+
+def test_a_capitalised_surname_is_not_a_misspelling():
+    # Hovland & Weiss (1951), James Gross: the surnames are spelled that way.
+    # Only the capitalised form is exempt, so the German words stay findings.
+    assert check_prose.substituted_words("nach Hovland & Weiss und James Gross") == []
+    assert [w for w, _ in check_prose.substituted_words("ich weiss es nicht")] == ["weiss"]
+    assert [w for w, _ in check_prose.substituted_words("ein gross angelegter Test")] == ["gross"]
+
+
+def test_french_grosse_is_a_foreign_lookalike():
+    # French "gros -> grosse", "Grosses bises" in the hub's language sets.
+    assert check_prose.substituted_words("gros devient grosse; Grosses bises") == []
+
+
+def test_unmistakable_code_syntax_in_a_plain_text_field_is_not_prose():
+    # Card texts are plain text, so code in them carries no backticks. A
+    # subscript, an increment, a tag, a JSX expression and a method call
+    # are syntax German prose never uses.
+    for snippet in (
+        "Wert abrufen - d['schluessel']",
+        "wenn man mit d[\"schluessel\"] zugreift",
+        "z. B. zaehler++ oder array.push",
+        "Props wie Attribute: <Begruessung name=\"Ana\" />",
+        "title={gruss} setzt den Wert ein",
+        ".get(schluessel) gibt den Wert",
+    ):
+        assert check_prose.substituted_words(snippet) == [], snippet
+    # Parentheses alone are prose.
+    assert [w for w, _ in check_prose.substituted_words("ein Satz (fuer alle)")] == ["fuer"]
+
+
 def test_the_generated_search_index_is_out_of_scope():
     assert "search-index.json" in check_prose.EXCLUDED_FILES
 

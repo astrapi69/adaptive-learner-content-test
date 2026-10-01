@@ -36,8 +36,16 @@ coverage and both false-alarm rates whenever the dictionaries are installed
 Code is exempt from the umlaut check, and only from that one. An identifier is
 spelled by whoever wrote it: "laeuft" as a variable name is a choice, "laeuft"
 in a sentence is a misspelling. In a lesson file that means the code-bearing
-fields (``passage``, ``sentence``, ``tokens``, ``code``) and the fenced blocks
-inside a theory body; in Markdown it means the fenced blocks.
+fields (``passage``, ``sentence``, ``tokens``, ``code``), a string ending in a
+semicolon (a code line offered as an option) and the fenced blocks inside a
+theory body; in Markdown it means the fenced blocks.
+
+Machine values and typing variants are not prose either: the id fields of a
+lesson file, the ``tags`` of a lesson or a YAML file, and every ``accept``
+entry after the first. The app shows ``accept[0]`` as the solution; the later
+entries only catch what a learner types, an ASCII spelling for a keyboard
+without umlauts among them. A surname that is also a German word written
+without its sharp s goes into ``PROPER_NAMES``, matched case-sensitively.
 
 This file, its test, the stem generator and its data are exempt from the
 umlaut check too, for the same reason the banned characters are built from
@@ -110,7 +118,39 @@ FOREIGN_LOOKALIKES = {
     "neisser",
     "jinaesseo",
     "seonsaengnim",
+    # French "gros -> grosse", "Grosses bises" (adaptive-learner-content, fr-a2
+    # and en-b1, 2026-10-01). The cost: these two German misspellings of
+    # "große"/"großes" are no longer caught as whole words; "grossen",
+    # "grosser" and every compound still are.
+    "grosse",
+    "grosses",
 }
+
+# Surnames that are also a German word written without its sharp s. They are
+# matched case-sensitively, so only the capitalised name is exempt and the
+# lower-case word ("ich weiss", "gross") stays a finding. Found by:
+# alc-psychology, "Hovland & Weiss" and James Gross's process model
+# (2026-10-01).
+PROPER_NAMES = {
+    "Weiss",
+    "Gross",
+}
+
+# Code syntax German prose never uses, in fields that are plain text and so
+# carry code without backticks (a card's back, a hint): a subscript
+# (d['key']), an increment (n++), a tag (<Name), a JSX expression ({name})
+# and a method call (.get(key)).
+CODE_SYNTAX = re.compile(
+    r"\[\s*['\"][^'\"\]]*['\"]\s*\]"
+    r"|\w+(?:\+\+|--)"
+    r"|</?[A-Za-z][\w.]*"
+    r"|\{[^{}\s]*\}"
+    r"|\.\w+\([^()]*\)"
+)
+
+# A YAML "tags" key, block or flow style. Its values are slugs, as in a lesson
+# file's "tags" (MACHINE_KEYS).
+YAML_TAGS = re.compile(r"^(\s*)(?:-\s+)?tags:\s*(.*)$")
 
 # Fields of a lesson file that hold machine keys, not words: an id is looked up
 # verbatim by the app and the manifest, so "correcting" its spelling silently
@@ -227,13 +267,14 @@ def substituted_words(text: str) -> list[tuple[str, str]]:
     umlauts in ``text``."""
     findings = []
     text = INLINE_CODE.sub(" ", text)
+    text = CODE_SYNTAX.sub(" ", text)
     text = TECHNICAL_TOKEN.sub(
         lambda match: " " if match.group(0) == match.group(0).lower() else match.group(0).replace("_", " "),
         text,
     )
     for word in WORD.findall(text):
         lowered = word.lower()
-        if lowered in FOREIGN_LOOKALIKES or _is_identifier(word):
+        if lowered in FOREIGN_LOOKALIKES or word in PROPER_NAMES or _is_identifier(word):
             continue
         if lowered in WHOLE_WORDS:
             suggestion = WHOLE_WORDS[lowered]
@@ -289,6 +330,8 @@ def prose_segments(path: str, text: str) -> list[tuple[int, str]]:
             line_no = next((i for i, line in enumerate(lines, start=1) if head[:60] in line), 0)
             segments.append((line_no, _outside_fences(value)))
         return segments
+    if path.endswith((".yaml", ".yml")):
+        return _yaml_segments(text)
     if path.endswith(".md"):
         segments = []
         in_fence = False
@@ -302,6 +345,31 @@ def prose_segments(path: str, text: str) -> list[tuple[int, str]]:
     return list(enumerate(text.splitlines(), start=1))
 
 
+def _yaml_segments(text: str) -> list[tuple[int, str]]:
+    """(line number, prose) for a YAML file: every line except the values of a
+    ``tags`` key. A comment inside a tags block is prose."""
+    segments = []
+    tags_indent = None
+    for number, line in enumerate(text.splitlines(), start=1):
+        stripped = line.lstrip()
+        if tags_indent is not None:
+            if not stripped or stripped.startswith("#"):
+                segments.append((number, line))
+                continue
+            if stripped.startswith("-") and len(line) - len(stripped) >= tags_indent:
+                continue
+            tags_indent = None
+        match = YAML_TAGS.match(line)
+        if match is None:
+            segments.append((number, line))
+            continue
+        value = match.group(2)
+        if not value or value.startswith("#"):
+            tags_indent = len(match.group(1))
+            segments.append((number, value))
+    return segments
+
+
 def _walk_json(node, in_code: bool, out: list[str]) -> None:
     if isinstance(node, dict):
         # An inline example is prose when it is a sample sentence and code when
@@ -309,11 +377,19 @@ def _walk_json(node, in_code: bool, out: list[str]) -> None:
         example_is_code = bool(node.get("language")) and "content" in node
         for key, value in node.items():
             child_is_code = in_code or key in CODE_KEYS or (example_is_code and key == "content")
+            if key == "accept" and isinstance(value, list):
+                # The app shows accept[0] as the solution; the later entries
+                # only catch what a learner types, an ASCII spelling for a
+                # keyboard without umlauts among them.
+                _walk_json(value[:1], child_is_code, out)
+                continue
             _walk_json(value, child_is_code, out)
     elif isinstance(node, list):
         for value in node:
             _walk_json(value, in_code, out)
-    elif isinstance(node, str) and not in_code:
+    elif isinstance(node, str) and not in_code and not node.rstrip().endswith(";"):
+        # A string ending in ";" is a code statement (a select cloze offering
+        # code lines); prose does not end a field with a semicolon.
         out.append(node)
 
 
