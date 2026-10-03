@@ -1,0 +1,1 @@
+import"./index-DOet9-Fg.js";function e(e,t){return e===`user-generated`&&!t.startsWith(`analysis-`)}export{e as t};

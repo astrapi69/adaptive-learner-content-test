@@ -1,0 +1,47 @@
+# Umlaut data: the prose gate's umlaut check against the dictionaries.
+#
+# scripts/umlaut_stems.json is generated from the German and English
+# dictionaries (scripts/build_umlaut_stems.py) and committed; the PR gate only
+# reads it. The tests that hold the committed data and the real gate against
+# those dictionaries (every umlaut word found, no correct German or English
+# word flagged) need the dictionary packages, which the regular test step does
+# not install. They run here, only when the gate or its data changes, and with
+# REQUIRE_DICTIONARIES set a missing dictionary fails instead of skipping.
+name: Umlaut data
+
+on:
+  pull_request:
+    paths:
+      - scripts/check_prose.py
+      - scripts/build_umlaut_stems.py
+      - scripts/umlaut_stems.json
+      - tests/test_check_prose.py
+      - .github/workflows/umlaut-data.yml
+  push:
+    branches: [main]
+    paths:
+      - scripts/check_prose.py
+      - scripts/build_umlaut_stems.py
+      - scripts/umlaut_stems.json
+      - tests/test_check_prose.py
+      - .github/workflows/umlaut-data.yml
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  dictionaries:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install dictionaries
+        run: sudo apt-get update && sudo apt-get install -y wngerman wamerican wbritish
+      - name: Install test dependencies
+        run: pip install "pytest>=8,<9" regex
+      - name: Gate against the dictionaries
+        env:
+          REQUIRE_DICTIONARIES: "1"
+        run: python -m pytest tests/test_check_prose.py -q

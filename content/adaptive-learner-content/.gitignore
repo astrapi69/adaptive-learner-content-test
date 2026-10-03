@@ -1,0 +1,27 @@
+# Python bytecode caches (validate_content.py / generate_search_index.py)
+__pycache__/
+*.pyc
+
+# Node modules of the pinned engine (Engine validate gate; never committed)
+node_modules/
+
+# BYOK API keys: never commit a key file
+.env
+.env.*
+
+# generate_exercises.py staging: unreviewed AI drafts stay local
+# (the folder's README.md is kept, the generated JSON is not)
+/generated/**/*.json
+
+# Local Python environment created by `make setup` / `make validate`
+.venv/
+
+# export_set.py snapshots for AI review: read-only, never committed
+exports/
+
+# Editor and IDE settings (IntelliJ, VS Code): per developer, never
+# committed. Without this, an IDE folder in a checkout shows up as
+# untracked and a `git add -A` commits it.
+.idea/
+*.iml
+.vscode/

@@ -1,0 +1,1 @@
+import{o as e}from"./vendor-react-BsMUP866.js";import{o as t}from"./vendor-markdown-Bl9rEUoz.js";var n=t();function r(){return(0,n.jsx)(e,{to:`/content`,replace:!0})}export{r as default};
