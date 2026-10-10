@@ -31,7 +31,7 @@
  * validated instead of refused - `make lint-warnings` used to shell out to the
  * bare CLI (no registry) and died on ext content (content-test#71).
  */
-import { validateLesson, validateLessonQuality, validateManifest } from "learn-content-engine";
+import { validateLesson, validateLessonQuality, validateManifest, validateManifestPair } from "learn-content-engine";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
@@ -283,6 +283,21 @@ function selfTest() {
     console.log("self-test OK: the source language reaches the card-back script lint");
   }
 
+  // Root and set manifest (learn-content-engine#246): a field both carry
+  // with different values is surfaced, as a warning or an error depending
+  // on the pinned engine's tier.
+  const setEntry = { id: "s1", title: "Set", target_language: "es", level: "A1", version: "1.0.0", lesson_count: 1 };
+  const pair = validateManifestPair(
+    { name: "Root", sets: [{ ...setEntry, description: "Root text" }] },
+    { name: "Set", sets: [{ ...setEntry, description: "Set text" }] },
+  );
+  if (![...pair.errors, ...pair.warnings].some((issue) => issue.id.endsWith("-MANIFEST-ENTRY-MISMATCH"))) {
+    failures++;
+    console.error("SELF-TEST FAIL: a root/set manifest mismatch must be surfaced (MANIFEST-ENTRY-MISMATCH)");
+  } else {
+    console.log("self-test OK: a root/set manifest mismatch is surfaced");
+  }
+
   if (failures) return 1;
   console.log(`\nSelf-test passed: the gate rejects all bad-lesson classes, applies the quality minimums, gates the extension tier, and surfaces author warnings.`);
   return 0;
@@ -325,8 +340,15 @@ function validateAll(repoRoot, { showWarnings = false } = {}) {
       if (showWarnings && res.warnings.length) warned.push({ file: rel, warnings: res.warnings });
     } else if (rel.endsWith("manifest.yaml")) {
       manifests += 1;
-      const res = validateManifest(parseYaml(readFileSync(file, "utf8")));
+      const setManifest = parseYaml(readFileSync(file, "utf8"));
+      const res = validateManifest(setManifest);
       if (!res.valid) report(rel, res.errors);
+      // The set is described twice, here and in the root manifest; the two
+      // must agree (learn-content-engine#246). The engine's tier decides:
+      // a warning in 0.37.x, an error from the release that raises it.
+      const pair = validateManifestPair(rootManifest, setManifest);
+      if (!pair.valid) report(rel, pair.errors);
+      if (showWarnings && pair.warnings.length) warned.push({ file: rel, warnings: pair.warnings });
       // Manifest warnings were collected for lessons but DROPPED here, so the
       // set-level ordering gate (learn-content-engine#110, W-SET-ORDER-*)
       // reached this runner and reported nothing. A connected gate that
