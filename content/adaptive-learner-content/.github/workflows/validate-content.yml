@@ -1,0 +1,70 @@
+# Content validation (Phase 60 / v1.44.0, D-108; EXP-039).
+#
+# Runs the validator on every pull request (and on pushes to main)
+# so no broken or low-quality lesson set can land. The structural
+# fields are validated against the canonical JSON Schema vendored
+# under schema/ (a mirror of the pinned learn-content-engine
+# release; source-of-truth chain: engine (canonical) -> this
+# mirror), and the directory structure, which needs the file system,
+# stays in the validator. Every rule about the content itself (the
+# semantic rules, the quality minimums, the language rules, unique
+# ids) is the engine's and runs in engine-validate.yml. Everything
+# here reads only committed files - the validation itself works fully
+# offline.
+name: Validate content
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Coerce Node-runtime actions onto Node 24 as a safety net for any
+# action still defaulting to the deprecated Node 20 runtime.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install validator dependencies
+        # requests: the hub's AI review script (scripts/ai_review.py, hub-only)
+        # imports it, and its tests run in the same suite. The workflow is the
+        # same file in every repository, so the hub's need is installed
+        # everywhere; it is one small package.
+        run: pip install "pyyaml>=6,<7" "jsonschema>=4,<5" "pytest>=8,<9" "requests>=2,<3" regex "genanki>=0.13,<0.14"
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+      - name: Install the pinned engine release
+        # The test suite needs it: generate_exercises.py asks the engine
+        # (scripts/engine_check.mjs) for the semantic rules and the quality
+        # minimums instead of keeping a copy of them.
+        run: npm install --no-save "learn-content-engine@$(cat schema/engine-version.txt)" "yaml@^2.9.0"
+      - name: Prose gate self-test
+        # Blocking always: a gate that does not fire on known-bad input is
+        # broken, whatever the repository's backlog.
+        run: python scripts/check_prose.py --self-test
+      - name: Prose gate (em dash, invisible characters, substituted umlauts)
+        # Blocking unless the repository records a backlog in its own
+        # .github/quality-state.json (prose_gate.blocking: false, with a date
+        # and a reason). The decision lives there and not in this file, so
+        # this workflow stays identical in every repository. A broken gate
+        # (any exit code other than 0 or 1) and a malformed state file always
+        # fail. The summary lists the findings per file and ends with the
+        # gate's totals.
+        run: |
+          set +e
+          python -u scripts/check_prose.py > /tmp/prose.txt 2>&1
+          status=$?
+          set -e
+          cat /tmp/prose.txt
+          python scripts/quality_state.py prose --status "$status" --report /tmp/prose.txt >> "$GITHUB_STEP_SUMMARY"
+      - name: Validate content tree
+        run: python scripts/validate_content.py
+      - name: Repo test suite (shape parity #1208, drift-gate units)
+        run: python -m pytest tests -q

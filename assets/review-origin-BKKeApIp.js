@@ -1,0 +1,1 @@
+var e=`from`,t=/^\/lesson\/[^/\\]+(?:\/[^/\\]+)*$/;function n(t,n){let r=`/review/${encodeURIComponent(t)}`;return n?`${r}?${e}=${encodeURIComponent(n)}`:r}function r(e){return!e||!t.test(e)?null:e}export{r as n,n as r,e as t};

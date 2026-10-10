@@ -1,0 +1,1 @@
+import"./index-Dk0kxgJ3.js";function e(e,t){return e===`user-generated`&&!t.startsWith(`analysis-`)}export{e as t};

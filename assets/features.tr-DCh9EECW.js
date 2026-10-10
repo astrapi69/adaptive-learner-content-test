@@ -1,0 +1,300 @@
+var e={category:`features`,language:`tr`,entries:[{key:`feature_method_switch`,title:`Yöntem Değişikliği`,short:`Durağanlaştığınızda sistem farklı bir yöntem önerir; geçip geçmemeye siz karar verirsiniz.`,long:`## Yöntem değişikliği nedir?
+
+Öğrenmeniz bir yöntemde durağanlaşırken aynı zamanda
+yüksek strese neden oluyorsa Adaptive Learner bir yöntem
+değişikliği önerir. Öneriyi oturum sohbetinin üzerinde bir
+başlık olarak görürsünüz ve kabul edebilir ya da
+kapatabilirsiniz.
+
+## Öneri ne zaman çıkar
+
+Kural, son üç oturum değerlendirmenize bakar. Her iki
+koşulun da sağlanması gerekir:
+
+- **Anlamada ilerleme yok**: üç anlama puanı yükselmiyor
+  (aynı puanın üç kez gelmesi durağanlık sayılır).
+- **Ortalama stres 3'ün üzerinde** (1-5 ölçeğinde), aynı
+  üç değerlendirme boyunca.
+
+Üçten az değerlendirme varsa öneri çıkmaz. Hâlâ ilerleme
+gösteren zor bir dönem ya da stres olmadan durağanlık
+öneriyi tetiklemez.
+
+## Hangi yöntem önerilir
+
+Öğrenme profilinizde en yüksek ağırlığa sahip olan ve son
+zamanlarda kullanmadığınız yöntem. Profil yoksa sabit
+yöntem sırasındaki bir sonraki yöntem.
+
+## Karar sizin
+
+Sistem önerir; siz seçersiniz. Kabul etmek oturumun
+yöntemini değiştirir ve bir \`\`MethodSwitch\`\` kaydı
+oluşturur (profiliniz için bir iz). Kapatmak öneriyi bu
+oturumun geri kalanı için gizler; bir sonraki oturum
+yeniden kontrol eder.
+
+## Neden otomatik değil?
+
+Yöntem değişiklikleri öğrenme deneyiminde büyük bir
+değişikliktir. Otomatik bir geçiş öğrenme sürekliliğini
+bozar ve zor ama verimli bir dönemde de tetiklenebilir.
+Bağlamınızı sistemden daha iyi siz bilirsiniz.
+`},{key:`feature_auto_loop`,title:`Otomatik Döngü`,short:`Adım 7'nin ardından, yeni içerikle yeni bir döngü otomatik olarak başlar.`,long:`## Otomatik döngü nedir?
+
+7. adımı (bütünleştirme) tamamladığınızda oturum,
+müfredatınızdaki bir sonraki konuyla yeni bir döngüyü
+otomatik olarak başlatabilir — "sonraki döngü" düğmesine
+basmanıza gerek kalmadan.
+
+## Bir sonraki konu nasıl seçilir
+
+- **Müfredat varsa**: hiyerarşik sıradaki bir sonraki konu.
+- **Müfredat yoksa**: yapay zeka mevcut yörüngeye göre
+  uygun bir devam konusu üretir.
+- **Aralıklı tekrar kartları vadesi gelmişse**: yeni
+  içerikten önce bunlar önceliklendirilir.
+
+## Döngü sayacı
+
+Her oturum bir döngü sayacı gösterir ("3/5"). max_cycles
+sınırına ulaşıldığında (varsayılan: 5), otomatik döngü
+duraklar ve devam etmek isteyip istemediğinizi sorar.
+Bu, denetimsiz uzayan oturumları önler.
+
+## Otomatik döngüyü nasıl keserim
+
+- **Değerlendirme gönderin**: her döngünün ardından üç
+  kaydırıcıyı (anlama, stres, yönteme uyum) alırsınız.
+  Stres > 3 ise sistem bir mola önerir.
+- **"Oturumu sonlandır" düğmesi**: her zaman tıklanabilir.
+- **Yöntem değişikliğini kabul edin**: mevcut döngüyü
+  keser ve yeni yöntemle yenisini başlatır.
+
+## Otomatik döngü en çok ne zaman değerlidir
+
+Küçük konu birimlerinin olduğu dil öğreniminde, "yeni
+oturum başlat" ek yükünün öğrenmeyi yavaşlattığı
+durumlarda. Kodlamada, konu geçişleri daha büyük
+olduğundan otomatik döngü genellikle daha az kullanışlıdır.
+`},{key:`feature_spaced_repetition`,title:`Aralıklı Tekrar`,short:`Öğrenme geçmişinize dayalı, zamanı optimize edilmiş tekrar.`,docs_slug:`user-guide/lessons`,long:`## Aralıklı tekrar nedir?
+
+Aralıklı tekrar, tekrarları giderek artan aralıklarla
+yerleştirme tekniğidir. Unutma eğrisi etkisinden
+yararlanır: başarıyla hatırlanan her öğe bir sonraki sefer
+daha uzun süre akılda kalır.
+
+## Adaptive Learner'daki aralıklar
+
+Yanıtladığınız her alıştırma öğesi izlenir. Bir sonraki
+tekrar tarihi, onu art arda kaç kez doğru yanıtladığınıza
+bağlıdır:
+
+- **Art arda 0 doğru** (ya da az önce yanlış yanıt): 1 gün
+  sonra tekrar.
+- **Art arda 1 doğru**: 3 gün sonra.
+- **Art arda 2 veya daha fazla doğru**: 7 gün sonra.
+
+**Art arda 3 doğru yanıtta** öğe öğrenilmiş sayılır ve
+tekrar kuyruğundan çıkar. Daha sonraki bir yanlış yanıt
+onu geri getirir.
+
+## Tarihi ne kaydırır
+
+- **İpucu kullanıldı**: yanıt yardımla geldiği için aralık
+  yarıya iner.
+- **Sınav modunda doğru**: yardımsız bir yanıt daha güçlü
+  bir kanıt olduğu için aralık iki katına çıkar.
+
+## Sistem ne zaman tekrar önerir
+
+Vadesi gelen öğeler olduğunda Pano'da, vadesi gelen ve
+gecikmiş öğelerin sayısını ve bir **Tekrar oturumu aç**
+düğmesini içeren bir tekrar kartı görünür. Önce gecikmiş
+öğeler, ardından en çok hata yapılanlar gelir. Ayrıntılar
+için dersler kılavuzuna bakın.
+`},{key:`feature_conversation_analysis`,title:`Konuşma Analizi / İçe Aktarma`,short:`Mevcut sohbet geçmişlerini analiz edin ve bunlardan somut öğrenme materyalleri çıkarın.`,long:`## Konuşma analizi nedir?
+
+Adaptive Learner, ChatGPT, Claude veya Gemini'den
+mevcut sohbetleri analiz edebilir ve bunlardan öğrenme
+içeriği çıkarabilir. Dökümü bir kez içe aktarırsınız —
+sistem okur, yapılandırır ve kullanılabilir bir öğrenme
+materyaline dönüştürür.
+
+## Ne çıkarılır
+
+- **Kavramlar** — sohbette tartışılan terimler ve fikirler.
+- **Bilgi boşlukları** — takip soruları sorduğunuz veya
+  hata yaptığınız noktalar.
+- **Hatalar** — sohbette görünür olan somut yanlış
+  anlamalar.
+- **Kelime dağarcığı / terminoloji** — alan sözcükleri
+  (özellikle dil öğrenimi veya uzmanlaşmış alanlar için
+  ilgili).
+
+## İçe aktarma nasıl çalışır
+
+1. Sohbetinizi ChatGPT, Claude veya Gemini'den Markdown
+   veya JSON olarak dışa aktarın.
+2. Dosyayı Adaptive Learner'a yükleyin (sürükle-bırak
+   veya dosya seçici).
+3. Sistem formatı otomatik olarak algılar ve mesajları
+   depolar.
+4. Analizi başlatın — yapay zeka sohbeti öğrenme dilinizde
+   okur ve yapılandırılmış özeti üretir.
+
+## Sonra ne yapabilirsiniz
+
+Analizden üç eylem izler:
+
+- **"Müfredat oluştur"** — çıkarılan kavramlar hiyerarşik
+  bir müfredatı besler.
+- **"Oturum başlat"** — tespit edilen bilgi boşluklarından
+  doğrudan başlayan bir oturum.
+- **"Anki kartları oluştur"** — kavramlar ve kelime
+  dağarcığından flash kartlar.
+
+## Yinelemeler
+
+Aynı sohbeti iki kez içe aktarırsanız sistem bunu içerik
+özeti üzerinden algılar ve kopya oluşturmak yerine mevcut
+analize gitmeyi önerir.
+
+## Gizlilik
+
+Sohbet içerikleri YALNIZCA etkin yapay zeka sağlayıcınıza
+(ayarlarda yapılandırdığınız) gönderilir. Sistem merkezi
+bir sunucuya hiçbir şey göndermez. Sohbeti sildiğinizde
+içerikler de gider.
+`},{key:`feature_gamification`,title:`Oyunlaştırma (XP, Rozetler, Seriler)`,short:`Deneyim puanları, rozetler ve serilerle ilerleme sistemi: numara olmadan motivasyon.`,docs_slug:`user-guide/dashboard`,long:`## Oyunlaştırma katmanı nedir?
+
+Üç mekanik, öğrenme ilerlemesini görünür ve ödüllendirici
+kılar:
+
+- **XP (deneyim puanları)** - tamamlanan oturumlar ve
+  dersler, değerlendirme ve sohbet içe aktarımları için.
+  Seviyeler XP ile yükselir.
+- **Rozetler** - kilometre taşları için (ilk oturum,
+  düzenli kalmak, yöntem denemek, derinlik, birden fazla
+  dil).
+- **Seriler** - öğrenme etkinliği olan ardışık günler.
+
+## XP nasıl kazanılır
+
+- **Tamamlanan oturum**: 50 XP, tamamlanan her döngü için
+  +10 XP, adım 7'ye ulaşan her döngü için +25 XP.
+- **Yeni bir yöntemdeki ilk oturum**: +50 XP.
+- **Tamamlanan ders**: 30 XP, yıldız başına +10 XP, her
+  adım ilk denemede doğru olan üç yıldız için +20 XP.
+- **Seri çarpanı**: oturum ve ders XP'sine seri günü
+  başına +%25, en fazla 7 güne kadar (en çok 2,75x).
+- **Oyun modu kombosu**: kombolarla oynanan bir ders için
+  en fazla 20 ek XP.
+- **Tamamlanan değerlendirme**: 100 XP.
+- **İçe aktarılan ve analiz edilen sohbet**: 75 XP.
+
+Seviyeler giderek genişleyen bir eğri üzerinde büyür:
+seviye 2 için 100 XP, seviye 3 için 300, seviye 4 için
+600, seviye 5 için 1000; her aralık bir öncekinden 100 XP
+daha büyüktür.
+
+## Rozetler zorlayıcı değildir
+
+Uygulamayı verimli kullanmak için tek bir rozete bile
+ihtiyacınız *yoktur*. Rozetler bir hedef değil, bir
+aynadır. Rozet bildirimleri ayarlardan kapatılabilir.
+
+## Seri dondurmaları
+
+Her 7 seri günü bir seri dondurması kazandırır, stokta en
+fazla 3 tane. Bir günü kaçırırsanız otomatik olarak bir
+dondurma kullanılır ve serinizi sıfırlamak yerine
+duraklatır. Hafta sonu modu açıkken cumartesi ve pazar
+boşluk sayılmaz.
+
+## Bu neden numara olmadan işe yarar
+
+Öğrenme araştırmaları gösteriyor ki dışsal ödül içsel
+motivasyonu yok edebilir ("aşırı gerekçelendirme etkisi").
+Adaptive Learner, mekaniklerin bir teşvik sistemi değil,
+ilerlemenin bir **aynası** olmasına dayanır. Sıralama
+tabloları yok, sosyal özellikler yok, puan paylaşımı yok:
+veriler sizde kalır.
+
+## Sıfırlama
+
+Oyunlaştırma değerleri artık durumunuza uymuyorsa (ör.
+uzun bir aradan sonra yeni bir başlangıç), XP'yi,
+rozetleri ve seriyi ayarlardan sıfırlayabilirsiniz.
+Müfredat, oturumlar ve değerlendirmeler korunur.
+`},{key:`view_dashboard`,title:`Kontrol paneli`,short:`Ana üssünüz: ilerleme, seri, XP, rozetler, vadesi gelen incelemeler ve hızlı eylemler.`,docs_slug:`user-guide/dashboard`,long:`## Kontrol paneli neyi gösterir?
+
+Kontrol paneli komuta merkezinizdir. En üstte, en son
+üzerinde çalıştığınız dersle "Öğrenmeye devam et" yer alır;
+ardından eyleme dönük kartlar (duraklatılmış dersler,
+görevler, odak alanları, inceleme sırası), sonra
+oyunlaştırma (XP, seri, rozetler) ve son olarak analitik
+paneller gelir.
+
+## Filtre
+
+Bir konu filtresi yalnızca kendi konularınızı, en çok
+kullanılan önce olacak şekilde sıralayarak listeler.
+`},{key:`view_content_browser`,title:`İçerik tarayıcısı`,short:`Ders setlerini bulduğunuz, indirdiğiniz ve başlattığınız sayfa.`,docs_slug:`features/content-browser`,long:`## Dersleri nasıl bulurum?
+
+/content adresindeki içerik tarayıcısı öğrenme akışı
+etrafında kuruludur: önce arama (anlık, aksan toleranslı),
+sonra "Öğrenmeye devam et", ardından katalog. Katalog
+"Diller" (kaynak > hedef > seviye) ve "Bilgi" (dil dışı
+alanlar) olarak ikiye ayrılır.
+
+## Kaynaklar ve kitaplar
+
+Kaynak rozetleri bir setin nereden geldiğini gösterir; bir
+kaynak filtresi tekil kaynakları gizler. Bir alan, kitap
+önerileri sunabilir.
+`},{key:`view_lesson`,title:`Ders`,short:`Bir dersin teorisi ve alıştırmaları boyunca sizi adım adım yönlendiren görüntüleyici.`,docs_slug:`user-guide/lessons`,long:`## Alıştırmalar nasıl çalışır?
+
+Bir ders, teori ve alıştırma adımlarından oluşan bir
+dizidir. Her set temel alıştırma türlerini kullanabilir
+(eşleştirme, resim seçme, serbest metin, boşluk doldurma,
+kelime karoları, çoktan seçmeli); bazı setler
+sınıflandırma veya sesli dikte gibi ek türler ekler. Tam
+liste özelliklere genel bakışta yer alır.
+
+## Denetimler
+
+Enter, yanıtlanmış bir alıştırmayı kontrol eder ve
+ilerletir. Bir alıştırmadan "Teoriyi tekrar oku" ile
+ilgili teoriye atlayabilirsiniz. Sonunda yıldızlarla
+puanınızı görür ve bunu Markdown olarak dışa
+aktarabilirsiniz.
+`},{key:`view_settings`,title:`Ayarlar`,short:`Kod veya YAML olmadan değiştirebileceğiniz her şey — dil, yapay zeka, öğrenme, veri, görünüm.`,docs_slug:`user-guide/settings`,long:`## Neleri yapılandırabilirim?
+
+Ayarlar; dili, yapay zeka sağlayıcısını ve anahtarları,
+depolama modunu, öğrenme seçeneklerini (ör. Enter kısayolu,
+tercih edilen alıştırma yönü), veriyi (yedekleme, içerik
+depoları), görünümü (12 tema) ve oyunlaştırmayı bir araya
+getirir.
+
+## Verileriniz sizin elinizde
+
+"Veri" altında yedekler oluşturup içe aktarır ve kendi
+içerik depolarınızı bağlarsınız. Bunların hiçbiri sorulmadan
+cihazınızdan ayrılmaz.
+`},{key:`feature_backup`,title:`Yedekleme ve geri yükleme`,short:`Öğrenme durumunuzun, kaydedip başka bir yerde geri yükleyebileceğiniz eksiksiz bir anlık görüntüsü.`,docs_slug:`features/backup`,long:`## Yedekleme nedir?
+
+Bir yedek, eksiksiz bir anlık görüntüdür: tüm veri
+tabloları (projeler, oturumlar, ders ilerlemesi, hatalar,
+oyunlaştırma, görevler ...), indirdiğiniz içerik setleri
+ve yerel tercihleriniz tek bir \`\`.alb\`\` dosyasında (bir
+ZIP arşivi) toplanır. Eski tek JSON dosyalı yedekler hâlâ
+içe aktarılabilir.
+
+## Kimlikler arası
+
+Bir yedeği yeni bir kuruluma veya farklı bir profil altına
+içe aktarabilirsiniz; geri yükleme, dahili referansları
+temiz biçimde yeniden çözer. İçe aktarımda tablo bazında
+bir özet görürsünüz.
+`}]};export{e as default};

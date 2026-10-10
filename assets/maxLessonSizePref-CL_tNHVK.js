@@ -1,0 +1,1 @@
+var e=`adaptive-learner.max_lesson_size`;function t(){try{let t=localStorage.getItem(e);if(t===null)return 10;let n=parseInt(t,10);return isNaN(n)||n<5||n>20?10:n}catch{return 10}}function n(t){try{localStorage.setItem(e,String(t))}catch{}}export{n,t};
