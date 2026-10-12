@@ -29,9 +29,20 @@
  * `--warnings` also lists the author lints (W-*) that never block. It runs
  * through the SAME extension registry as the error gate, so ext: lessons are
  * validated instead of refused - `make lint-warnings` used to shell out to the
- * bare CLI (no registry) and died on ext content (content-test#71).
+ * bare CLI (no registry) and died on ext content (content-test#71). It also
+ * prints the engine's rename table (`RENAMED W-X -> E-X`): raising a rule
+ * renames it, and scripts/quality_state.py follows an accepted warning to its
+ * new ID instead of reporting it resolved (template#101). Errors carry their
+ * rule ID in both modes, in the same `[ID] path message` form as warnings.
  */
-import { validateLesson, validateLessonQuality, validateManifest, validateManifestPair } from "learn-content-engine";
+import {
+  currentRuleId,
+  RENAMED_RULE_IDS,
+  validateLesson,
+  validateLessonQuality,
+  validateManifest,
+  validateManifestPair,
+} from "learn-content-engine";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
@@ -372,6 +383,7 @@ function validateAll(repoRoot, { showWarnings = false } = {}) {
       (showWarnings ? `, ${totalWarnings} warning(s)` : ""),
   );
   if (showWarnings) {
+    for (const retired of Object.keys(RENAMED_RULE_IDS)) console.log(`RENAMED ${retired} -> ${currentRuleId(retired)}`);
     for (const w of warned) {
       console.log(`\nWARN ${w.file}`);
       for (const issue of w.warnings) console.log(`   [${issue.id}] ${issue.path} ${issue.message}`);
@@ -379,7 +391,7 @@ function validateAll(repoRoot, { showWarnings = false } = {}) {
   }
   for (const p of problems) {
     console.error(`\n✗ ${p.file}`);
-    for (const e of p.errors) console.error(`   ${e.path}: ${e.message}`);
+    for (const e of p.errors) console.error(`   [${e.id}] ${e.path} ${e.message}`);
   }
   return problems.length === 0 ? 0 : 1;
 }

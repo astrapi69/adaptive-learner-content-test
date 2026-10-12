@@ -15,7 +15,11 @@ identical across repositories, and they live in the repository's own
   of the elements it covers. A decision that cannot be read off the state is
   a backlog three months later: the warning summary shows the decision next to
   the number, and compares the recorded elements with the current ones, so
-  "still the same 105" is a set comparison, not a count.
+  "still the same 105" is a set comparison, not a count. An error cannot be
+  accepted: it blocks the gate. When the engine raises an accepted rule to an
+  error, its ID changes tier (``W-X`` becomes ``E-X``); the runner prints the
+  engine's rename table, so the record is still recognized under its old name
+  and the summary reports the raise instead of calling the findings resolved.
 
 Commands (all write Markdown for the job summary to stdout):
 
@@ -40,8 +44,10 @@ STATE_PATH = Path(".github/quality-state.json")
 TABLE_ROWS = 50
 
 FINDING_LINE = re.compile(r"^(?P<path>[^ ].*?):(?P<line>\d+): ")
-WARN_FILE = re.compile(r"^WARN (?P<path>\S+)")
-WARN_ENTRY = re.compile(r"^\s+\[(?P<rule>W-[A-Z0-9-]+)\] (?P<pointer>\S+)")
+RULE_ID = r"[EW]-[A-Z0-9-]+"
+ISSUE_FILE = re.compile(r"^(?:WARN|✗) (?P<path>\S+)")
+ISSUE_ENTRY = re.compile(rf"^\s+\[(?P<rule>{RULE_ID})\] (?P<pointer>\S+)")
+RENAMED_LINE = re.compile(rf"^RENAMED (?P<retired>{RULE_ID}) -> (?P<current>{RULE_ID})$")
 STEP_POINTER = re.compile(r"^/steps/(?P<index>\d+)/exercise")
 
 
@@ -64,6 +70,8 @@ def load_state(path: Path = STATE_PATH) -> dict:
         missing = [key for key in ("rule", "since", "reason", "ids") if key not in entry]
         if missing:
             raise ValueError(f"{path}: accepted warning {entry.get('rule', '?')} needs {', '.join(missing)}")
+        if is_error(entry["rule"]):
+            raise ValueError(f"{path}: {_refusal(entry['rule'])}")
     return state
 
 
@@ -121,15 +129,37 @@ class AcceptedStatus:
         return not self.new and not self.resolved
 
 
-def parse_warnings(output: str) -> list[Finding]:
-    """Every author warning in the engine runner's --warnings output."""
+def is_error(rule: str) -> bool:
+    """Whether a rule ID names an error: its tier is its prefix, ``E-`` blocks."""
+    return rule.startswith("E-")
+
+
+def _refusal(rule: str) -> str:
+    return f"{rule} is an error: it blocks the gate and cannot be accepted"
+
+
+def parse_findings(output: str) -> list[Finding]:
+    """Every finding in the engine runner's --warnings output, warnings
+    (``WARN`` blocks) and errors (``✗`` blocks) alike. An error line without a
+    rule ID, as an older runner prints it, is skipped."""
     findings, current = [], None
     for line in output.splitlines():
-        if match := WARN_FILE.match(line):
+        if match := ISSUE_FILE.match(line):
             current = match.group("path")
-        elif current and (match := WARN_ENTRY.match(line)):
+        elif current and (match := ISSUE_ENTRY.match(line)):
             findings.append(Finding(current, match.group("rule"), match.group("pointer")))
     return findings
+
+
+def parse_renames(output: str) -> dict[str, str]:
+    """The engine's rename table as the runner prints it: every retired rule
+    ID mapped to the ID its rule carries now. Empty when the runner printed
+    none; a rename is never guessed from a shared name."""
+    return {
+        match.group("retired"): match.group("current")
+        for line in output.splitlines()
+        if (match := RENAMED_LINE.match(line))
+    }
 
 
 def element_key(finding: Finding, root: Path) -> str:
@@ -165,21 +195,36 @@ def _status_text(status: AcceptedStatus) -> str:
     return "; ".join(parts)
 
 
+def _raised_text(current_rule: str, count: int) -> str:
+    if count == 0:
+        return f"raised to `{current_rule}`: no findings left, remove the record"
+    noun = "finding" if count == 1 else "findings"
+    return f"raised to `{current_rule}`: an error blocks the gate, the acceptance no longer applies ({count} {noun})"
+
+
 def warnings_report(output: str, state: dict, root: Path = Path(".")) -> str:
     """Markdown for the job summary: warnings per rule, each accepted rule with
-    its decision next to the number and a set comparison against the record."""
-    findings = parse_warnings(output)
+    its decision next to the number and a set comparison against the record.
+    An accepted rule the engine has since raised to an error keeps its row
+    under the recorded name and says so; other errors stay out of the table."""
+    findings = parse_findings(output)
+    renames = parse_renames(output)
     per_rule = Counter(finding.rule for finding in findings)
     accepted = {entry["rule"]: entry for entry in state.get("accepted_warnings", [])}
+    warned = {rule for rule in per_rule if not is_error(rule)}
     lines = ["### Author lints (warnings, non-blocking)", "", "| rule | count | accepted | status |", "|---|---|---|---|"]
-    for rule in sorted(set(per_rule) | set(accepted), key=lambda r: (-per_rule[r], r)):
+    for rule in sorted(warned | set(accepted), key=lambda r: (-per_rule[renames.get(r, r)], r)):
         entry = accepted.get(rule)
         if entry is None:
             lines.append(f"| `{rule}` | {per_rule[rule]} | - | |")
             continue
-        current = {element_key(f, root) for f in findings if f.rule == rule}
-        status = compare_accepted(entry, current)
-        lines.append(f"| `{rule}` | {per_rule[rule]} | {len(entry['ids'])} since {entry['since']} | {_status_text(status)} |")
+        current_rule = renames.get(rule, rule)
+        if is_error(current_rule):
+            status_text = _raised_text(current_rule, per_rule[current_rule])
+        else:
+            current = {element_key(f, root) for f in findings if f.rule == rule}
+            status_text = _status_text(compare_accepted(entry, current))
+        lines.append(f"| `{rule}` | {per_rule[current_rule]} | {len(entry['ids'])} since {entry['since']} | {status_text} |")
     if accepted:
         lines += ["", "**Accepted warnings**", ""]
         for rule, entry in sorted(accepted.items()):
@@ -189,13 +234,18 @@ def warnings_report(output: str, state: dict, root: Path = Path(".")) -> str:
 
 
 def accept_warnings(state: dict, rule: str, output: str, root: Path, reason: str, since: str, decision: str | None = None) -> dict:
-    """The state with the current findings of ``rule`` recorded as accepted."""
-    ids = sorted({element_key(f, root) for f in parse_warnings(output) if f.rule == rule})
-    entry = {"rule": rule, "count": len(ids), "since": since, "reason": reason}
+    """The state with the current findings of ``rule`` recorded as accepted,
+    under the ID the rule carries now. Raises ValueError for an error, also for
+    the old name of a rule the engine has since raised to one."""
+    current_rule = parse_renames(output).get(rule, rule)
+    if is_error(current_rule):
+        raise ValueError(_refusal(current_rule))
+    ids = sorted({element_key(f, root) for f in parse_findings(output) if f.rule == current_rule})
+    entry = {"rule": current_rule, "count": len(ids), "since": since, "reason": reason}
     if decision:
         entry["decision"] = decision
     entry["ids"] = ids
-    kept = [e for e in state.get("accepted_warnings", []) if e["rule"] != rule]
+    kept = [e for e in state.get("accepted_warnings", []) if e["rule"] != current_rule]
     return {**state, "accepted_warnings": kept + [entry]}
 
 
@@ -225,12 +275,15 @@ def main(argv: list[str]) -> int:
     if args.command == "warnings":
         sys.stdout.write(warnings_report(args.output.read_text(encoding="utf-8"), state))
         return 0
-    updated = accept_warnings(state, args.rule, args.output.read_text(encoding="utf-8"), Path("."),
-                              reason=args.reason, since=args.since, decision=args.decision)
+    try:
+        updated = accept_warnings(state, args.rule, args.output.read_text(encoding="utf-8"), Path("."),
+                                  reason=args.reason, since=args.since, decision=args.decision)
+    except ValueError as refusal:
+        parser.error(str(refusal))
     STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
     STATE_PATH.write_text(json.dumps(updated, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    entry = next(e for e in updated["accepted_warnings"] if e["rule"] == args.rule)
-    print(f"recorded {entry['count']} accepted {args.rule} finding(s) in {STATE_PATH}")
+    entry = updated["accepted_warnings"][-1]
+    print(f"recorded {entry['count']} accepted {entry['rule']} finding(s) in {STATE_PATH}")
     return 0
 
 
