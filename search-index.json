@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-10-10T07:13:59Z",
+  "generated": "2026-10-12T16:56:48Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -24,9 +24,53 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-10-10T07:13:48Z"
+      "updated_at": "2026-10-12T16:56:37Z"
+    },
+    {
+      "id": "evaluation-pilot-from-de",
+      "name": "Bewertungs-Pilot (Test)",
+      "description": "Test-Set für den Bewertungs-Block (evaluation): Bestehensgrenze 60 Prozent. Zehn gleichwertige Aufgaben, sodass sich ein Durchlauf mit genau 70 Prozent (7 von 10) gezielt erreichen lässt.",
+      "source_language": "de",
+      "target_language": "de",
+      "level": "none",
+      "domain": "knowledge",
+      "lesson_count": 1,
+      "card_count": 10,
+      "tags": [
+        "knowledge",
+        "test",
+        "evaluation"
+      ],
+      "visibility": "visible",
+      "review_status": "authored",
+      "ai_validated": false,
+      "trust_level": 1,
+      "book": null,
+      "updated_at": "2026-10-12T16:56:37Z"
+    },
+    {
+      "id": "evaluation-pilot-control-from-de",
+      "name": "Bewertungs-Pilot, Kontrolle (Test)",
+      "description": "Kontroll-Set zum Bewertungs-Pilot: dieselbe Lektion ohne Bewertungs-Block, hier gilt die eigene Exam-Schwelle der App.",
+      "source_language": "de",
+      "target_language": "de",
+      "level": "none",
+      "domain": "knowledge",
+      "lesson_count": 1,
+      "card_count": 10,
+      "tags": [
+        "knowledge",
+        "test",
+        "evaluation"
+      ],
+      "visibility": "visible",
+      "review_status": "authored",
+      "ai_validated": false,
+      "trust_level": 1,
+      "book": null,
+      "updated_at": "2026-10-12T16:56:37Z"
     }
   ],
-  "total_lessons": 1,
-  "total_cards": 3
+  "total_lessons": 3,
+  "total_cards": 23
 }
