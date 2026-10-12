@@ -1,0 +1,34 @@
+schema_version: '1.7'
+name: Bewertungs-Pilot (Test)
+description: >-
+  Test-Set für den Bewertungs-Block (evaluation): Bestehensgrenze 60
+  Prozent. Zehn gleichwertige Aufgaben, sodass sich ein Durchlauf mit
+  genau 70 Prozent (7 von 10) gezielt erreichen lässt.
+sets:
+  - id: evaluation-pilot-from-de
+    title: Bewertungs-Pilot (Test)
+    title_native: Bewertungs-Pilot (Test)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: none
+    path: sets/de/evaluation-pilot
+    version: '1.0.0'
+    lesson_count: 1
+    evaluation:
+      scheme: pass_fail
+      pass_percent: 60
+      title: Pilotprüfung
+    description: >-
+      Test-Set für den Bewertungs-Block (evaluation): Bestehensgrenze 60
+      Prozent. Zehn gleichwertige Aufgaben, sodass sich ein Durchlauf mit
+      genau 70 Prozent (7 von 10) gezielt erreichen lässt.
+    tags:
+      - knowledge
+      - test
+      - evaluation
+metadata:
+  author: Asterios Raptis
+  license: CC-BY-SA-4.0
+  lessons:
+    - 01-hauptstadt-quiz.json
