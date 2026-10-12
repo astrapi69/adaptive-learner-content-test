@@ -36,7 +36,8 @@ coverage and both false-alarm rates whenever the dictionaries are installed
 Code is exempt from the umlaut check, and only from that one. An identifier is
 spelled by whoever wrote it: "laeuft" as a variable name is a choice, "laeuft"
 in a sentence is a misspelling. In a lesson file that means the code-bearing
-fields (``passage``, ``sentence``, ``tokens``, ``code``), a string ending in a
+fields (``passage``, ``tokens``, ``code``, and ``sentence`` in a programming
+lesson; elsewhere a cloze sentence is prose), a string ending in a
 semicolon (a code line offered as an option) and the fenced blocks inside a
 theory body; in Markdown it means the fenced blocks.
 
@@ -185,6 +186,12 @@ CODE_KEYS = {
     "expected_output",
 } | MACHINE_KEYS
 
+# A cloze sentence is code only in a programming lesson. Everywhere else it is
+# a German or foreign sentence the learner reads, and treating it as code let
+# "heisst" and "Massstab" through (content-test, alc-books, 2026-10-12). A
+# lesson without a domain gets the stricter reading.
+PROSE_CODE_KEYS = CODE_KEYS - {"sentence"}
+
 
 # This gate and its test hold the misspellings on purpose.
 UMLAUT_EXEMPT = (
@@ -322,7 +329,7 @@ def prose_segments(path: str, text: str) -> list[tuple[int, str]]:
         except ValueError:
             return list(enumerate(text.splitlines(), start=1))
         collected: list[str] = []
-        _walk_json(document, False, collected)
+        _walk_json(document, False, collected, _code_keys(document))
         lines = text.splitlines()
         segments = []
         for value in collected:
@@ -370,23 +377,30 @@ def _yaml_segments(text: str) -> list[tuple[int, str]]:
     return segments
 
 
-def _walk_json(node, in_code: bool, out: list[str]) -> None:
+def _code_keys(document) -> set[str]:
+    """The code-bearing fields of a lesson file: the cloze sentence counts
+    only in a programming lesson."""
+    is_programming = isinstance(document, dict) and document.get("domain") == "programming"
+    return CODE_KEYS if is_programming else PROSE_CODE_KEYS
+
+
+def _walk_json(node, in_code: bool, out: list[str], code_keys: set[str] = CODE_KEYS) -> None:
     if isinstance(node, dict):
         # An inline example is prose when it is a sample sentence and code when
         # it declares a language; the field name alone cannot tell them apart.
         example_is_code = bool(node.get("language")) and "content" in node
         for key, value in node.items():
-            child_is_code = in_code or key in CODE_KEYS or (example_is_code and key == "content")
+            child_is_code = in_code or key in code_keys or (example_is_code and key == "content")
             if key == "accept" and isinstance(value, list):
                 # The app shows accept[0] as the solution; the later entries
                 # only catch what a learner types, an ASCII spelling for a
                 # keyboard without umlauts among them.
-                _walk_json(value[:1], child_is_code, out)
+                _walk_json(value[:1], child_is_code, out, code_keys)
                 continue
-            _walk_json(value, child_is_code, out)
+            _walk_json(value, child_is_code, out, code_keys)
     elif isinstance(node, list):
         for value in node:
-            _walk_json(value, in_code, out)
+            _walk_json(value, in_code, out, code_keys)
     elif isinstance(node, str) and not in_code and not node.rstrip().endswith(";"):
         # A string ending in ";" is a code statement (a select cloze offering
         # code lines); prose does not end a field with a semicolon.
