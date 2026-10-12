@@ -112,6 +112,7 @@ def test_lesson_code_fields_are_out_of_scope():
     lesson = json.dumps(
         {
             "title": "Eine Uebung",
+            "domain": "programming",
             "steps": [
                 {
                     "exercise": {
@@ -291,6 +292,38 @@ def test_inline_code_spans_are_not_prose():
 
 def _scanned(path: str, text: str) -> str:
     return " ".join(segment for _, segment in check_prose.prose_segments(path, text))
+
+
+def _cloze_lesson(sentence: str, domain: str | None) -> str:
+    lesson = {"title": "T", "steps": [{"exercise": {"sentence": sentence, "ext_payload": {"passage": "x = zurueck"}}}]}
+    if domain is not None:
+        lesson["domain"] = domain
+    return json.dumps(lesson, ensure_ascii=False)
+
+
+def test_a_cloze_sentence_outside_programming_is_prose():
+    # The cloze sentence used to count as code everywhere, for programming
+    # clozes; a German sentence in a knowledge set then escaped the umlaut
+    # check ("Die Bestehensgrenze heisst im Payload ___.", content-test).
+    scanned = _scanned("lesson.json", _cloze_lesson("Die Grenze heisst ___.", "knowledge"))
+    assert "Die Grenze heisst ___." in scanned
+
+
+def test_a_cloze_sentence_in_a_programming_lesson_stays_code():
+    scanned = _scanned("lesson.json", _cloze_lesson("ergebnis = laeuft(___)", "programming"))
+    assert "laeuft" not in scanned
+
+
+def test_a_lesson_without_a_domain_scans_its_cloze_sentences():
+    # No domain is not programming: the stricter reading applies.
+    scanned = _scanned("lesson.json", _cloze_lesson("Die Grenze heisst ___.", None))
+    assert "heisst" in scanned
+
+
+def test_only_the_cloze_sentence_follows_the_domain():
+    # passage, tokens and code stay code in every domain.
+    scanned = _scanned("lesson.json", _cloze_lesson("Die Grenze heisst ___.", "knowledge"))
+    assert "zurueck" not in scanned
 
 
 def test_accept_entries_after_the_first_are_typing_variants():
