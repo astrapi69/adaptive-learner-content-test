@@ -29,6 +29,33 @@ Anleitung: [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md)
 - `scripts/generate_exercises.py`: optionaler KI-Aufgaben-Generator
   (siehe unten).
 
+## Bewertungs-Pilot
+
+Zwei Test-Sets prüfen, ob eine App den `evaluation`-Block eines Sets
+anwendet ([Format-Referenz](https://github.com/astrapi69/learn-content-engine/blob/main/docs/lesson-format.md#evaluation);
+erster Consumer:
+[adaptive-learner#3736](https://github.com/astrapi69/adaptive-learner/issues/3736)):
+
+- `evaluation-pilot-from-de` erklärt
+  `evaluation: { scheme: pass_fail, pass_percent: 60, title: Pilotprüfung }`,
+  im Wurzel- und im Set-Manifest identisch (eine Abweichung meldet die
+  Engine als `E-MANIFEST-ENTRY-MISMATCH`).
+- `evaluation-pilot-control-from-de` enthält dieselbe Lektion ohne Block.
+
+Jede der beiden Lektionen hat zehn gleichwertige Aufgaben, sieben richtige
+ergeben genau 70 Prozent. Testszenario in der App:
+
+1. Dieses Repo als eigenes Content-Repo verbinden; es ist keine
+   Standardquelle der App.
+2. In den Einstellungen den Standard-Lektionsmodus auf Exam und die eigene
+   Bestehensschwelle auf 80 Prozent setzen.
+3. Pilot-Lektion mit 7 von 10 richtigen Antworten: erwartet wird
+   „bestanden“ mit dem Hinweis, dass die Schwelle des Autors gilt (60
+   Prozent, „Pilotprüfung“). „Nicht bestanden“ hieße, die App hat ihre
+   eigene Schwelle angewendet.
+4. Kontroll-Lektion mit 7 von 10 richtigen Antworten: erwartet wird „nicht
+   bestanden“ gegen die eigene Schwelle von 80 Prozent.
+
 ## Eigene Inhalte lokal prüfen
 
 ```bash
