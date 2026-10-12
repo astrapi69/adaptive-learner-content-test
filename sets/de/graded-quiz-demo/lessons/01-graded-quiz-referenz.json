@@ -69,7 +69,7 @@
         "type": "cloze",
         "prompt": "Was entscheidet über das Bestehen?",
         "card_ids": ["c-gq-punkte"],
-        "sentence": "Ueber das Bestehen entscheidet ___.",
+        "sentence": "Über das Bestehen entscheidet ___.",
         "blanks": [{ "accept": ["die Summe der Punkte"] }],
         "cloze_mode": "select",
         "distractors": ["die Zahl der Karten", "die Reihenfolge der Fragen", "die Farbe der Buttons"]
@@ -86,7 +86,7 @@
         "type": "cloze",
         "prompt": "Vervollständige den Satz.",
         "card_ids": ["c-gq-was"],
-        "sentence": "Die Bestehensgrenze heisst im Payload ___.",
+        "sentence": "Die Bestehensgrenze heißt im Payload ___.",
         "blanks": [{ "accept": ["pass_threshold"] }],
         "cloze_mode": "type"
       }
