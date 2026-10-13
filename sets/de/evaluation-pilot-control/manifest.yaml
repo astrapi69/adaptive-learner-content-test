@@ -14,9 +14,6 @@ sets:
     path: sets/de/evaluation-pilot-control
     version: '1.0.0'
     lesson_count: 1
-    description: >-
-      Kontroll-Set zum Bewertungs-Pilot: dieselbe Lektion ohne
-      Bewertungs-Block, hier gilt die eigene Exam-Schwelle der App.
     tags:
       - knowledge
       - test
