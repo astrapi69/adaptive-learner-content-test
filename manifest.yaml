@@ -49,12 +49,12 @@ sets:
     domain: knowledge
     level: none
     path: sets/de/evaluation-pilot
-    version: '1.0.1'
+    version: '1.0.2'
     lesson_count: 1
     evaluation:
       scheme: pass_fail
       pass_percent: 60
-      title: Pilotprüfung
+      title: Hauptstadt-Prüfung
     description: >-
       Zehn Fragen zu europäischen Hauptstädten. Das Set legt eine
       Bestehensgrenze von 60 Prozent fest, die im Prüfungsmodus statt der
