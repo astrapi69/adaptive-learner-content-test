@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-10-13T14:16:46Z",
+  "generated": "2026-10-13T14:39:06Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -46,7 +46,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-10-13T14:16:33Z"
+      "updated_at": "2026-10-13T14:38:54Z"
     },
     {
       "id": "evaluation-pilot-control-from-de",
