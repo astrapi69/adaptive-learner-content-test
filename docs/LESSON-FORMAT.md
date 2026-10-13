@@ -299,13 +299,15 @@ metadata:
 ```
 
 Then add the same set block to the **root** `manifest.yaml` under `sets:`, plus
-the set's `description`, and add a row to the README table (keeping the totals
-line in sync).
+the set's `description`. If the README lists the sets, add a row there too (and
+keep a totals line in sync where the README has one).
 
 A set is described twice, so each field has one home:
 
 - The **root** entry carries the `description`. Write it there only; a reader
-  of the set manifest inherits it, so a second copy can only drift.
+  of the set manifest inherits it, so a second copy can only drift. A copy in
+  the set manifest is flagged (`W-MANIFEST-DESCRIPTION-COPY`, engine 0.42.0),
+  also an identical one.
 - The **set manifest** carries the lesson list (`metadata.lessons`).
 - Every other field appears in both and must be **identical**: `title`,
   `title_native`, `tags`, `visibility`, `version`, `lesson_count` and the
@@ -317,3 +319,40 @@ A set is described twice, so each field has one home:
 
 Run `python scripts/validate_content.py` until it prints
 `All N set(s) passed validation.`
+
+## Evaluating a lesson run (optional)
+
+Without further declaration a consumer scores a lesson run its own way (the
+app: percent correct plus stars). A set whose pass mark is part of the
+subject, an exam preparation for example, declares it with an `evaluation`
+block on the set entry (schema 1.15). Like every field but `description`, it
+goes into **both** manifests, identically:
+
+```yaml
+    evaluation:
+      scheme: pass_fail      # percent (default) | pass_fail | grades
+      pass_percent: 60       # 0-100, a run at the mark passes
+      title: Theorieprüfung  # optional, shown instead of a generic wording
+```
+
+| Field | Notes |
+|---|---|
+| `scheme` | `percent` (the default), `pass_fail` (needs `pass_percent`) or `grades` (needs `grades`). |
+| `pass_percent` | Integer 0-100, inclusive. Under `percent` an advisory mark. |
+| `grades` | At least two rows `{ min_percent, label, label_native? }`; a run earns the row with the highest `min_percent` it reaches. Add a row at 0, or a run below the lowest row earns no grade (`W-EVAL-GRADES-NO-FLOOR`). |
+| `report` | `compact` (default) or `detailed`: how much the run summary shows. |
+| `title` | Optional name of the evaluation as the learner reads it. |
+
+The engine checks the declaration (`E-EVAL-PASS-MISSING`,
+`E-EVAL-GRADES-MISSING`, `E-EVAL-GRADES-DUP`) and, since 0.41.0, maps a run's
+percent to the verdict (`gradeFor`), so every consumer draws the same
+boundaries. The app shows the author's mark in the exam result of the lesson
+summary, in place of the learner's own threshold
+([adaptive-learner#3736](https://github.com/astrapi69/adaptive-learner/issues/3736)).
+Instead of typing a grade table, copy one from the engine's
+[grading presets](https://github.com/astrapi69/learn-content-engine/blob/main/schema/grading-presets.json)
+(national school and exam scales, each with its source). A working example
+is the `evaluation-pilot` set in
+[adaptive-learner-content-test](https://github.com/astrapi69/adaptive-learner-content-test).
+Details: the engine reference,
+[Evaluation](https://github.com/astrapi69/learn-content-engine/blob/main/docs/lesson-format.md#evaluation).
