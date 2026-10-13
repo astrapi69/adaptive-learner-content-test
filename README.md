@@ -38,7 +38,7 @@ erster Consumer:
 
 - `evaluation-pilot-from-de` („Hauptstädte Europas (Test mit
   Bestehensgrenze)“) erklärt
-  `evaluation: { scheme: pass_fail, pass_percent: 60, title: Pilotprüfung }`,
+  `evaluation: { scheme: pass_fail, pass_percent: 60, title: Hauptstadt-Prüfung }`,
   im Wurzel- und im Set-Manifest identisch (eine Abweichung meldet die
   Engine als `E-MANIFEST-ENTRY-MISMATCH`).
 - `evaluation-pilot-control-from-de` („Hauptstädte Europas (Test ohne
@@ -55,7 +55,7 @@ ergeben genau 70 Prozent. Testszenario in der App:
    im Prüfungsmodus; im Modus „Üben“ zeigt die Zusammenfassung wie bisher
    Prozent und Sterne.
 3. Pilot-Lektion mit 7 von 10 richtigen Antworten: Die Ergebniskarte heißt
-   „Pilotprüfung“ statt „Prüfungsergebnis“, zeigt „Bestanden“ und den
+   „Hauptstadt-Prüfung“ statt „Prüfungsergebnis“, zeigt „Bestanden“ und den
    Hinweis, dass nach den Vorgaben des Sets bewertet wurde (60 Prozent).
    „Nicht bestanden“ hieße, die App hat ihre eigene Grenze angewendet. Eine
    Note gibt es hier nicht: Das Set nutzt `pass_fail`, Noten zeigt nur
