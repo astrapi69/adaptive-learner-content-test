@@ -1,6 +1,6 @@
 {
   "repo": "astrapi69/adaptive-learner-content-test",
-  "generated": "2026-10-13T12:47:05Z",
+  "generated": "2026-10-13T14:16:46Z",
   "schema_version": "1.0",
   "sets": [
     {
@@ -28,8 +28,8 @@
     },
     {
       "id": "evaluation-pilot-from-de",
-      "name": "Bewertungs-Pilot (Test)",
-      "description": "Test-Set für den Bewertungs-Block (evaluation): Bestehensgrenze 60 Prozent. Zehn gleichwertige Aufgaben, sodass sich ein Durchlauf mit genau 70 Prozent (7 von 10) gezielt erreichen lässt.",
+      "name": "Hauptstädte Europas (Test mit Bestehensgrenze)",
+      "description": "Zehn Fragen zu europäischen Hauptstädten. Das Set legt eine Bestehensgrenze von 60 Prozent fest, die im Prüfungsmodus statt der eigenen Grenze aus den Einstellungen gilt. Test-Set für den Bewertungs-Block (evaluation).",
       "source_language": "de",
       "target_language": "de",
       "level": "none",
@@ -46,12 +46,12 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-10-13T12:46:54Z"
+      "updated_at": "2026-10-13T14:16:33Z"
     },
     {
       "id": "evaluation-pilot-control-from-de",
-      "name": "Bewertungs-Pilot, Kontrolle (Test)",
-      "description": "Kontroll-Set zum Bewertungs-Pilot: dieselbe Lektion ohne Bewertungs-Block, hier gilt die eigene Exam-Schwelle der App.",
+      "name": "Hauptstädte Europas (Test ohne Bestehensgrenze)",
+      "description": "Dieselben zehn Fragen zu europäischen Hauptstädten, ohne eigene Bestehensgrenze: Im Prüfungsmodus gilt die Grenze aus den Einstellungen. Kontroll-Set zum Test mit Bestehensgrenze.",
       "source_language": "de",
       "target_language": "de",
       "level": "none",
@@ -68,7 +68,7 @@
       "ai_validated": false,
       "trust_level": 1,
       "book": null,
-      "updated_at": "2026-10-13T12:46:54Z"
+      "updated_at": "2026-10-13T14:16:33Z"
     }
   ],
   "total_lessons": 3,
