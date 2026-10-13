@@ -36,23 +36,30 @@ anwendet ([Format-Referenz](https://github.com/astrapi69/learn-content-engine/bl
 erster Consumer:
 [adaptive-learner#3736](https://github.com/astrapi69/adaptive-learner/issues/3736)):
 
-- `evaluation-pilot-from-de` erklärt
+- `evaluation-pilot-from-de` („Hauptstädte Europas (Test mit
+  Bestehensgrenze)“) erklärt
   `evaluation: { scheme: pass_fail, pass_percent: 60, title: Pilotprüfung }`,
   im Wurzel- und im Set-Manifest identisch (eine Abweichung meldet die
   Engine als `E-MANIFEST-ENTRY-MISMATCH`).
-- `evaluation-pilot-control-from-de` enthält dieselbe Lektion ohne Block.
+- `evaluation-pilot-control-from-de` („Hauptstädte Europas (Test ohne
+  Bestehensgrenze)“) enthält dieselbe Lektion ohne Block.
 
 Jede der beiden Lektionen hat zehn gleichwertige Aufgaben, sieben richtige
 ergeben genau 70 Prozent. Testszenario in der App:
 
 1. Dieses Repo als eigenes Content-Repo verbinden; es ist keine
    Standardquelle der App.
-2. In den Einstellungen den Standard-Lektionsmodus auf Exam und die eigene
-   Bestehensschwelle auf 80 Prozent setzen.
-3. Pilot-Lektion mit 7 von 10 richtigen Antworten: erwartet wird
-   „bestanden“ mit dem Hinweis, dass die Schwelle des Autors gilt (60
-   Prozent, „Pilotprüfung“). „Nicht bestanden“ hieße, die App hat ihre
-   eigene Schwelle angewendet.
+2. Einstellungen › Lernen › „In der Lektion“ › Lektionsmodus: den
+   Standardmodus auf „Prüfen“ (der Prüfungsmodus, englisch „Exam“) und die
+   Bestehens-Grenze auf 80 % setzen. Die Bewertung des Sets erscheint nur
+   im Prüfungsmodus; im Modus „Üben“ zeigt die Zusammenfassung wie bisher
+   Prozent und Sterne.
+3. Pilot-Lektion mit 7 von 10 richtigen Antworten: Die Ergebniskarte heißt
+   „Pilotprüfung“ statt „Prüfungsergebnis“, zeigt „Bestanden“ und den
+   Hinweis, dass nach den Vorgaben des Sets bewertet wurde (60 Prozent).
+   „Nicht bestanden“ hieße, die App hat ihre eigene Grenze angewendet. Eine
+   Note gibt es hier nicht: Das Set nutzt `pass_fail`, Noten zeigt nur
+   `scheme: grades`.
 4. Kontroll-Lektion mit 7 von 10 richtigen Antworten: erwartet wird „nicht
    bestanden“ gegen die eigene Schwelle von 80 Prozent.
 

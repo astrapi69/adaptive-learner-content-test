@@ -1,18 +1,19 @@
 schema_version: '1.7'
-name: Bewertungs-Pilot, Kontrolle (Test)
+name: Hauptstädte Europas (Test ohne Bestehensgrenze)
 description: >-
-  Kontroll-Set zum Bewertungs-Pilot: dieselbe Lektion ohne
-  Bewertungs-Block, hier gilt die eigene Exam-Schwelle der App.
+  Dieselben zehn Fragen zu europäischen Hauptstädten, ohne eigene
+  Bestehensgrenze: Im Prüfungsmodus gilt die Grenze aus den
+  Einstellungen. Kontroll-Set zum Test mit Bestehensgrenze.
 sets:
   - id: evaluation-pilot-control-from-de
-    title: Bewertungs-Pilot, Kontrolle (Test)
-    title_native: Bewertungs-Pilot, Kontrolle (Test)
+    title: Hauptstädte Europas (Test ohne Bestehensgrenze)
+    title_native: Hauptstädte Europas (Test ohne Bestehensgrenze)
     target_language: de
     source_language: de
     domain: knowledge
     level: none
     path: sets/de/evaluation-pilot-control
-    version: '1.0.0'
+    version: '1.0.1'
     lesson_count: 1
     tags:
       - knowledge
