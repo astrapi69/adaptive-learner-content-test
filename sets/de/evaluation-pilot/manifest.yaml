@@ -1,19 +1,20 @@
 schema_version: '1.7'
-name: Bewertungs-Pilot (Test)
+name: Hauptstädte Europas (Test mit Bestehensgrenze)
 description: >-
-  Test-Set für den Bewertungs-Block (evaluation): Bestehensgrenze 60
-  Prozent. Zehn gleichwertige Aufgaben, sodass sich ein Durchlauf mit
-  genau 70 Prozent (7 von 10) gezielt erreichen lässt.
+  Zehn Fragen zu europäischen Hauptstädten. Das Set legt eine
+  Bestehensgrenze von 60 Prozent fest, die im Prüfungsmodus statt der
+  eigenen Grenze aus den Einstellungen gilt. Test-Set für den
+  Bewertungs-Block (evaluation).
 sets:
   - id: evaluation-pilot-from-de
-    title: Bewertungs-Pilot (Test)
-    title_native: Bewertungs-Pilot (Test)
+    title: Hauptstädte Europas (Test mit Bestehensgrenze)
+    title_native: Hauptstädte Europas (Test mit Bestehensgrenze)
     target_language: de
     source_language: de
     domain: knowledge
     level: none
     path: sets/de/evaluation-pilot
-    version: '1.0.0'
+    version: '1.0.1'
     lesson_count: 1
     evaluation:
       scheme: pass_fail

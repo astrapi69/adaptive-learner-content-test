@@ -42,41 +42,43 @@ sets:
   # adaptive-learner#3736). Der Block steht identisch im Set-Manifest, sonst
   # entschiede die gelesene Datei, ob er greift. Testszenario im README.
   - id: evaluation-pilot-from-de
-    title: Bewertungs-Pilot (Test)
-    title_native: Bewertungs-Pilot (Test)
+    title: Hauptstädte Europas (Test mit Bestehensgrenze)
+    title_native: Hauptstädte Europas (Test mit Bestehensgrenze)
     target_language: de
     source_language: de
     domain: knowledge
     level: none
     path: sets/de/evaluation-pilot
-    version: '1.0.0'
+    version: '1.0.1'
     lesson_count: 1
     evaluation:
       scheme: pass_fail
       pass_percent: 60
       title: Pilotprüfung
     description: >-
-      Test-Set für den Bewertungs-Block (evaluation): Bestehensgrenze 60
-      Prozent. Zehn gleichwertige Aufgaben, sodass sich ein Durchlauf mit
-      genau 70 Prozent (7 von 10) gezielt erreichen lässt.
+      Zehn Fragen zu europäischen Hauptstädten. Das Set legt eine
+      Bestehensgrenze von 60 Prozent fest, die im Prüfungsmodus statt der
+      eigenen Grenze aus den Einstellungen gilt. Test-Set für den
+      Bewertungs-Block (evaluation).
     tags:
       - knowledge
       - test
       - evaluation
   # Kontrolle zum Pilot: dieselbe Lektion, kein evaluation-Block.
   - id: evaluation-pilot-control-from-de
-    title: Bewertungs-Pilot, Kontrolle (Test)
-    title_native: Bewertungs-Pilot, Kontrolle (Test)
+    title: Hauptstädte Europas (Test ohne Bestehensgrenze)
+    title_native: Hauptstädte Europas (Test ohne Bestehensgrenze)
     target_language: de
     source_language: de
     domain: knowledge
     level: none
     path: sets/de/evaluation-pilot-control
-    version: '1.0.0'
+    version: '1.0.1'
     lesson_count: 1
     description: >-
-      Kontroll-Set zum Bewertungs-Pilot: dieselbe Lektion ohne
-      Bewertungs-Block, hier gilt die eigene Exam-Schwelle der App.
+      Dieselben zehn Fragen zu europäischen Hauptstädten, ohne eigene
+      Bestehensgrenze: Im Prüfungsmodus gilt die Grenze aus den
+      Einstellungen. Kontroll-Set zum Test mit Bestehensgrenze.
     tags:
       - knowledge
       - test
