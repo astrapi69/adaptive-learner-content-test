@@ -1,0 +1,240 @@
+var e={category:`steps`,language:`tr`,entries:[{key:`step_input`,title:`1. Girdi`,short:`Yeni materyal alırsınız — yapay zekadan açıklama, örnek veya soru.`,long:`## Adım 1: Girdi
+
+Her öğrenme döngüsü girdiyle başlar. Yapay zeka
+materyali sunar: seçilen yönteme bağlı olarak bir
+açıklama, bir örnek, açık uçlu bir soru veya bir durum.
+
+## Yapay zeka ne yapar
+
+- **Tümdengelimli**: kuralı açıklar.
+- **Tümevarımlı**: örnekler gösterir.
+- **Hata temelli**: tuzaklı bir problem sunar.
+- **Diyalogsal**: bir soruyla konuşmayı başlatır.
+- **Bağlamsal**: senaryonun taslağını çizer.
+
+## Siz ne yaparsınız
+
+Dikkatle okuyun. Anlaşılmayan bir şey varsa sorun —
+oturum bir ders değil, bir diyalogdur. Yapay zekanın
+güvenini çok yüksek buluyorsanız devam edin: bazı
+açıklamalar ancak ikinci okumada yerleşir.
+
+## Çift istem değerlendiricisi ne yapar
+
+Sessizce çalışır. Tepkinizi (veya tepkisizliğinizi)
+gözlemler ve materyali özümseyip özümsemediğinizi
+değerlendirir. Aktif puanlama 2. adımda (deneme)
+başlar.
+
+## Bu adımı hızlı geçerseniz ne olur
+
+En yaygın başlangıç hatası: girdiyi işlemeden "eyleme"
+geçmek. Sistem bunu sonraki denemelerdeki düşük güven
+değerlerinden tespit eder — ve sizi 1. adıma geri gönderir.
+`},{key:`step_attempt`,title:`2. Deneme`,short:`Öğrendiklerinizi somut bir görev veya soruya uygularsınız.`,long:`## Adım 2: Deneme
+
+Materyalin uygulamasını alırsınız ve çözmeye
+çalışırsınız. İlk yanıt, ilk örnek, kuralın ilk somut
+uygulaması.
+
+## Yapay zeka ne yapar
+
+Yapay zeka size açıkça kapsamlı bir görev verir. Dil için:
+bir cümleyi çevirin. Kod için: bir fonksiyon yazın. Müzik
+için: bir akor geçişi pratik yapın. Zorluk kasıtlı olarak
+düşüktür — ilk deneme başarılabilir olmalıdır.
+
+## Siz ne yaparsınız
+
+Deneyin. Emin olmasanız bile. Eksik veya hatalı bir yanıt,
+değerlendiriciye çalışacak materyal sağladığından
+reddetmekten daha değerlidir.
+
+## Çift istem değerlendiricisi
+
+Burada devreye girer. Yanıtınızı okur ve bir güven puanı
+atar (%0-100). Yüksek güvende 5. adıma (uyum) atlarsınız,
+hata analizi atlanır. Düşük güvende yol, 3. adım (hata)
+ve 4. adım (geri bildirim) üzerinden geçer.
+
+## İpucu: takılı kalmayın
+
+30 saniye sonra hâlâ bir yaklaşımınız yoksa yapay zekaya
+söyleyin ("Nereden başlayacağımı bilmiyorum"). Yapay zeka
+tam çözüm yerine bir ipucu verir — değerlendirici de bunu
+başarısız bir deneme saymaz.
+`},{key:`step_error`,title:`3. Hata`,short:`Bir hata veya yanlış anlama görünür hale gelir.`,long:`## Adım 3: Hata
+
+2. adımdaki denemeniz hedefe ulaşmadıysa döngü bu
+adımdan geçer. Hata isimlendirilir — yargılanmaz, yalnızca
+bir öğrenme fırsatı olarak işaretlenir.
+
+## Yapay zeka ne yapar
+
+Hatanın nerede olduğunu hemen düzeltmeksizin gösterir.
+Amaç: hatayı *yalnızca duyduğunuz* değil, *gördüğünüz*
+olmasıdır. Bu ayrım, hatayı tekrarlayıp tekrarlamayacağınızı
+belirler.
+
+## Siz ne yaparsınız
+
+Hatayı izleyin. Kendiniz düzeltebiliyorsanız düzeltin.
+Düzeltemiyorsanız bunu yapay zekaya bildirin ("Hatanın
+nerede olduğunu anlamıyorum") — bir sonraki adım (geri
+bildirim) bunu açıklamak için vardır.
+
+## Hata görünmediğinde
+
+2. adımda güven yüksekse döngü bu adımı atlar. Sistem
+bunu kaydeder ve bir sonraki döngüde zorluğu artırır —
+sıkılmamanız, zorlanmanız gerekir.
+
+## Hata temelli yöntemde
+
+Bu yöntemi seçtiyseniz 3. adım döngünün ana adımıdır.
+Yapay zeka sizi kasıtlı olarak tipik tuzaklara yönlendirir
+— yöntemler sözlüğüne bakın.
+`},{key:`step_feedback`,title:`4. Geri Bildirim`,short:`Yapay zeka bir şeyin neden işe yarayıp yaramadığını açıklar.`,long:`## Adım 4: Geri bildirim
+
+İşte açıklama gelir. Yapay zeka hatanızın veya doğru
+yanıtınızın arkasındaki ilkeyi tanımlar — ideal olarak
+ilkeyi başka durumlara da aktarabilecek biçimde.
+
+## İyi bir geri bildirim ne içerir
+
+- **Ne olduğu** (gözlemin tanımı).
+- **Neden olduğu** (ilkenin açıklaması).
+- **Bir dahaki seferde nasıl yapılacağı** (somut eylem
+  rehberliği).
+
+(3.) olmadan geri bildirim uçup gider. (3.) ile birlikte
+bir düzeltme, aktarılabilir bir kurala dönüşür.
+
+## Siz ne yaparsınız
+
+Okuyun, takip edin, geri sorun. Geri bildirim henüz
+yerleşmediyse söyleyin. Yapay zeka sabırlıdır — ilkeyi
+başka bir biçimde açıklayacaktır. Bir kez ezberlenmektense
+iki kez anlaşılması daha iyidir.
+
+## Çift istem değerlendiricisi
+
+Geri bildirimine tepkinizi okur. "Ah, şimdi anladım"
+(veya eşdeğeri) diyorsanız güven yükselir ve ilerlersiniz.
+Hâlâ kafanız karışık görünüyorsa değerlendirici döngüyü
+yeni bir açıklama yaklaşımıyla 1. adıma (girdi) geri çeker.
+
+## Doğru yanıtlarda da
+
+Geri bildirim yalnızca hatalar için değildir. Bir şeyi
+doğru çözdüğünüzde de yapay zeka arkasındaki ilkeyi
+açıklar — böylece başarı aktarılabilir hale gelir.
+`},{key:`step_adapt`,title:`5. Uyum`,short:`Geri bildirimi temel alarak stratejinizi veya anlayışınızı ayarlarsınız.`,long:`## Adım 5: Uyum
+
+Geri bildirimden öğrendiklerinizi alır ve yaklaşımınızı
+ayarlarsınız. Yalnızca zihinsel olarak ("evet, şimdi
+anlıyorum") değil, işlevsel olarak ("bir dahaki seferde
+farklı yapacağım").
+
+## Burada somut olarak ne olur
+
+- **Dil için**: yeniden ifade edersiniz. Yanlış yapı
+  yerine düzeltilmiş olanı kullanırsınız.
+- **Kod için**: anlaşılan ilkeyle fonksiyonu yeniden
+  yapılandırırsınız.
+- **Matematik için**: düzeltilmiş çözüm yolunu
+  kullanarak bir varyantı çözersiniz.
+
+## Yapay zeka ne yapar
+
+Size *yeni* bir görev verir — bilinen çözümlü eskisi
+değil, anlaşılan ilkeyi yeni bir bağlamda talep eden
+bir varyasyon.
+
+## Bu adım neden önemlidir
+
+Uyum olmaksızın anlayış uçup gider. Geri bildirimi
+yalnızca "tekrarlayıp" yaklaşımınıza entegre etmezseniz
+bir dahaki seferde hatayı yinelersiniz. 5. adım işlevsel
+aktivasyonu zorlar.
+
+## Çift istem değerlendiricisi
+
+Burada öğrenme aktarımını değerlendirir. Yeni bir
+varyasyondaki başarılı uyum, öğrenmenin yerleştiğinin
+en iyi sinyalidir — güven tipik olarak %80'in üzerine
+çıkar.
+`},{key:`step_repeat`,title:`6. Tekrar`,short:`Öğrendikleriniz akıcı hale gelene kadar varyasyonlarla pratik yaparsınız.`,long:`## Adım 6: Tekrar
+
+Görevin daha fazla varyasyonunu alırsınız. Özdeş
+tekrar değil (bu yalnızca ezberemeye yol açar), varyasyon:
+aynı öz, farklı bağlam, farklı zorluk.
+
+## Yapay zeka ne yapar
+
+Aynı ilkeyi farklı biçimlerde test eden görevler üretir.
+Dil için: farklı kelime dağarcığı, farklı cümle yapısı,
+aynı dilbilgisi. Kod için: farklı veriler, aynı
+algoritmik yapı.
+
+## Neden tekrar değil varyasyon
+
+**Serpiştirilmiş pratik** üzerine yapılan araştırmalar
+göstermektedir: bloklanmış pratik (aynı konuda üst üste
+tüm görevler) yetkinlik yanılsaması yaratır. Serpiştirilmiş
+pratik (varyasyonlu ilişkili görevler) aktarılabilir bilgi
+oluşturur.
+
+## Adım ne zaman sona erer
+
+Çift istem değerlendiricisi arka arkaya üç varyasyonda
+%80'in üzerinde güven gördüğünde 7. adıma geçersiniz.
+Güven dalgalanırsa döngü 6. adımda kalır — istikrar
+sağlanana kadar.
+
+## Aralıklı tekrarla bağlantı
+
+6. adımda başarıyla çözdükleriniz aralıklı tekrar
+sistemine girer. Sistem incelemeleri 1 gün, 3 gün,
+7 gün, 14 gün, 30 gün aralıklarıyla programlar —
+böylece öğrenme uzun vadede kalıcı olur.
+`},{key:`step_integrate`,title:`7. Bütünleştirme`,short:`Öğrendiklerinizi diğer bilgilerle veya gerçek bir uygulamayla ilişkilendirirsiniz.`,long:`## Adım 7: Bütünleştirme
+
+Öğrenme döngüsü, yeni öğrendiklerinizi daha büyük bir
+bağlama yerleştirmenizle sona erer. Yalıtılmış olarak
+değil ("bugün bunu öğrendim"), halihazırda bildiklerinizle
+bağlantılı biçimde.
+
+## Yapay zeka ne yapar
+
+Yeni içeriği başka kavramlarla ilişkilendirmenizi veya
+gerçek bir senaryoda uygulamanızı ister:
+
+- **Dil**: zamanı serbest bir konuşmada kullanın.
+- **Kod**: yeni tekniği daha büyük bir projede uygulayın.
+- **Teori**: kavramı kendi sorularınızdan biriyle
+  birleştirin.
+
+## Siz ne yaparsınız
+
+Gerekli bağlantıyı ifade edin. Kendi örneklerinizi
+bulun. "Bunu artık yapabiliyorum — ezberledim için değil,
+kullanabildiğim için" diyebileceğiniz noktaya ulaşın.
+
+## Adım 7'nin ardından ne olur
+
+Döngü tamamlanır. Üç seçenek:
+
+- **Oturumu sonlandırın** ve değerlendirin (anlama /
+  stres / yönteme uyum).
+- **Otomatik döngü**: yeni bir konuyla yeni bir döngü
+  otomatik olarak başlar.
+- **Yöntem değişikliği**: düşük yönteme uyum durumunda
+  sistem bir sonraki döngü için yöntem değişikliği önerir.
+
+## Sistem neden burada kapanır
+
+Bütünleştirme, öğrenmenin işe yarayıp yaramadığının tek
+sağlam testidir. Ezberlenmiş içerik 7. adımda başarısız
+olur; anlaşılmış bilgi ise burada gelişir.
+`}]};export{e as default};

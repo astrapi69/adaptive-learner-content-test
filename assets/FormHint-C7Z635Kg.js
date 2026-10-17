@@ -1,0 +1,1 @@
+import{o as e}from"./vendor-markdown-18eoE77h.js";import{Vn as t}from"./index-BabWE63n.js";var n=e();function r({children:e,as:r=`p`,variant:i=`default`,className:a,...o}){return(0,n.jsx)(r,{className:t(`text-fg-muted text-[0.85rem]`,a),...o,children:e})}export{r as t};

@@ -1,0 +1,241 @@
+var e={category:`methods`,language:`de`,entries:[{key:`method_deductive`,title:`Deduktiv`,short:`Regel zuerst lernen, dann an konkreten Beispielen anwenden.`,long:`## Deduktive Methode
+
+Die AI erklärt dir eine Regel oder ein Konzept, und du
+übst sie anschließend an Beispielen ein. Top-down: vom
+Allgemeinen zum Speziellen.
+
+## Wann sie gut funktioniert
+
+- **Strukturierte Themen** mit klaren Regeln (Grammatik,
+  mathematische Formeln, Programmiersyntax).
+- **Vorwissen vorhanden**, an das die Regel andocken kann.
+- **Präferenz für Klarheit**: du möchtest erst wissen,
+  was richtig ist, bevor du etwas ausprobierst.
+
+## Wie eine Sitzung abläuft
+
+1. AI erklärt die Regel mit kurzem Beispiel.
+2. Du bekommst eine Übungsaufgabe.
+3. Du löst sie, AI gibt Feedback.
+4. Bei Verständnis: neue Aufgabe mit höherer Komplexität.
+5. Bei Fehlern: AI verfeinert die Erklärung.
+
+## Typische AI-Prompts
+
+Die System-Prompts dieser Methode betonen Klarheit und
+Schritt-für-Schritt-Aufbau. Die AI bekommt die Anweisung,
+Regeln zu nennen *bevor* sie zur Anwendung übergeht.
+
+## Wann das System wegschalten kann
+
+Wenn der **Stress-Wert** über mehrere Sitzungen steigt und
+du das Gefühl bekommst, "Regeln zu lernen ohne sie zu
+verstehen", empfiehlt das System einen Wechsel zu einer
+praxisnäheren Methode (Induktiv, Kontextuell oder
+Dialogisch). Du hast bei jedem Wechsel das letzte Wort.
+`},{key:`method_inductive`,title:`Induktiv`,short:`Beispiele zuerst sehen, die Regel selbst ableiten.`,long:`## Induktive Methode
+
+Die AI präsentiert dir Beispiele, du erkennst das Muster
+und formulierst die Regel selbst. Bottom-up: vom Konkreten
+zum Allgemeinen.
+
+## Wann sie gut funktioniert
+
+- **Mustererkennung-Themen** wie Sprachgrammatik im
+  Kontext, musikalische Skalen, statistische Konzepte.
+- **Du lernst gerne durch Entdecken**, statt Regeln
+  auswendig zu lernen.
+- **Beispiele sind reichlich verfügbar** - die AI hat
+  Material, das die Regel deutlich zeigt.
+
+## Wie eine Sitzung abläuft
+
+1. AI zeigt 3-5 Beispiele eines Phänomens.
+2. Frage: "Welches Muster siehst du?"
+3. Du formulierst eine Hypothese.
+4. AI bestätigt, korrigiert oder zeigt weitere Beispiele.
+5. Bei richtiger Regel: AI fasst sie formal zusammen.
+
+## Warum das tiefer geht
+
+Forschung zeigt, dass selbst entdeckte Regeln länger
+haften als nachgesprochene. Der induktive Weg dauert
+länger, aber das Verständnis sitzt tiefer.
+
+## Wann es schwierig wird
+
+Wenn die Muster zu komplex sind oder du zu wenig
+Vorkenntnisse hast, kann induktives Lernen frustrieren.
+Das System merkt das an niedrigen Confidence-Werten und
+kann auf Deduktiv wechseln.
+`},{key:`method_error_based`,title:`Fehlerzentriert`,short:`Bewusst Fehler machen und dann verstehen, warum sie auftreten.`,long:`## Fehlerzentrierte Methode
+
+Die AI führt dich gezielt in typische Fehler - und dann
+gemeinsam mit dir hinaus. Fehler werden nicht vermieden,
+sondern als Lernanlässe genutzt.
+
+## Warum bewusste Fehler funktionieren
+
+Forschung zeigt: **Productive Failure** beschleunigt das
+Lernen. Wenn du einen Fehler selbst machst und ihn dann
+verstehst, bildest du robustere mentale Modelle als wenn
+du den Fehler vermeidest.
+
+Die Methode ist NICHT bestrafend: Es geht nicht um Scham,
+sondern um Klarheit. Ein verstandener Fehler ist
+wertvoller als eine zufällig richtige Antwort.
+
+## Wie die AI das umsetzt
+
+1. AI präsentiert ein Problem mit Stolperfallen.
+2. Du löst es - und tappst (oft) in die Falle.
+3. AI zeigt dir den Fehler und erklärt das dahinterliegende
+  Missverständnis.
+4. Du löst eine Variante ohne den Fehler zu wiederholen.
+5. AI verallgemeinert das Prinzip.
+
+## Wann diese Methode passt
+
+- **Themen mit klassischen Fehlerquellen** (false friends
+  in Sprachen, off-by-one in Code, Vorzeichenfehler in
+  Mathe).
+- **Du bist nicht stress-anfällig** beim Fehler-Machen.
+- **Du hast Grundwissen** - Fehler aus völliger
+  Unwissenheit lehren wenig.
+
+## Vorsicht bei hohem Stress
+
+Wenn Stress > 3 in der Sitzungsbewertung steigt, wechselt
+das System auf Dialogisch oder Deduktiv - die Methode
+braucht mentale Ruhe, um produktiv zu sein.
+`},{key:`method_dialogic`,title:`Dialogisch`,short:`Lernen durch Gespräch mit der AI in entspanntem, niedrig-druck Setting.`,long:`## Dialogische Methode
+
+Du lernst im Gespräch: keine starren Übungen, keine
+richtigen/falschen Antworten, sondern ein flexibler Dialog
+über das Thema. Die AI fragt nach, vertieft, ermutigt.
+
+## Wann sie wirkt
+
+- **Hochstress-Situationen** wo Prüfungsangst oder
+  Sprachhemmung lernblockierend wirken.
+- **Reine Wiederholung** zur Vertiefung: du erklärst der
+  AI, was du verstanden hast.
+- **Komplexe Themen**, in denen du explorieren willst,
+  bevor du dich auf eine Lösungsstruktur festlegst.
+
+## Wie eine Sitzung abläuft
+
+Keine fixen Schritte. Du steigst mit einer Frage, einer
+Vermutung oder einem Konzept ein. Die AI führt das
+Gespräch weiter, fragt nach, schlägt verwandte
+Konzepte vor, gibt Beispiele. Du kannst jederzeit das
+Thema schwenken - anders als bei Deduktiv / Induktiv,
+wo das System dich auf Kurs hält.
+
+## Was die AI tut
+
+- **Niedriger Druck**: keine Bewertung im Plauderton.
+- **Motivational**: Erfolge werden hervorgehoben, ohne
+  künstlich.
+- **Adaptiv**: passt Komplexität an deinen Sprachfluss
+  und deine Energie an.
+
+## Was der Dual-Prompt-Evaluator tut
+
+Auch hier läuft die Confidence-Bewertung mit, aber
+tolerant - Schritt-Fortschritt erlaubt das System schon
+bei 50% Confidence statt der üblichen 70%. Die Methode
+ist explizit fürs Entdecken, nicht fürs Prüfen
+gedacht.
+`},{key:`method_contextual`,title:`Kontextuell`,short:`Lernen in simulierten realen Alltagssituationen.`,long:`## Kontextuelle Methode
+
+Die AI simuliert eine konkrete Situation - Restaurant,
+Bewerbungsgespräch, Coding-Interview - und du löst die
+Aufgabe darin. Lernen findet im Anwendungskontext statt,
+nicht abstrakt.
+
+## Warum Kontext den Unterschied macht
+
+Studien zur **situierten Kognition** zeigen, dass im
+Kontext gelerntes Wissen sich besser auf die Praxis
+überträgt. Was du am Restauranttisch gelernt hast,
+kannst du am Restauranttisch anwenden - abstrakt
+Gelerntes oft nicht.
+
+Die Methode hilft besonders beim **Transferproblem**:
+"Ich kann die Regel, aber im echten Gespräch komme ich
+nicht drauf."
+
+## Beispiele für Sprache
+
+- "Du bist im Cafe in Madrid. Bestelle drei verschiedene
+  Tapas und frage nach der Empfehlung des Hauses."
+- "Du fragst nach dem Weg zum Bahnhof, der Passant
+  antwortet auf Dialekt - wie reagierst du?"
+
+## Beispiele für Code
+
+- "Code-Review: Du bekommst diesen PR. Was sagst du dem
+  Junior-Dev?"
+- "Production-Bug-Szenario: Logs zeigen X. Wie debuggst
+  du?"
+
+## Wann sie passt
+
+- **Wenn dein Ziel anwendungsnah ist** ("Spanisch für
+  den Urlaub" eignet sich besser als "Spanisch für die
+  Prüfung").
+- **Nach den ersten Grundlagen** - Kontext wirkt erst,
+  wenn die Bausteine sitzen.
+- **Wenn du dich auf eine konkrete Situation
+  vorbereitest** (Vorstellungsgespräch nächste Woche).
+
+## Wo sie weniger gut passt
+
+Bei reinen Prüfungs-Themen (Auswendiglernen von
+Faktenlisten) ist Deduktiv oder Spaced Repetition meist
+effizienter.
+`},{key:`method_ai_adaptive`,title:`KI-adaptiv`,short:`Das System wählt automatisch die beste Methode basierend auf deinem Verlauf.`,long:`## KI-adaptive Methode
+
+Du überlässt die Methodenwahl dem System. Es bewertet
+nach jedem Schritt deinen Fortschritt (Confidence-Wert),
+deinen Stress und deine Methodenpassung und entscheidet,
+mit welcher Methode der nächste Lernzyklus startet.
+
+## Wie das System entscheidet
+
+Drei Datenquellen fließen in die Wahl:
+
+- **Lernprofil**: die im Assessment ermittelten Gewichte.
+  Methoden mit hoher Gewichtung werden bevorzugt.
+- **Verlauf der letzten Sitzungen**: welche Methoden
+  haben in deinen letzten 5-10 Sitzungen zu schnellem
+  Fortschritt geführt?
+- **Aktueller Stress-Wert**: bei hohem Stress wird auf
+  weniger fordernde Methoden (Dialogisch, Kontextuell)
+  gewechselt.
+
+## Dual-Prompt-Evaluation
+
+Anders als bei festen Methoden läuft hier nach jedem
+Schritt eine zweite KI-Instanz, die deine Antworten
+bewertet und der ersten KI signalisiert: "weiter wie
+bisher", "Methode wechseln", "Schritt wiederholen".
+
+## Wann sie ideal ist
+
+- **Du bist neu im Adaptive Learner** und kennst die
+  Methoden noch nicht aus eigener Erfahrung.
+- **Du wechselst häufig Themen** - das System kalibriert
+  sich pro Projekt neu.
+- **Du möchtest überraschend gefordert werden** - die
+  AI mischt Methoden bewusst.
+
+## Du hast immer das letzte Wort
+
+Wenn das System einen Wechsel vorschlägt, kannst du
+ablehnen. Wenn dir eine vorgeschlagene Methode nicht
+passt, beendest du die Sitzung und startest mit einer
+anderen. Die AI-adaptive Methode ist ein Vorschlag-System,
+kein Zwang.
+`}]};export{e as default};

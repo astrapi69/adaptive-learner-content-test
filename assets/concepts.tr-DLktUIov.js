@@ -1,0 +1,236 @@
+var e={category:`concepts`,language:`tr`,entries:[{key:`curriculum`,title:`Müfredat`,short:`Hedefleri, içeriği, yöntemleri ve değerlendirmeyi bir araya getiren yapılandırılmış bir öğrenme planı.`,long:`## Müfredat nedir?
+
+Eğitimde müfredat (çoğul: müfredatlar), öğrenme ve
+öğretmenin nasıl gerçekleşeceğine ilişkin yapılandırılmış
+bir plan ve sistematik bir kavramdır.
+
+## Dört temel soru
+
+Her müfredat dört merkezi soruyu yanıtlar:
+
+- **Öğrenme hedefleri (neden?)** — Hangi yetkinlikler
+  kazanılmalıdır?
+- **Öğrenme içeriği (ne?)** — Hangi konular ele alınacaktır?
+- **Yöntem ve didaktik (nasıl?)** — Hangi öğretim ve
+  öğrenme biçimleri kullanılacaktır?
+- **Değerlendirme (ne kadar iyi?)** — Öğrenme başarısı
+  nasıl ölçülecektir?
+
+## Müfredat ile ders programı arasındaki fark
+
+Müfredat, konu alanlarının katı bir listesini değil,
+öğrenciyi ve onun yetkinlik kazanımını merkeze alır (çıktı
+odaklılık). Ders programı **neyin** öğretileceğini belgeler;
+müfredat ise **neden** ve **nasıl** sorularını da yanıtlar
+— ve **gerçekte neyin öğrenildiğini** ölçer.
+
+## Dört boyut
+
+Müfredat araştırması dört tezahürü birbirinden ayırt eder:
+
+- **Planlanan müfredat** — belgelenen hedef.
+- **Uygulanan müfredat** — gerçekte öğretilenler.
+- **Kazanılan müfredat** — öğrencilerin gerçekte
+  anladıkları.
+- **Gizli müfredat** — bunların yanı sıra gerçekleşen
+  örtük öğrenme (çalışma alışkanlıkları, tutumlar, sosyal
+  normlar).
+
+## Adaptive Learner'da
+
+Adaptive Learner'da müfredat, bir konu için kişisel öğrenme
+planınızdır. Öğrenme konularını hiyerarşik olarak düzenler
+ve bunları derslere bağlar. Hedefleri, içeriği ve yöntemleri
+siz belirlersiniz — sistem ise izleme, öğrenme profili ve
+her adımdan sonra gelen yapay zeka geri bildirimleri
+aracılığıyla değerlendirmeyi destekler.
+
+Basılı bir müfredattan farklı olarak bu müfredat sürekli
+uyum sağlar: bir yöntem değiştirme önerisi belirdiğinde,
+bu, uygulanan müfredatın kazanılan müfredata tepki
+vermesidir.
+`},{key:`learning_project`,title:`Öğrenme Projesi`,short:`Konu, hedef, zaman çerçevesi ve günlük öğrenme süresiyle somut öğrenme çabanız.`,long:`## Öğrenme projesi nedir?
+
+Bir öğrenme projesi, bir öğrenme çabasına ait her şeyi
+bir araya getirir: konu, hedefiniz, zaman çerçevesi ve
+günlük öğrenme süreniz. Oturumlarınızın, müfredatınızın
+ve öğrenme profilinizin etrafındaki kapsayıcıdır.
+
+## Neden bu dört alan?
+
+- **Konu** — ne öğrenmek istediğiniz (ör. "seyahat için
+  İspanyolca", "Python temelleri", "Do majör piyano
+  gamı"). Somut ve sınırlandırılmış, çok geniş değil.
+- **Hedef** — sonunda ne yapmayı istediğiniz. Somut
+  hedefler ("restoranda yemek sipariş etmek"), belirsiz
+  hedeflere ("İspanyolca öğrenmek") kıyasla daha iyi
+  yapay zeka istemleri üretir.
+- **Zaman çerçevesi** — ne zamana kadar. Sistemin
+  tekrarları ne kadar agresif programlayacağını ve
+  yöntem değiştirme önerisinin ne zaman çıkacağını
+  etkiler.
+- **Günlük öğrenme süresi** — her gün kaç dakika
+  ayırabilirsiniz. Aralıklı tekrar önerilerini ve
+  oturum uzunluğunu belirler.
+
+## Somut hedefler neden önemlidir
+
+Öğrenme araştırmaları açıktır: SMART hedefler (özgül,
+ölçülebilir, çekici, gerçekçi, zamana bağlı), belirsiz
+niyetlere kıyasla öğrenme başarısını iki katına
+çıkarır. Adaptive Learner hedefinizi yapay zekanın
+sistem istemine çevirir; ne kadar somut olursanız
+üretilen alıştırmalar o kadar keskin olur.
+
+## Adaptive Learner'da
+
+Birden fazla öğrenme projesini paralel olarak
+yürütebilirsiniz. Her oturum tam olarak bir projeye
+aittir; ilerlemeniz (XP, rozetler, seri) proje bazında
+izlenir. Zaman çerçevesini değiştirdiğinizde sistem
+otomatik olarak tekrar sıklığını ayarlar — dar bir zaman
+çerçevesi tekrarları daha yoğun aralıklarla programlar.
+`},{key:`learning_profile`,title:`Öğrenme Profili`,short:`Değerlendirme testinden türetilen, altı öğrenme yöntemindeki kişisel güçler profiliniz.`,long:`## Öğrenme profili nedir?
+
+Öğrenme profili, Adaptive Learner'ın altı yönteminin her
+birinin size ne ölçüde uyduğunu gösterir. Değerlendirme
+testindeki (12 soru) yanıtlarınızdan elde edilir ve bir
+radar grafiği olarak görselleştirilir.
+
+## Altı eksen
+
+Her eksen, 0 ile 100 arasında bir ağırlığa sahip bir
+yöntemdir:
+
+- **Tümdengelimli** — önce kuralı öğren, sonra uygula.
+- **Tümevarımlı** — örnekleri gör, kuralı kendin çıkar.
+- **Hata temelli** — kasıtlı hata yap, ardından nedenini
+  anla.
+- **Diyalogsal** — konuşarak öğren.
+- **Bağlamsal** — simüle edilmiş günlük yaşam
+  durumlarında öğren.
+- **Yapay zeka uyumlu** — sistem otomatik olarak seçer.
+
+## Bu bir profil, etiket değil
+
+Kimse "tümdengelimli bir öğrenci" değildir. Her öğrenci,
+altı yöntemin tamamında ağırlıklı bir örüntüye sahiptir.
+Yüksek tümevarımlı ve diyalogsal ağırlığa sahip bir profil,
+tümdengelimli yöntemin sizin için işe yaramayacağı anlamına
+gelmez — diğer ikisinin sizi öğrenme başarısına genellikle
+daha hızlı ulaştırdığı anlamına gelir.
+
+## Zaman içinde değişim
+
+Öğrenme profili değişmez değildir. Tamamlanan her öğrenme
+döngüsü ve her yöntem değişikliğiyle sistem önerilerini
+günceller. Değerlendirme testini istediğiniz zaman
+yeniden yapabilirsiniz — genellikle her 3-6 ayda bir veya
+büyük bir konu değişikliğinin ardından faydalıdır.
+
+## Adaptive Learner'da
+
+Profil, kontrol paneli görünümünü ve oturum önerilerini
+yönlendirir. Bir yöntem belirtmeden oturum başlatırsanız,
+sistem profilinizdeki en yüksek ağırlığa sahip yöntemi
+seçer.
+`},{key:`learning_session`,title:`Öğrenme Oturumu`,short:`7 adımlı döngüyü izleyen, yapay zeka destekli bir öğrenme birimi.`,long:`## Öğrenme oturumu nedir?
+
+Bir öğrenme oturumu, 7 adımlı döngüye (girdi, deneme,
+hata, geri bildirim, uyum, tekrar, bütünleştirme)
+dayanan, tek bir konuda kesintisiz bir öğrenme birimidir.
+Yapay zeka öğretmen rolünü üstlenir; diyalogu siz
+yönlendirirsiniz.
+
+## Oturum sıradan bir sohbetten nasıl farklıdır?
+
+Oturumda **çift istem değerlendiricisi** arka planda
+çalışır: her yanıttan sonra ikinci bir yapay zeka örneği
+anlayışınızı değerlendirir (%0-100 güven) ve bir sonraki
+adıma geçmeye hazır olup olmadığınıza karar verir.
+Sıradan bir sohbetin böyle bir düzeltici mekanizması
+yoktur.
+
+## Akış (Streaming)
+
+Yapay zekanın yanıtları kelime kelime görünür (Sunucu
+Gönderimli Olaylar) — böylece tam yanıt için beklemeniz
+gerekmez. İstediğiniz zaman müdahale edebilir ve ek
+sorular sorabilirsiniz. Oturum, siz sonlandırana veya
+döngü tamamlanana kadar devam eder.
+
+## Oturumu ne zaman sonlandırmalıyım?
+
+- Adım 7'nin (bütünleştirme) ardından, öğrenme döngüsü
+  tamamlandığında.
+- Sistem bir yöntem değişikliği önerdiğinde ve siz bunu
+  kabul ettiğinizde.
+- Son birkaç değerlendirmede **stres** puanınız 4'ün
+  üzerinde kaldıysa — bir mola, ısrarcı olmaktan daha
+  üreticidir.
+
+## Değerlendirmeler ileriye taşınır
+
+Her oturum üç kaydırıcıyla (anlama, stres, yönteme
+uyum; her biri 1-5) sona erer. Bu değerler öğrenme
+profilinizi besler ve gelecekteki önerileri şekillendirir:
+sürekli yüksek stres ile düşük yönteme uyum birlikteliği,
+yöntem değiştirme önerisini tetikler.
+
+## Adaptive Learner'da
+
+Bir oturum tam olarak bir öğrenme projesine aittir. Aynı
+anda yalnızca bir aktif oturumunuz olabilir; bu, konu
+karışmasını önler ve yöntem değiştirme mantığını
+gürültüden korur.
+`},{key:`content_repository`,title:`İçerik deposu`,short:`Adaptive Learner'ın bir içerik kaynağı olarak yükleyebileceği, yapılandırılmış ders setlerinden oluşan herkese açık bir GitHub deposu.`,docs_slug:`features/content-repos`,long:`## İçerik deposu nedir?
+
+Dersler içerik depolarından gelir — ders setlerini bir
+araya getiren herkese açık GitHub depoları. Resmi depo her
+zaman yüklenir; bunun üzerine kendi deponuzu da
+bağlayabilirsiniz.
+
+## Birden fazla kaynak
+
+Ayarlar > Veri altında istediğiniz sayıda depoyu
+yönetirsiniz (ekleme, kaldırma, sıra = öncelik). Her set,
+bir dersin nereden geldiğini görebilmeniz için bir kaynak
+rozeti taşır.
+`},{key:`trust_level`,title:`Güven düzeyi`,short:`Bağlı bir içerik deposunun teknik doğrulamasından türetilen otomatik güven derecesi.`,docs_slug:`features/content-repos`,long:`## Güven düzeyi nedir?
+
+Bağlı her depo, her senkronizasyonda otomatik bir teknik
+doğrulama çalıştırır. Bu, bir güven düzeyi üretir: 0
+(doğrulanmadı veya başarısız oldu), 1 (teknik olarak
+geçerli: en az bir ders, çalıştırılabilir içerik yok) ve 3
+(resmi olarak önerilen).
+
+## Ne DEĞİLDİR
+
+Bu düzey tamamen tekniktir. İçerik/topluluk temelli bir
+derecelendirme (güven 2), paylaşımlı bir arka uç hizmeti
+gerektirir ve ertelenmiştir.
+`},{key:`streak`,title:`Seri`,short:`Üst üste öğrendiğiniz gün sayısı — XP çarpanının yakıtı.`,docs_slug:`user-guide/dashboard`,long:`## Seri nedir?
+
+Bir seri, art arda gelen öğrenme günlerini sayar.
+Tamamlanan her oturum veya ders ısı haritasını doldurur ve
+seriyi canlı tutar.
+
+## Etki
+
+Seri bir XP çarpanını besler (art arda her gün için +%25,
+7 günde sınırlı). Tutarlılığınızın bir aynasıdır, bir
+sopa değil — kaçırılan bir günlük görev hiçbir ceza
+gerektirmez.
+`},{key:`assessment`,title:`Değerlendirme`,short:`Altı öğrenme yönteminden hangilerinin size uyduğunu belirleyen kısa bir test.`,docs_slug:`user-guide/assessment`,long:`## Değerlendirme nedir?
+
+Değerlendirme on iki soru sorar ve bunlardan öğrenme
+profilinizi hesaplar — uygulamanın dayandığı altı yöntemin
+ağırlıklandırması.
+
+## İsteğe bağlı ve devam ettirilebilir
+
+Onboarding revizyonundan bu yana değerlendirme isteğe
+bağlıdır ve yalnızca profil sihirbazı üzerinden erişilebilir.
+Yarıda bırakırsanız uygulama ilerlemenizi hatırlar; böylece
+daha sonra kaldığınız yerden devam edebilirsiniz.
+`}]};export{e as default};

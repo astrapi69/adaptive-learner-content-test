@@ -1,0 +1,239 @@
+var e={category:`methods`,language:`tr`,entries:[{key:`method_deductive`,title:`Tümdengelimli`,short:`Önce kuralı öğren, ardından somut örneklere uygula.`,long:`## Tümdengelimli yöntem
+
+Yapay zeka bir kural veya kavramı açıklar; ardından
+örneklerle pratik yaparsınız. Yukarıdan aşağıya: genelden
+özele doğru.
+
+## Ne zaman iyi çalışır
+
+- **Yapılandırılmış konular**: net kuralların olduğu
+  dilbilgisi, matematik formülleri, programlama sözdizimi.
+- **Ön bilginiz varsa** kuralın bağlanabileceği bir temel
+  mevcuttur.
+- **Netliği tercih ediyorsanız**: bir şeyi denemeden önce
+  doğrunun ne olduğunu bilmek istiyorsunuz.
+
+## Oturum nasıl ilerler
+
+1. Yapay zeka kuralı kısa bir örnekle açıklar.
+2. Bir alıştırma egzersizi verilir.
+3. Çözersiniz; yapay zeka geri bildirim verir.
+4. Anlayışta: daha yüksek karmaşıklıkta yeni bir görev.
+5. Hatalarda: yapay zeka açıklamayı geliştirir.
+
+## Tipik yapay zeka istemleri
+
+Bu yönteme ait sistem istemleri netlik ve adım adım
+ilerlemeyi vurgular. Yapay zekaya, uygulamaya geçmeden
+*önce* kuralı ifade etmesi yönünde talimat verilir.
+
+## Sistem ne zaman yöntem değiştirebilir
+
+Birkaç oturum boyunca **stres** puanınız yükselir ve
+"kuralları anlamamış gibi ezberliyor" hissine kapılırsanız
+sistem daha pratik odaklı bir yönteme geçmeyi önerir
+(tümevarımlı, bağlamsal veya diyalogsal). Değişim
+kararı her zaman size aittir.
+`},{key:`method_inductive`,title:`Tümevarımlı`,short:`Önce örnekleri gör, kuralı kendin çıkar.`,long:`## Tümevarımlı yöntem
+
+Yapay zeka örnekler sunar; siz örüntüyü fark ederek
+kuralı kendiniz formüle edersiniz. Aşağıdan yukarıya:
+somuttan genele doğru.
+
+## Ne zaman iyi çalışır
+
+- **Örüntü tanıma konuları**: bağlam içinde dilbilgisi,
+  müzik gamları, istatistik kavramları.
+- **Keşfederek öğreniyorsanız**, kural ezberlemek yerine.
+- **Örnekler boldur** — yapay zekanın kuralı görünür kılacak
+  materyali mevcuttur.
+
+## Oturum nasıl ilerler
+
+1. Yapay zeka bir olguya ait 3-5 örnek gösterir.
+2. Soru: "Hangi örüntüyü görüyorsunuz?"
+3. Bir hipotez formüle edersiniz.
+4. Yapay zeka onaylar, düzeltir veya daha fazla örnek gösterir.
+5. Doğru kurala ulaştığınızda: yapay zeka onu resmi olarak
+   ifade eder.
+
+## Neden daha derin yerleşir
+
+Araştırmalar, kendi keşfettiğiniz kuralların
+tekrarlananlardan daha uzun süre akılda kaldığını
+göstermektedir. Tümevarımlı yol daha uzun sürer, ama
+anlayış daha derine işler.
+
+## Ne zaman zorlaşır
+
+Örüntüler çok karmaşık veya arka planınız çok zayıfsa
+tümevarımlı öğrenme hayal kırıklığına yol açabilir.
+Sistem bunu düşük güven değerlerinden okur ve
+tümdengelimli yönteme geçebilir.
+`},{key:`method_error_based`,title:`Hata Temelli`,short:`Kasıtlı hata yap, ardından bunların neden oluştuğunu anla.`,long:`## Hata temelli yöntem
+
+Yapay zeka sizi kasıtlı olarak yaygın hatalara yönlendirir
+— ardından birlikte geri dönersiniz. Hatalar önlenmez,
+öğrenme fırsatı olarak kullanılır.
+
+## Kasıtlı hatalar neden işe yarar
+
+**Verimli başarısızlık** üzerine yapılan araştırmalar,
+kendi yaptığınız ve ardından anladığınız hataların,
+kaçındığınız hatalardan daha sağlam zihinsel modeller
+oluşturduğunu göstermektedir.
+
+Bu yöntem CEZALANDIRICI değildir: mesele utanç değil,
+netliktir. Anlaşılmış bir hata, rastgele doğru bir
+yanıttan daha değerlidir.
+
+## Yapay zeka bunu nasıl uygular
+
+1. Yapay zeka tuzaklar içeren bir problem sunar.
+2. Çözersiniz — ve çoğunlukla tuzağa düşersiniz.
+3. Yapay zeka hatayı gösterir ve altındaki yanlış
+   anlamayı açıklar.
+4. Hatayı tekrarlamadan bir varyantı çözersiniz.
+5. Yapay zeka ilkeyi geneller.
+
+## Bu yöntem ne zaman uygundur
+
+- **Klasik hata kaynaklarının olduğu konular** (dillerde
+  yanlış eşdeğerler, kodda sınır hataları, matematikte
+  işaret hataları).
+- **Hata yapma konusunda strese girmiyorsanız**.
+- **Temel bilginiz varsa** — tamamen bilgisizlikten
+  kaynaklanan hatalar az şey öğretir.
+
+## Yüksek strese dikkat
+
+Bir oturumda stres puanınız 3'ü aşarsa sistem diyalogsal
+veya tümdengelimli yönteme geçer — bu yöntemin verimli
+olabilmesi için zihinsel dinginlik gerekir.
+`},{key:`method_dialogic`,title:`Diyalogsal`,short:`Yapay zeka ile baskısız bir ortamda konuşarak öğren.`,long:`## Diyalogsal yöntem
+
+Konuşarak öğrenirsiniz: katı alıştırmalar yok, doğru/yanlış
+yanıtlar yok, sadece konu hakkında esnek bir diyalog.
+Yapay zeka soruları takip eder, derinleştirir, cesaretlendirir.
+
+## Ne zaman işe yarar
+
+- **Yüksek stres durumlarında**: sınav kaygısı veya
+  konuşma çekingenliğinin öğrenmeyi engellediği
+  durumlarda.
+- **Saf pekiştirme**: yapay zekaya anladıklarınızı
+  açıklarsınız.
+- **Yapılandırılmış bir çözüme bağlanmadan önce
+  keşfetmek istediğiniz karmaşık konular**.
+
+## Oturum nasıl ilerler
+
+Sabit adımlar yoktur. Bir soruyla, bir varsayımla veya
+bir kavramla başlarsınız. Yapay zeka konuşmayı sürdürür,
+takip soruları sorar, ilgili kavramlar önerir, örnekler
+verir. İstediğiniz zaman konu değiştirebilirsiniz —
+tümdengelimli veya tümevarımlı yöntemden farklı olarak
+sistem sizi belirli bir rotada tutmaz.
+
+## Yapay zeka ne yapar
+
+- **Düşük baskı**: yargılayıcı bir ton yok.
+- **Motive edici**: ilerleme vurgulanır, ama yapay
+  biçimde değil.
+- **Uyumlu**: karmaşıklığı akıcılığınıza ve enerjinize
+  göre ayarlar.
+
+## Çift istem değerlendiricisi ne yapar
+
+Güven değerlendirmesi hâlâ çalışır, ancak daha toleranslı
+biçimde — adım ilerlemesine %50 güvende izin verilir
+(normal %70'e karşılık). Bu yöntem açıkça keşif içindir,
+sınav için değil.
+`},{key:`method_contextual`,title:`Bağlamsal`,short:`Simüle edilmiş gerçek yaşam durumlarında öğren.`,long:`## Bağlamsal yöntem
+
+Yapay zeka somut bir durum simüle eder — restoran, iş
+görüşmesi, kodlama mülakatı — ve görevi bu bağlam içinde
+çözersiniz. Öğrenme, soyut olarak değil, uygulama
+bağlamında gerçekleşir.
+
+## Bağlam neden fark yaratır
+
+**Yerleşik biliş** üzerine yapılan araştırmalar, bağlamda
+öğrenilen bilginin pratiğe daha iyi aktarıldığını
+göstermektedir. Restoran masasında öğrendiklerinizi
+restoran masasında uygulayabilirsiniz — soyut bilgi
+genellikle bunu sağlayamaz.
+
+Bu yöntem özellikle **aktarım sorununa** yardımcı olur:
+"Kuralı biliyorum, ama gerçek bir konuşmada erişemiyorum."
+
+## Dil için örnekler
+
+- "Madrid'de bir kaftedesiniz. Üç farklı tapas sipariş
+  edin ve ev tavsiyesini sorun."
+- "Tren garına yol tarifi istiyorsunuz; yoldan geçen
+  bir lehçeyle yanıt veriyor — nasıl karşılık verirsiniz?"
+
+## Kod için örnekler
+
+- "Kod incelemesi: bu PR'ı aldınız. Junior geliştiriciyle
+  ne paylaşırsınız?"
+- "Prodüksiyon hatası senaryosu: loglar X'i gösteriyor.
+  Nasıl hata ayıklarsınız?"
+
+## Ne zaman uygundur
+
+- **Hedefiniz uygulamalı olduğunda** ("seyahat için
+  İspanyolca", "sınav için İspanyolca"dan daha iyi
+  uyar).
+- **İlk temel bilgilerden sonra** — bağlam yalnızca
+  yapı taşları yerli yerindeyken çalışır.
+- **Belirli bir duruma hazırlanırken** (önümüzdeki
+  hafta iş görüşmesi).
+
+## Ne zaman daha az uygundur
+
+Salt sınav konuları (gerçek listelerini ezberlemek) için
+tümdengelimli yöntem veya aralıklı tekrar genellikle
+daha verimlidir.
+`},{key:`method_ai_adaptive`,title:`Yapay Zeka Uyumlu`,short:`Sistem, geçmişinize dayanarak en uygun yöntemi otomatik olarak seçer.`,long:`## Yapay zeka uyumlu yöntem
+
+Sisteme yöntem seçimini bırakırsınız. Her adımdan sonra
+sistem ilerlemenizi (güven değeri), stresinizi ve yönteme
+uyumunuzu değerlendirir; ardından bir sonraki öğrenme
+döngüsünü hangi yöntemle başlatacağına karar verir.
+
+## Sistem nasıl karar verir
+
+Üç veri kaynağı seçimi besler:
+
+- **Öğrenme profili**: değerlendirmenizdeki ağırlıklar.
+  Daha yüksek ağırlıklı yöntemler öncelik alır.
+- **Oturum geçmişi**: son 5-10 oturumunuzda hangi
+  yöntemler hızlı ilerlemeye yol açtı?
+- **Mevcut stres düzeyi**: yüksek stres durumunda sistem
+  daha az zorlu yöntemlere geçer (diyalogsal, bağlamsal).
+
+## Çift istem değerlendirmesi
+
+Sabit yöntemlerden farklı olarak, ikinci bir yapay zeka
+örneği her adımdan sonra yanıtlarınızı değerlendirir ve
+birinci yapay zekaya sinyal verir: "devam et", "yöntem
+değiştir", "adımı tekrar et".
+
+## Ne zaman idealdir
+
+- **Adaptive Learner'a yeniyseniz** ve yöntemleri
+  henüz bizzat deneyimlemediyseniz.
+- **Konuyu sık değiştiriyorsanız** — sistem her proje
+  için yeniden kalibre olur.
+- **Sürprizleri seviyorsanız** — yapay zeka yöntemleri
+  kasıtlı olarak karıştırır.
+
+## Son söz her zaman sizin
+
+Sistem bir değişiklik önerirse reddedebilirsiniz. Önerilen
+yöntem uymuyorsa oturumu sonlandırıp başka biriyle
+başlayabilirsiniz. Yapay zeka uyumlu yöntem bir öneri
+sistemidir, bir kısıtlama değil.
+`}]};export{e as default};
