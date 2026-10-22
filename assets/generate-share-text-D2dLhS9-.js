@@ -1,0 +1,1 @@
+var e=`https://astrapi69.github.io/adaptive-learner/`,t=e,n=`https://astrapi69.github.io/adaptive-learner-content-test/`;function r(e,t){return e.replace(/\{([a-z_][a-z0-9_]*)\}/g,(e,n)=>n in t?t[n]:e)}export{r as i,n,e as r,t};
