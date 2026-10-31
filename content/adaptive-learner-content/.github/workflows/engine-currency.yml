@@ -1,0 +1,145 @@
+# Engine currency check.
+#
+# The drift gate (schema-drift.yml) compares the committed schema mirror
+# against the release this repo PINS. That comparison is deterministic and
+# therefore green forever - it is there to catch a hand-edit on the mirror,
+# not to catch lag. Nothing else looks at the pin either, so a published
+# engine release can pass by unnoticed, and a new author lint in it never
+# reaches this content.
+#
+# This job asks the other question: is the pin still the version this repo
+# means to follow? It compares schema/engine-version.txt against the npm
+# dist-tag named below and opens (or updates) an issue when they differ, and
+# closes that issue again once the pin catches up. It never edits the pin
+# itself: moving it is a deliberate PR that refreshes the schema mirror in
+# the same commit.
+name: Engine currency
+
+on:
+  schedule:
+    # Nightly, offset from the drift gate so the two do not report at once.
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+    inputs:
+      dist_tag:
+        description: >-
+          dist-tag or exact version to compare against, for a one-off check of
+          another channel. Empty uses the tracked ENGINE_DIST_TAG.
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  # The dist-tag this repository deliberately follows. `latest` is the stable
+  # channel. A repo that tracks another channel names its tag here instead,
+  # so a prerelease published under a different tag is not reported as lag
+  # that does not exist.
+  ENGINE_DIST_TAG: latest
+  ENGINE_PACKAGE: learn-content-engine
+  CURRENCY_LABEL: engine-currency
+
+jobs:
+  currency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: Compare the pin against the tracked dist-tag
+        id: compare
+        env:
+          # Via env, never interpolated into the script: a dispatch input is
+          # attacker-shaped text and belongs in a variable, not in shell source.
+          DISPATCH_TAG: ${{ inputs.dist_tag }}
+        run: |
+          tag="${DISPATCH_TAG:-}"
+          [ -n "$tag" ] || tag="$ENGINE_DIST_TAG"
+          pinned="$(tr -d '[:space:]' < schema/engine-version.txt)"
+          published="$(npm view "$ENGINE_PACKAGE@$tag" version)"
+          # An empty answer means the registry call failed or the tag does not
+          # exist. That is a broken check, not a current pin - fail loudly
+          # instead of reporting "up to date".
+          if [ -z "$published" ]; then
+            echo "npm view returned no version for $ENGINE_PACKAGE@$tag" >&2
+            exit 1
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "pinned=$pinned" >> "$GITHUB_OUTPUT"
+          echo "published=$published" >> "$GITHUB_OUTPUT"
+          if [ "$pinned" = "$published" ]; then
+            echo "differs=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "differs=true" >> "$GITHUB_OUTPUT"
+          fi
+          {
+            echo "| | version |"
+            echo "|---|---|"
+            echo "| pinned here | \`$pinned\` |"
+            echo "| \`$tag\` on npm | \`$published\` |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or update the currency issue
+        if: steps.compare.outputs.differs == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PINNED: ${{ steps.compare.outputs.pinned }}
+          PUBLISHED: ${{ steps.compare.outputs.published }}
+          COMPARED_TAG: ${{ steps.compare.outputs.tag }}
+        run: |
+          gh label create "$CURRENCY_LABEL" \
+            --description "The engine pin differs from the tracked dist-tag" \
+            --color ededed 2>/dev/null || true
+          # "differs", not "is behind": the pin can also sit AHEAD of the
+          # tracked channel, which is just as much a mismatch worth naming.
+          title="chore(engine): pin $PINNED differs from $COMPARED_TAG ($PUBLISHED)"
+          body="$(cat <<EOF
+          Pinned in \`schema/engine-version.txt\`: \`$PINNED\`
+          Published under \`$COMPARED_TAG\`: \`$PUBLISHED\`
+
+          The drift gate stays green throughout: it compares the mirror against
+          the release this repo pins, so it proves consistency, never currency.
+
+          Moving the pin is a deliberate PR:
+
+          \`\`\`
+          echo "$PUBLISHED" > schema/engine-version.txt
+          python3 scripts/check_schema_drift.py --update
+          make lint && make lint-warnings
+          \`\`\`
+
+          The warning run matters as much as the error run: a new author lint
+          ships in a release and reaches this content only once the pin moves.
+          Changelog: https://github.com/astrapi69/learn-content-engine/blob/main/CHANGELOG.md
+
+          This issue is maintained by \`.github/workflows/engine-currency.yml\`
+          and closes itself once the pin catches up.
+          EOF
+          )"
+          existing="$(gh issue list --label "$CURRENCY_LABEL" --state open \
+            --json number --jq '.[0].number')"
+          if [ -n "$existing" ]; then
+            gh issue edit "$existing" --title "$title" --body "$body"
+            echo "updated issue #$existing" >> "$GITHUB_STEP_SUMMARY"
+          else
+            gh issue create --title "$title" --body "$body" --label "$CURRENCY_LABEL"
+          fi
+
+      - name: Close the currency issue once the pin caught up
+        if: steps.compare.outputs.differs == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PINNED: ${{ steps.compare.outputs.pinned }}
+          COMPARED_TAG: ${{ steps.compare.outputs.tag }}
+        run: |
+          existing="$(gh issue list --label "$CURRENCY_LABEL" --state open \
+            --json number --jq '.[0].number' 2>/dev/null || true)"
+          if [ -n "$existing" ]; then
+            gh issue close "$existing" \
+              --comment "The pin is at \`$PINNED\`, which is what \`$COMPARED_TAG\` publishes. Closed by the currency check."
+          fi

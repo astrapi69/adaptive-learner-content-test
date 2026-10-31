@@ -1,0 +1,6 @@
+function e(e){return e instanceof DOMException&&e.name===`AbortError`}async function t(t,n){throw e(t)||!n.toNetworkError?t:await n.toNetworkError(t)}async function n(e){let t=await e.text().catch(()=>``);return Error(`SSE request failed (${e.status}): ${t}`)}async function r(e){let r;try{r=await fetch(e.url,{method:`POST`,headers:{"Content-Type":`application/json`,Accept:`text/event-stream`,...e.headers??{}},body:JSON.stringify(e.body),signal:e.signal})}catch(n){return t(n,e)}if(await e.onResponse?.(r),!r.ok)throw await(e.toHttpError??n)(r);if(!r.body)throw Error(`SSE response has no body`);let a=r.body.getReader(),o=new TextDecoder(`utf-8`),s=``;try{for(;;){let n;try{n=await a.read()}catch(n){return t(n,e)}let{value:r,done:c}=n;if(c){if(s.trim().length>0){let t=i(s);t&&e.onEvent(t)}return}s+=o.decode(r,{stream:!0});let l=s.indexOf(`
+
+`);for(;l!==-1;){let t=s.slice(0,l);s=s.slice(l+2);let n=i(t);n&&e.onEvent(n),l=s.indexOf(`
+
+`)}}}finally{try{a.releaseLock()}catch{}}}function i(e){let t=`message`,n=[];for(let r of e.split(/\r?\n/)){if(!r||r.startsWith(`:`))continue;let e=r.indexOf(`:`),i=e===-1?r:r.slice(0,e),a=e===-1?``:r.slice(e+1),o=a.startsWith(` `)?a.slice(1):a;i===`event`?t=o:i===`data`&&n.push(o)}if(n.length===0)return null;let r=n.join(`
+`),i;try{i=JSON.parse(r)}catch{i=r}return{event:t,data:i}}export{r as streamSse};
