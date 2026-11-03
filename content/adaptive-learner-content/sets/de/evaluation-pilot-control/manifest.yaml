@@ -1,0 +1,26 @@
+schema_version: '1.7'
+name: Hauptstädte Europas (Test ohne Bestehensgrenze)
+description: >-
+  Dieselben zehn Fragen zu europäischen Hauptstädten, ohne eigene
+  Bestehensgrenze: Im Prüfungsmodus gilt die Grenze aus den
+  Einstellungen. Kontroll-Set zum Test mit Bestehensgrenze.
+sets:
+  - id: evaluation-pilot-control-from-de
+    title: Hauptstädte Europas (Test ohne Bestehensgrenze)
+    title_native: Hauptstädte Europas (Test ohne Bestehensgrenze)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: none
+    path: sets/de/evaluation-pilot-control
+    version: '1.0.1'
+    lesson_count: 1
+    tags:
+      - knowledge
+      - test
+      - evaluation
+metadata:
+  author: Asterios Raptis
+  license: CC-BY-SA-4.0
+  lessons:
+    - 01-hauptstadt-quiz-kontrolle.json

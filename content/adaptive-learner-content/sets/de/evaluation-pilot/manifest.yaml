@@ -1,0 +1,31 @@
+schema_version: '1.7'
+name: Hauptstädte Europas (Test mit Bestehensgrenze)
+description: >-
+  Zehn Fragen zu europäischen Hauptstädten. Das Set legt eine
+  Bestehensgrenze von 60 Prozent fest, die im Prüfungsmodus statt der
+  eigenen Grenze aus den Einstellungen gilt. Test-Set für den
+  Bewertungs-Block (evaluation).
+sets:
+  - id: evaluation-pilot-from-de
+    title: Hauptstädte Europas (Test mit Bestehensgrenze)
+    title_native: Hauptstädte Europas (Test mit Bestehensgrenze)
+    target_language: de
+    source_language: de
+    domain: knowledge
+    level: none
+    path: sets/de/evaluation-pilot
+    version: '1.0.2'
+    lesson_count: 1
+    evaluation:
+      scheme: pass_fail
+      pass_percent: 60
+      title: Hauptstadt-Prüfung
+    tags:
+      - knowledge
+      - test
+      - evaluation
+metadata:
+  author: Asterios Raptis
+  license: CC-BY-SA-4.0
+  lessons:
+    - 01-hauptstadt-quiz.json

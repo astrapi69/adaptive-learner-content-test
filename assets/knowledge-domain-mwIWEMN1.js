@@ -1,0 +1,1 @@
+function e(e,t,n){return e!=null&&e!==`language`||!!n&&n===t}export{e as t};

@@ -1,0 +1,14 @@
+# Runtime dependencies for the content tooling (validate_content.py,
+# generate_search_index.py). The Makefile installs from this file, so
+# there is one source for the package names.
+pyyaml>=6,<7
+jsonschema>=4,<5
+# lce_schema.py needs Unicode property escapes (\p{Ll} etc.) in the slug
+# pattern; Python's built-in `re` cannot compile those, only `regex` can.
+regex>=2023.1.1
+# export_quiz_pdf.py (graded-quiz -> test + answer-sheet PDF). Pure Python,
+# no system libraries. Only the PDF emission needs it; the page logic does not.
+fpdf2>=2.7,<3
+# export_anki.py (one set -> Anki .apkg deck). Pure Python. Only the package
+# emission needs it; the note-building logic does not.
+genanki>=0.13,<0.14
