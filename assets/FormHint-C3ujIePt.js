@@ -1,0 +1,1 @@
+import{Kn as e}from"./index-BGF_bRdp.js";import{o as t}from"./vendor-markdown-CI7DIxU5.js";var n=t();function r({children:t,as:r=`p`,variant:i=`default`,className:a,...o}){return(0,n.jsx)(r,{className:e(`text-fg-muted text-[0.85rem]`,a),...o,children:t})}export{r as t};

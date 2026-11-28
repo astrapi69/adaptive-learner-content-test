@@ -1,0 +1,1 @@
+function e(e){return e.trim().toLowerCase().replace(/[^a-z0-9]+/g,`_`).replace(/^_+|_+$/g,``)}function t(t,n){let r=e(t);return r?n(`subjects.${r}`,t):t}function n(e,n){return e.split(` > `).map(e=>t(e,n)).join(` > `)}export{n,t};

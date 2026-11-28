@@ -1,0 +1,120 @@
+# Ownership: every copy of an owned file is its owner's bytes.
+#
+# .github/ownership.json names the owner of every path: the template (author
+# tooling), the hub adaptive-learner-content (search index and federation),
+# the hub alone (registry, AI review), the repository itself, or the engine
+# (the schema mirror, compared by schema-drift.yml). scripts/check_ownership.py
+# compares this repository's copies with the owners' main branches, using the
+# template's current ownership file.
+#
+# Like the registry drift, this does not belong in the PR gate: an owner moves
+# in its own repository, so a PR here would turn red for something this repo
+# did not do. It runs nightly, opens or updates one issue while copies differ,
+# and closes it when they agree again.
+name: Ownership
+
+on:
+  schedule:
+    - cron: "15 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  OWNERSHIP_LABEL: ownership-drift
+
+jobs:
+  ownership:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+        with:
+          repository: astrapi69/adaptive-learner-content-template
+          ref: main
+          path: .owners/template
+      - uses: actions/checkout@v5
+        with:
+          repository: astrapi69/adaptive-learner-content
+          ref: main
+          path: .owners/hub
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Compare with the owners
+        id: compare
+        run: |
+          set +e
+          python3 .owners/template/scripts/check_ownership.py \
+            --template .owners/template --hub .owners/hub \
+            --repository "$GITHUB_REPOSITORY" --root . > /tmp/ownership-report.txt 2>&1
+          status=$?
+          set -e
+          cat /tmp/ownership-report.txt
+          # 0 = in line, 1 = findings, anything else = the check itself is
+          # broken (owner checkout or ownership file missing or malformed) and
+          # must fail the job loudly.
+          if [ "$status" -gt 1 ]; then exit "$status"; fi
+          echo "drift=$([ "$status" -eq 1 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Ownership"
+            echo
+            echo '```'
+            cat /tmp/ownership-report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or update the ownership issue
+        if: steps.compare.outputs.drift == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create "$OWNERSHIP_LABEL" \
+            --description "A copy of an owned file differs from its owner" \
+            --color ededed 2>/dev/null || true
+          title="chore(tooling): copies differ from their owners"
+          body="$(cat <<EOF
+          \`.github/ownership.json\` (the template's current copy) names the
+          owner of every path. This repository's copies do not match:
+
+          \`\`\`
+          $(cat /tmp/ownership-report.txt)
+          \`\`\`
+
+          - \`differs from template\` / \`differs from hub\`: bring the copy in
+            line with the owner, or, if this repository's version is the
+            better one, move the change into the owner first.
+          - \`missing\`: copy the owner's file here.
+          - \`not in <owner>\`: the owner does not carry a file the ownership
+            file gives it; fix the owner or the row.
+          - \`only the hub carries it\`: remove it here, or give it a
+            different owner.
+          - \`no owner\`: add a row to \`.github/ownership.json\` in the
+            template.
+
+          This issue is maintained by \`.github/workflows/ownership.yml\` and
+          closes itself once the copies agree.
+          EOF
+          )"
+          existing="$(gh issue list --label "$OWNERSHIP_LABEL" --state open --json number --jq '.[0].number')"
+          if [ -n "$existing" ]; then
+            gh issue edit "$existing" --title "$title" --body "$body"
+            echo "updated issue #$existing" >> "$GITHUB_STEP_SUMMARY"
+          else
+            gh issue create --title "$title" --body "$body" --label "$OWNERSHIP_LABEL"
+          fi
+
+      - name: Close the ownership issue once the copies agree
+        if: steps.compare.outputs.drift == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          existing="$(gh issue list --label "$OWNERSHIP_LABEL" --state open --json number --jq '.[0].number' 2>/dev/null || true)"
+          if [ -n "$existing" ]; then
+            gh issue close "$existing" \
+              --comment "Every owned copy matches its owner again. Closed by the ownership check."
+          fi

@@ -1,0 +1,76 @@
+{
+  "repo": "astrapi69/adaptive-learner-content-test",
+  "generated": "2026-10-13T14:39:06Z",
+  "schema_version": "1.0",
+  "sets": [
+    {
+      "id": "graded-quiz-demo-from-de",
+      "name": "Graded-Quiz Demo (Test)",
+      "description": "Eine Lektion: Theorie plus fünf Aufgaben (multiple_choice, cloze select, cloze type) und ein benotetes Quiz über den Extension-Typ ext:al-graded-quiz.",
+      "source_language": "de",
+      "target_language": "de",
+      "level": "a1",
+      "domain": "knowledge",
+      "lesson_count": 1,
+      "card_count": 3,
+      "tags": [
+        "knowledge",
+        "test",
+        "graded-quiz",
+        "extension"
+      ],
+      "visibility": "hidden",
+      "review_status": "authored",
+      "ai_validated": false,
+      "trust_level": 1,
+      "book": null,
+      "updated_at": "2026-10-12T16:56:37Z"
+    },
+    {
+      "id": "evaluation-pilot-from-de",
+      "name": "Hauptstädte Europas (Test mit Bestehensgrenze)",
+      "description": "Zehn Fragen zu europäischen Hauptstädten. Das Set legt eine Bestehensgrenze von 60 Prozent fest, die im Prüfungsmodus statt der eigenen Grenze aus den Einstellungen gilt. Test-Set für den Bewertungs-Block (evaluation).",
+      "source_language": "de",
+      "target_language": "de",
+      "level": "none",
+      "domain": "knowledge",
+      "lesson_count": 1,
+      "card_count": 10,
+      "tags": [
+        "knowledge",
+        "test",
+        "evaluation"
+      ],
+      "visibility": "visible",
+      "review_status": "authored",
+      "ai_validated": false,
+      "trust_level": 1,
+      "book": null,
+      "updated_at": "2026-10-13T14:38:54Z"
+    },
+    {
+      "id": "evaluation-pilot-control-from-de",
+      "name": "Hauptstädte Europas (Test ohne Bestehensgrenze)",
+      "description": "Dieselben zehn Fragen zu europäischen Hauptstädten, ohne eigene Bestehensgrenze: Im Prüfungsmodus gilt die Grenze aus den Einstellungen. Kontroll-Set zum Test mit Bestehensgrenze.",
+      "source_language": "de",
+      "target_language": "de",
+      "level": "none",
+      "domain": "knowledge",
+      "lesson_count": 1,
+      "card_count": 10,
+      "tags": [
+        "knowledge",
+        "test",
+        "evaluation"
+      ],
+      "visibility": "visible",
+      "review_status": "authored",
+      "ai_validated": false,
+      "trust_level": 1,
+      "book": null,
+      "updated_at": "2026-10-13T14:16:33Z"
+    }
+  ],
+  "total_lessons": 3,
+  "total_cards": 23
+}
